@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContentForgeStudio — AI Tools. Real Results. Build Income.</title>
+<meta name="description" content="ContentForgeStudio — AI tools, strategies, and systems to build real digital income. Free starter kit, tutorials, and resources.">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Raleway:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07070e;
+    --surface: #0d0d1a;
+    --card: #111120;
+    --border: rgba(56,217,245,0.12);
+    --cyan: #38d9f5;
+    --yellow: #e8ff47;
+    --fire: #ff5c1a;
+    --green: #00ffaa;
+    --purple: #b06fff;
+    --steel: #8090b0;
+    --dim: #363658;
+    --white: #f0f0ff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  /* ── ANIMATED BG ── */
+  .bg-layer {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  }
+  .bg-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(56,217,245,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(56,217,245,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    animation: gridMove 50s linear infinite;
+  }
+  @keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 48px 48px; }
+  }
+  .bg-glow-top {
+    position: absolute; top: -20%; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 600px;
+    background: radial-gradient(ellipse, rgba(56,217,245,0.07) 0%, transparent 65%);
+  }
+  .bg-glow-bot {
+    position: absolute; bottom: -10%; right: -10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse, rgba(255,92,26,0.05) 0%, transparent 65%);
+  }
+
+  /* ── MAIN CONTAINER ── */
+  .container {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 560px;
+    padding: 60px 24px 80px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 0;
+  }
+
+  /* ── LOGO MARK ── */
+  .logo-wrap {
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .logo-wrap svg {
+    width: 100px; height: 100px;
+    filter: drop-shadow(0 0 24px rgba(56,217,245,0.25));
+  }
+  .ring-spin {
+    animation: spin 20s linear infinite;
+    transform-origin: 60px 60px;
+  }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  /* ── NAME ── */
+  .brand-name {
+    font-family: 'Orbitron', monospace;
+    font-size: 22px; font-weight: 900;
+    letter-spacing: 1px; text-align: center;
+    margin-bottom: 6px;
+  }
+  .brand-name .cy { color: var(--cyan); }
+
+  .brand-handle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; letter-spacing: 3px;
+    color: var(--steel); margin-bottom: 12px;
+  }
+
+  /* ── TAGLINE ── */
+  .tagline {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 4px; text-align: center;
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .tl-y { color: var(--yellow); }
+  .tl-f { color: var(--fire); }
+  .tl-c { color: var(--cyan); }
+  .tl-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--dim); flex-shrink: 0; }
+
+  /* ── EMAIL CAPTURE ── */
+  .email-section {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(56,217,245,0.07), rgba(7,7,14,0));
+    border: 1px solid rgba(56,217,245,0.2);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  .email-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; letter-spacing: 4px;
+    color: var(--cyan); margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .email-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 14px; font-weight: 700;
+    color: var(--white); margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .email-sub {
+    font-size: 12px; color: var(--steel);
+    font-weight: 300; margin-bottom: 16px;
+  }
+  .email-form {
+    display: flex; gap: 0;
+    border-radius: 6px; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .email-form input {
+    flex: 1; background: rgba(0,0,0,0.4);
+    border: none; outline: none;
+    padding: 12px 16px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 13px; color: var(--white);
+  }
+  .email-form input::placeholder { color: var(--dim); }
+  .email-form button {
+    background: var(--cyan); color: #000;
+    border: none; padding: 12px 20px;
+    font-family: 'Orbitron', monospace;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 2px; cursor: pointer;
+    white-space: nowrap; transition: background 0.2s;
+  }
+  .email-form button:hover { background: var(--yellow); }
+  .email-note {
+    font-size: 10px; color: var(--dim);
+    margin-top: 8px; font-weight: 300;
+  }
+
+  /* ── LINKS ── */
+  .links-section {
+    width: 100%;
+    display: flex; flex-direction: column;
+    gap: 10px; margin-bottom: 28px;
+  }
+
+  .link-card {
+    display: flex; align-items: center;
+    gap: 16px; padding: 16px 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none; color: inherit;
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    position: relative; overflow: hidden;
+    cursor: pointer;
+  }
+  .link-card::before {
+    content: ''; position: absolute;
+    left: 0; top: 0; bottom: 0; width: 3px;
+  }
+  .link-card:hover {
+    transform: translateX(4px);
+    border-color: rgba(56,217,245,0.3);
+    background: rgba(56,217,245,0.04);
+  }
+
+  /* Color variants */
+  .lc-youtube::before { background: #ff0000; }
+  .lc-youtube:hover { border-color: rgba(255,0,0,0.3); background: rgba(255,0,0,0.04); }
+  .lc-tiktok::before { background: linear-gradient(180deg, #00f2ea, #ff0050); }
+  .lc-instagram::before { background: linear-gradient(180deg, #f9ce34, #ee2a7b, #6228d7); }
+  .lc-website::before { background: var(--cyan); }
+  .lc-guide::before { background: var(--yellow); }
+  .lc-tools::before { background: var(--green); }
+  .lc-app::before { background: var(--purple); }
+
+  .link-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .link-body { flex: 1; }
+  .link-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 12px; font-weight: 700;
+    color: var(--white); letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+  .link-sub {
+    font-size: 11px; color: var(--steel);
+    font-weight: 300;
+  }
+  .link-arrow {
+    font-size: 16px; color: var(--dim);
+    transition: color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+  .link-card:hover .link-arrow {
+    color: var(--cyan); transform: translateX(3px);
+  }
+
+  /* Badge on link */
+  .link-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px; letter-spacing: 1px;
+    padding: 2px 8px; border-radius: 3px;
+    margin-left: auto; margin-right: 8px;
+    flex-shrink: 0;
+  }
+  .lb-free { background: rgba(0,255,170,0.1); color: var(--green); border: 1px solid rgba(0,255,170,0.2); }
+  .lb-new { background: rgba(232,255,71,0.1); color: var(--yellow); border: 1px solid rgba(232,255,71,0.2); }
+  .lb-soon { background: rgba(176,111,255,0.1); color: var(--purple); border: 1px solid rgba(176,111,255,0.2); }
+
+  /* ── SECTION DIVIDER ── */
+  .divider-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; letter-spacing: 5px;
+    color: var(--dim); text-transform: uppercase;
+    margin: 8px 0 16px;
+    display: flex; align-items: center; gap: 12px;
+    width: 100%;
+  }
+  .divider-label::before, .divider-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: var(--border);
+  }
+
+  /* ── LATEST VIDEO ── */
+  .video-card {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    text-decoration: none; color: inherit;
+    display: block;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .video-card:hover {
+    border-color: rgba(56,217,245,0.3);
+    transform: translateY(-2px);
+  }
+  .video-thumb {
+    width: 100%; aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #07071a 55%, #0d0d26);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .video-thumb-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(232,255,71,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,255,71,0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .play-btn {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(56,217,245,0.9);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 2;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .video-card:hover .play-btn { transform: scale(1.1); background: var(--cyan); }
+  .play-btn::after {
+    content: '';
+    border-left: 18px solid #000;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    margin-left: 4px;
+  }
+  .new-pill {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--cyan); color: #000;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 2px; padding: 3px 10px;
+    border-radius: 3px; z-index: 2;
+  }
+  .video-info { padding: 16px 18px; }
+  .video-info h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 13px; font-weight: 700;
+    line-height: 1.4; margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+  .video-info p {
+    font-size: 12px; color: var(--steel);
+    font-weight: 300; line-height: 1.6;
+  }
+
+  /* ── TOOLS GRID ── */
+  .tools-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .tool-pill {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none; color: inherit;
+    transition: border-color 0.2s, transform 0.2s;
+    font-size: 12px; font-weight: 500;
+  }
+  .tool-pill:hover {
+    border-color: rgba(56,217,245,0.25);
+    transform: translateY(-1px);
+  }
+  .tool-pill .ico { font-size: 16px; }
+  .tool-name { font-size: 12px; font-weight: 600; color: var(--white); }
+  .tool-free { font-size: 10px; color: var(--green); font-weight: 300; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center; padding-top: 8px;
+  }
+  .footer-brand {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px; color: var(--dim);
+    letter-spacing: 3px; margin-bottom: 8px;
+  }
+  .footer-disc {
+    font-size: 10px; color: var(--dim);
+    font-weight: 300; line-height: 1.7;
+    max-width: 400px; margin: 0 auto;
+  }
+  .footer-disc a { color: rgba(56,217,245,0.4); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="bg-layer">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-top"></div>
+  <div class="bg-glow-bot"></div>
+</div>
+
+<div class="container">
+
+  <!-- ANIMATED LOGO VIDEO -->
+  <div style="width:min(400px,88vw);margin:0 auto 8px;border-radius:14px;overflow:hidden;">
+    <video autoplay muted playsinline style="width:100%;display:block;border-radius:14px;">
+      <source src="CFS_logo_master.mp4" type="video/mp4">
+      <source src="CFS_logo_master.webm" type="video/webm">
+    </video>
+  </div>
+  <div class="brand-handle">@ContentForgeStudio</div>
+
+  <!-- EMAIL CAPTURE -->
+  <div class="email-section">
+    <div class="email-eyebrow">// Free Download</div>
+    <div class="email-title">AI Income Starter Kit</div>
+    <div class="email-sub">5 free tools + 8 affiliate programs + 30-day content plan. Zero cost to start.</div>
+    <div class="email-form">
+      <input type="email" placeholder="Your email address...">
+      <button>GET IT FREE</button>
+    </div>
+    <div class="email-note">No spam. Unsubscribe anytime.</div>
+  </div>
+
+  <!-- LATEST VIDEO -->
+  <div class="divider-label">Latest Video</div>
+  <a href="https://youtube.com/@ContentForgeStudio" class="video-card">
+    <div class="video-thumb">
+      <div class="video-thumb-grid"></div>
+      <div class="play-btn"></div>
+      <div class="new-pill">NEW</div>
+    </div>
+    <div class="video-info">
+      <h3>5 Free AI Tools That Can Make You Money in 2026</h3>
+      <p>The exact tools we use daily to generate income — all free to start. No fluff, no hype.</p>
+    </div>
+  </a>
+
+  <!-- PLATFORM LINKS -->
+  <div class="divider-label">Find Us Everywhere</div>
+  <div class="links-section">
+
+    <a href="https://youtube.com/@ContentForgeStudio" class="link-card lc-youtube">
+      <div class="link-icon">▶</div>
+      <div class="link-body">
+        <div class="link-title">YouTube</div>
+        <div class="link-sub">New videos weekly · Tutorials · Tool reviews · Build series</div>
+      </div>
+      <div class="link-badge lb-new">SUBSCRIBE</div>
+      <div class="link-arrow">→</div>
+    </a>
+
+    <a href="https://tiktok.com/@ContentForgeStudio" class="link-card lc-tiktok">
+      <div class="link-icon">🎵</div>
+      <div class="link-body">
+        <div class="link-title">TikTok</div>
+        <div class="link-sub">Quick AI tips · 60-second income hacks · Daily drops</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+
+    <a href="https://instagram.com/ContentForgeStudio" class="link-card lc-instagram">
+      <div class="link-icon">📸</div>
+      <div class="link-body">
+        <div class="link-title">Instagram</div>
+        <div class="link-sub">Behind the scenes · Reels · Brand updates</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+
+    <a href="https://contentforgestudio.com" class="link-card lc-website">
+      <div class="link-icon">🌐</div>
+      <div class="link-body">
+        <div class="link-title">ContentForgeStudio.com</div>
+        <div class="link-sub">Full resource hub · Affiliate tools · Free guides</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- RESOURCE LINKS -->
+  <div class="divider-label">Free Resources</div>
+  <div class="links-section">
+
+    <a href="https://contentforgestudio.com/guide" class="link-card lc-guide">
+      <div class="link-icon">📋</div>
+      <div class="link-body">
+        <div class="link-title">Free AI Income Starter Kit</div>
+        <div class="link-sub">5 tools · 8 programs · 30-day plan · completely free</div>
+      </div>
+      <div class="link-badge lb-free">FREE</div>
+      <div class="link-arrow">→</div>
+    </a>
+
+    <a href="https://contentforgestudio.com/tools" class="link-card lc-tools">
+      <div class="link-icon">🛠</div>
+      <div class="link-body">
+        <div class="link-title">Best Free AI Tools 2026</div>
+        <div class="link-sub">Tested · ranked · all with free tiers · updated regularly</div>
+      </div>
+      <div class="link-badge lb-free">FREE</div>
+      <div class="link-arrow">→</div>
+    </a>
+
+    <a href="#" class="link-card lc-app">
+      <div class="link-icon">📱</div>
+      <div class="link-body">
+        <div class="link-title">The Forge App — Coming Soon</div>
+        <div class="link-sub">Creator brand-building platform · AI assistant · Income tracker</div>
+      </div>
+      <div class="link-badge lb-soon">SOON</div>
+      <div class="link-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- FREE TOOLS QUICK LINKS -->
+  <div class="divider-label">Top Free AI Tools</div>
+  <div class="tools-grid">
+    <a href="#" class="tool-pill">
+      <span class="ico">🎙</span>
+      <div><div class="tool-name">ElevenLabs</div><div class="tool-free">Free voiceover</div></div>
+    </a>
+    <a href="#" class="tool-pill">
+      <span class="ico">🎬</span>
+      <div><div class="tool-name">Seedance</div><div class="tool-free">Free AI video</div></div>
+    </a>
+    <a href="#" class="tool-pill">
+      <span class="ico">🌊</span>
+      <div><div class="tool-name">Google Flow</div><div class="tool-free">Free Veo 3.1</div></div>
+    </a>
+    <a href="#" class="tool-pill">
+      <span class="ico">🖼</span>
+      <div><div class="tool-name">Canva Free</div><div class="tool-free">Free design</div></div>
+    </a>
+    <a href="#" class="tool-pill">
+      <span class="ico">✂️</span>
+      <div><div class="tool-name">DaVinci</div><div class="tool-free">Free editing</div></div>
+    </a>
+    <a href="#" class="tool-pill">
+      <span class="ico">🔊</span>
+      <div><div class="tool-name">Murf AI</div><div class="tool-free">Free tier</div></div>
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">© 2026 CONTENTFORGESTUDIO.COM</div>
+    <div class="footer-disc">
+      Some links on this page are affiliate links — we earn a commission at no extra cost to you. We only recommend tools we actually use and believe in.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

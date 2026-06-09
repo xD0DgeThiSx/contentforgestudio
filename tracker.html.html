@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContentForgeStudio · Command Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Raleway:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07070e;
+    --surface: #0d0d1a;
+    --card: #111120;
+    --card2: #0e0e1c;
+    --border: rgba(56,217,245,0.1);
+    --cyan: #38d9f5;
+    --yellow: #e8ff47;
+    --fire: #ff5c1a;
+    --green: #00ffaa;
+    --purple: #b06fff;
+    --steel: #8090b0;
+    --dim: #363658;
+    --white: #f0f0ff;
+    --red: #ff4466;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: rgba(7,7,14,0.95);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(12px);
+  }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .header-mark {
+    width: 36px; height: 36px;
+    border: 2px solid var(--cyan);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .header-mark span {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px; font-weight: 800;
+    color: var(--cyan);
+  }
+  .header-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 13px; font-weight: 800;
+    letter-spacing: 1px;
+  }
+  .header-title em { font-style: normal; color: var(--cyan); }
+  .header-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; letter-spacing: 3px;
+    color: var(--dim); margin-top: 2px;
+  }
+  .header-right { display: flex; gap: 16px; align-items: center; }
+  .overall-progress {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
+  }
+  .op-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; letter-spacing: 3px; color: var(--dim);
+  }
+  .op-bar {
+    width: 200px; height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px; overflow: hidden;
+  }
+  .op-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyan), var(--green));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+  }
+  .op-pct {
+    font-family: 'Orbitron', monospace;
+    font-size: 13px; font-weight: 700;
+    color: var(--cyan);
+  }
+
+  /* ── LAYOUT ── */
+  .main { max-width: 1200px; margin: 0 auto; padding: 40px; }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .sc-cyan::before { background: var(--cyan); }
+  .sc-yellow::before { background: var(--yellow); }
+  .sc-fire::before { background: var(--fire); }
+  .sc-green::before { background: var(--green); }
+  .sc-purple::before { background: var(--purple); }
+  .stat-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 32px; font-weight: 900;
+    line-height: 1; margin-bottom: 4px;
+  }
+  .sc-cyan .stat-num { color: var(--cyan); }
+  .sc-yellow .stat-num { color: var(--yellow); }
+  .sc-fire .stat-num { color: var(--fire); }
+  .sc-green .stat-num { color: var(--green); }
+  .sc-purple .stat-num { color: var(--purple); }
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; letter-spacing: 2px;
+    color: var(--dim); text-transform: uppercase;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-title-row { display: flex; align-items: center; gap: 12px; }
+  .section-icon { font-size: 18px; }
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .section-progress {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .sp-bar {
+    width: 120px; height: 4px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px; overflow: hidden;
+  }
+  .sp-fill {
+    height: 100%; border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+  .sp-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; color: var(--steel);
+    min-width: 40px; text-align: right;
+  }
+
+  /* ── TASK GRID ── */
+  .task-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 8px;
+  }
+
+  /* ── TASK ITEM ── */
+  .task {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    user-select: none;
+    position: relative;
+  }
+  .task:hover { border-color: rgba(56,217,245,0.25); transform: translateY(-1px); }
+  .task.done {
+    background: rgba(0,255,170,0.04);
+    border-color: rgba(0,255,170,0.15);
+  }
+  .task.done .task-text { color: var(--dim); text-decoration: line-through; }
+  .task.done .task-sub { color: rgba(54,54,88,0.7); }
+
+  .task-check {
+    width: 20px; height: 20px;
+    border: 2px solid var(--dim);
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+  .task.done .task-check {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .task.done .task-check::after {
+    content: '✓';
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .task-body { flex: 1; }
+  .task-text { font-size: 13px; font-weight: 500; color: var(--white); line-height: 1.4; }
+  .task-sub { font-size: 11px; color: var(--steel); font-weight: 300; margin-top: 3px; }
+
+  .task-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px; letter-spacing: 1px;
+    padding: 2px 7px; border-radius: 3px;
+    flex-shrink: 0; align-self: flex-start;
+    margin-top: 2px;
+  }
+  .tb-urgent { background: rgba(255,92,26,0.15); color: var(--fire); border: 1px solid rgba(255,92,26,0.25); }
+  .tb-today { background: rgba(232,255,71,0.1); color: var(--yellow); border: 1px solid rgba(232,255,71,0.2); }
+  .tb-soon { background: rgba(56,217,245,0.1); color: var(--cyan); border: 1px solid rgba(56,217,245,0.2); }
+  .tb-ongoing { background: rgba(176,111,255,0.1); color: var(--purple); border: 1px solid rgba(176,111,255,0.2); }
+  .tb-done { background: rgba(0,255,170,0.1); color: var(--green); border: 1px solid rgba(0,255,170,0.2); }
+
+  /* ── APP CONCEPT CARD ── */
+  .app-card {
+    background: linear-gradient(135deg, rgba(176,111,255,0.08), rgba(56,217,245,0.04));
+    border: 1px solid rgba(176,111,255,0.2);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+  .app-header {
+    display: flex; align-items: center;
+    gap: 14px; margin-bottom: 16px;
+  }
+  .app-icon {
+    font-size: 32px;
+  }
+  .app-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 18px; font-weight: 800;
+    color: var(--purple);
+  }
+  .app-subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; letter-spacing: 3px;
+    color: var(--dim); margin-top: 2px;
+  }
+  .app-desc {
+    font-size: 13px; color: var(--steel);
+    font-weight: 300; margin-bottom: 20px;
+    max-width: 700px; line-height: 1.8;
+  }
+  .app-features {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .app-feature {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; letter-spacing: 1px;
+    padding: 4px 12px; border-radius: 4px;
+    background: rgba(176,111,255,0.1);
+    color: var(--purple);
+    border: 1px solid rgba(176,111,255,0.2);
+  }
+
+  /* ── INCOME TRACKER ── */
+  .income-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+  .income-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .income-source {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; letter-spacing: 2px;
+    color: var(--dim); margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .income-amount {
+    font-family: 'Orbitron', monospace;
+    font-size: 22px; font-weight: 800;
+    color: var(--green); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .income-status {
+    font-size: 11px; color: var(--dim);
+    font-weight: 300;
+  }
+
+  /* ── RESET BTN ── */
+  .reset-btn {
+    background: rgba(255,68,102,0.1);
+    border: 1px solid rgba(255,68,102,0.2);
+    color: var(--red);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; letter-spacing: 2px;
+    padding: 6px 14px; border-radius: 4px;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .reset-btn:hover { background: rgba(255,68,102,0.2); }
+
+  /* ── NOTES ── */
+  .notes-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 36px;
+  }
+  .notes-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; letter-spacing: 3px;
+    color: var(--cyan); margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .notes-input {
+    width: 100%;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 13px; color: var(--white);
+    font-weight: 300; line-height: 1.7;
+    resize: vertical; min-height: 80px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .notes-input:focus { border-color: rgba(56,217,245,0.3); }
+  .notes-input::placeholder { color: var(--dim); }
+
+  @media(max-width:600px){
+    .header { padding: 14px 20px; }
+    .main { padding: 20px; }
+    .task-grid { grid-template-columns: 1fr; }
+    .op-bar { width: 120px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="header">
+  <div class="header-left">
+    <div style="height:44px;border-radius:6px;overflow:hidden;flex-shrink:0;">
+      <video autoplay muted playsinline style="height:44px;width:auto;display:block;">
+        <source src="CFS_logo_master.mp4" type="video/mp4">
+        <source src="CFS_logo_master.webm" type="video/webm">
+      </video>
+    </div>
+    <div>
+      <div class="header-title">CONTENT<em>FORGE</em>STUDIO</div>
+      <div class="header-sub">// COMMAND CENTER · PRODUCTION TRACKER</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="overall-progress">
+      <div class="op-label">// OVERALL PROGRESS</div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="op-bar"><div class="op-fill" id="overallBar" style="width:0%"></div></div>
+        <div class="op-pct" id="overallPct">0%</div>
+      </div>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">RESET ALL</button>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ── STATS ── -->
+  <div class="stats-row">
+    <div class="stat-card sc-cyan">
+      <div class="stat-num" id="stat-total">0</div>
+      <div class="stat-label">Tasks Complete</div>
+    </div>
+    <div class="stat-card sc-yellow">
+      <div class="stat-num" id="stat-channel">0%</div>
+      <div class="stat-label">Channel Setup</div>
+    </div>
+    <div class="stat-card sc-fire">
+      <div class="stat-num" id="stat-video">0%</div>
+      <div class="stat-label">Video #1 Done</div>
+    </div>
+    <div class="stat-card sc-green">
+      <div class="stat-num" id="stat-affil">0%</div>
+      <div class="stat-label">Affiliates Live</div>
+    </div>
+    <div class="stat-card sc-purple">
+      <div class="stat-num" id="stat-web">0%</div>
+      <div class="stat-label">Website Live</div>
+    </div>
+  </div>
+
+  <!-- ── INCOME TRACKER ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title-row">
+        <div class="section-icon">💰</div>
+        <div class="section-title" style="color:var(--green)">INCOME TRACKER</div>
+      </div>
+    </div>
+    <div class="income-row">
+      <div class="income-item">
+        <div class="income-source">Affiliate Links</div>
+        <div class="income-amount">$0</div>
+        <div class="income-status">Pending approval</div>
+      </div>
+      <div class="income-item">
+        <div class="income-source">AdSense</div>
+        <div class="income-amount">$0</div>
+        <div class="income-status">Need 1K subs / 4K hrs</div>
+      </div>
+      <div class="income-item">
+        <div class="income-source">Digital Products</div>
+        <div class="income-amount">$0</div>
+        <div class="income-status">Building</div>
+      </div>
+      <div class="income-item">
+        <div class="income-source">Sponsorships</div>
+        <div class="income-amount">$0</div>
+        <div class="income-status">Month 3 target</div>
+      </div>
+      <div class="income-item">
+        <div class="income-source">CFS App</div>
+        <div class="income-amount">$0</div>
+        <div class="income-status">In planning</div>
+      </div>
+      <div class="income-item">
+        <div class="income-source">30-Day Target</div>
+        <div class="income-amount" style="color:var(--yellow)">$200</div>
+        <div class="income-status">Day 1 of 30</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── AFFILIATE APPLICATIONS ── -->
+  <div class="section" id="sec-affil">
+    <div class="section-header">
+      <div class="section-title-row">
+        <div class="section-icon">🔗</div>
+        <div class="section-title" style="color:var(--yellow)">AFFILIATE APPLICATIONS</div>
+      </div>
+      <div class="section-progress">
+        <div class="sp-bar"><div class="sp-fill" id="bar-affil" style="width:0%;background:var(--yellow)"></div></div>
+        <div class="sp-text" id="txt-affil">0/6</div>
+      </div>
+    </div>
+    <div class="task-grid" id="grid-affil">
+      <div class="task" onclick="toggleTask(this,'affil')" data-id="a1">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Apply — ElevenLabs Affiliate</div>
+          <div class="task-sub">elevenlabs.io/affiliates · 22% recurring</div>
+        </div>
+        <div class="task-badge tb-urgent">TONIGHT</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'affil')" data-id="a2">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Apply — Murf AI Affiliate</div>
+          <div class="task-sub">murf.ai/affiliate · 30% recurring/24mo</div>
+        </div>
+        <div class="task-badge tb-urgent">TONIGHT</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'affil')" data-id="a3">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Apply — Jasper AI Affiliate</div>
+          <div class="task-sub">jasper.ai/affiliates · 25% recurring/yr</div>
+        </div>
+        <div class="task-badge tb-urgent">TONIGHT</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'affil')" data-id="a4">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Apply — Writesonic Affiliate</div>
+          <div class="task-sub">writesonic.com/affiliate · 30% lifetime</div>
+        </div>
+        <div class="task-badge tb-urgent">TONIGHT</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'affil')" data-id="a5">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Apply — Amazon Associates</div>
+          <div class="task-sub">affiliate-program.amazon.com · instant approval</div>
+        </div>
+        <div class="task-badge tb-urgent">TONIGHT</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'affil')" data-id="a6">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Apply — Canva Affiliate</div>
+          <div class="task-sub">canva.com/affiliates · $36/referral</div>
+        </div>
+        <div class="task-badge tb-urgent">TONIGHT</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CHANNEL SETUP ── -->
+  <div class="section" id="sec-channel">
+    <div class="section-header">
+      <div class="section-title-row">
+        <div class="section-icon">📺</div>
+        <div class="section-title" style="color:var(--cyan)">YOUTUBE CHANNEL SETUP</div>
+      </div>
+      <div class="section-progress">
+        <div class="sp-bar"><div class="sp-fill" id="bar-channel" style="width:0%;background:var(--cyan)"></div></div>
+        <div class="sp-text" id="txt-channel">0/12</div>
+      </div>
+    </div>
+    <div class="task-grid" id="grid-channel">
+      <div class="task" onclick="toggleTask(this,'channel')" data-id="c1">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Create Brand Channel</div>
+          <div class="task-sub">YouTube Studio → Switch Account → Add Channel</div>
+        </div>
+        <div class="task-badge tb-urgent">TONIGHT</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'channel')" data-id="c2">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Claim @ContentForgeStudio handle</div>
+          <div class="task-sub">Customization → Basic Info → Handle</div>
+        </div>
+        <div class="task-badge tb-urgent">TONIGHT</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'channel')" data-id="c3">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Upload Banner (2560×1440 PNG)</div>
+          <div class="task-sub">Customization → Branding → Banner Image</div>
+        </div>
+        <div class="task-badge tb-today">TODAY</div>
+      </div>
+      <div class="task done" onclick="toggleTask(this,'channel')" data-id="c4">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Banner Designed & Ready</div>
+          <div class="task-sub">CFS_Banner_2560x1440.png — complete ✓</div>
+        </div>
+        <div class="task-badge tb-done">DONE</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'channel')" data-id="c5">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Upload Profile Icon</div>
+          <div class="task-sub">CFs circle mark at 800×800px</div>
+        </div>
+        <div class="task-badge tb-today">TODAY</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'channel')" data-id="c6">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Paste Channel Description</div>
+          <div class="task-sub">From Channel SEO Package → Section 01</div>
+        </div>
+        <div class="task-badge tb-today">TODAY</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'channel')" data-id="c7">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Add Channel Keywords</div>
+          <div class="task-sub">Settings → Channel → Basic Info → Keywords</div>
+        </div>
+        <div class="task-badge tb-today">TODAY</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'channel')" data-id="c8">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Add Channel Links</div>
+          <div class="task-sub">ContentForgeStudio.com + socials</div>
+        </div>
+        <div class="task-badge tb-today">TODAY</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'channel')" data-id="c9">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Set Country → United States</div>
+          <div class="task-sub">Settings → Channel → Advanced Settings</div>
+        </div>
+        <div class="task-badge tb-today">TODAY</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'channel')" data-id="c10">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Create 5 Playlists</div>
+          <div class="task-sub">AI Side Hustle · Tool Reviews · Build With AI · Forge Report · Start Here</div>
+        </div>
+        <div class="task-badge tb-soon">SOON</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'channel')" data-id="c11">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Set Video Watermark</div>
+          <div class="task-sub">Customization → Branding → Video Watermark</div>
+        </div>
+        <div class="task-badge tb-soon">SOON</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'channel')" data-id="c12">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Produce & Set Channel Trailer</div>
+          <div class="task-sub">60-sec faceless intro · ElevenLabs + Seedance</div>
+        </div>
+        <div class="task-badge tb-soon">SOON</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VIDEO #1 PRODUCTION ── -->
+  <div class="section" id="sec-video">
+    <div class="section-header">
+      <div class="section-title-row">
+        <div class="section-icon">🎬</div>
+        <div class="section-title" style="color:var(--fire)">VIDEO #1 PRODUCTION</div>
+      </div>
+      <div class="section-progress">
+        <div class="sp-bar"><div class="sp-fill" id="bar-video" style="width:0%;background:var(--fire)"></div></div>
+        <div class="sp-text" id="txt-video">0/12</div>
+      </div>
+    </div>
+    <div class="task-grid" id="grid-video">
+      <div class="task" onclick="toggleTask(this,'video')" data-id="v1">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Generate Scene 1 — Hook (Veo 3.1)</div>
+          <div class="task-sub">Cinematic studio environment · 8s · Google Flow</div>
+        </div>
+        <div class="task-badge tb-today">DAY 1</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'video')" data-id="v2">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Generate Scene 1 — Income Montage (Seedance)</div>
+          <div class="task-sub">Floating dollars, neon charts · 5s</div>
+        </div>
+        <div class="task-badge tb-today">DAY 1</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'video')" data-id="v3">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Generate Scene 2 — Brand Sting (Veo 3.1)</div>
+          <div class="task-sub">Forge spark + CFS wordmark materializing · 4s</div>
+        </div>
+        <div class="task-badge tb-today">DAY 1</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'video')" data-id="v4">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Generate Tools #1–5 B-Roll (Seedance)</div>
+          <div class="task-sub">Voice wave, design montage, writing AI, video split, studio · 5–6s each</div>
+        </div>
+        <div class="task-badge tb-today">DAY 1</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'video')" data-id="v5">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Generate Income Visuals (Veo 3.1)</div>
+          <div class="task-sub">Payment notifications, invoice shots, analytics · 4–5s each</div>
+        </div>
+        <div class="task-badge tb-today">DAY 1</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'video')" data-id="v6">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Record Screen Walkthroughs</div>
+          <div class="task-sub">ElevenLabs dashboard · 15–20s · OBS or screen capture</div>
+        </div>
+        <div class="task-badge tb-today">DAY 1</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'video')" data-id="v7">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Record Voiceover in ElevenLabs</div>
+          <div class="task-sub">Full script · Adam or Daniel voice · export MP3</div>
+        </div>
+        <div class="task-badge tb-today">DAY 1</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'video')" data-id="v8">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Edit in DaVinci Resolve</div>
+          <div class="task-sub">Sync VO to footage · color grade to brand palette · add music</div>
+        </div>
+        <div class="task-badge tb-soon">DAY 2</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'video')" data-id="v9">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Add YouTube Audio Library Music</div>
+          <div class="task-sub">Cinematic/tech background track · royalty free</div>
+        </div>
+        <div class="task-badge tb-soon">DAY 2</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'video')" data-id="v10">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Build Thumbnail in Canva</div>
+          <div class="task-sub">Template A · 1280×720 · "5 AI Tools That Pay You in 2026"</div>
+        </div>
+        <div class="task-badge tb-soon">DAY 3</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'video')" data-id="v11">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Write YouTube Description</div>
+          <div class="task-sub">Timestamps + all 6 affiliate links + CFS.com resource link</div>
+        </div>
+        <div class="task-badge tb-soon">DAY 3</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'video')" data-id="v12">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">PUBLISH Video #1 🚀</div>
+          <div class="task-sub">Upload · add tags · set thumbnail · add to playlist · go live</div>
+        </div>
+        <div class="task-badge tb-soon">DAY 3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WEBSITE BUILD ── -->
+  <div class="section" id="sec-web">
+    <div class="section-header">
+      <div class="section-title-row">
+        <div class="section-icon">🌐</div>
+        <div class="section-title" style="color:var(--green)">WEBSITE — CONTENTFORGESTUDIO.COM</div>
+      </div>
+      <div class="section-progress">
+        <div class="sp-bar"><div class="sp-fill" id="bar-web" style="width:0%;background:var(--green)"></div></div>
+        <div class="sp-text" id="txt-web">0/6</div>
+      </div>
+    </div>
+    <div class="task-grid" id="grid-web">
+      <div class="task done" onclick="toggleTask(this,'web')" data-id="w1">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Website designed & built</div>
+          <div class="task-sub">Full landing page HTML complete ✓</div>
+        </div>
+        <div class="task-badge tb-done">DONE</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'web')" data-id="w2">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Deploy to Netlify (free)</div>
+          <div class="task-sub">Upload HTML file → connect ContentForgeStudio.com domain</div>
+        </div>
+        <div class="task-badge tb-today">TODAY</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'web')" data-id="w3">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Set up email capture</div>
+          <div class="task-sub">Mailchimp free → connect form on homepage</div>
+        </div>
+        <div class="task-badge tb-soon">SOON</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'web')" data-id="w4">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Add real affiliate links to tool cards</div>
+          <div class="task-sub">Replace placeholder # links once approved</div>
+        </div>
+        <div class="task-badge tb-soon">SOON</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'web')" data-id="w5">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Create Free AI Starter Kit PDF</div>
+          <div class="task-sub">Lead magnet · 5 tools + 8 affiliates + 30-day plan</div>
+        </div>
+        <div class="task-badge tb-soon">SOON</div>
+      </div>
+      <div class="task" onclick="toggleTask(this,'web')" data-id="w6">
+        <div class="task-check"></div>
+        <div class="task-body">
+          <div class="task-text">Add Video #1 to Latest Videos section</div>
+          <div class="task-sub">Update site once video is live on YouTube</div>
+        </div>
+        <div class="task-badge tb-ongoing">ONGOING</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VIDEO RESEARCH PROTOCOL ── -->
+  <div class="section" id="sec-research">
+    <div class="section-header">
+      <div class="section-title-row">
+        <div class="section-icon">🔬</div>
+        <div class="section-title" style="color:var(--purple)">VIDEO RESEARCH PROTOCOL</div>
+      </div>
+      <div class="section-progress">
+        <div class="sp-bar"><div class="sp-fill" id="bar-research" style="width:0%;background:var(--purple)"></div></div>
+        <div class="sp-text" id="txt-research">0/7</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-bottom:16px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 18px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--purple);margin-bottom:8px;">// THE MONEY SIGNAL</div>
+        <div style="font-size:13px;color:var(--steel);font-weight:300;line-height:1.7;">Small/medium channel + huge video = <span style="color:var(--yellow);font-weight:600;">topic opportunity.</span> That's the undervalued repeatable pattern.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 18px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--purple);margin-bottom:8px;">// FREE RESEARCH STACK</div>
+        <div style="font-size:13px;color:var(--steel);font-weight:300;line-height:1.7;">YouTube manual → Google Trends → TubeBuddy free → vidIQ free → ViewStats (later)</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 18px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--purple);margin-bottom:8px;">// VIEWS/DAY BENCHMARK</div>
+        <div style="font-size:13px;color:var(--steel);font-weight:300;line-height:1.7;"><span style="color:var(--green);">500+/day</span> = strong. <span style="color:var(--yellow);">100–500/day</span> = decent. <span style="color:var(--fire);">Under 100</span> = skip.</div>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid rgba(176,111,255,0.15);border-radius:10px;overflow:hidden;">
+      <div style="background:rgba(176,111,255,0.08);padding:12px 20px;border-bottom:1px solid rgba(176,111,255,0.1);">
+        <div style="font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:var(--purple);">RUN THIS BEFORE EVERY VIDEO SCRIPT — Starting Video #2</div>
+      </div>
+      <div style="padding:16px 20px;">
+        <div class="task-grid">
+          <div class="task" onclick="toggleTask(this,'research')" data-id="res1">
+            <div class="task-check"></div>
+            <div class="task-body"><div class="task-text">Step 1 — Pick Topic</div><div class="task-sub">Content calendar, Forge Report ideas, or trending AI news</div></div>
+            <div class="task-badge tb-ongoing">STEP 1</div>
+          </div>
+          <div class="task" onclick="toggleTask(this,'research')" data-id="res2">
+            <div class="task-check"></div>
+            <div class="task-body"><div class="task-text">Step 2 — Manual YouTube Search</div><div class="task-sub">Search topic · log top 5 videos · note views + channel size</div></div>
+            <div class="task-badge tb-ongoing">STEP 2</div>
+          </div>
+          <div class="task" onclick="toggleTask(this,'research')" data-id="res3">
+            <div class="task-check"></div>
+            <div class="task-body"><div class="task-text">Step 3 — Spot the Opportunity Signal</div><div class="task-sub">Small/medium channel with breakout video = green light</div></div>
+            <div class="task-badge tb-ongoing">STEP 3</div>
+          </div>
+          <div class="task" onclick="toggleTask(this,'research')" data-id="res4">
+            <div class="task-check"></div>
+            <div class="task-body"><div class="task-text">Step 4 — Calculate Views/Day</div><div class="task-sub">Total views ÷ days since published · target 500+/day</div></div>
+            <div class="task-badge tb-ongoing">STEP 4</div>
+          </div>
+          <div class="task" onclick="toggleTask(this,'research')" data-id="res5">
+            <div class="task-check"></div>
+            <div class="task-body"><div class="task-text">Step 5 — Validate on Google Trends</div><div class="task-sub">trends.google.com · rising = go · fading = reframe or skip</div></div>
+            <div class="task-badge tb-ongoing">STEP 5</div>
+          </div>
+          <div class="task" onclick="toggleTask(this,'research')" data-id="res6">
+            <div class="task-check"></div>
+            <div class="task-body"><div class="task-text">Step 6 — TubeBuddy Keyword Score</div><div class="task-sub">Free tier · search volume + competition · aim for Good/Excellent</div></div>
+            <div class="task-badge tb-ongoing">STEP 6</div>
+          </div>
+          <div class="task" onclick="toggleTask(this,'research')" data-id="res7">
+            <div class="task-check"></div>
+            <div class="task-body"><div class="task-text">Step 7 — Green Light · Begin Scripting</div><div class="task-sub">Topic validated · hand off to Claude for full script + shot prompts</div></div>
+            <div class="task-badge tb-ongoing">STEP 7</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── APP CONCEPT ── -->
+  <div class="app-card">
+    <div class="app-header">
+      <div class="app-icon">📱</div>
+      <div>
+        <div class="app-title">THE FORGE APP</div>
+        <div class="app-subtitle">// CREATOR BRAND-BUILDING PLATFORM · IN PLANNING</div>
+      </div>
+    </div>
+    <p class="app-desc">
+      A start-to-finish brand building app for creators and entrepreneurs. The channel teaches it, the app delivers it. Every CFS video becomes a product demo. Every viewer is a potential user. The channel and app feed each other infinitely — the ultimate content-to-product flywheel.
+    </p>
+    <div class="app-features">
+      <span class="app-feature">Brand Roadmap</span>
+      <span class="app-feature">Live Progress Tracker</span>
+      <span class="app-feature">Push Notifications</span>
+      <span class="app-feature">Insights Dashboard</span>
+      <span class="app-feature">AI Assistant</span>
+      <span class="app-feature">Image Generator</span>
+      <span class="app-feature">Video Generator</span>
+      <span class="app-feature">Viral Idea Engine</span>
+      <span class="app-feature">Affiliate Hub</span>
+      <span class="app-feature">Content Calendar</span>
+      <span class="app-feature">Revenue Tracker</span>
+      <span class="app-feature">Channel Analytics</span>
+    </div>
+  </div>
+
+  <!-- ── NOTES ── -->
+  <div class="notes-box">
+    <div class="notes-label">// SESSION NOTES & IDEAS</div>
+    <textarea class="notes-input" id="notesArea" placeholder="Add notes, ideas, or action items here..."></textarea>
+  </div>
+
+</div>
+
+<script>
+  // ── STATE ──
+  const state = {
+    affil: { total: 6, done: new Set() },
+    channel: { total: 12, done: new Set(['c4']) },
+    video: { total: 12, done: new Set() },
+    web: { total: 6, done: new Set(['w1']) },
+    research: { total: 7, done: new Set() }
+  };
+
+  // ── INIT ──
+  function init() {
+    // Load from localStorage
+    const saved = localStorage.getItem('cfs-tracker');
+    if (saved) {
+      const data = JSON.parse(saved);
+      for (const [key, ids] of Object.entries(data.tasks || {})) {
+        if (state[key]) state[key].done = new Set(ids);
+      }
+      if (data.notes) document.getElementById('notesArea').value = data.notes;
+    }
+
+    // Apply done states to DOM
+    document.querySelectorAll('.task').forEach(task => {
+      const section = task.closest('.section').id.replace('sec-', '');
+      const id = task.dataset.id;
+      if (state[section] && state[section].done.has(id)) {
+        task.classList.add('done');
+      }
+    });
+
+    updateAll();
+  }
+
+  // ── TOGGLE TASK ──
+  function toggleTask(el, section) {
+    const id = el.dataset.id;
+    el.classList.toggle('done');
+    if (el.classList.contains('done')) {
+      state[section].done.add(id);
+    } else {
+      state[section].done.delete(id);
+    }
+    updateAll();
+    save();
+  }
+
+  // ── UPDATE ALL ──
+  function updateAll() {
+    let totalDone = 0;
+    let totalAll = 0;
+
+    for (const [key, s] of Object.entries(state)) {
+      const done = s.done.size;
+      const total = s.total;
+      const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+      totalDone += done;
+      totalAll += total;
+
+      // Progress bars
+      const bar = document.getElementById(`bar-${key}`);
+      const txt = document.getElementById(`txt-${key}`);
+      if (bar) bar.style.width = pct + '%';
+      if (txt) txt.textContent = `${done}/${total}`;
+
+      // Stat cards
+      const statMap = { affil: 'stat-affil', channel: 'stat-channel', video: 'stat-video', web: 'stat-web' };
+      const statEl = document.getElementById(statMap[key]);
+      if (statEl) statEl.textContent = pct + '%';
+    }
+
+    // Overall
+    const overallPct = totalAll > 0 ? Math.round((totalDone / totalAll) * 100) : 0;
+    document.getElementById('overallBar').style.width = overallPct + '%';
+    document.getElementById('overallPct').textContent = overallPct + '%';
+    document.getElementById('stat-total').textContent = totalDone;
+  }
+
+  // ── SAVE ──
+  function save() {
+    const data = {
+      tasks: {},
+      notes: document.getElementById('notesArea').value
+    };
+    for (const [key, s] of Object.entries(state)) {
+      data.tasks[key] = [...s.done];
+    }
+    localStorage.setItem('cfs-tracker', JSON.stringify(data));
+  }
+
+  // ── RESET ──
+  function resetAll() {
+    if (!confirm('Reset all progress? This cannot be undone.')) return;
+    for (const s of Object.values(state)) s.done.clear();
+    // Re-mark the pre-done items
+    state.channel.done.add('c4');
+    state.web.done.add('w1');
+    document.querySelectorAll('.task').forEach(t => t.classList.remove('done'));
+    // Re-apply pre-done
+    document.querySelectorAll('[data-id="c4"],[data-id="w1"]').forEach(t => t.classList.add('done'));
+    updateAll();
+    save();
+  }
+
+  // ── NOTES AUTO-SAVE ──
+  document.getElementById('notesArea').addEventListener('input', () => {
+    clearTimeout(window._noteTimer);
+    window._noteTimer = setTimeout(save, 800);
+  });
+
+  // ── RUN ──
+  init();
+</script>
+</body>
+</html>
