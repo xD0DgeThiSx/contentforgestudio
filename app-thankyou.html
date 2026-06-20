@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're On the List — ContentForge AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow: #e8ff47;
+  --fire:   #ff5c1a;
+  --cyan:   #38d9f5;
+  --black:  #07070e;
+  --deep:   #0d0d1c;
+  --card:   #141428;
+  --border: rgba(56,217,245,0.12);
+  --steel:  #8090b0;
+  --dim:    #3a3a5a;
+  --white:  #f0f0ff;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Raleway', sans-serif; font-size: 15px; line-height: 1.7; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+
+.bg-layer { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(56,217,245,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(56,217,245,0.03) 1px, transparent 1px); background-size: 56px 56px; animation: gridDrift 60s linear infinite; }
+@keyframes gridDrift { 0% { background-position: 0 0; } 100% { background-position: 56px 56px; } }
+.bg-glow { position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(255,92,26,0.06) 0%, transparent 65%); }
+
+nav { position: relative; z-index: 10; padding: 0 52px; height: 68px; display: flex; align-items: center; justify-content: space-between; background: rgba(7,7,14,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-mark { width: 36px; height: 36px; border: 2px solid var(--cyan); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.nav-mark img { width: 34px; height: 34px; object-fit: contain; border-radius: 50%; }
+.nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
+.nav-top { font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; color: var(--white); letter-spacing: 1px; }
+.nav-bottom { font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; color: var(--cyan); letter-spacing: 1px; }
+.nav-studio { font-family: 'Raleway', sans-serif; font-size: 8px; letter-spacing: 4px; color: var(--steel); text-transform: uppercase; margin-top: 2px; }
+.nav-yt { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 2px; color: var(--steel); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+.nav-yt:hover { color: var(--cyan); }
+
+main { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 24px; text-align: center; }
+
+/* Success badge */
+.success-badge { display: inline-flex; align-items: center; gap: 10px; font-family: 'Orbitron', monospace; font-size: 10px; letter-spacing: 3px; color: var(--fire); border: 1px solid rgba(255,92,26,0.3); border-radius: 20px; padding: 6px 18px; margin-bottom: 28px; animation: fadeUp 0.6s ease both; }
+.success-badge::before { content: '●'; font-size: 8px; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+h1 { font-family: 'Orbitron', monospace; font-size: clamp(28px, 5vw, 52px); font-weight: 900; line-height: 1.05; letter-spacing: -1px; margin-bottom: 16px; animation: fadeUp 0.7s ease 0.1s both; }
+h1 .c { color: var(--cyan); }
+h1 .f { color: var(--fire); }
+
+.sub { font-size: clamp(14px, 2vw, 17px); color: var(--steel); max-width: 520px; font-weight: 300; line-height: 1.8; margin-bottom: 48px; animation: fadeUp 0.7s ease 0.2s both; }
+
+/* App card */
+.app-card { background: linear-gradient(135deg, rgba(255,92,26,0.07), rgba(7,7,14,0) 60%), var(--card); border: 1px solid rgba(255,92,26,0.2); border-radius: 16px; padding: 40px 48px; max-width: 580px; width: 100%; margin-bottom: 40px; animation: fadeUp 0.8s ease 0.3s both; position: relative; overflow: hidden; }
+.app-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--fire), var(--cyan)); }
+
+.app-icon { font-size: 52px; margin-bottom: 16px; }
+.app-title { font-family: 'Orbitron', monospace; font-size: 16px; font-weight: 800; color: var(--white); letter-spacing: 1px; margin-bottom: 8px; }
+.app-title span { color: var(--cyan); }
+.app-meta { font-size: 12px; color: var(--steel); margin-bottom: 28px; }
+.app-meta span { color: var(--fire); }
+
+.app-features { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px; }
+.app-pill { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 1px; padding: 5px 12px; border-radius: 20px; background: rgba(56,217,245,0.08); border: 1px solid rgba(56,217,245,0.15); color: var(--cyan); }
+
+.launch-info { background: rgba(255,92,26,0.06); border: 1px solid rgba(255,92,26,0.15); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; }
+.launch-info p { font-size: 13px; color: var(--steel); font-weight: 300; line-height: 1.7; }
+.launch-info strong { color: var(--fire); font-weight: 600; }
+
+.app-store-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.store-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--deep); border: 1px solid var(--border); border-radius: 8px; padding: 10px 20px; font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 1px; color: var(--steel); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+.store-badge:hover { border-color: rgba(56,217,245,0.3); color: var(--cyan); }
+.store-badge.coming { opacity: 0.4; cursor: default; }
+
+/* Freebie nudge */
+.freebie-card { background: linear-gradient(135deg, rgba(56,217,245,0.05), rgba(7,7,14,0) 60%), var(--card); border: 1px solid rgba(56,217,245,0.15); border-radius: 16px; padding: 36px 48px; max-width: 580px; width: 100%; animation: fadeUp 0.8s ease 0.45s both; position: relative; overflow: hidden; }
+.freebie-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--cyan), var(--yellow)); }
+.freebie-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 4px; color: var(--cyan); margin-bottom: 12px; opacity: 0.8; }
+.freebie-title { font-family: 'Orbitron', monospace; font-size: clamp(14px, 2vw, 18px); font-weight: 800; color: var(--white); margin-bottom: 10px; }
+.freebie-title span { color: var(--cyan); }
+.freebie-body { font-size: 13px; color: var(--steel); font-weight: 300; line-height: 1.8; margin-bottom: 20px; }
+.freebie-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--cyan); color: #000; text-decoration: none; padding: 13px 28px; border-radius: 6px; font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; transition: background 0.2s, transform 0.2s; }
+.freebie-btn:hover { background: var(--yellow); transform: translateY(-2px); }
+
+/* YT section */
+.yt-section { margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border); max-width: 580px; width: 100%; animation: fadeUp 0.8s ease 0.6s both; }
+.yt-label { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 4px; color: var(--steel); margin-bottom: 12px; opacity: 0.7; }
+.yt-title { font-family: 'Orbitron', monospace; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.yt-sub { font-size: 13px; color: var(--steel); font-weight: 300; margin-bottom: 20px; }
+.yt-btn { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--cyan); text-decoration: none; padding: 12px 28px; border-radius: 6px; border: 1px solid rgba(56,217,245,0.3); font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s; }
+.yt-btn:hover { background: rgba(56,217,245,0.08); border-color: var(--cyan); }
+
+footer { position: relative; z-index: 1; background: var(--deep); border-top: 1px solid var(--border); padding: 20px 52px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.footer-copy { font-family: 'Orbitron', monospace; font-size: 9px; color: var(--dim); letter-spacing: 2px; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 12px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--cyan); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+@media(max-width: 600px) {
+  nav { padding: 0 20px; }
+  .app-card, .freebie-card { padding: 28px 24px; }
+  footer { flex-direction: column; text-align: center; padding: 20px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-layer">
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+</div>
+
+<nav>
+  <a href="https://contentforgestudio.com" class="nav-logo">
+    <div class="nav-mark">
+      <img src="CFS Logo_FINAL.png" alt="CFS Logo">
+    </div>
+    <div class="nav-wordmark">
+      <div style="display:flex;"><span class="nav-top">CONTENT</span><span class="nav-bottom">FORGE</span></div>
+      <div class="nav-studio">STUDIO</div>
+    </div>
+  </a>
+  <a href="https://youtube.com/@TheContentForgeStudio" target="_blank" class="nav-yt">▶ &nbsp;YouTube</a>
+</nav>
+
+<main>
+
+  <div class="success-badge">EARLY ACCESS · YOU'RE ON THE LIST</div>
+
+  <h1>You're In.<br><span class="c">ContentForge AI</span><br>Is Almost <span class="f">Live.</span></h1>
+  <p class="sub">We'll notify you the moment the app launches. You're one of the first — expect early access perks when we go live.</p>
+
+  <!-- APP CARD -->
+  <div class="app-card">
+    <div class="app-icon">📱</div>
+    <div class="app-title"><span>ContentForge AI</span> — The App</div>
+    <div class="app-meta">Android First · iOS Coming · <span>Free Tier Available at Launch</span></div>
+
+    <div class="app-features">
+      <span class="app-pill">⚡ Prompt Generator</span>
+      <span class="app-pill">🎯 Hook Generator</span>
+      <span class="app-pill">♻️ Content Repurposer</span>
+      <span class="app-pill">💰 Offer Builder</span>
+      <span class="app-pill">📈 Title Generator</span>
+    </div>
+
+    <div class="launch-info">
+      <p>We're in the final stages of testing. <strong>Watch your inbox</strong> — you'll get an email from us the moment ContentForge AI is live on the Play Store. Early access users get first dibs on Pro features.</p>
+    </div>
+
+    <div class="app-store-badges">
+      <a href="https://play.google.com/store/apps/details?id=com.contentforgestudio.creatorstudio" target="_blank" rel="noopener" class="store-badge">
+        ▶ &nbsp;Google Play — Coming Soon
+      </a>
+      <span class="store-badge coming">
+        🍎 &nbsp;App Store — Coming Later
+      </span>
+    </div>
+  </div>
+
+  <!-- FREEBIE NUDGE -->
+  <div class="freebie-card">
+    <div class="freebie-eyebrow">// WHILE YOU WAIT</div>
+    <div class="freebie-title">Grab Your Free <span>25-Prompt Pack</span></div>
+    <div class="freebie-body">Don't wait for the app to start using AI to build income. Download our free prompt pack — 25 battle-tested prompts across Business, Marketing, Email, SEO, and Social Media.</div>
+    <a href="https://contentforgestudio.com/thankyou" class="freebie-btn">
+      📋 &nbsp;Get the Free Prompt Pack
+    </a>
+  </div>
+
+  <!-- YOUTUBE CTA -->
+  <div class="yt-section">
+    <div class="yt-label">// STAY IN THE LOOP</div>
+    <div class="yt-title">New AI Income Videos Every Week</div>
+    <div class="yt-sub">Step-by-step tutorials, tool reviews, and income breakdowns while you wait for the app.</div>
+    <a href="https://youtube.com/@TheContentForgeStudio" target="_blank" rel="noopener" class="yt-btn">
+      ▶ &nbsp;Subscribe to the Channel
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  <p class="footer-copy">© 2026 CONTENTFORGESTUDIO.COM</p>
+  <div class="footer-links">
+    <a href="https://contentforgestudio.com">Home</a>
+    <a href="https://youtube.com/@TheContentForgeStudio" target="_blank">YouTube</a>
+    <a href="https://contentforgestudio.com/privacy">Privacy Policy</a>
+  </div>
+</footer>
+
+</body>
+</html>
