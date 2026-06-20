@@ -51,7 +51,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 52px;
 .hero::before { content: ''; position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); opacity: 0.4; animation: scanLine 6s ease-in-out infinite; pointer-events: none; }
 @keyframes scanLine { 0% { top: 0%; opacity: 0; } 10% { opacity: 0.4; } 90% { opacity: 0.4; } 100% { top: 100%; opacity: 0; } }
 .hero-eyebrow { font-family: 'Orbitron', monospace; font-size: 10px; letter-spacing: 6px; color: var(--cyan); margin-bottom: 24px; opacity: 0.8; animation: fadeUp 0.8s ease both; }
-.email-form { display: flex; gap: 0; max-width: 480px; width: 100%; margin: 0 auto 24px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); animation: fadeUp 1s ease 0.5s both; }
+.email-form { display: flex; gap: 0; max-width: 480px; width: 100%; margin: 40px auto 24px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); animation: fadeUp 1s ease 0.5s both; }
 .email-form input { flex: 1; background: rgba(13,13,28,0.9); border: none; outline: none; padding: 16px 20px; font-family: 'Raleway', sans-serif; font-size: 14px; color: var(--white); font-weight: 400; }
 .email-form input::placeholder { color: var(--dim); }
 .email-form button { background: var(--cyan); color: #000; border: none; padding: 16px 28px; font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 700; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; white-space: nowrap; transition: background 0.2s; }
@@ -78,7 +78,8 @@ section { position: relative; z-index: 1; padding: 100px 52px; max-width: 1160px
 .section-sub { font-size: 15px; color: var(--steel); max-width: 560px; font-weight: 300; margin-bottom: 52px; line-height: 1.8; }
 .divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 52px; max-width: 1160px; position: relative; z-index: 1; }
 
-.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media(max-width:900px){.pillars{grid-template-columns:repeat(2,1fr);}}
 .pillar { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 26px; position: relative; overflow: hidden; transition: transform 0.25s, border-color 0.25s; }
 .pillar:hover { transform: translateY(-4px); border-color: rgba(56,217,245,0.3); }
 .pillar::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
@@ -94,7 +95,8 @@ section { position: relative; z-index: 1; padding: 100px 52px; max-width: 1160px
 .pillar h3 { font-family: 'Orbitron', monospace; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; color: var(--white); }
 .pillar p { font-size: 13px; color: var(--steel); font-weight: 300; line-height: 1.7; }
 
-.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media(max-width:900px){.tools-grid{grid-template-columns:repeat(2,1fr);}}
 .tool-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; display: flex; gap: 16px; align-items: flex-start; transition: border-color 0.2s, transform 0.2s; text-decoration: none; color: inherit; }
 .tool-card:hover { border-color: rgba(56,217,245,0.3); transform: translateY(-2px); }
 .tool-ico { width: 40px; height: 40px; border-radius: 8px; background: rgba(56,217,245,0.08); border: 1px solid rgba(56,217,245,0.15); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
@@ -105,7 +107,8 @@ section { position: relative; z-index: 1; padding: 100px 52px; max-width: 1160px
 .tb-affil { background: rgba(232,255,71,0.1); color: var(--yellow); border: 1px solid rgba(232,255,71,0.2); }
 
 .income-section { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.income-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.income-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media(max-width:900px){.income-grid{grid-template-columns:repeat(2,1fr);}}
 .income-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 22px 20px; text-align: center; position: relative; overflow: hidden; transition: transform 0.2s, border-color 0.2s; }
 .income-card:hover { transform: translateY(-3px); border-color: rgba(56,217,245,0.25); }
 .income-card::after { content: attr(data-icon); position: absolute; bottom: -8px; right: 8px; font-size: 52px; opacity: 0.05; line-height: 1; }
@@ -193,7 +196,8 @@ section { position: relative; z-index: 1; padding: 100px 52px; max-width: 1160px
 .vtb { background: radial-gradient(ellipse at 70% 40%, rgba(255,92,26,0.2), #060612 55%); }
 .vtc { background: linear-gradient(160deg, #090920, #050514); }
 
-.resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media(max-width:900px){.resources-grid{grid-template-columns:repeat(2,1fr);}}
 .resource-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; position: relative; overflow: hidden; transition: transform 0.2s, border-color 0.2s; }
 .resource-card:hover { transform: translateY(-3px); border-color: rgba(56,217,245,0.25); }
 .resource-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), transparent); opacity: 0.4; }
@@ -577,11 +581,8 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
 <section class="book-section" id="book" style="max-width:100%;">
   <div class="book-grid">
     <div class="book-cover">
-      <div class="book-cover-visual">
-        <div class="bcv-icon">📚</div>
-        <div class="bcv-title">PROMPT LIKE A PRO</div>
-        <div class="bcv-sub">Battle-Tested Prompts That Actually Work</div>
-        <div class="bcv-tag">ON AMAZON NOW</div>
+      <div class="book-cover-visual" style="padding:0;overflow:hidden;background:none;border:none;box-shadow:8px 8px 32px rgba(0,0,0,0.5);">
+        <img src="book-cover.png" alt="Prompt Like a Pro Book Cover" style="width:100%;border-radius:12px;display:block;">
       </div>
     </div>
     <div class="book-content">
@@ -623,20 +624,17 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
       </div>
       <div class="app-notify-form" id="appForm">
         <input type="email" id="appEmail" placeholder="Get notified at launch...">
-        <button onclick="submitEmail('appEmail','appForm','appSuccess')">Notify Me</button>
+        <button onclick="submitEmail('appEmail','appForm','appSuccess','app')">Notify Me</button>
       </div>
       <div class="form-success" id="appSuccess">✓ &nbsp;You're on the early access list!</div>
       <p style="font-size:11px;color:var(--dim);margin-top:10px;font-family:'Raleway',sans-serif;">Android first · iOS coming · Free tier available at launch</p>
     </div>
     <div class="app-visual">
-      <div class="app-phone-mock">
-        <div class="app-screen-item">⚡ Prompt Gen</div>
-        <div class="app-screen-item">🎯 Hook Gen</div>
-        <div class="app-screen-item">♻️ Repurposer</div>
-        <div class="app-screen-item">💰 Offer Builder</div>
-        <div class="app-screen-item">📈 Title Gen</div>
+      <div style="position:relative;width:180px;">
+        <div style="position:absolute;inset:-2px;background:linear-gradient(135deg,var(--cyan),var(--fire));border-radius:28px;z-index:0;opacity:0.4;filter:blur(8px);"></div>
+        <img src="app-screenshot.jpg" alt="ContentForge AI App" style="width:180px;border-radius:26px;border:2px solid rgba(56,217,245,0.3);display:block;position:relative;z-index:1;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
       </div>
-      <div class="app-coming-label">COMING SOON</div>
+      <div class="app-coming-label" style="margin-top:14px;">LIVE IN CLOSED BETA</div>
     </div>
   </div>
 </section>
@@ -763,24 +761,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
     <div class="about-mark">
       <div class="about-mark-orbit"></div>
       <div class="about-mark-orbit2"></div>
-      <svg viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="140" cy="140" r="130" stroke="#38d9f5" stroke-width="2" stroke-dasharray="680 40" stroke-dashoffset="20"/>
-        <circle cx="140" cy="140" r="115" stroke="rgba(56,217,245,0.15)" stroke-width="1"/>
-        <circle cx="140" cy="140" r="98" stroke="rgba(56,217,245,0.08)" stroke-width="1"/>
-        <polygon points="140,58 192,87 192,145 140,174 88,145 88,87" fill="none" stroke="rgba(56,217,245,0.2)" stroke-width="1.5"/>
-        <text x="84" y="164" font-family="Orbitron" font-weight="900" font-size="72" fill="url(#cfGrad)" letter-spacing="-3">CF</text>
-        <line x1="82" y1="208" x2="198" y2="208" stroke="#ff5c1a" stroke-width="3"/>
-        <circle cx="140" cy="12" r="4" fill="#38d9f5" opacity="0.7"/>
-        <circle cx="140" cy="268" r="4" fill="#38d9f5" opacity="0.7"/>
-        <circle cx="12" cy="140" r="3" fill="#38d9f5" opacity="0.4"/>
-        <circle cx="268" cy="140" r="3" fill="#38d9f5" opacity="0.4"/>
-        <defs>
-          <linearGradient id="cfGrad" x1="84" y1="90" x2="210" y2="170" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#c8d0e0"/>
-            <stop offset="100%" stop-color="#8090a8"/>
-          </linearGradient>
-        </defs>
-      </svg>
+      <img src="CFS Logo_FINAL.png" alt="CFS Logo" style="width:220px;height:220px;object-fit:contain;filter:drop-shadow(0 0 40px rgba(56,217,245,0.3));position:relative;z-index:1;">
     </div>
   </div>
 </section>
@@ -840,7 +821,13 @@ ml('account', '2459143');
 <!-- End MailerLite Universal -->
 
 <script>
-function submitEmail(inputId, formId, successId) {
+// Form config — prompt pack form vs app notify form
+const ML_FORMS = {
+  prompt: { id: '190790534186403371', redirect: 'https://contentforgestudio.com/thankyou' },
+  app:    { id: '190820244058539189', redirect: 'https://contentforgestudio.com/app-thankyou' }
+};
+
+function submitEmail(inputId, formId, successId, formType) {
   const email = document.getElementById(inputId).value.trim();
   if (!email || !email.includes('@')) {
     document.getElementById(inputId).style.outline = '2px solid var(--fire)';
@@ -848,8 +835,9 @@ function submitEmail(inputId, formId, successId) {
     return;
   }
 
-  // Submit directly to MailerLite API
-  fetch('https://assets.mailerlite.com/jsonp/2459143/forms/190790534186403371/subscribe', {
+  const form = ML_FORMS[formType || 'prompt'];
+
+  fetch('https://assets.mailerlite.com/jsonp/2459143/forms/' + form.id + '/subscribe', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ fields: { email: email }, ml_submit: 1, anticsrf: true })
@@ -857,19 +845,43 @@ function submitEmail(inputId, formId, successId) {
   .then(() => {
     document.getElementById(formId).style.display = 'none';
     document.getElementById(successId).style.display = 'block';
-    setTimeout(function() {
-      window.location.href = 'https://contentforgestudio.com/thankyou';
-    }, 1200);
+    setTimeout(function() { window.location.href = form.redirect; }, 1200);
   })
   .catch(() => {
-    // Even on error, redirect — MailerLite uses no-cors so fetch may throw
     document.getElementById(formId).style.display = 'none';
     document.getElementById(successId).style.display = 'block';
-    setTimeout(function() {
-      window.location.href = 'https://contentforgestudio.com/thankyou';
-    }, 1200);
+    setTimeout(function() { window.location.href = form.redirect; }, 1200);
   });
 }
+</script>
+
+<!-- Floating Back to Top -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="
+  position:fixed;
+  bottom:32px;
+  right:32px;
+  z-index:999;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:var(--cyan);
+  border:none;
+  cursor:pointer;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 20px rgba(56,217,245,0.4);
+  transition:background 0.2s, transform 0.2s;
+  font-size:20px;
+" onmouseover="this.style.background='var(--yellow)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--cyan)';this.style.transform='translateY(0)'">
+  ↑
+</button>
+
+<script>
+const btn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  btn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+});
 </script>
 
 </body>
