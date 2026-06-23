@@ -427,6 +427,89 @@
     .doc-footer { flex-direction: column; gap: 4px; align-items: center; text-align: center; }
     .book-promo { flex-direction: column; }
   }
+
+  /* Copy button */
+  .prompt-wrapper { position: relative; }
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(56,217,245,0.12);
+    border: 1px solid rgba(56,217,245,0.3);
+    color: #38d9f5;
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-transform: uppercase;
+  }
+  .copy-btn:hover { background: #38d9f5; color: #000; }
+  .copy-btn.copied { background: #00ffaa; color: #000; border-color: #00ffaa; }
+
+  /* PDF download button */
+  .pdf-download-bar {
+    background: rgba(232,255,71,0.06);
+    border: 1px solid rgba(232,255,71,0.15);
+    border-radius: 8px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 32px 0 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .pdf-download-bar span {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #e8ff47;
+  }
+  .pdf-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #e8ff47;
+    color: #000;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .pdf-download-btn:hover { background: #fff; }
+
+  /* Back to top */
+  #backToTop {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 999;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #38d9f5;
+    border: none;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(56,217,245,0.4);
+    font-size: 20px;
+    transition: background 0.2s, transform 0.2s;
+    color: #000;
+    font-weight: 700;
+  }
+  #backToTop:hover { background: #e8ff47; transform: translateY(-2px); }
+
 </style>
 </head>
 <body>
@@ -467,7 +550,12 @@
 
 <div class="page">
 
-  <!-- HOW TO USE -->
+  
+    <div class="pdf-download-bar">
+      <span>⬇ &nbsp;PREFER A PDF? DOWNLOAD THE OFFLINE VERSION</span>
+      <a href="/cfs-prompt-pack.pdf" download class="pdf-download-btn">⬇ &nbsp;Download PDF</a>
+    </div>
+    <!-- HOW TO USE -->
   <div class="section">
     <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">HOW TO USE THIS PACK</span></div>
     <div class="section-divider"></div>
@@ -536,7 +624,7 @@
           <span class="prompt-title">Business Plan Summary</span>
         </div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Act as a startup strategist. Summarize this business idea in 3 bullet points (problem, solution, unique edge). Keep it concise, like an investor pitch.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Act as a startup strategist. Summarize this business idea in 3 bullet points (problem, solution, unique edge). Keep it concise, like an investor pitch.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Act as a startup strategist. Summarize SwiftCart (same-day delivery app for indie retailers) in 3 bullets (problem, solution, unique edge) + 1 milestone (12-month goal) + 1 risk with mitigation. Keep investor-tight.</div>
         <div class="prompt-use">Real use: Used this to prep a cold pitch — kept me crisp and got immediate interest.</div>
@@ -548,7 +636,7 @@
           <span class="prompt-title">Competitor Analysis</span>
         </div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Generate a competitor comparison table for [business name/type]. Include pricing, features, and one-sentence advantages/disadvantages.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Generate a competitor comparison table for [business name/type]. Include pricing, features, and one-sentence advantages/disadvantages.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Create a comparison table for Notion, Evernote, Obsidian, OneNote, Apple Notes with: price, core use case, offline support, AI features, switching friction. Add a 1-sentence pro &amp; con per tool.</div>
         <div class="prompt-use">Real use: Built this for a client's launch deck — became the slide that sealed funding.</div>
@@ -560,7 +648,7 @@
           <span class="prompt-title">Offer Clarity Boost</span>
         </div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Take this rough offer description and make it sharper and easier to understand for a non-expert audience.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Take this rough offer description and make it sharper and easier to understand for a non-expert audience.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Rewrite the Inbox Zero Sprint (30 days) coaching offer in 5 bullets as Feature → Outcome (+ metric). Include who it's for / not for and a risk-reversal line.</div>
         <div class="prompt-use">Real use: Turned a fuzzy coaching package into a sharp, premium offer.</div>
@@ -572,7 +660,7 @@
           <span class="prompt-title">SWOT Analysis</span>
         </div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Act as a business consultant. Create a SWOT (Strengths, Weaknesses, Opportunities, Threats) for [my company name or industry]. Make it sound professional but brief.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Act as a business consultant. Create a SWOT (Strengths, Weaknesses, Opportunities, Threats) for [my company name or industry]. Make it sound professional but brief.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Do a SWOT for BodegaCloud (SaaS for neighborhood grocers). 3 bullets each and a "So What" line: one decision this SWOT pushes us toward.</div>
         <div class="prompt-use">Real use: Used for a board update — kept discussion on the few variables that matter.</div>
@@ -584,7 +672,7 @@
           <span class="prompt-title">One-Liner Generator</span>
         </div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Craft 3 bold, catchy one-liners to describe my business. Keep each under 10 words. Make them sound modern and memorable.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Craft 3 bold, catchy one-liners to describe my business. Keep each under 10 words. Make them sound modern and memorable.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Generate a one-liner for PaddlePath Kayak Tours: [Audience] + [Problem] + [Solution] + [Proof] in under 20 words. Provide 3 options.</div>
         <div class="prompt-use">Real use: Became the headline we used across LinkedIn and the website.</div>
@@ -608,7 +696,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">06</span><span class="prompt-title">Landing Page Hero Copy</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Write a bold, clear hero section headline + subhead for a landing page selling [product/service]. Focus on benefits. Make it emotionally engaging.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a bold, clear hero section headline + subhead for a landing page selling [product/service]. Focus on benefits. Make it emotionally engaging.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Write hero headline + subhead + CTA for BreezeCharge (EV home charger). Angle: renters with garages. Constraints: &lt;10-word headline, mention 30-min install, CTA "See if your home qualifies."</div>
         <div class="prompt-use">Real use: A/B test winner — +22% hero click-through.</div>
@@ -617,7 +705,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">07</span><span class="prompt-title">Instagram Ad Hook</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Write 3 scroll-stopping first lines for an Instagram ad promoting [offer]. Each should fit within 1 sentence and spark curiosity.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write 3 scroll-stopping first lines for an Instagram ad promoting [offer]. Each should fit within 1 sentence and spark curiosity.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Generate 10 IG hook lines for a cold-plunge tub brand. Mix pattern interrupts, curiosity gaps, and benefit bombs; each 8 words or fewer.</div>
         <div class="prompt-use">Real use: Hook lines that didn't feel ad-y; CPM dropped 12%.</div>
@@ -626,7 +714,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">08</span><span class="prompt-title">AIDA Product Description</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Use the AIDA copywriting formula (Attention, Interest, Desire, Action) to sell this product: [details]. Keep it 100–150 words.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Use the AIDA copywriting formula (Attention, Interest, Desire, Action) to sell this product: [details]. Keep it 100–150 words.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Write an AIDA blurb for GlowDuo Vitamin C + Niacinamide Serum. Include derm-safe claims, evidence (study or %), and application steps. Cap at 160 words.</div>
         <div class="prompt-use">Real use: Lifted PDP add-to-cart 9% for a skincare SKU.</div>
@@ -635,7 +723,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">09</span><span class="prompt-title">Call-to-Action Builder</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Give me 5 different call-to-action phrases for [goal], each using a slightly different emotional appeal (urgency, curiosity, community, etc.).</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Give me 5 different call-to-action phrases for [goal], each using a slightly different emotional appeal (urgency, curiosity, community, etc.).</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Give 12 CTA lines for a B2B demo booking. Group by Low-Friction / Medium / High-Commitment. No "Learn more."</div>
         <div class="prompt-use">Real use: Replaced weak CTAs; opt-ins rose 17%.</div>
@@ -644,7 +732,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">10</span><span class="prompt-title">Headline Variants</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Give me 5 punchy headline options for a product targeting [audience], each using a different persuasion angle (fear, benefit, FOMO, proof, etc.).</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Give me 5 punchy headline options for a product targeting [audience], each using a different persuasion angle (fear, benefit, FOMO, proof, etc.).</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Generate 10 headline options for PeakPack Daypack (lightweight hiking backpack). Mix curiosity, benefit, proof, and urgency; each 8 words or fewer.</div>
         <div class="prompt-use">Real use: Doubled trial activation rate after re-framing the first send.</div>
@@ -668,7 +756,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">11</span><span class="prompt-title">Welcome Email</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Write a warm, friendly welcome email for new subscribers to my [type of business] newsletter. Include what to expect and a CTA to connect or explore.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a warm, friendly welcome email for new subscribers to my [type of business] newsletter. Include what to expect and a CTA to connect or explore.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Apply Welcome Email to FlowPilot (B2B onboarding SaaS). Write a concise email with a clear CTA and one metric. Keep tone on-brand and specify audience.</div>
         <div class="prompt-use">Real use: Used this to tackle the dreaded blank welcome email. On-brand, fast, done.</div>
@@ -677,7 +765,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">12</span><span class="prompt-title">Lead Magnet Delivery</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Write a short email that delivers my freebie (a PDF guide on [topic]) with a quick thank-you and teaser for what's coming next.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a short email that delivers my freebie (a PDF guide on [topic]) with a quick thank-you and teaser for what's coming next.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Apply Lead Magnet Delivery to GlowDuo (DTC skincare). Provide 3 variants with hook + benefit + CTA. Keep tone on-brand.</div>
         <div class="prompt-use">Real use: Made the next step obvious and easy. Open rates stayed high.</div>
@@ -686,7 +774,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">13</span><span class="prompt-title">Soft Sales Follow-Up</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Write a polite follow-up email for someone who clicked but didn't buy [offer]. Include gentle urgency and one line of social proof.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a polite follow-up email for someone who clicked but didn't buy [offer]. Include gentle urgency and one line of social proof.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Apply Soft Sales Follow-Up to BrightNest (local home cleaning service). Deliver 5 bullets with specifics, 1 number, and a clear CTA.</div>
         <div class="prompt-use">Real use: Recovered abandoned carts without sounding pushy.</div>
@@ -695,7 +783,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">14</span><span class="prompt-title">Value Drop Email</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Write a short value-packed email on [topic] that teaches 1 useful tip. Add a subtle link or CTA at the end.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a short value-packed email on [topic] that teaches 1 useful tip. Add a subtle link or CTA at the end.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Apply Value Drop Email to NoteForge (course for creators). Write a concise email with a clear CTA and one metric. Keep tone on-brand.</div>
         <div class="prompt-use">Real use: Kept the list warm between launches. Engagement stayed high.</div>
@@ -704,7 +792,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">15</span><span class="prompt-title">Win-Back Message</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Write an email to re-engage cold subscribers with a warm intro, quick recap of value, and a "still interested?" style CTA.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write an email to re-engage cold subscribers with a warm intro, quick recap of value, and a "still interested?" style CTA.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Apply Win-back Message to PocketBolt (e-commerce gadget). Deliver 5 bullets with specifics, 1 number, and a clear CTA.</div>
         <div class="prompt-use">Real use: Gave us a shippable first draft the same day. Re-engaged 8% of cold list.</div>
@@ -728,7 +816,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">16</span><span class="prompt-title">Blog Post Outline</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Create a detailed blog post outline for the topic: [topic]. Include H2s, H3s, and a suggested intro hook.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Create a detailed blog post outline for the topic: [topic]. Include H2s, H3s, and a suggested intro hook.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Outline a 1,500-word blog post: "7 Ways Remote Teams Stay Productive." Include H2s, H3s, intro hook, and a stat-backed CTA at the end.</div>
         <div class="prompt-use">Real use: Cut research time in half. The outline became the final structure.</div>
@@ -737,7 +825,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">17</span><span class="prompt-title">SEO Keywords List</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Generate a list of 10 SEO keywords for a blog about [topic]. Include a mix of short-tail and long-tail terms with search intent labels.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Generate a list of 10 SEO keywords for a blog about [topic]. Include a mix of short-tail and long-tail terms with search intent labels.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Generate 15 SEO keywords for "home gym equipment on a budget." Label each: Informational / Commercial / Transactional. Flag the top 3 for a beginner site.</div>
         <div class="prompt-use">Real use: Built an entire content calendar from one prompt run.</div>
@@ -746,7 +834,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">18</span><span class="prompt-title">Meta Description Generator</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Write a compelling meta description (under 155 characters) for a blog post titled [title]. Include the primary keyword and a reason to click.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a compelling meta description (under 155 characters) for a blog post titled [title]. Include the primary keyword and a reason to click.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Write 5 meta descriptions for "Best Budget Espresso Machines 2025." Each under 155 chars, include primary keyword, click trigger, and unique angle.</div>
         <div class="prompt-use">Real use: CTR from search results jumped after swapping to AI-written metas.</div>
@@ -755,7 +843,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">19</span><span class="prompt-title">Blog Intro Hook</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Write 3 different opening paragraphs for a blog post about [topic]. Each should use a different hook style (question, stat, story).</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write 3 different opening paragraphs for a blog post about [topic]. Each should use a different hook style (question, stat, story).</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Write 3 intro hooks for "How to Build a Morning Routine That Sticks." Styles: surprising stat, bold claim, short story. Each under 60 words.</div>
         <div class="prompt-use">Real use: Bounce rate dropped after replacing weak intros with these.</div>
@@ -764,7 +852,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">20</span><span class="prompt-title">Content Refresh Suggestions</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Review this blog post outline or title and suggest 5 ways to update it for [current year] to improve relevance and SEO.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Review this blog post outline or title and suggest 5 ways to update it for [current year] to improve relevance and SEO.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Review "10 Social Media Tips for Small Businesses (2021)" and suggest 7 refresh moves: new stats, deleted sections, new angle, updated examples.</div>
         <div class="prompt-use">Real use: Refreshed 12 old posts in a week. Organic traffic up 31%.</div>
@@ -788,7 +876,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">21</span><span class="prompt-title">Viral Hook Builder</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Write 5 viral-style opening hooks for a social media post about [topic]. Make them punchy, bold, and designed to stop the scroll.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write 5 viral-style opening hooks for a social media post about [topic]. Make them punchy, bold, and designed to stop the scroll.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Write 10 viral hooks for a post about why most people quit their side hustle. Mix fear, curiosity, bold claim, and pattern interrupt styles.</div>
         <div class="prompt-use">Real use: One of these became our highest-performing LinkedIn post ever.</div>
@@ -797,7 +885,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">22</span><span class="prompt-title">Repurpose Blog to Post</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Take this blog post [paste excerpt] and rewrite it as a punchy LinkedIn post under 200 words with a clear hook and CTA.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Take this blog post [paste excerpt] and rewrite it as a punchy LinkedIn post under 200 words with a clear hook and CTA.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Repurpose this 1,200-word article on remote work burnout into: 1 LinkedIn post, 1 tweet thread (5 tweets), 1 Instagram caption. Keep stats intact.</div>
         <div class="prompt-use">Real use: One blog = 3 pieces of content in 5 minutes. Massive time saver.</div>
@@ -806,7 +894,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">23</span><span class="prompt-title">Thought Leadership Builder</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Write a short thought leadership post about [topic] from the perspective of an expert in [field]. Include a personal insight or opinion.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a short thought leadership post about [topic] from the perspective of an expert in [field]. Include a personal insight or opinion.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Write a 150-word LinkedIn thought leadership post on why AI won't replace creative directors. Include a counterintuitive take and end with a question.</div>
         <div class="prompt-use">Real use: Comments blew up. Best organic reach we'd had in months.</div>
@@ -815,7 +903,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">24</span><span class="prompt-title">Hashtag Set Generator</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Generate 3 sets of hashtags for a post about [topic] — one broad, one niche, one trending. Keep each set to 5–8 tags.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Generate 3 sets of hashtags for a post about [topic] — one broad, one niche, one trending. Keep each set to 5–8 tags.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Generate hashtag sets for a post about AI tools for freelancers. Set 1: broad reach. Set 2: niche community. Set 3: trending/timely. 6 tags each.</div>
         <div class="prompt-use">Real use: Reach nearly doubled after switching to this hashtag strategy.</div>
@@ -824,7 +912,7 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">25</span><span class="prompt-title">Content Idea Generator</span></div>
         <span class="prompt-label">COPY-READY PROMPT</span>
-        <div class="prompt-box">Give me 10 content ideas for [platform] about [topic]. Mix educational, entertaining, and promotional formats.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Give me 10 content ideas for [platform] about [topic]. Mix educational, entertaining, and promotional formats.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <span class="prompt-example-label">EXAMPLE IN ACTION</span>
         <div class="prompt-example">Give 20 content ideas for a YouTube channel about AI tools for side hustlers. Mix: tutorials, reactions, income breakdowns, myth-busting, and tool reviews.</div>
         <div class="prompt-use">Real use: Our entire Q3 content calendar came from one run of this prompt.</div>
@@ -926,6 +1014,25 @@
   <span>CFS PROMPT PACK · 25 BATTLE-TESTED AI PROMPTS</span>
   <span>ContentForgeStudio.com</span>
 </div>
+
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+// Back to top
+const btt = document.getElementById('backToTop');
+window.addEventListener('scroll', () => { btt.style.display = window.scrollY > 400 ? 'flex' : 'none'; });
+
+// Copy buttons
+function copyPrompt(btn) {
+  const box = btn.previousElementSibling;
+  const text = box.innerText || box.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
 
 </body>
 </html>

@@ -821,6 +821,89 @@
     .aff-table { display: block; overflow-x: auto; }
     .doc-footer { flex-direction: column; gap: 4px; align-items: center; text-align: center; }
   }
+
+  /* Copy button */
+  .prompt-wrapper { position: relative; }
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(56,217,245,0.12);
+    border: 1px solid rgba(56,217,245,0.3);
+    color: #38d9f5;
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-transform: uppercase;
+  }
+  .copy-btn:hover { background: #38d9f5; color: #000; }
+  .copy-btn.copied { background: #00ffaa; color: #000; border-color: #00ffaa; }
+
+  /* PDF download button */
+  .pdf-download-bar {
+    background: rgba(232,255,71,0.06);
+    border: 1px solid rgba(232,255,71,0.15);
+    border-radius: 8px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 32px 0 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .pdf-download-bar span {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #e8ff47;
+  }
+  .pdf-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #e8ff47;
+    color: #000;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .pdf-download-btn:hover { background: #fff; }
+
+  /* Back to top */
+  #backToTop {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 999;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #38d9f5;
+    border: none;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(56,217,245,0.4);
+    font-size: 20px;
+    transition: background 0.2s, transform 0.2s;
+    color: #000;
+    font-weight: 700;
+  }
+  #backToTop:hover { background: #e8ff47; transform: translateY(-2px); }
+
 </style>
 </head>
 <body>
@@ -1478,6 +1561,25 @@
   <span>CFS AI INCOME STARTER KIT</span>
   <span>ContentForgeStudio.com</span>
 </div>
+
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+// Back to top
+const btt = document.getElementById('backToTop');
+window.addEventListener('scroll', () => { btt.style.display = window.scrollY > 400 ? 'flex' : 'none'; });
+
+// Copy buttons
+function copyPrompt(btn) {
+  const box = btn.previousElementSibling;
+  const text = box.innerText || box.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
 
 </body>
 </html>

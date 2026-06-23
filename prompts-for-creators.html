@@ -371,6 +371,89 @@
     .doc-footer { flex-direction: column; gap: 4px; align-items: center; text-align: center; }
     .workflow-strip { gap: 4px; }
   }
+
+  /* Copy button */
+  .prompt-wrapper { position: relative; }
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(56,217,245,0.12);
+    border: 1px solid rgba(56,217,245,0.3);
+    color: #38d9f5;
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-transform: uppercase;
+  }
+  .copy-btn:hover { background: #38d9f5; color: #000; }
+  .copy-btn.copied { background: #00ffaa; color: #000; border-color: #00ffaa; }
+
+  /* PDF download button */
+  .pdf-download-bar {
+    background: rgba(232,255,71,0.06);
+    border: 1px solid rgba(232,255,71,0.15);
+    border-radius: 8px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 32px 0 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .pdf-download-bar span {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #e8ff47;
+  }
+  .pdf-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #e8ff47;
+    color: #000;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .pdf-download-btn:hover { background: #fff; }
+
+  /* Back to top */
+  #backToTop {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 999;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #38d9f5;
+    border: none;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(56,217,245,0.4);
+    font-size: 20px;
+    transition: background 0.2s, transform 0.2s;
+    color: #000;
+    font-weight: 700;
+  }
+  #backToTop:hover { background: #e8ff47; transform: translateY(-2px); }
+
 </style>
 </head>
 <body>
@@ -461,42 +544,42 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">01</span><span class="prompt-title">Content Idea Generator</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Give me 10 content post ideas for [platform] about [topic]. Mix tips, personal stories, client wins, and questions. Make each one scroll-stopping.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Give me 10 content post ideas for [platform] about [topic]. Mix tips, personal stories, client wins, and questions. Make each one scroll-stopping.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Planning a full week of content in 5 minutes. Replace [platform] with YouTube, LinkedIn, TikTok, or Instagram.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">02</span><span class="prompt-title">Viral Hook Builder</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write 5 opening lines for a social post about [topic] that grab attention in the first 3 seconds. Use curiosity, contrast, and bold claims.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write 5 opening lines for a social post about [topic] that grab attention in the first 3 seconds. Use curiosity, contrast, and bold claims.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: YouTube intros, Instagram captions, TikTok hooks. The first line is everything.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">03</span><span class="prompt-title">Carousel Script Starter</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Give me a 5-slide Instagram carousel script about [topic]. Include a hook slide, 3 value slides, and a strong CTA slide with a specific action.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Give me a 5-slide Instagram carousel script about [topic]. Include a hook slide, 3 value slides, and a strong CTA slide with a specific action.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Educational carousels that build authority and drive saves — the highest-engagement post type on Instagram.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">04</span><span class="prompt-title">Thought Leadership Builder</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write a short LinkedIn post that positions me as an expert in [industry]. Include 1 key insight, 1 personal touch, and end with a question for discussion.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a short LinkedIn post that positions me as an expert in [industry]. Include 1 key insight, 1 personal touch, and end with a question for discussion.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Building authority with your ideal client before they're ready to buy. Posts conversations before pitches.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">05</span><span class="prompt-title">Personal Story Format</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Help me turn this personal story into a social post. Include setup, moment of realization, and takeaway lesson. Make it relatable and honest — not polished.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Help me turn this personal story into a social post. Include setup, moment of realization, and takeaway lesson. Make it relatable and honest — not polished.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Building genuine connection. Stories outperform tips in every algorithm right now.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">06</span><span class="prompt-title">Viral Hook Idea Bank</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write 5 short viral-style hooks for [topic]. Each should make someone stop scrolling. Include a mix of curiosity, bold claims, and surprising contrarian takes.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write 5 short viral-style hooks for [topic]. Each should make someone stop scrolling. Include a mix of curiosity, bold claims, and surprising contrarian takes.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Building a swipe file of hooks you can test across multiple platforms and formats.</div>
       </div>
 
@@ -527,42 +610,42 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">07</span><span class="prompt-title">YouTube Video Outline</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Create a complete YouTube video outline for a video titled "[title]". Include hook, intro promise, 4–5 named sections with key points, and a CTA close. Target length: [X] minutes.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Create a complete YouTube video outline for a video titled "[title]". Include hook, intro promise, 4–5 named sections with key points, and a CTA close. Target length: [X] minutes.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Getting from blank page to full outline in under 2 minutes. Works for any niche.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">08</span><span class="prompt-title">Video Hook Generator</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write 3 different 30-second video hooks for a YouTube video about [topic]. Each hook should challenge a false belief, show proof, and promise a clear payoff. No fluff.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write 3 different 30-second video hooks for a YouTube video about [topic]. Each hook should challenge a false belief, show proof, and promise a clear payoff. No fluff.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: The first 30 seconds of any video — the make-or-break window for retention.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">09</span><span class="prompt-title">YouTube Title Generator</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Give me 10 YouTube title options for a video about [topic]. Include titles using: free vs paid angle, specific number, timeframe, hidden secret angle, and false belief challenge.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Give me 10 YouTube title options for a video about [topic]. Include titles using: free vs paid angle, specific number, timeframe, hidden secret angle, and false belief challenge.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Packaging videos before scripting. Title first, always — the packaging decides if anyone watches.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">10</span><span class="prompt-title">Video Description SEO</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write a YouTube video description for a video about [topic]. Include: a 2-sentence hook, bullet list of what viewers learn, tools mentioned, and relevant hashtags. SEO-optimized.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a YouTube video description for a video about [topic]. Include: a 2-sentence hook, bullet list of what viewers learn, tools mentioned, and relevant hashtags. SEO-optimized.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Search discovery. A strong description gets your video found long after the upload date.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">11</span><span class="prompt-title">YouTube Script — Intro</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write a 60-second YouTube video intro for a video titled "[title]". Open with proof or a bold claim, add an anti-hype line, then promise 3 specific things the viewer will know by the end.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a 60-second YouTube video intro for a video titled "[title]". Open with proof or a bold claim, add an anti-hype line, then promise 3 specific things the viewer will know by the end.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Setting retention up in the first minute — the most critical window in any video.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">12</span><span class="prompt-title">Shorts Script Generator</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write a 34-second YouTube Shorts script about [topic]. Structure: visual hook (no sound needed) → 2-line foreshadow → "but" complication → "therefore" payoff → abrupt end. No outro.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a 34-second YouTube Shorts script about [topic]. Structure: visual hook (no sound needed) → 2-line foreshadow → "but" complication → "therefore" payoff → abrupt end. No outro.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: The proven Short formula. Abrupt ending forces rewatch — that's what drives 90%+ retention.</div>
       </div>
 
@@ -593,42 +676,42 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">13</span><span class="prompt-title">Welcome Email</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write a warm welcome email for new subscribers to my [type of business] newsletter. Include what to expect, why they should stay subscribed, and one immediate value they can use today.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a warm welcome email for new subscribers to my [type of business] newsletter. Include what to expect, why they should stay subscribed, and one immediate value they can use today.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Email #1 in any welcome sequence. First impressions compound — this email sets the tone for everything that follows.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">14</span><span class="prompt-title">Lead Magnet Delivery Email</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write a short email that delivers my freebie [describe it] with a thank-you, clear download instructions, and a teaser of what's coming next. Keep it under 150 words.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a short email that delivers my freebie [describe it] with a thank-you, clear download instructions, and a teaser of what's coming next. Keep it under 150 words.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: The email that goes out immediately after signup. Short, clear, delivers exactly what was promised.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">15</span><span class="prompt-title">Landing Page Hero Copy</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write a bold hero section for a landing page selling [product/service]. Include: headline (benefit-first, under 10 words), subheadline (who it's for + outcome), and 3 bullet benefits. No fluff.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a bold hero section for a landing page selling [product/service]. Include: headline (benefit-first, under 10 words), subheadline (who it's for + outcome), and 3 bullet benefits. No fluff.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Any lead magnet page, product page, or sales page. Benefit-first always outperforms feature-first.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">16</span><span class="prompt-title">Cold Outreach Email</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write a friendly cold outreach email to introduce my [service] to [target client]. Keep it under 100 words. Open with their pain, offer a specific solution, and end with one easy yes/no question.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a friendly cold outreach email to introduce my [service] to [target client]. Keep it under 100 words. Open with their pain, offer a specific solution, and end with one easy yes/no question.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Fiverr and direct client outreach. Short emails get replies. Long emails get ignored.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">17</span><span class="prompt-title">Value Drop Email</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write a short value-packed email on [topic] that teaches 1 useful tip in under 200 words. End with a subtle link or CTA — but only after the value is delivered. Never lead with the pitch.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a short value-packed email on [topic] that teaches 1 useful tip in under 200 words. End with a subtle link or CTA — but only after the value is delivered. Never lead with the pitch.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Weekly newsletters and affiliate promotions. Education IS the conversion.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">18</span><span class="prompt-title">Newsletter Subject Lines</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Give me 5 subject lines for a newsletter about [topic]. Vary the tone across: curiosity, boldness, humor, and value promise. No clickbait — each subject line must deliver what it implies.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Give me 5 subject lines for a newsletter about [topic]. Vary the tone across: curiosity, boldness, humor, and value promise. No clickbait — each subject line must deliver what it implies.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: A/B testing subject lines. The subject line is the thumbnail of your email — it decides everything.</div>
       </div>
 
@@ -659,28 +742,28 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">19</span><span class="prompt-title">Offer Idea Generator</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Give me 5 fast digital product or service ideas I could sell in the [niche] space. Focus on: easy to create, clear outcome for buyer, and sellable for $9–$97. Tag each as PDF / Template / Service.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Give me 5 fast digital product or service ideas I could sell in the [niche] space. Focus on: easy to create, clear outcome for buyer, and sellable for $9–$97. Tag each as PDF / Template / Service.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Unsticking when you don't know what to sell. Two ideas from this prompt shipped within a week for one creator — $3K MRR result.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">20</span><span class="prompt-title">Monetization Roadmap</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Create a 3-step monetization roadmap for a creator with skills in [area] and an audience of [size/type]. Include: 1 fast offer, 1 scalable product, and 1 recurring income stream. Be specific.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Create a 3-step monetization roadmap for a creator with skills in [area] and an audience of [size/type]. Include: 1 fast offer, 1 scalable product, and 1 recurring income stream. Be specific.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Building your income stack from scratch. Forces clarity on what to build first vs. what to build later.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">21</span><span class="prompt-title">Product Bundle Description</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write a sales description for a digital product bundle that includes [list items]. Explain: what each piece does, who it's for, and why the bundle is worth more than the sum of its parts. Max 200 words.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a sales description for a digital product bundle that includes [list items]. Explain: what each piece does, who it's for, and why the bundle is worth more than the sum of its parts. Max 200 words.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Gumroad, Etsy, and website product pages. Bundles have higher perceived value — price them accordingly.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">22</span><span class="prompt-title">Offer Clarity Boost</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Take this rough offer description and make it sharper and clearer for a non-expert audience: [paste your draft]. Rewrite as: Problem → Solution → Outcome → Who it's for. Under 100 words.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Take this rough offer description and make it sharper and clearer for a non-expert audience: [paste your draft]. Rewrite as: Problem → Solution → Outcome → Who it's for. Under 100 words.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Turning a fuzzy idea into a sharp, sellable offer. Clarity converts — confusion doesn't.</div>
       </div>
 
@@ -697,21 +780,21 @@
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">23</span><span class="prompt-title">Revenue Idea Generator</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Suggest 5 fast revenue-generating ideas for a [type of creator/freelancer] in the [niche]. Prioritize simplicity and speed to first dollar. Tag each: Quick Win / Long Bet. Include effort (1–5 scale).</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Suggest 5 fast revenue-generating ideas for a [type of creator/freelancer] in the [niche]. Prioritize simplicity and speed to first dollar. Tag each: Quick Win / Long Bet. Include effort (1–5 scale).</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Finding the fastest path to income when you need it now. Quick Win tags are where to start.</div>
       </div>
 
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-num">24</span><span class="prompt-title">Gig Site Bio Writer</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Write a short freelancer profile bio for [Fiverr/Upwork] that sounds friendly, expert, and results-focused. Mention [credentials/experience]. Under 150 words. End with a specific CTA.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Write a short freelancer profile bio for [Fiverr/Upwork] that sounds friendly, expert, and results-focused. Mention [credentials/experience]. Under 150 words. End with a specific CTA.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Fiverr and Upwork profiles. Your bio is your first impression — make it sound like a person, not a template.</div>
       </div>
 
       <div class="prompt-card" style="border-radius:0 0 3px 3px;">
         <div class="prompt-header"><span class="prompt-num">25</span><span class="prompt-title">AI Workflow System Builder</span></div>
         <span class="prompt-label">THE PROMPT</span>
-        <div class="prompt-box">Build me a repeatable AI workflow for [task I do regularly]. Break it into steps: what to prompt at each stage, what to check before moving forward, and what the final output looks like. Make it a system I can run every time.</div>
+        <div class="prompt-wrapper"><div class="prompt-box">Build me a repeatable AI workflow for [task I do regularly]. Break it into steps: what to prompt at each stage, what to check before moving forward, and what the final output looks like. Make it a system I can run every time.</div><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
         <div class="prompt-best">Best for: Turning one-time AI tasks into repeatable systems. A workflow you can run in your sleep is worth 10x a prompt you have to think about every time.</div>
       </div>
 
@@ -855,6 +938,25 @@
   <span>CFS · 25 AI PROMPTS FOR CREATORS</span>
   <span>ContentForgeStudio.com · Turn AI Into Income</span>
 </div>
+
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+// Back to top
+const btt = document.getElementById('backToTop');
+window.addEventListener('scroll', () => { btt.style.display = window.scrollY > 400 ? 'flex' : 'none'; });
+
+// Copy buttons
+function copyPrompt(btn) {
+  const box = btn.previousElementSibling;
+  const text = box.innerText || box.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
 
 </body>
 </html>
