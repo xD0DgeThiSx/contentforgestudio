@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFS Prompt Pack – 25 Battle-Tested AI Prompts – ContentForgeStudio.com</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Raleway:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --cyan: #38D9F5;
+    --yellow: #E8FF47;
+    --fire: #FF5C1A;
+    --black: #07070E;
+    --dark: #0D1117;
+    --dark2: #111827;
+    --dark3: #1a2332;
+    --border: rgba(56,217,245,0.18);
+    --text: #e2e8f0;
+    --muted: #8896a7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .top-stripe { background: var(--cyan); height: 4px; width: 100%; }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cover-badge {
+    display: inline-block;
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 2px;
+    margin-bottom: 48px;
+  }
+
+  .hex-logo { width: 100px; height: 100px; margin: 0 auto 40px; }
+
+  .cover h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+
+  .cover h1 span { color: var(--cyan); }
+
+  .cover-sub {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(0.7rem, 1.4vw, 0.85rem);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--yellow);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .cover-divider { width: 200px; height: 1px; background: var(--border); margin: 0 auto 32px; }
+
+  .cover-desc { max-width: 540px; color: var(--muted); font-size: 15px; margin-bottom: 48px; }
+
+  .cover-stats { display: flex; gap: 48px; justify-content: center; margin-bottom: 56px; }
+
+  .cover-stat-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--cyan);
+    display: block;
+  }
+
+  .cover-stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .cover-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+  .btn {
+    display: inline-block;
+    background: var(--cyan);
+    color: var(--black);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-outline { background: transparent; border: 2px solid var(--cyan); color: var(--cyan); }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 24px; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── PAGE ── */
+  .page { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+
+  .section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+
+  .eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .eyebrow-square { width: 10px; height: 10px; background: var(--cyan); flex-shrink: 0; }
+  .eyebrow-text { font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); }
+
+  .section-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 32px; }
+
+  .section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+
+  .section-intro { color: var(--muted); font-style: italic; margin-bottom: 32px; font-size: 14px; }
+
+  /* ── HOW TO USE ── */
+  .steps { display: flex; flex-direction: column; gap: 20px; }
+
+  .step { display: flex; gap: 20px; align-items: flex-start; }
+
+  .step-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--cyan);
+    min-width: 36px;
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  .step-content strong { display: block; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .step-content p { color: var(--muted); font-size: 14px; }
+
+  .callout {
+    background: var(--dark3);
+    border-left: 3px solid var(--cyan);
+    padding: 20px 24px;
+    margin-top: 32px;
+    border-radius: 2px;
+  }
+  .callout strong { display: block; color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+  .callout p { color: var(--muted); font-size: 14px; }
+
+  /* ── QUICK LINKS ── */
+  .quick-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+
+  /* ── PROMPT CARDS ── */
+  .prompt-section-header {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 3px 3px 0 0;
+    padding: 20px 24px;
+    margin-top: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .prompt-section-tag {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 4px;
+  }
+
+  .prompt-section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .prompt-section-quote {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+
+  .prompts-list { display: flex; flex-direction: column; gap: 0; }
+
+  .prompt-card {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 24px;
+  }
+
+  .prompt-card:last-child { border-radius: 0 0 3px 3px; }
+
+  .prompt-header {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .prompt-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--cyan);
+    min-width: 32px;
+  }
+
+  .prompt-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+  }
+
+  .prompt-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .prompt-box {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 16px 18px;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .prompt-example-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .prompt-example {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    padding-left: 12px;
+    border-left: 2px solid var(--border);
+  }
+
+  .prompt-use {
+    font-size: 12px;
+    color: var(--yellow);
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  /* ── BOOK PROMO ── */
+  .book-promo {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 28px;
+    margin: 32px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .book-promo-text { flex: 1; min-width: 200px; }
+  .book-promo-title { font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); margin-bottom: 6px; }
+  .book-promo-name { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 900; color: #fff; text-transform: uppercase; margin-bottom: 4px; }
+  .book-promo-sub { font-size: 13px; color: var(--muted); }
+
+  /* ── CREATOR STACK ── */
+  .stack-card-wrap {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px;
+    margin-top: 24px;
+  }
+
+  .stack-eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+  .stack-eyebrow-sq { width: 8px; height: 8px; background: var(--cyan); }
+  .stack-eyebrow-text { font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); }
+
+  .stack-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+
+  .stack-tool {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .stack-tool-name { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .stack-tool-desc { font-size: 12px; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+
+  .btn-sm {
+    display: inline-block;
+    background: var(--cyan);
+    color: var(--black);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 2px;
+    text-decoration: none;
+  }
+
+  /* ── NEXT STEPS ── */
+  .next-steps { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+
+  .next-step {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .next-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--cyan);
+    min-width: 32px;
+    line-height: 1;
+  }
+
+  .next-label { font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .next-desc { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+
+  .disclosure {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 20px 24px;
+    margin-top: 32px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .disclosure strong { color: var(--cyan); display: block; margin-bottom: 6px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
+
+  .doc-footer {
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 0 20px; }
+    .cover { padding: 48px 20px; }
+    .cover-footer { padding: 0 20px; flex-direction: column; gap: 4px; align-items: center; }
+    .doc-footer { flex-direction: column; gap: 4px; align-items: center; text-align: center; }
+    .book-promo { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-stripe"></div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">CONTENT FORGE STUDIO · FREE RESOURCE PACK</div>
+
+  <svg class="hex-logo" viewBox="0 0 100 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="50,4 96,29 96,86 50,111 4,86 4,29" fill="none" stroke="#38D9F5" stroke-width="3"/>
+    <polygon points="50,14 86,34 86,81 50,101 14,81 14,34" fill="#0D1117" stroke="#38D9F5" stroke-width="1.5" opacity="0.6"/>
+    <text x="50" y="66" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="22" font-weight="900" fill="#ffffff">CFS</text>
+  </svg>
+
+  <h1>25 BATTLE-TESTED<br><span>AI PROMPTS</span></h1>
+  <p class="cover-sub">COPY · PASTE · CUSTOMIZE · PROFIT</p>
+  <div class="cover-divider"></div>
+  <p class="cover-desc">From the team at ContentForgeStudio.com — each prompt includes the exact text, a real-world example, and how it was actually used. Replace the [brackets] with your details and run it.</p>
+
+  <div class="cover-stats">
+    <div><span class="cover-stat-num">25</span><span class="cover-stat-label">Prompts</span></div>
+    <div><span class="cover-stat-num">5</span><span class="cover-stat-label">Categories</span></div>
+    <div><span class="cover-stat-num">100%</span><span class="cover-stat-label">Free</span></div>
+  </div>
+
+  <div class="cover-btns">
+    <a class="btn" href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20">GET THE FULL BOOK ON AMAZON</a>
+    <a class="btn btn-outline" href="https://preview.mailerlite.io/forms/2459143/190820244058539189/share">JOIN APP EARLY ACCESS</a>
+  </div>
+
+  <div class="cover-footer">
+    <span>CFS PROMPT PACK · 25 BATTLE-TESTED AI PROMPTS</span>
+    <span>ContentForgeStudio.com</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- HOW TO USE -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">HOW TO USE THIS PACK</span></div>
+    <div class="section-divider"></div>
+    <h2>This PDF Is Built for Speed</h2>
+    <p class="section-intro">Find a prompt, copy it, customize the brackets, run it.</p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <div class="step-content">
+          <strong>Pick a section</strong>
+          <p>Choose the category closest to what you need: business, marketing, email, SEO, or social content.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <div class="step-content">
+          <strong>Copy the prompt</strong>
+          <p>Use the COPY-READY PROMPT block. Highlight and copy the text directly.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <div class="step-content">
+          <strong>Customize the brackets</strong>
+          <p>Replace [business], [offer], [audience], [topic], and other placeholders with your exact details.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">4</span>
+        <div class="step-content">
+          <strong>Run, refine, reuse</strong>
+          <p>Ask for stronger hooks, clearer CTAs, shorter versions, or more examples until the output is ready to use.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:32px;">
+      <strong>Pro Tip</strong>
+      <p>The full 100-prompt book expands this pack into 10 categories, including product descriptions, client pitches, creative writing, brainstorming, and workflow boosters.</p>
+    </div>
+
+    <div class="quick-links">
+      <a class="btn" href="https://preview.mailerlite.io/forms/2459143/190790534186403371/share">GET MORE FREE CFS RESOURCES</a>
+      <a class="btn btn-outline" href="https://preview.mailerlite.io/forms/2459143/190820244058539189/share">JOIN APP EARLY ACCESS</a>
+      <a class="btn btn-outline" href="https://www.youtube.com/@TheContentForgeStudio">SUBSCRIBE ON YOUTUBE</a>
+      <a class="btn btn-outline" href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20">GET PROMPT LIKE A PRO</a>
+    </div>
+  </div>
+
+  <!-- SECTION 1: BUSINESS & STRATEGY -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">SECTION 01</span></div>
+    <div class="section-divider"></div>
+
+    <div class="prompt-section-header">
+      <div class="prompt-section-tag">// SECTION — BUSINESS &amp; STRATEGY</div>
+      <div class="prompt-section-title">Prompts 1–5</div>
+    </div>
+
+    <div class="prompts-list">
+
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-num">01</span>
+          <span class="prompt-title">Business Plan Summary</span>
+        </div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Act as a startup strategist. Summarize this business idea in 3 bullet points (problem, solution, unique edge). Keep it concise, like an investor pitch.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Act as a startup strategist. Summarize SwiftCart (same-day delivery app for indie retailers) in 3 bullets (problem, solution, unique edge) + 1 milestone (12-month goal) + 1 risk with mitigation. Keep investor-tight.</div>
+        <div class="prompt-use">Real use: Used this to prep a cold pitch — kept me crisp and got immediate interest.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-num">02</span>
+          <span class="prompt-title">Competitor Analysis</span>
+        </div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Generate a competitor comparison table for [business name/type]. Include pricing, features, and one-sentence advantages/disadvantages.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Create a comparison table for Notion, Evernote, Obsidian, OneNote, Apple Notes with: price, core use case, offline support, AI features, switching friction. Add a 1-sentence pro &amp; con per tool.</div>
+        <div class="prompt-use">Real use: Built this for a client's launch deck — became the slide that sealed funding.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-num">03</span>
+          <span class="prompt-title">Offer Clarity Boost</span>
+        </div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Take this rough offer description and make it sharper and easier to understand for a non-expert audience.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Rewrite the Inbox Zero Sprint (30 days) coaching offer in 5 bullets as Feature → Outcome (+ metric). Include who it's for / not for and a risk-reversal line.</div>
+        <div class="prompt-use">Real use: Turned a fuzzy coaching package into a sharp, premium offer.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-num">04</span>
+          <span class="prompt-title">SWOT Analysis</span>
+        </div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Act as a business consultant. Create a SWOT (Strengths, Weaknesses, Opportunities, Threats) for [my company name or industry]. Make it sound professional but brief.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Do a SWOT for BodegaCloud (SaaS for neighborhood grocers). 3 bullets each and a "So What" line: one decision this SWOT pushes us toward.</div>
+        <div class="prompt-use">Real use: Used for a board update — kept discussion on the few variables that matter.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-num">05</span>
+          <span class="prompt-title">One-Liner Generator</span>
+        </div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Craft 3 bold, catchy one-liners to describe my business. Keep each under 10 words. Make them sound modern and memorable.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Generate a one-liner for PaddlePath Kayak Tours: [Audience] + [Problem] + [Solution] + [Proof] in under 20 words. Provide 3 options.</div>
+        <div class="prompt-use">Real use: Became the headline we used across LinkedIn and the website.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 2: MARKETING COPY & ADS -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">SECTION 02</span></div>
+    <div class="section-divider"></div>
+
+    <div class="prompt-section-header">
+      <div class="prompt-section-tag">// SECTION — MARKETING COPY &amp; ADS</div>
+      <div class="prompt-section-title">Prompts 6–10</div>
+    </div>
+
+    <div class="prompts-list">
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">06</span><span class="prompt-title">Landing Page Hero Copy</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Write a bold, clear hero section headline + subhead for a landing page selling [product/service]. Focus on benefits. Make it emotionally engaging.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Write hero headline + subhead + CTA for BreezeCharge (EV home charger). Angle: renters with garages. Constraints: &lt;10-word headline, mention 30-min install, CTA "See if your home qualifies."</div>
+        <div class="prompt-use">Real use: A/B test winner — +22% hero click-through.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">07</span><span class="prompt-title">Instagram Ad Hook</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Write 3 scroll-stopping first lines for an Instagram ad promoting [offer]. Each should fit within 1 sentence and spark curiosity.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Generate 10 IG hook lines for a cold-plunge tub brand. Mix pattern interrupts, curiosity gaps, and benefit bombs; each 8 words or fewer.</div>
+        <div class="prompt-use">Real use: Hook lines that didn't feel ad-y; CPM dropped 12%.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">08</span><span class="prompt-title">AIDA Product Description</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Use the AIDA copywriting formula (Attention, Interest, Desire, Action) to sell this product: [details]. Keep it 100–150 words.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Write an AIDA blurb for GlowDuo Vitamin C + Niacinamide Serum. Include derm-safe claims, evidence (study or %), and application steps. Cap at 160 words.</div>
+        <div class="prompt-use">Real use: Lifted PDP add-to-cart 9% for a skincare SKU.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">09</span><span class="prompt-title">Call-to-Action Builder</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Give me 5 different call-to-action phrases for [goal], each using a slightly different emotional appeal (urgency, curiosity, community, etc.).</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Give 12 CTA lines for a B2B demo booking. Group by Low-Friction / Medium / High-Commitment. No "Learn more."</div>
+        <div class="prompt-use">Real use: Replaced weak CTAs; opt-ins rose 17%.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">10</span><span class="prompt-title">Headline Variants</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Give me 5 punchy headline options for a product targeting [audience], each using a different persuasion angle (fear, benefit, FOMO, proof, etc.).</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Generate 10 headline options for PeakPack Daypack (lightweight hiking backpack). Mix curiosity, benefit, proof, and urgency; each 8 words or fewer.</div>
+        <div class="prompt-use">Real use: Doubled trial activation rate after re-framing the first send.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 3: EMAIL & NEWSLETTERS -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">SECTION 03</span></div>
+    <div class="section-divider"></div>
+
+    <div class="prompt-section-header">
+      <div class="prompt-section-tag">// SECTION — EMAIL &amp; NEWSLETTERS</div>
+      <div class="prompt-section-title">Prompts 11–15</div>
+    </div>
+
+    <div class="prompts-list">
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">11</span><span class="prompt-title">Welcome Email</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Write a warm, friendly welcome email for new subscribers to my [type of business] newsletter. Include what to expect and a CTA to connect or explore.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Apply Welcome Email to FlowPilot (B2B onboarding SaaS). Write a concise email with a clear CTA and one metric. Keep tone on-brand and specify audience.</div>
+        <div class="prompt-use">Real use: Used this to tackle the dreaded blank welcome email. On-brand, fast, done.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">12</span><span class="prompt-title">Lead Magnet Delivery</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Write a short email that delivers my freebie (a PDF guide on [topic]) with a quick thank-you and teaser for what's coming next.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Apply Lead Magnet Delivery to GlowDuo (DTC skincare). Provide 3 variants with hook + benefit + CTA. Keep tone on-brand.</div>
+        <div class="prompt-use">Real use: Made the next step obvious and easy. Open rates stayed high.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">13</span><span class="prompt-title">Soft Sales Follow-Up</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Write a polite follow-up email for someone who clicked but didn't buy [offer]. Include gentle urgency and one line of social proof.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Apply Soft Sales Follow-Up to BrightNest (local home cleaning service). Deliver 5 bullets with specifics, 1 number, and a clear CTA.</div>
+        <div class="prompt-use">Real use: Recovered abandoned carts without sounding pushy.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">14</span><span class="prompt-title">Value Drop Email</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Write a short value-packed email on [topic] that teaches 1 useful tip. Add a subtle link or CTA at the end.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Apply Value Drop Email to NoteForge (course for creators). Write a concise email with a clear CTA and one metric. Keep tone on-brand.</div>
+        <div class="prompt-use">Real use: Kept the list warm between launches. Engagement stayed high.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">15</span><span class="prompt-title">Win-Back Message</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Write an email to re-engage cold subscribers with a warm intro, quick recap of value, and a "still interested?" style CTA.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Apply Win-back Message to PocketBolt (e-commerce gadget). Deliver 5 bullets with specifics, 1 number, and a clear CTA.</div>
+        <div class="prompt-use">Real use: Gave us a shippable first draft the same day. Re-engaged 8% of cold list.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 4: SEO & BLOG -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">SECTION 04</span></div>
+    <div class="section-divider"></div>
+
+    <div class="prompt-section-header">
+      <div class="prompt-section-tag">// SECTION — SEO &amp; BLOG WRITING</div>
+      <div class="prompt-section-title">Prompts 16–20</div>
+    </div>
+
+    <div class="prompts-list">
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">16</span><span class="prompt-title">Blog Post Outline</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Create a detailed blog post outline for the topic: [topic]. Include H2s, H3s, and a suggested intro hook.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Outline a 1,500-word blog post: "7 Ways Remote Teams Stay Productive." Include H2s, H3s, intro hook, and a stat-backed CTA at the end.</div>
+        <div class="prompt-use">Real use: Cut research time in half. The outline became the final structure.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">17</span><span class="prompt-title">SEO Keywords List</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Generate a list of 10 SEO keywords for a blog about [topic]. Include a mix of short-tail and long-tail terms with search intent labels.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Generate 15 SEO keywords for "home gym equipment on a budget." Label each: Informational / Commercial / Transactional. Flag the top 3 for a beginner site.</div>
+        <div class="prompt-use">Real use: Built an entire content calendar from one prompt run.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">18</span><span class="prompt-title">Meta Description Generator</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Write a compelling meta description (under 155 characters) for a blog post titled [title]. Include the primary keyword and a reason to click.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Write 5 meta descriptions for "Best Budget Espresso Machines 2025." Each under 155 chars, include primary keyword, click trigger, and unique angle.</div>
+        <div class="prompt-use">Real use: CTR from search results jumped after swapping to AI-written metas.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">19</span><span class="prompt-title">Blog Intro Hook</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Write 3 different opening paragraphs for a blog post about [topic]. Each should use a different hook style (question, stat, story).</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Write 3 intro hooks for "How to Build a Morning Routine That Sticks." Styles: surprising stat, bold claim, short story. Each under 60 words.</div>
+        <div class="prompt-use">Real use: Bounce rate dropped after replacing weak intros with these.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">20</span><span class="prompt-title">Content Refresh Suggestions</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Review this blog post outline or title and suggest 5 ways to update it for [current year] to improve relevance and SEO.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Review "10 Social Media Tips for Small Businesses (2021)" and suggest 7 refresh moves: new stats, deleted sections, new angle, updated examples.</div>
+        <div class="prompt-use">Real use: Refreshed 12 old posts in a week. Organic traffic up 31%.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 5: SOCIAL MEDIA & CONTENT -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">SECTION 05</span></div>
+    <div class="section-divider"></div>
+
+    <div class="prompt-section-header">
+      <div class="prompt-section-tag">// SECTION — SOCIAL MEDIA &amp; CONTENT</div>
+      <div class="prompt-section-title">Prompts 21–25</div>
+    </div>
+
+    <div class="prompts-list">
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">21</span><span class="prompt-title">Viral Hook Builder</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Write 5 viral-style opening hooks for a social media post about [topic]. Make them punchy, bold, and designed to stop the scroll.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Write 10 viral hooks for a post about why most people quit their side hustle. Mix fear, curiosity, bold claim, and pattern interrupt styles.</div>
+        <div class="prompt-use">Real use: One of these became our highest-performing LinkedIn post ever.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">22</span><span class="prompt-title">Repurpose Blog to Post</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Take this blog post [paste excerpt] and rewrite it as a punchy LinkedIn post under 200 words with a clear hook and CTA.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Repurpose this 1,200-word article on remote work burnout into: 1 LinkedIn post, 1 tweet thread (5 tweets), 1 Instagram caption. Keep stats intact.</div>
+        <div class="prompt-use">Real use: One blog = 3 pieces of content in 5 minutes. Massive time saver.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">23</span><span class="prompt-title">Thought Leadership Builder</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Write a short thought leadership post about [topic] from the perspective of an expert in [field]. Include a personal insight or opinion.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Write a 150-word LinkedIn thought leadership post on why AI won't replace creative directors. Include a counterintuitive take and end with a question.</div>
+        <div class="prompt-use">Real use: Comments blew up. Best organic reach we'd had in months.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">24</span><span class="prompt-title">Hashtag Set Generator</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Generate 3 sets of hashtags for a post about [topic] — one broad, one niche, one trending. Keep each set to 5–8 tags.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Generate hashtag sets for a post about AI tools for freelancers. Set 1: broad reach. Set 2: niche community. Set 3: trending/timely. 6 tags each.</div>
+        <div class="prompt-use">Real use: Reach nearly doubled after switching to this hashtag strategy.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">25</span><span class="prompt-title">Content Idea Generator</span></div>
+        <span class="prompt-label">COPY-READY PROMPT</span>
+        <div class="prompt-box">Give me 10 content ideas for [platform] about [topic]. Mix educational, entertaining, and promotional formats.</div>
+        <span class="prompt-example-label">EXAMPLE IN ACTION</span>
+        <div class="prompt-example">Give 20 content ideas for a YouTube channel about AI tools for side hustlers. Mix: tutorials, reactions, income breakdowns, myth-busting, and tool reviews.</div>
+        <div class="prompt-use">Real use: Our entire Q3 content calendar came from one run of this prompt.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CREATOR STACK -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">CFS CREATOR STACK</span></div>
+    <div class="section-divider"></div>
+    <h2>Recommended AI Creator Tools</h2>
+    <p class="section-intro">Recommended tools for turning prompts into voiceovers, videos, and creator content.</p>
+
+    <div class="stack-card-wrap">
+      <div class="stack-eyebrow">
+        <div class="stack-eyebrow-sq"></div>
+        <span class="stack-eyebrow-text">CFS PROMPT PACK</span>
+      </div>
+      <div class="stack-cards">
+        <div class="stack-tool">
+          <div class="stack-tool-name">ElevenLabs</div>
+          <div class="stack-tool-desc">Lifelike AI voiceovers for videos, ads, and creator content</div>
+          <a class="btn-sm" href="https://try.elevenlabs.io/qr7w98295n2w">Try ElevenLabs ↗</a>
+        </div>
+        <div class="stack-tool">
+          <div class="stack-tool-name">Murf AI</div>
+          <div class="stack-tool-desc">Studio-quality narration and voiceover tools for business and content</div>
+          <a class="btn-sm" href="https://get.murf.ai/r1sirvfn5rz2">Try Murf AI ↗</a>
+        </div>
+        <div class="stack-tool">
+          <div class="stack-tool-name">Seedance</div>
+          <div class="stack-tool-desc">AI video creation and visual storytelling for creators</div>
+          <a class="btn-sm" href="https://seedance.tv?fpr=brandon74">Try Seedance ↗</a>
+        </div>
+      </div>
+      <p style="font-size:11px; color:var(--muted); text-align:center;">Some links in this guide may be affiliate links.</p>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <a class="btn" href="https://try.elevenlabs.io/qr7w98295n2w">TRY ELEVENLABS</a>
+      <a class="btn" href="https://get.murf.ai/r1sirvfn5rz2">TRY MURF AI</a>
+      <a class="btn" href="https://seedance.tv?fpr=brandon74">TRY SEEDANCE</a>
+    </div>
+  </div>
+
+  <!-- BOOK UPSELL + NEXT STEPS -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">NEXT STEPS</span></div>
+    <div class="section-divider"></div>
+    <h2>You Just Used 25 Prompts.<br>Imagine Having 100.</h2>
+
+    <div class="book-promo">
+      <div class="book-promo-text">
+        <div class="book-promo-title">Full Book</div>
+        <div class="book-promo-name">Prompt Like a Pro</div>
+        <div class="book-promo-sub">100 battle-tested prompts across 10 categories — Business, Marketing, Email, SEO, Product Descriptions, Client Pitches, Social Media, Creative Writing, Brainstorming, and Workflow Boosters. Every prompt includes the exact text, a real-world example, and how it was actually used. No filler. No theory.</div>
+      </div>
+      <a class="btn" href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20">GET THE FULL BOOK ON AMAZON</a>
+    </div>
+
+    <div class="next-steps">
+      <div class="next-step">
+        <span class="next-num">1</span>
+        <div>
+          <div class="next-label">Join CFS App Early Access</div>
+          <div class="next-desc">Get launch updates, free creator resources, and early access when the CFS Creator App opens.</div>
+          <a class="btn-sm" href="https://preview.mailerlite.io/forms/2459143/190820244058539189/share">JOIN EARLY ACCESS</a>
+        </div>
+      </div>
+      <div class="next-step">
+        <span class="next-num">2</span>
+        <div>
+          <div class="next-label">Get More Free CFS Resources</div>
+          <div class="next-desc">Join the free resource list for future drops, prompt packs, and AI income workflows.</div>
+          <a class="btn-sm" href="https://preview.mailerlite.io/forms/2459143/190790534186403371/share">GET FREE RESOURCES</a>
+        </div>
+      </div>
+      <div class="next-step">
+        <span class="next-num">3</span>
+        <div>
+          <div class="next-label">Subscribe on YouTube</div>
+          <div class="next-desc">Watch CFS videos on AI tools, content systems, affiliate workflows, and creator income ideas.</div>
+          <a class="btn-sm" href="https://www.youtube.com/@TheContentForgeStudio">SUBSCRIBE</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclosure">
+      <strong>Affiliate Disclosure</strong>
+      Some links in this guide are affiliate links. Content Forge Studio may earn a commission at no extra cost to you. Free resource — not for resale. More free resources at ContentForgeStudio.com · Subscribe on YouTube: @TheContentForgeStudio
+    </div>
+  </div>
+
+</div>
+
+<div class="doc-footer">
+  <span>CFS PROMPT PACK · 25 BATTLE-TESTED AI PROMPTS</span>
+  <span>ContentForgeStudio.com</span>
+</div>
+
+</body>
+</html>

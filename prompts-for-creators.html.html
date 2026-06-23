@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>25 AI Prompts for Creators – ContentForgeStudio.com</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Raleway:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --cyan: #38D9F5;
+    --yellow: #E8FF47;
+    --fire: #FF5C1A;
+    --black: #07070E;
+    --dark: #0D1117;
+    --dark2: #111827;
+    --dark3: #1a2332;
+    --border: rgba(56,217,245,0.18);
+    --text: #e2e8f0;
+    --muted: #8896a7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .top-stripe { background: var(--cyan); height: 4px; width: 100%; }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cover-badge {
+    display: inline-block;
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 2px;
+    margin-bottom: 48px;
+  }
+
+  .hex-logo { width: 100px; height: 100px; margin: 0 auto 40px; }
+
+  .cover h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+
+  .cover h1 span { color: var(--cyan); }
+
+  .cover-sub {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(0.7rem, 1.4vw, 0.85rem);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--yellow);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .cover-divider { width: 200px; height: 1px; background: var(--border); margin: 0 auto 32px; }
+  .cover-desc { max-width: 560px; color: var(--muted); font-size: 15px; margin-bottom: 48px; }
+
+  .cover-stats { display: flex; gap: 48px; justify-content: center; margin-bottom: 56px; }
+
+  .cover-stat-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--cyan);
+    display: block;
+  }
+
+  .cover-stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 24px; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── PAGE ── */
+  .page { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+
+  .section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+
+  .eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .eyebrow-square { width: 10px; height: 10px; background: var(--cyan); flex-shrink: 0; }
+  .eyebrow-text { font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); }
+
+  .section-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 32px; }
+
+  .section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+
+  .section-intro { color: var(--muted); font-style: italic; margin-bottom: 32px; font-size: 14px; }
+
+  .btn {
+    display: inline-block;
+    background: var(--cyan);
+    color: var(--black);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-outline { background: transparent; border: 2px solid var(--cyan); color: var(--cyan); }
+
+  .btn-sm {
+    display: inline-block;
+    background: var(--cyan);
+    color: var(--black);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 2px;
+    text-decoration: none;
+  }
+
+  .callout {
+    background: var(--dark3);
+    border-left: 3px solid var(--cyan);
+    padding: 20px 24px;
+    margin-top: 32px;
+    border-radius: 2px;
+  }
+  .callout strong { display: block; color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+  .callout p { color: var(--muted); font-size: 14px; }
+
+  /* ── WORKFLOW STRIP ── */
+  .workflow-strip {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .workflow-step {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .workflow-arrow { color: var(--muted); font-size: 0.9rem; }
+
+  /* ── BOOK MINI PROMO ── */
+  .book-mini {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .book-mini-text { font-size: 13px; color: var(--muted); }
+  .book-mini-text strong { color: #fff; display: block; margin-bottom: 2px; }
+
+  /* ── PROMPT SECTION HEADER ── */
+  .prompt-section-header {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 3px 3px 0 0;
+    padding: 20px 24px;
+    margin-top: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .prompt-section-tag { font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); margin-bottom: 4px; }
+  .prompt-section-title { font-family: 'Orbitron', sans-serif; font-size: clamp(1rem, 2vw, 1.3rem); font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: 0.04em; }
+  .prompt-section-quote { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 8px; line-height: 1.6; }
+
+  /* ── PROMPT CARDS ── */
+  .prompts-list { display: flex; flex-direction: column; gap: 0; }
+
+  .prompt-card {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 24px;
+  }
+
+  .prompt-card:last-child { border-radius: 0 0 3px 3px; }
+
+  .prompt-header { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 16px; }
+
+  .prompt-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--cyan);
+    min-width: 32px;
+  }
+
+  .prompt-title { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.4; }
+
+  .prompt-label { font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px; display: block; }
+
+  .prompt-box {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 16px 18px;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .prompt-best {
+    font-size: 12px;
+    color: var(--yellow);
+    font-style: italic;
+    font-weight: 600;
+    padding-left: 12px;
+    border-left: 2px solid var(--border);
+  }
+
+  /* ── BONUS SECTION ── */
+  .technique-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 24px; }
+
+  .technique-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 20px;
+  }
+
+  .technique-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: var(--cyan);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .technique-title { font-weight: 700; color: #fff; margin-bottom: 4px; font-size: 14px; }
+  .technique-prompt {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 10px 12px;
+    font-size: 12.5px;
+    color: var(--text);
+    margin: 10px 0;
+    font-style: italic;
+  }
+  .technique-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* ── CREATOR STACK ── */
+  .stack-card-wrap { background: var(--dark2); border: 1px solid var(--border); border-radius: 4px; padding: 32px; margin-top: 24px; }
+  .stack-eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+  .stack-eyebrow-sq { width: 8px; height: 8px; background: var(--cyan); }
+  .stack-eyebrow-text { font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); }
+  .stack-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .stack-tool { background: var(--dark3); border: 1px solid var(--border); border-radius: 3px; padding: 20px; text-align: center; }
+  .stack-tool-name { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .stack-tool-desc { font-size: 12px; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+
+  /* ── NEXT STEPS ── */
+  .next-steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 24px; }
+
+  .next-step-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 20px;
+  }
+
+  .next-step-num { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 900; color: var(--cyan); margin-bottom: 8px; display: block; }
+  .next-step-label { font-weight: 700; color: #fff; margin-bottom: 6px; font-size: 14px; }
+  .next-step-desc { font-size: 13px; color: var(--muted); margin-bottom: 14px; line-height: 1.6; }
+
+  .disclosure {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 20px 24px;
+    margin-top: 32px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .disclosure strong { color: var(--cyan); display: block; margin-bottom: 6px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
+
+  .doc-footer {
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 0 20px; }
+    .cover { padding: 48px 20px; }
+    .cover-footer { padding: 0 20px; flex-direction: column; gap: 4px; align-items: center; }
+    .doc-footer { flex-direction: column; gap: 4px; align-items: center; text-align: center; }
+    .workflow-strip { gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-stripe"></div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">CONTENT FORGE STUDIO · FREE RESOURCE PACK</div>
+
+  <svg class="hex-logo" viewBox="0 0 100 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="50,4 96,29 96,86 50,111 4,86 4,29" fill="none" stroke="#38D9F5" stroke-width="3"/>
+    <polygon points="50,14 86,34 86,81 50,101 14,81 14,34" fill="#0D1117" stroke="#38D9F5" stroke-width="1.5" opacity="0.6"/>
+    <text x="50" y="66" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="22" font-weight="900" fill="#ffffff">CFS</text>
+  </svg>
+
+  <h1>25 AI <span>PROMPTS</span><br>FOR CREATORS</h1>
+  <p class="cover-sub">BUILD CONTENT · GROW FASTER · EARN MORE</p>
+  <div class="cover-divider"></div>
+  <p class="cover-desc">Battle-tested prompts pulled directly from <em>Prompt Like a Pro</em> — the book used to build ContentForge Studio. These work in ChatGPT, Claude, Gemini, or any AI tool.</p>
+
+  <div class="cover-stats">
+    <div><span class="cover-stat-num">25</span><span class="cover-stat-label">Prompts</span></div>
+    <div><span class="cover-stat-num">5</span><span class="cover-stat-label">Categories</span></div>
+    <div><span class="cover-stat-num">100%</span><span class="cover-stat-label">Free</span></div>
+  </div>
+
+  <div class="cover-footer">
+    <span>CFS · 25 AI PROMPTS FOR CREATORS</span>
+    <span>ContentForgeStudio.com</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- WORKFLOW -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">THE CREATOR WORKFLOW</span></div>
+    <div class="section-divider"></div>
+    <h2>Run Every Prompt Through This</h2>
+
+    <div class="workflow-strip">
+      <span class="workflow-step">Outline</span>
+      <span class="workflow-arrow">→</span>
+      <span class="workflow-step">Draft</span>
+      <span class="workflow-arrow">→</span>
+      <span class="workflow-step">Critique</span>
+      <span class="workflow-arrow">→</span>
+      <span class="workflow-step">Revise</span>
+      <span class="workflow-arrow">→</span>
+      <span class="workflow-step">Format</span>
+      <span class="workflow-arrow">→</span>
+      <span class="workflow-step">Publish</span>
+    </div>
+
+    <div class="callout">
+      <strong>How These Prompts Were Built</strong>
+      <p>Every prompt in this pack is pulled from <em>Prompt Like a Pro</em> by B. Stromblad. These are the exact prompts used to build ContentForge Studio — tested across real content, clients, and income systems.</p>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <a class="btn" href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20">GET PROMPT LIKE A PRO — AMAZON</a>
+      <a class="btn btn-outline" href="https://www.youtube.com/@TheContentForgeStudio">SUBSCRIBE ON YOUTUBE</a>
+    </div>
+  </div>
+
+  <!-- SECTION 1: SOCIAL MEDIA & VIRAL HOOKS -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">SECTION 01 · PROMPTS 1–6</span></div>
+    <div class="section-divider"></div>
+
+    <div class="prompt-section-header">
+      <div class="prompt-section-tag">// SOCIAL MEDIA &amp; VIRAL HOOKS</div>
+      <div class="prompt-section-title">Prompts 1–6</div>
+      <div class="prompt-section-quote">"These prompts helped me generate social content that actually gets engagement — stops the scroll and starts the conversation."</div>
+    </div>
+
+    <div class="book-mini">
+      <div class="book-mini-text">
+        <strong>Get all 100 prompts — Prompt Like a Pro by B. Stromblad</strong>
+        Kindle $9.99 · Paperback $12.99 · contentforgestudio.com
+      </div>
+      <a class="btn-sm" href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20">FULL BOOK ↗</a>
+    </div>
+
+    <div class="prompts-list">
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">01</span><span class="prompt-title">Content Idea Generator</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Give me 10 content post ideas for [platform] about [topic]. Mix tips, personal stories, client wins, and questions. Make each one scroll-stopping.</div>
+        <div class="prompt-best">Best for: Planning a full week of content in 5 minutes. Replace [platform] with YouTube, LinkedIn, TikTok, or Instagram.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">02</span><span class="prompt-title">Viral Hook Builder</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write 5 opening lines for a social post about [topic] that grab attention in the first 3 seconds. Use curiosity, contrast, and bold claims.</div>
+        <div class="prompt-best">Best for: YouTube intros, Instagram captions, TikTok hooks. The first line is everything.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">03</span><span class="prompt-title">Carousel Script Starter</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Give me a 5-slide Instagram carousel script about [topic]. Include a hook slide, 3 value slides, and a strong CTA slide with a specific action.</div>
+        <div class="prompt-best">Best for: Educational carousels that build authority and drive saves — the highest-engagement post type on Instagram.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">04</span><span class="prompt-title">Thought Leadership Builder</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write a short LinkedIn post that positions me as an expert in [industry]. Include 1 key insight, 1 personal touch, and end with a question for discussion.</div>
+        <div class="prompt-best">Best for: Building authority with your ideal client before they're ready to buy. Posts conversations before pitches.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">05</span><span class="prompt-title">Personal Story Format</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Help me turn this personal story into a social post. Include setup, moment of realization, and takeaway lesson. Make it relatable and honest — not polished.</div>
+        <div class="prompt-best">Best for: Building genuine connection. Stories outperform tips in every algorithm right now.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">06</span><span class="prompt-title">Viral Hook Idea Bank</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write 5 short viral-style hooks for [topic]. Each should make someone stop scrolling. Include a mix of curiosity, bold claims, and surprising contrarian takes.</div>
+        <div class="prompt-best">Best for: Building a swipe file of hooks you can test across multiple platforms and formats.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 2: YOUTUBE SCRIPTS & VIDEO CONTENT -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">SECTION 02 · PROMPTS 7–12</span></div>
+    <div class="section-divider"></div>
+
+    <div class="prompt-section-header">
+      <div class="prompt-section-tag">// YOUTUBE SCRIPTS &amp; VIDEO CONTENT</div>
+      <div class="prompt-section-title">Prompts 7–12</div>
+      <div class="prompt-section-quote">"These are the exact prompts I use to script, outline, and package YouTube videos — including the video you probably found this from."</div>
+    </div>
+
+    <div class="book-mini">
+      <div class="book-mini-text">
+        <strong>Get all 100 prompts — Prompt Like a Pro by B. Stromblad</strong>
+        Kindle $9.99 · Paperback $12.99 · contentforgestudio.com
+      </div>
+      <a class="btn-sm" href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20">FULL BOOK ↗</a>
+    </div>
+
+    <div class="prompts-list">
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">07</span><span class="prompt-title">YouTube Video Outline</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Create a complete YouTube video outline for a video titled "[title]". Include hook, intro promise, 4–5 named sections with key points, and a CTA close. Target length: [X] minutes.</div>
+        <div class="prompt-best">Best for: Getting from blank page to full outline in under 2 minutes. Works for any niche.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">08</span><span class="prompt-title">Video Hook Generator</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write 3 different 30-second video hooks for a YouTube video about [topic]. Each hook should challenge a false belief, show proof, and promise a clear payoff. No fluff.</div>
+        <div class="prompt-best">Best for: The first 30 seconds of any video — the make-or-break window for retention.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">09</span><span class="prompt-title">YouTube Title Generator</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Give me 10 YouTube title options for a video about [topic]. Include titles using: free vs paid angle, specific number, timeframe, hidden secret angle, and false belief challenge.</div>
+        <div class="prompt-best">Best for: Packaging videos before scripting. Title first, always — the packaging decides if anyone watches.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">10</span><span class="prompt-title">Video Description SEO</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write a YouTube video description for a video about [topic]. Include: a 2-sentence hook, bullet list of what viewers learn, tools mentioned, and relevant hashtags. SEO-optimized.</div>
+        <div class="prompt-best">Best for: Search discovery. A strong description gets your video found long after the upload date.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">11</span><span class="prompt-title">YouTube Script — Intro</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write a 60-second YouTube video intro for a video titled "[title]". Open with proof or a bold claim, add an anti-hype line, then promise 3 specific things the viewer will know by the end.</div>
+        <div class="prompt-best">Best for: Setting retention up in the first minute — the most critical window in any video.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">12</span><span class="prompt-title">Shorts Script Generator</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write a 34-second YouTube Shorts script about [topic]. Structure: visual hook (no sound needed) → 2-line foreshadow → "but" complication → "therefore" payoff → abrupt end. No outro.</div>
+        <div class="prompt-best">Best for: The proven Short formula. Abrupt ending forces rewatch — that's what drives 90%+ retention.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 3: EMAIL & MARKETING COPY -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">SECTION 03 · PROMPTS 13–18</span></div>
+    <div class="section-divider"></div>
+
+    <div class="prompt-section-header">
+      <div class="prompt-section-tag">// EMAIL &amp; MARKETING COPY</div>
+      <div class="prompt-section-title">Prompts 13–18</div>
+      <div class="prompt-section-quote">"These saved me when I had to write dozens of emails fast — welcome sequences, follow-ups, cold outreach. They work for clients and for CFS."</div>
+    </div>
+
+    <div class="book-mini">
+      <div class="book-mini-text">
+        <strong>Get all 100 prompts — Prompt Like a Pro by B. Stromblad</strong>
+        Kindle $9.99 · Paperback $12.99 · contentforgestudio.com
+      </div>
+      <a class="btn-sm" href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20">FULL BOOK ↗</a>
+    </div>
+
+    <div class="prompts-list">
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">13</span><span class="prompt-title">Welcome Email</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write a warm welcome email for new subscribers to my [type of business] newsletter. Include what to expect, why they should stay subscribed, and one immediate value they can use today.</div>
+        <div class="prompt-best">Best for: Email #1 in any welcome sequence. First impressions compound — this email sets the tone for everything that follows.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">14</span><span class="prompt-title">Lead Magnet Delivery Email</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write a short email that delivers my freebie [describe it] with a thank-you, clear download instructions, and a teaser of what's coming next. Keep it under 150 words.</div>
+        <div class="prompt-best">Best for: The email that goes out immediately after signup. Short, clear, delivers exactly what was promised.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">15</span><span class="prompt-title">Landing Page Hero Copy</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write a bold hero section for a landing page selling [product/service]. Include: headline (benefit-first, under 10 words), subheadline (who it's for + outcome), and 3 bullet benefits. No fluff.</div>
+        <div class="prompt-best">Best for: Any lead magnet page, product page, or sales page. Benefit-first always outperforms feature-first.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">16</span><span class="prompt-title">Cold Outreach Email</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write a friendly cold outreach email to introduce my [service] to [target client]. Keep it under 100 words. Open with their pain, offer a specific solution, and end with one easy yes/no question.</div>
+        <div class="prompt-best">Best for: Fiverr and direct client outreach. Short emails get replies. Long emails get ignored.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">17</span><span class="prompt-title">Value Drop Email</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write a short value-packed email on [topic] that teaches 1 useful tip in under 200 words. End with a subtle link or CTA — but only after the value is delivered. Never lead with the pitch.</div>
+        <div class="prompt-best">Best for: Weekly newsletters and affiliate promotions. Education IS the conversion.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">18</span><span class="prompt-title">Newsletter Subject Lines</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Give me 5 subject lines for a newsletter about [topic]. Vary the tone across: curiosity, boldness, humor, and value promise. No clickbait — each subject line must deliver what it implies.</div>
+        <div class="prompt-best">Best for: A/B testing subject lines. The subject line is the thumbnail of your email — it decides everything.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 4 & 5: DIGITAL PRODUCTS + AI SIDE HUSTLE -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">SECTIONS 04–05 · PROMPTS 19–25</span></div>
+    <div class="section-divider"></div>
+
+    <div class="prompt-section-header">
+      <div class="prompt-section-tag">// DIGITAL PRODUCTS &amp; OFFER BUILDING · PROMPTS 19–22</div>
+      <div class="prompt-section-title">Build Offers That Scale</div>
+      <div class="prompt-section-quote">"These are what I used to build prompt packs, playbooks, and offers. Design once, sell unlimited times — that's the digital product model."</div>
+    </div>
+
+    <div class="book-mini">
+      <div class="book-mini-text">
+        <strong>Get all 100 prompts — Prompt Like a Pro by B. Stromblad</strong>
+        Kindle $9.99 · Paperback $12.99 · contentforgestudio.com
+      </div>
+      <a class="btn-sm" href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20">FULL BOOK ↗</a>
+    </div>
+
+    <div class="prompts-list">
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">19</span><span class="prompt-title">Offer Idea Generator</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Give me 5 fast digital product or service ideas I could sell in the [niche] space. Focus on: easy to create, clear outcome for buyer, and sellable for $9–$97. Tag each as PDF / Template / Service.</div>
+        <div class="prompt-best">Best for: Unsticking when you don't know what to sell. Two ideas from this prompt shipped within a week for one creator — $3K MRR result.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">20</span><span class="prompt-title">Monetization Roadmap</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Create a 3-step monetization roadmap for a creator with skills in [area] and an audience of [size/type]. Include: 1 fast offer, 1 scalable product, and 1 recurring income stream. Be specific.</div>
+        <div class="prompt-best">Best for: Building your income stack from scratch. Forces clarity on what to build first vs. what to build later.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">21</span><span class="prompt-title">Product Bundle Description</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write a sales description for a digital product bundle that includes [list items]. Explain: what each piece does, who it's for, and why the bundle is worth more than the sum of its parts. Max 200 words.</div>
+        <div class="prompt-best">Best for: Gumroad, Etsy, and website product pages. Bundles have higher perceived value — price them accordingly.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">22</span><span class="prompt-title">Offer Clarity Boost</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Take this rough offer description and make it sharper and clearer for a non-expert audience: [paste your draft]. Rewrite as: Problem → Solution → Outcome → Who it's for. Under 100 words.</div>
+        <div class="prompt-best">Best for: Turning a fuzzy idea into a sharp, sellable offer. Clarity converts — confusion doesn't.</div>
+      </div>
+
+    </div>
+
+    <div class="prompt-section-header" style="margin-top:32px; border-radius:3px 3px 0 0;">
+      <div class="prompt-section-tag">// AI SIDE HUSTLE &amp; INCOME SYSTEMS · PROMPTS 23–25</div>
+      <div class="prompt-section-title">Build the System</div>
+      <div class="prompt-section-quote">"The prompts I use to build and systematize income streams — not just create content."</div>
+    </div>
+
+    <div class="prompts-list">
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">23</span><span class="prompt-title">Revenue Idea Generator</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Suggest 5 fast revenue-generating ideas for a [type of creator/freelancer] in the [niche]. Prioritize simplicity and speed to first dollar. Tag each: Quick Win / Long Bet. Include effort (1–5 scale).</div>
+        <div class="prompt-best">Best for: Finding the fastest path to income when you need it now. Quick Win tags are where to start.</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="prompt-header"><span class="prompt-num">24</span><span class="prompt-title">Gig Site Bio Writer</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Write a short freelancer profile bio for [Fiverr/Upwork] that sounds friendly, expert, and results-focused. Mention [credentials/experience]. Under 150 words. End with a specific CTA.</div>
+        <div class="prompt-best">Best for: Fiverr and Upwork profiles. Your bio is your first impression — make it sound like a person, not a template.</div>
+      </div>
+
+      <div class="prompt-card" style="border-radius:0 0 3px 3px;">
+        <div class="prompt-header"><span class="prompt-num">25</span><span class="prompt-title">AI Workflow System Builder</span></div>
+        <span class="prompt-label">THE PROMPT</span>
+        <div class="prompt-box">Build me a repeatable AI workflow for [task I do regularly]. Break it into steps: what to prompt at each stage, what to check before moving forward, and what the final output looks like. Make it a system I can run every time.</div>
+        <div class="prompt-best">Best for: Turning one-time AI tasks into repeatable systems. A workflow you can run in your sleep is worth 10x a prompt you have to think about every time.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BONUS: POWER-UP TECHNIQUES -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">BONUS</span></div>
+    <div class="section-divider"></div>
+    <h2>Power-Up Techniques</h2>
+    <p class="section-intro">Add these to any prompt to get better output — instantly.</p>
+
+    <div class="technique-grid">
+      <div class="technique-card">
+        <span class="technique-num">01 · ROLE</span>
+        <div class="technique-title">Set a Role</div>
+        <div class="technique-prompt">"Act as a [expert role] with 10+ years in [field]."</div>
+        <div class="technique-desc">Shifts tone, depth, and vocabulary instantly.</div>
+      </div>
+      <div class="technique-card">
+        <span class="technique-num">02 · GOAL</span>
+        <div class="technique-title">State the Outcome</div>
+        <div class="technique-prompt">"The outcome I need is [result] for [who] because [why]."</div>
+        <div class="technique-desc">One sentence of context eliminates 80% of generic responses.</div>
+      </div>
+      <div class="technique-card">
+        <span class="technique-num">03 · AUDIENCE</span>
+        <div class="technique-title">Name the Reader</div>
+        <div class="technique-prompt">"My audience is [level, industry, pain]. Write for them specifically."</div>
+        <div class="technique-desc">Stops writing for everyone — which means writing for no one.</div>
+      </div>
+      <div class="technique-card">
+        <span class="technique-num">04 · FORMAT</span>
+        <div class="technique-title">Request Structure</div>
+        <div class="technique-prompt">"Format as [bullets / table / numbered steps]."</div>
+        <div class="technique-desc">Structure is half the work — ask for it upfront.</div>
+      </div>
+      <div class="technique-card">
+        <span class="technique-num">05 · CRITIQUE</span>
+        <div class="technique-title">Run a Critique Pass</div>
+        <div class="technique-prompt">"Critique this draft. List 3 specific weaknesses and how to fix each."</div>
+        <div class="technique-desc">AI reviewing its own work catches what takes you 20 minutes.</div>
+      </div>
+      <div class="technique-card">
+        <span class="technique-num">06 · VOICE</span>
+        <div class="technique-title">Match Your Voice</div>
+        <div class="technique-prompt">"Match the style of this sample: [paste 2–3 sentences you've written]."</div>
+        <div class="technique-desc">Kills generic AI voice in one step.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATOR STACK -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">CFS CREATOR STACK</span></div>
+    <div class="section-divider"></div>
+    <h2>Recommended AI Creator Tools</h2>
+    <p class="section-intro">Our go-to stack for turning prompts into voiceovers, videos, and creator content.</p>
+
+    <div class="stack-card-wrap">
+      <div class="stack-eyebrow">
+        <div class="stack-eyebrow-sq"></div>
+        <span class="stack-eyebrow-text">CFS PROMPT PACK</span>
+      </div>
+      <div class="stack-cards">
+        <div class="stack-tool">
+          <div class="stack-tool-name">ElevenLabs</div>
+          <div class="stack-tool-desc">Lifelike AI voiceovers for videos, ads, and creator content</div>
+          <a class="btn-sm" href="https://try.elevenlabs.io/qr7w98295n2w">Try ElevenLabs ↗</a>
+        </div>
+        <div class="stack-tool">
+          <div class="stack-tool-name">Murf AI</div>
+          <div class="stack-tool-desc">Studio-quality narration and voiceover tools for business and content</div>
+          <a class="btn-sm" href="https://get.murf.ai/r1sirvfn5rz2">Try Murf AI ↗</a>
+        </div>
+        <div class="stack-tool">
+          <div class="stack-tool-name">Seedance</div>
+          <div class="stack-tool-desc">AI video creation and visual storytelling for creators</div>
+          <a class="btn-sm" href="https://seedance.tv?fpr=brandon74">Try Seedance ↗</a>
+        </div>
+      </div>
+      <p style="font-size:11px; color:var(--muted); text-align:center;">Some links in this guide may be affiliate links.</p>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap;">
+      <a class="btn" href="https://try.elevenlabs.io/qr7w98295n2w">TRY ELEVENLABS</a>
+      <a class="btn" href="https://get.murf.ai/r1sirvfn5rz2">TRY MURF AI</a>
+      <a class="btn" href="https://seedance.tv?fpr=brandon74">TRY SEEDANCE</a>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">WHAT'S NEXT</span></div>
+    <div class="section-divider"></div>
+    <h2>3 Things to Do Right Now</h2>
+
+    <div class="next-steps-grid">
+      <div class="next-step-card">
+        <span class="next-step-num">1</span>
+        <div class="next-step-label">Get the Full 100-Prompt Book</div>
+        <div class="next-step-desc">These 25 prompts are pulled from <em>Prompt Like a Pro</em> — the book with all 100 battle-tested prompts across 10 categories. Kindle $9.99 · Paperback $12.99 · Prime eligible.</div>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20">GET ON AMAZON ↗</a>
+      </div>
+      <div class="next-step-card">
+        <span class="next-step-num">2</span>
+        <div class="next-step-label">Get the ContentForge AI App</div>
+        <div class="next-step-desc">Hook Generator, Prompt Builder, Offer Builder, Content Repurposer and more — tools built specifically for creators and side hustlers. Free tier available · Pro from $7.99/mo.</div>
+        <a class="btn-sm" href="https://preview.mailerlite.io/forms/2459143/190820244058539189/share">JOIN EARLY ACCESS ↗</a>
+      </div>
+      <div class="next-step-card">
+        <span class="next-step-num">3</span>
+        <div class="next-step-label">Subscribe on YouTube</div>
+        <div class="next-step-desc">Weekly AI tool reviews, income systems, and creator workflows — plus tutorials for every tool mentioned in this pack. New videos every week.</div>
+        <a class="btn-sm" href="https://www.youtube.com/@TheContentForgeStudio">SUBSCRIBE ↗</a>
+      </div>
+      <div class="next-step-card">
+        <span class="next-step-num">4</span>
+        <div class="next-step-label">ElevenLabs — Free AI Voice</div>
+        <div class="next-step-desc">The AI voice tool used to build the CFS YouTube channel. Free tier: 10,000 characters/month — enough for 3–4 full videos. No credit card. No watermark.</div>
+        <a class="btn-sm" href="https://try.elevenlabs.io/qr7w98295n2w">START FREE ↗</a>
+      </div>
+      <div class="next-step-card">
+        <span class="next-step-num">5</span>
+        <div class="next-step-label">Visit ContentForge Studio</div>
+        <div class="next-step-desc">Free resources, AI tool guides, digital products, and the full CFS creator ecosystem — all in one place. Free downloads · App · Book · Blog · Tools.</div>
+        <a class="btn-sm" href="https://contentforgestudio.com">VISIT SITE ↗</a>
+      </div>
+    </div>
+
+    <div class="disclosure">
+      <strong>Affiliate Disclosure</strong>
+      Some links in this guide may be affiliate links, which means Content Forge Studio may earn a commission at no extra cost to you. Free resource — share freely, not for resale. contentforgestudio.com · ContentForgeStudio@proton.me
+    </div>
+  </div>
+
+</div>
+
+<div class="doc-footer">
+  <span>CFS · 25 AI PROMPTS FOR CREATORS</span>
+  <span>ContentForgeStudio.com · Turn AI Into Income</span>
+</div>
+
+</body>
+</html>
