@@ -47,8 +47,7 @@ nav { position: relative; z-index: 10; padding: 0 52px; height: 68px; display: f
 .dl-badge { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 2px; color: var(--cyan); background: rgba(56,217,245,0.1); border: 1px solid rgba(56,217,245,0.2); padding: 4px 10px; border-radius: 20px; }
 .dl-label { font-size: 13px; color: var(--steel); }
 .dl-label strong { color: var(--white); }
-.dl-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--cyan); color: #000; border: none; padding: 10px 24px; border-radius: 6px; font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 700; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; white-space: nowrap; }
-.dl-btn:hover { background: var(--yellow); transform: translateY(-1px); }
+.dl-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; font-size: 9px; }
 
 /* Hero */
 .page-hero { position: relative; z-index: 1; padding: 80px 52px 60px; text-align: center; }
@@ -138,6 +137,42 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
   .divider { width: calc(100% - 48px); margin: 0 24px; }
   .hero-stats { gap: 28px; }
 }
+
+  /* Pulsing download button */
+  .cfs-dl-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    background: #ff5c1a !important;
+    color: #fff !important;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    transition: background 0.2s, transform 0.2s;
+    white-space: nowrap;
+    animation: dlPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 0 0 rgba(255,92,26,0.6);
+  }
+  .cfs-dl-btn:hover {
+    background: #e8ff47 !important;
+    color: #000 !important;
+    animation: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(232,255,71,0.3);
+  }
+  @keyframes dlPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(255,92,26,0.7); }
+    70%  { box-shadow: 0 0 0 12px rgba(255,92,26,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,92,26,0); }
+  }
+
 </style>
 </head>
 <body>
@@ -171,7 +206,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
     <span class="dl-badge">FREE DOWNLOAD</span>
     <span class="dl-label"><strong>CFS Prompt Pack Vol. 2</strong> — Advanced AI Workflows &amp; Income Systems</span>
   </div>
-  <a href="prompt-pack-vol-2.html" download="CFS-Prompt-Pack-Vol-2.html" class="dl-btn">⬇ &nbsp;Download This Page</a>
+  <a href="prompt-pack-vol-2.html" download="CFS-Prompt-Pack-Vol-2.html" class="cfs-dl-btn">⬇ &nbsp;Download This Page</a>
 </div>
 
 <!-- HERO -->
@@ -537,7 +572,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
   <div class="section-eyebrow" style="text-align:center;">// SAVE THIS FOR LATER</div>
   <div class="section-title" style="text-align:center; margin-bottom: 16px;">Download &amp; <span>Keep This Pack</span></div>
   <p style="color: var(--steel); font-size: 14px; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto;">Save this page as an HTML file to your computer so you have all 25 prompts available offline — no login, no account, always accessible.</p>
-  <a href="prompt-pack-vol-2.html" download="CFS-Prompt-Pack-Vol-2.html" class="dl-btn" style="font-size: 11px; padding: 14px 32px;">⬇ &nbsp;Download CFS Prompt Pack Vol. 2</a>
+  <a href="prompt-pack-vol-2.html" download="CFS-Prompt-Pack-Vol-2.html" class="cfs-dl-btn" style="font-size: 11px; padding: 14px 32px;">⬇ &nbsp;Download CFS Prompt Pack Vol. 2</a>
   <p style="font-size: 11px; color: var(--dim); margin-top: 16px;">Free HTML file · No account needed · Works offline</p>
 </div>
 

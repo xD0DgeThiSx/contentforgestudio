@@ -149,6 +149,42 @@
   .cfs-dl-btn { display: inline-flex; align-items: center; gap: 8px; background: #38d9f5; color: #000; border: none; padding: 10px 22px; border-radius: 6px; font-family: 'Orbitron', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
   .cfs-dl-btn:hover { background: #e8ff47; }
 
+
+  /* Pulsing download button */
+  .cfs-dl-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    background: #ff5c1a !important;
+    color: #fff !important;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    transition: background 0.2s, transform 0.2s;
+    white-space: nowrap;
+    animation: dlPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 0 0 rgba(255,92,26,0.6);
+  }
+  .cfs-dl-btn:hover {
+    background: #e8ff47 !important;
+    color: #000 !important;
+    animation: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(232,255,71,0.3);
+  }
+  @keyframes dlPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(255,92,26,0.7); }
+    70%  { box-shadow: 0 0 0 12px rgba(255,92,26,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,92,26,0); }
+  }
+
 </style>
 </head>
 <body>
@@ -182,6 +218,10 @@
   <div class="cover-btns">
     <a class="btn" href="https://preview.mailerlite.io/forms/2459143/190790534186403371/share">GET MORE FREE CFS RESOURCES</a>
     <a class="btn btn-outline" href="https://www.youtube.com/@TheContentForgeStudio">SUBSCRIBE ON YOUTUBE</a>
+  </div>
+  <div style="margin-top:16px;text-align:center;">
+    <a class="cfs-dl-btn" href="creator-stack-cheat-sheet.html" download="CFS-AI-Creator-Stack-Cheat-Sheet.html">⬇ &nbsp;DOWNLOAD THIS PAGE</a>
+    <div style="font-size:10px;color:#3a3a5a;margin-top:8px;letter-spacing:0.1em;">FREE HTML FILE · WORKS OFFLINE · NO ACCOUNT NEEDED</div>
   </div>
   <div class="cover-footer">
     <span>CFS AI CREATOR STACK CHEAT SHEET</span>

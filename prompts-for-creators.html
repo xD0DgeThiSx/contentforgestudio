@@ -454,6 +454,40 @@
   }
   #backToTop:hover { background: #e8ff47; transform: translateY(-2px); }
 
+
+  /* Pulsing download button - updated */
+  .pdf-download-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    background: #ff5c1a !important;
+    color: #fff !important;
+    text-decoration: none;
+    padding: 11px 22px;
+    border-radius: 6px;
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    animation: dlPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 0 0 rgba(255,92,26,0.6);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .pdf-download-btn:hover {
+    background: #e8ff47 !important;
+    color: #000 !important;
+    animation: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(232,255,71,0.3);
+  }
+  @keyframes dlPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(255,92,26,0.7); }
+    70%  { box-shadow: 0 0 0 12px rgba(255,92,26,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,92,26,0); }
+  }
+
 </style>
 </head>
 <body>
