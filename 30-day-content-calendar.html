@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFS 30-Day AI Content Calendar – ContentForgeStudio.com</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Raleway:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --cyan: #38D9F5;
+    --yellow: #E8FF47;
+    --fire: #FF5C1A;
+    --black: #07070E;
+    --dark: #0D1117;
+    --dark2: #111827;
+    --dark3: #1a2332;
+    --border: rgba(56,217,245,0.18);
+    --text: #e2e8f0;
+    --muted: #8896a7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--black); color: var(--text); font-family: 'Raleway', sans-serif; font-size: 15px; line-height: 1.7; }
+  .top-stripe { background: var(--cyan); height: 4px; }
+
+  /* COVER */
+  .cover { background: var(--dark); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 40px; position: relative; border-bottom: 1px solid var(--border); }
+  .cover-badge { display: inline-block; border: 1px solid var(--cyan); color: var(--cyan); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 6px 20px; border-radius: 2px; margin-bottom: 48px; }
+  .hex-logo { width: 100px; height: 100px; margin: 0 auto 40px; }
+  .cover h1 { font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.1; color: #fff; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 16px; }
+  .cover h1 span { color: var(--cyan); }
+  .cover-sub { font-family: 'Orbitron', sans-serif; font-size: clamp(0.7rem, 1.4vw, 0.85rem); font-weight: 700; letter-spacing: 0.15em; color: var(--yellow); text-transform: uppercase; margin-bottom: 32px; }
+  .cover-divider { width: 200px; height: 1px; background: var(--border); margin: 0 auto 32px; }
+  .cover-desc { max-width: 540px; color: var(--muted); font-size: 15px; margin-bottom: 48px; }
+  .cover-stats { display: flex; gap: 48px; justify-content: center; margin-bottom: 56px; }
+  .cover-stat-num { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900; color: var(--cyan); display: block; }
+  .cover-stat-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .cover-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .cover-footer { position: absolute; bottom: 24px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 40px; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+  .btn { display: inline-block; background: var(--cyan); color: var(--black); font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 32px; border-radius: 3px; text-decoration: none; transition: opacity 0.2s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-outline { background: transparent; border: 2px solid var(--cyan); color: var(--cyan); }
+  .btn-sm { display: inline-block; background: var(--cyan); color: var(--black); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 7px 16px; border-radius: 2px; text-decoration: none; }
+
+  .page { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+  .section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .eyebrow-square { width: 10px; height: 10px; background: var(--cyan); flex-shrink: 0; }
+  .eyebrow-text { font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); }
+  .section-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 32px; }
+  .section h2 { font-family: 'Orbitron', sans-serif; font-size: clamp(1.2rem, 2.5vw, 1.7rem); font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+  .section-intro { color: var(--muted); font-style: italic; margin-bottom: 32px; font-size: 14px; }
+
+  .callout { background: var(--dark3); border-left: 3px solid var(--cyan); padding: 20px 24px; border-radius: 2px; }
+  .callout strong { display: block; color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+  .callout p { color: var(--muted); font-size: 14px; }
+
+  /* CONTENT RULES */
+  .rules-list { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+  .rule-item { background: var(--dark2); border: 1px solid var(--border); border-radius: 3px; padding: 16px 20px; display: flex; gap: 16px; }
+  .rule-num { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; font-weight: 900; color: var(--cyan); min-width: 28px; }
+  .rule-content strong { color: #fff; font-weight: 700; display: block; margin-bottom: 3px; }
+  .rule-content p { font-size: 13.5px; color: var(--muted); }
+
+  /* WEEK HEADER */
+  .week-header { background: var(--dark2); border: 1px solid var(--border); border-radius: 3px 3px 0 0; padding: 16px 24px; margin-top: 40px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
+  .week-tag { font-family: 'Orbitron', sans-serif; font-size: 0.85rem; font-weight: 900; color: var(--cyan); }
+  .week-theme { font-size: 13px; color: var(--muted); font-style: italic; }
+
+  /* DAY CARDS */
+  .days-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0; border: 1px solid var(--border); border-top: none; border-radius: 0 0 3px 3px; overflow: hidden; }
+  .day-card { background: var(--dark); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 18px 20px; }
+  .day-card:nth-child(even) { background: var(--dark2); }
+  .day-num { font-family: 'Orbitron', sans-serif; font-size: 0.8rem; font-weight: 900; color: var(--cyan); margin-bottom: 6px; display: block; }
+  .day-title { font-weight: 700; color: #fff; font-size: 14px; margin-bottom: 6px; line-height: 1.4; }
+  .day-guidance { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; line-height: 1.5; }
+  .day-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .day-format { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark3); background: var(--cyan); padding: 2px 8px; border-radius: 2px; }
+  .day-cta { font-size: 11px; color: var(--yellow); font-weight: 700; }
+
+  /* HOOKS SWIPE FILE */
+  .hooks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .hook-card { background: var(--dark2); border: 1px solid var(--border); border-radius: 3px; padding: 16px 20px; }
+  .hook-card-label { font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); margin-bottom: 12px; display: block; }
+  .hook-item { font-size: 13.5px; color: var(--text); padding: 8px 0; border-bottom: 1px solid rgba(56,217,245,0.08); line-height: 1.5; }
+  .hook-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  /* RESOURCE LIST */
+  .resource-list { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+  .resource-item { background: var(--dark2); border: 1px solid var(--border); border-radius: 3px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; text-decoration: none; }
+  .resource-label { font-weight: 700; color: #fff; font-size: 14px; }
+  .resource-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .disclosure { background: var(--dark2); border: 1px solid var(--border); border-radius: 3px; padding: 20px 24px; margin-top: 32px; font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .disclosure strong { color: var(--cyan); display: block; margin-bottom: 6px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
+  .doc-footer { padding: 24px 40px; display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-top: 1px solid var(--border); margin-top: 40px; }
+
+  @media (max-width: 640px) {
+    .page { padding: 0 20px; }
+    .cover { padding: 48px 20px; }
+    .cover-footer { padding: 0 20px; flex-direction: column; gap: 4px; align-items: center; }
+    .hooks-grid { grid-template-columns: 1fr; }
+    .days-grid { grid-template-columns: 1fr; }
+    .doc-footer { flex-direction: column; gap: 4px; align-items: center; text-align: center; }
+  }
+
+  /* Download bar */
+  .cfs-dl-bar { background: linear-gradient(90deg, rgba(56,217,245,0.08), rgba(56,217,245,0.03)); border-bottom: 1px solid rgba(56,217,245,0.15); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; position: relative; z-index: 10; }
+  .cfs-dl-badge { font-family: 'Orbitron', sans-serif; font-size: 8px; letter-spacing: 2px; color: #38d9f5; background: rgba(56,217,245,0.1); border: 1px solid rgba(56,217,245,0.2); padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+  .cfs-dl-label { font-size: 13px; color: #8090b0; }
+  .cfs-dl-label strong { color: #f0f0ff; }
+  .cfs-dl-btn { display: inline-flex; align-items: center; gap: 8px; background: #38d9f5; color: #000; border: none; padding: 10px 22px; border-radius: 6px; font-family: 'Orbitron', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+  .cfs-dl-btn:hover { background: #e8ff47; }
+
+</style>
+</head>
+<body>
+<div class="cfs-dl-bar">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <span class="cfs-dl-badge">FREE DOWNLOAD</span>
+    <span class="cfs-dl-label"><strong>30-Day AI Content Calendar</strong> — ContentForgeStudio.com</span>
+  </div>
+  <a href="30-day-content-calendar.html" download="30-day-content-calendar.html" class="cfs-dl-btn">⬇ &nbsp;Download This Page</a>
+</div>
+
+
+<div class="top-stripe"></div>
+
+<div class="cover">
+  <div class="cover-badge">CONTENT FORGE STUDIO · FREE RESOURCE PACK</div>
+  <svg class="hex-logo" viewBox="0 0 100 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="50,4 96,29 96,86 50,111 4,86 4,29" fill="none" stroke="#38D9F5" stroke-width="3"/>
+    <polygon points="50,14 86,34 86,81 50,101 14,81 14,34" fill="#0D1117" stroke="#38D9F5" stroke-width="1.5" opacity="0.6"/>
+    <text x="50" y="66" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="22" font-weight="900" fill="#ffffff">CFS</text>
+  </svg>
+  <h1>30-DAY AI<br><span>CONTENT CALENDAR</span></h1>
+  <p class="cover-sub">WEEK 1: FOUNDATION · WEEK 2: TOOLS · WEEK 3: AFFILIATE · WEEK 4: MOMENTUM</p>
+  <div class="cover-divider"></div>
+  <p class="cover-desc">A beginner-friendly posting plan for launching an AI tools, affiliate, or creator-income channel without staring at a blank screen.</p>
+  <div class="cover-stats">
+    <div><span class="cover-stat-num">30</span><span class="cover-stat-label">Days</span></div>
+    <div><span class="cover-stat-num">4</span><span class="cover-stat-label">Weeks</span></div>
+    <div><span class="cover-stat-num">100%</span><span class="cover-stat-label">Free</span></div>
+  </div>
+  <div class="cover-btns">
+    <a class="btn" href="https://preview.mailerlite.io/forms/2459143/190820244058539189/share">JOIN APP EARLY ACCESS</a>
+    <a class="btn btn-outline" href="https://www.youtube.com/@TheContentForgeStudio">SUBSCRIBE ON YOUTUBE</a>
+  </div>
+  <div class="cover-footer">
+    <span>CFS 30-DAY AI CONTENT CALENDAR</span>
+    <span>ContentForgeStudio.com</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- CONTENT RULES -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">THE CFS CONTENT RULES</span></div>
+    <div class="section-divider"></div>
+    <h2>The Pattern Behind Every Post</h2>
+    <p class="section-intro">Follow these five rules for every piece of content you publish — Short, post, or long-form.</p>
+    <div class="rules-list">
+      <div class="rule-item">
+        <span class="rule-num">01</span>
+        <div class="rule-content">
+          <strong>One promise per post</strong>
+          <p>Do not cram 5 ideas into one video. One pain point, one result, one CTA. Clarity beats comprehensiveness every time.</p>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-num">02</span>
+        <div class="rule-content">
+          <strong>Show proof fast</strong>
+          <p>Use screenshots, before/after examples, workflow clips, or step-by-step demos. Tell people what happened, not what could happen.</p>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-num">03</span>
+        <div class="rule-content">
+          <strong>Lead with the pain</strong>
+          <p>Start with the problem your viewer already feels: too many tools, no plan, no traffic, no income path. Pain first, solution second.</p>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-num">04</span>
+        <div class="rule-content">
+          <strong>CTA every time</strong>
+          <p>Point people to the free pack, starter kit, app waitlist, YouTube, or recommended tools. Every post needs one exit ramp.</p>
+        </div>
+      </div>
+      <div class="rule-item">
+        <span class="rule-num">05</span>
+        <div class="rule-content">
+          <strong>Measure saves and comments</strong>
+          <p>Views are vanity. Saves, comments, clicks, and signups tell you what to build next. Double down on what gets saved.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">30-DAY CALENDAR</span></div>
+    <div class="section-divider"></div>
+    <h2>The Full 30-Day Plan</h2>
+
+    <div class="week-header">
+      <span class="week-tag">WEEK 1 — DAYS 1–8</span>
+      <span class="week-theme">Set the foundation. Introduce the problem. Build initial trust.</span>
+    </div>
+    <div class="days-grid">
+      <div class="day-card">
+        <span class="day-num">DAY 01</span>
+        <div class="day-title">Why most people fail with AI tools</div>
+        <div class="day-guidance">Challenge the false belief: "I just need the right tool." The real problem is no system. Hook: "You don't have an AI problem. You have a workflow problem."</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Free Starter Kit</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 02</span>
+        <div class="day-title">5 free AI tools I would use today</div>
+        <div class="day-guidance">Quick-fire list format. One sentence per tool, one specific use case each. End with: "I put all of these in a free starter kit — link in bio."</div>
+        <div class="day-footer"><span class="day-format">Short</span><span class="day-cta">→ Free Starter Kit</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 03</span>
+        <div class="day-title">Bad ChatGPT prompt vs good prompt</div>
+        <div class="day-guidance">Show a real before/after. Same task, two prompts, two wildly different outputs. Screen record both. No commentary needed — the result speaks.</div>
+        <div class="day-footer"><span class="day-format">Short</span><span class="day-cta">→ 25 Prompt Pack</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 04</span>
+        <div class="day-title">One AI tool workflow in 60 seconds</div>
+        <div class="day-guidance">Pick one specific task (writing a hook, creating a voiceover, building a thumbnail). Demo it in real time. No cuts, no polish — raw speed is the point.</div>
+        <div class="day-footer"><span class="day-format">Short</span><span class="day-cta">→ YouTube Channel</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 05</span>
+        <div class="day-title">How to turn one idea into 5 posts</div>
+        <div class="day-guidance">Show the repurpose chain: one script → Short → LinkedIn post → Pinterest pin → email → tweet. The same idea, five formats, one workflow.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Free Pack</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 06</span>
+        <div class="day-title">My beginner AI creator stack</div>
+        <div class="day-guidance">Show your actual stack: Claude for scripts, ElevenLabs for voice, Seedance for video, Canva for graphics. Be honest about what's free vs paid.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Affiliate Tools</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 07</span>
+        <div class="day-title">Build-in-public update: CFS free vault</div>
+        <div class="day-guidance">Share what you've built this week — subscribers, views, one thing that worked, one thing that didn't. Authenticity builds faster than polish at this stage.</div>
+        <div class="day-footer"><span class="day-format">Post</span><span class="day-cta">→ App Waitlist</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 08</span>
+        <div class="day-title">Tool demo: voiceover workflow</div>
+        <div class="day-guidance">Screen record: paste script into ElevenLabs → pick voice → download → drop into CapCut. Under 60 seconds. End with: "Free tier covers 3–4 videos a month."</div>
+        <div class="day-footer"><span class="day-format">Short</span><span class="day-cta">→ ElevenLabs / Murf</span></div>
+      </div>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div class="week-header" style="margin-top:32px;">
+      <span class="week-tag">WEEK 2 — DAYS 9–16</span>
+      <span class="week-theme">Demonstrate tools and simple workflows. Show, don't tell.</span>
+    </div>
+    <div class="days-grid">
+      <div class="day-card">
+        <span class="day-num">DAY 09</span>
+        <div class="day-title">Tool demo: AI video workflow</div>
+        <div class="day-guidance">Screen record a Seedance generation: paste prompt → choose style → download clip → show the result. Focus on speed. End with your affiliate link in bio.</div>
+        <div class="day-footer"><span class="day-format">Short</span><span class="day-cta">→ Seedance</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 10</span>
+        <div class="day-title">Create a lead magnet with AI in 20 minutes</div>
+        <div class="day-guidance">Walk through: AI writes the outline → AI drafts each section → Canva or HTML for design → MailerLite opt-in form live. Show the full pipeline, not just the idea.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Free Pack</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 11</span>
+        <div class="day-title">Affiliate marketing mistake beginners make</div>
+        <div class="day-guidance">The mistake: promoting tools before building trust. The fix: create one honest use case demo before dropping a single link. Education converts, hype repels.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Starter Kit</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 12</span>
+        <div class="day-title">How to write your first AI tool video</div>
+        <div class="day-guidance">Share the exact script formula: 5-second hook → problem → tool demo → proof of result → CTA. Give them the template, not just the concept.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Script Template</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 13</span>
+        <div class="day-title">3 AI content ideas for freelancers</div>
+        <div class="day-guidance">Hyper-specific audience post. Three ideas: AI resume rewriting service, AI-generated social media packages, AI cold outreach sequences. One sentence use case each.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Free Pack</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 14</span>
+        <div class="day-title">Week 2 results and lessons learned</div>
+        <div class="day-guidance">Share real numbers: views, saves, subs, clicks, opt-ins. What surprised you? What underperformed? Transparency is your content edge over polished influencers.</div>
+        <div class="day-footer"><span class="day-format">Post</span><span class="day-cta">→ YouTube Channel</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 15</span>
+        <div class="day-title">AI income is systems, not magic</div>
+        <div class="day-guidance">Anti-hype angle. The system: prompt → content → freebie → email → offer. No viral moment required. No secret tool. Just consistent execution of a repeatable loop.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Starter Kit</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 16</span>
+        <div class="day-title">One free tool + one income angle</div>
+        <div class="day-guidance">Format: "Tool → what it does → how I'd use it to make money → link." Pick one tool from your stack. One income path. Under 60 seconds. Repeat this format weekly.</div>
+        <div class="day-footer"><span class="day-format">Short</span><span class="day-cta">→ Starter Kit</span></div>
+      </div>
+    </div>
+
+    <!-- WEEK 3 -->
+    <div class="week-header" style="margin-top:32px;">
+      <span class="week-tag">WEEK 3 — DAYS 17–24</span>
+      <span class="week-theme">Add affiliate and lead magnet CTAs naturally. Education IS the conversion.</span>
+    </div>
+    <div class="days-grid">
+      <div class="day-card">
+        <span class="day-num">DAY 17</span>
+        <div class="day-title">Turn a prompt into a product idea</div>
+        <div class="day-guidance">Demo: run the Offer Idea Generator prompt from the Prompt Pack. Show the 5 ideas it produces. Pick the best one on camera. "This is how I build products faster."</div>
+        <div class="day-footer"><span class="day-format">Short</span><span class="day-cta">→ Prompt Pack</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 18</span>
+        <div class="day-title">Create 10 hooks with AI in under 2 minutes</div>
+        <div class="day-guidance">Screen record the Hook Generator prompt in real time. Show all 10 outputs. Pick your favorite on screen. "This is how I never have a blank page."</div>
+        <div class="day-footer"><span class="day-format">Short</span><span class="day-cta">→ Content Calendar</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 19</span>
+        <div class="day-title">What I would post if starting at zero today</div>
+        <div class="day-guidance">Honest POV post. Day 1 move: pick one tool, make one demo, drive to one freebie. No audience needed. No equipment needed. One piece of content = learning + data.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Calendar</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 20</span>
+        <div class="day-title">Best CTA for a freebie funnel</div>
+        <div class="day-guidance">Teach the three CTA types: direct link, comment trigger ("comment STARTER"), and YouTube description link. Show which converts best for Shorts vs long-form.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Free Resource List</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 21</span>
+        <div class="day-title">Tool stack breakdown: script → voice → video</div>
+        <div class="day-guidance">Visual walkthrough of the 3-tool short video pipeline. Claude for script → ElevenLabs for VO → Seedance for clips. Show total time, total cost. "This is what zero-to-posted looks like."</div>
+        <div class="day-footer"><span class="day-format">Short</span><span class="day-cta">→ Affiliate Tools</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 22</span>
+        <div class="day-title">React to common AI side hustle advice</div>
+        <div class="day-guidance">Pick one claim you've seen: "AI will replace you," "just use ChatGPT," "post every day." Give your honest take. Reaction content drives comments and saves — both signal to the algorithm.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ YouTube</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 23</span>
+        <div class="day-title">Freebie funnel walkthrough</div>
+        <div class="day-guidance">Show the full funnel on screen: content → bio link → landing page → opt-in → thank you page → email delivery → next step. "This is the system, not just the content."</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Starter Kit</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 24</span>
+        <div class="day-title">Create a Fiverr offer with AI</div>
+        <div class="day-guidance">Walk through building a real gig: use AI to write the title, description, and packages. Show the Gig Site Bio Writer prompt in action. "You can post this gig tonight."</div>
+        <div class="day-footer"><span class="day-format">Short</span><span class="day-cta">→ Prompt Pack</span></div>
+      </div>
+    </div>
+
+    <!-- WEEK 4 -->
+    <div class="week-header" style="margin-top:32px;">
+      <span class="week-tag">WEEK 4 — DAYS 25–30</span>
+      <span class="week-theme">Build momentum. Double down on winners. Set up the next 30 days.</span>
+    </div>
+    <div class="days-grid">
+      <div class="day-card">
+        <span class="day-num">DAY 25</span>
+        <div class="day-title">Affiliate program research workflow</div>
+        <div class="day-guidance">Show how to find, evaluate, and apply to affiliate programs. Use the CFS Affiliate Tracker. Walk through ElevenLabs, Murf, Seedance as real examples with commission rates.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Affiliate Tracker</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 26</span>
+        <div class="day-title">Behind the scenes: CFS app waitlist</div>
+        <div class="day-guidance">Share what the ContentForge AI app does: Hook Generator, Prompt Builder, Offer Builder, Repurposer. Show the early access form. Let people feel like insiders.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ App Waitlist</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 27</span>
+        <div class="day-title">3 mistakes in AI content creation</div>
+        <div class="day-guidance">Mistake 1: chasing every tool. Mistake 2: posting without a CTA. Mistake 3: creating content instead of building a system. Each one gets 10 seconds and a fix.</div>
+        <div class="day-footer"><span class="day-format">Short</span><span class="day-cta">→ Starter Kit</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 28</span>
+        <div class="day-title">Best performing idea recap</div>
+        <div class="day-guidance">Pull your top-performing post from the month. Remake it with a new angle or hook. "This one got [X] saves. Here's why it worked — and a better version."</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Free Pack</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 29</span>
+        <div class="day-title">Turn comments into content ideas</div>
+        <div class="day-guidance">Screenshot real comments or questions from your posts. Answer one on camera. "You asked about X — here's exactly what I'd do." Comments are free content research.</div>
+        <div class="day-footer"><span class="day-format">Short / Post</span><span class="day-cta">→ Calendar</span></div>
+      </div>
+      <div class="day-card">
+        <span class="day-num">DAY 30</span>
+        <div class="day-title">Full CFS Starter Vault — 30-day recap</div>
+        <div class="day-guidance">Recap the month: what you built, what you learned, what's next. Show the full resource list: Starter Kit, Prompt Pack, Calendar, Cheat Sheet, Tracker. This is the close that opens Month 2.</div>
+        <div class="day-footer"><span class="day-format">Post / Video</span><span class="day-cta">→ All Freebies</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOOKS + CTA SWIPE FILE -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">HOOKS + CTA SWIPE FILE</span></div>
+    <div class="section-divider"></div>
+    <h2>Copy-Ready Lines</h2>
+    <p class="section-intro">Swipe these hooks and CTAs directly into your posts, descriptions, and pinned comments.</p>
+    <div class="hooks-grid">
+      <div class="hook-card">
+        <span class="hook-card-label">Hook Lines</span>
+        <div class="hook-item">Most AI tools do not make you money. This is what does.</div>
+        <div class="hook-item">If I had to start from zero with AI, I would do this first.</div>
+        <div class="hook-item">Stop collecting AI tools. Build one simple workflow.</div>
+        <div class="hook-item">Here is the fastest way to turn one prompt into content.</div>
+        <div class="hook-item">This free starter kit is what I wish I had on day one.</div>
+        <div class="hook-item">You do not have an AI problem. You have a system problem.</div>
+        <div class="hook-item">I built this free AI toolkit so you do not have to start from zero.</div>
+        <div class="hook-item">The creators making money with AI are not using better tools. They have a better system.</div>
+      </div>
+      <div class="hook-card">
+        <span class="hook-card-label">CTA Lines</span>
+        <div class="hook-item">Grab the free AI Income Starter Kit at ContentForgeStudio.com.</div>
+        <div class="hook-item">Comment STARTER and I will point you to the free guide.</div>
+        <div class="hook-item">Get the 25 free prompts + AI starter kit from CFS — link in bio.</div>
+        <div class="hook-item">Join the CFS app early access list if you want the full workflow system.</div>
+        <div class="hook-item">I put the full resource list in the description — all free.</div>
+        <div class="hook-item">Subscribe so you do not miss the next build-in-public update.</div>
+        <div class="hook-item">The prompt pack that goes with this is linked below — 100% free.</div>
+        <div class="hook-item">Save this post. You will want it when you are ready to build.</div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:24px;">
+      <strong>The Rule on CTAs</strong>
+      <p>One CTA per post. Pick the destination that fits the content: freebie for educational posts, YouTube for tool demos, app waitlist for build-in-public updates, affiliate link for tool-specific content.</p>
+    </div>
+    <div style="margin-top:24px;">
+      <a class="btn" href="https://preview.mailerlite.io/forms/2459143/190790534186403371/share">GET MORE FREE CFS RESOURCES</a>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">NEXT STEPS + CFS LINKS</span></div>
+    <div class="section-divider"></div>
+    <h2>Keep Building</h2>
+    <div class="resource-list">
+      <a class="resource-item" href="https://preview.mailerlite.io/forms/2459143/190790534186403371/share">
+        <div><div class="resource-label">Get More Free CFS Resources</div><div class="resource-desc">Starter Kit, Prompt Packs, Cheat Sheet, Affiliate Tracker and more.</div></div>
+        <span class="btn-sm">OPEN</span>
+      </a>
+      <a class="resource-item" href="https://preview.mailerlite.io/forms/2459143/190820244058539189/share">
+        <div><div class="resource-label">Join CFS App Early Access</div><div class="resource-desc">Get launch updates for the CFS Creator Studio app.</div></div>
+        <span class="btn-sm">OPEN</span>
+      </a>
+      <a class="resource-item" href="https://www.youtube.com/@TheContentForgeStudio">
+        <div><div class="resource-label">Subscribe on YouTube</div><div class="resource-desc">Watch AI tool workflows, creator systems, and income-focused builds.</div></div>
+        <span class="btn-sm">OPEN</span>
+      </a>
+      <a class="resource-item" href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20">
+        <div><div class="resource-label">Grab Prompt Like a Pro</div><div class="resource-desc">100 battle-tested prompts across 10 categories. Kindle $9.99.</div></div>
+        <span class="btn-sm">OPEN</span>
+      </a>
+    </div>
+    <div class="disclosure">
+      <strong>Affiliate Disclosure</strong>
+      Some links in this guide may be affiliate links, which means Content Forge Studio may earn a commission at no extra cost to you. This guide is educational and does not guarantee income.
+    </div>
+  </div>
+
+</div>
+
+<div class="doc-footer">
+  <span>CFS 30-DAY AI CONTENT CALENDAR</span>
+  <span>ContentForgeStudio.com · Turn AI Into Income</span>
+</div>
+
+</body>
+</html>

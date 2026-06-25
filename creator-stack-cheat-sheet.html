@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFS AI Creator Stack Cheat Sheet – ContentForgeStudio.com</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Raleway:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --cyan: #38D9F5;
+    --yellow: #E8FF47;
+    --fire: #FF5C1A;
+    --black: #07070E;
+    --dark: #0D1117;
+    --dark2: #111827;
+    --dark3: #1a2332;
+    --border: rgba(56,217,245,0.18);
+    --text: #e2e8f0;
+    --muted: #8896a7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--black); color: var(--text); font-family: 'Raleway', sans-serif; font-size: 15px; line-height: 1.7; }
+
+  .top-stripe { background: var(--cyan); height: 4px; width: 100%; }
+
+  /* COVER */
+  .cover {
+    background: var(--dark);
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 60px 40px; position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .cover-badge { display: inline-block; border: 1px solid var(--cyan); color: var(--cyan); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 6px 20px; border-radius: 2px; margin-bottom: 48px; }
+  .hex-logo { width: 100px; height: 100px; margin: 0 auto 40px; }
+  .cover h1 { font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.1; color: #fff; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 16px; }
+  .cover h1 span { color: var(--cyan); }
+  .cover-sub { font-family: 'Orbitron', sans-serif; font-size: clamp(0.7rem, 1.4vw, 0.85rem); font-weight: 700; letter-spacing: 0.15em; color: var(--yellow); text-transform: uppercase; margin-bottom: 32px; }
+  .cover-divider { width: 200px; height: 1px; background: var(--border); margin: 0 auto 32px; }
+  .cover-desc { max-width: 540px; color: var(--muted); font-size: 15px; margin-bottom: 48px; }
+  .cover-stats { display: flex; gap: 48px; justify-content: center; margin-bottom: 56px; }
+  .cover-stat-num { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900; color: var(--cyan); display: block; }
+  .cover-stat-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .cover-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .cover-footer { position: absolute; bottom: 24px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 40px; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+  /* BUTTONS */
+  .btn { display: inline-block; background: var(--cyan); color: var(--black); font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 32px; border-radius: 3px; text-decoration: none; transition: opacity 0.2s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-outline { background: transparent; border: 2px solid var(--cyan); color: var(--cyan); }
+  .btn-sm { display: inline-block; background: var(--cyan); color: var(--black); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 7px 16px; border-radius: 2px; text-decoration: none; }
+
+  /* PAGE */
+  .page { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+  .section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .eyebrow-square { width: 10px; height: 10px; background: var(--cyan); flex-shrink: 0; }
+  .eyebrow-text { font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); }
+  .section-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 32px; }
+  .section h2 { font-family: 'Orbitron', sans-serif; font-size: clamp(1.2rem, 2.5vw, 1.7rem); font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+  .section-intro { color: var(--muted); font-style: italic; margin-bottom: 32px; font-size: 14px; }
+
+  .callout { background: var(--dark3); border-left: 3px solid var(--cyan); padding: 20px 24px; margin-top: 32px; border-radius: 2px; }
+  .callout strong { display: block; color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+  .callout p { color: var(--muted); font-size: 14px; }
+
+  /* WHAT'S INSIDE GRID */
+  .inside-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 24px; }
+  .inside-card { background: var(--dark2); border: 1px solid var(--border); border-radius: 3px; padding: 20px; }
+  .inside-num { font-family: 'Orbitron', sans-serif; font-size: 0.8rem; font-weight: 900; color: var(--cyan); display: block; margin-bottom: 6px; }
+  .inside-title { font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .inside-desc { font-size: 13px; color: var(--muted); }
+
+  /* 6-STEP WORKFLOW */
+  .workflow-steps { display: flex; flex-direction: column; gap: 0; margin-top: 24px; }
+  .workflow-step { display: grid; grid-template-columns: 80px 1fr; border: 1px solid var(--border); border-bottom: none; }
+  .workflow-step:first-child { border-radius: 3px 3px 0 0; }
+  .workflow-step:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 3px 3px; }
+  .workflow-step-num { background: var(--dark3); padding: 20px; display: flex; align-items: center; justify-content: center; border-right: 1px solid var(--border); }
+  .workflow-step-num span { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--cyan); }
+  .workflow-step-content { padding: 20px 24px; background: var(--dark2); }
+  .workflow-step-label { font-weight: 700; color: #fff; font-size: 14px; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .workflow-step-desc { font-size: 13.5px; color: var(--muted); }
+
+  /* TOOL CARDS */
+  .tool-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+  .tool-card { background: var(--dark2); border: 1px solid var(--border); border-radius: 3px; padding: 24px; }
+  .tool-card-tag { font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); display: block; margin-bottom: 8px; }
+  .tool-card-name { font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; color: #fff; text-transform: uppercase; margin-bottom: 8px; }
+  .tool-card-desc { font-size: 13px; color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
+  .tool-card-free { font-size: 12px; color: var(--yellow); font-weight: 600; margin-bottom: 16px; }
+
+  /* GOAL STACKS */
+  .goal-stacks { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+  .goal-stack { background: var(--dark2); border: 1px solid var(--border); border-radius: 3px; padding: 20px 24px; }
+  .goal-label { font-weight: 800; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .goal-label-tag { font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); background: var(--dark3); padding: 3px 10px; border-radius: 2px; }
+  .goal-flow { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .goal-step { background: var(--dark3); border: 1px solid var(--border); border-radius: 2px; padding: 5px 12px; font-size: 12.5px; color: var(--text); }
+  .goal-arrow { color: var(--muted); font-size: 0.85rem; }
+
+  /* 30-MIN PLAN */
+  .build-plan { display: flex; flex-direction: column; gap: 0; margin-top: 24px; }
+  .build-row { display: grid; grid-template-columns: 100px 1fr; border: 1px solid var(--border); border-bottom: none; }
+  .build-row:first-child { border-radius: 3px 3px 0 0; }
+  .build-row:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 3px 3px; }
+  .build-time { background: var(--dark3); padding: 16px 20px; display: flex; align-items: center; justify-content: center; border-right: 1px solid var(--border); }
+  .build-time span { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; font-weight: 900; color: var(--cyan); text-align: center; }
+  .build-task { padding: 16px 20px; background: var(--dark2); font-size: 14px; color: var(--text); display: flex; align-items: center; }
+
+  /* MONETIZATION MAP */
+  .mono-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 24px; }
+  .mono-card { background: var(--dark2); border: 1px solid var(--border); border-radius: 3px; padding: 20px; }
+  .mono-tag { font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); display: block; margin-bottom: 8px; }
+  .mono-title { font-weight: 700; color: #fff; margin-bottom: 8px; font-size: 14px; }
+  .mono-items { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .mono-items li { font-size: 13px; color: var(--muted); padding-left: 14px; position: relative; }
+  .mono-items li::before { content: '→'; position: absolute; left: 0; color: var(--cyan); font-size: 11px; top: 2px; }
+  .mono-speed { font-size: 11px; color: var(--yellow); font-weight: 600; margin-top: 10px; }
+
+  /* RESOURCE LINKS */
+  .resource-list { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+  .resource-item { background: var(--dark2); border: 1px solid var(--border); border-radius: 3px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; text-decoration: none; }
+  .resource-label { font-weight: 700; color: #fff; font-size: 14px; }
+  .resource-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .disclosure { background: var(--dark2); border: 1px solid var(--border); border-radius: 3px; padding: 20px 24px; margin-top: 32px; font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .disclosure strong { color: var(--cyan); display: block; margin-bottom: 6px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
+
+  .doc-footer { padding: 24px 40px; display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-top: 1px solid var(--border); margin-top: 40px; }
+
+  @media (max-width: 640px) {
+    .page { padding: 0 20px; }
+    .cover { padding: 48px 20px; }
+    .cover-footer { padding: 0 20px; flex-direction: column; gap: 4px; align-items: center; }
+    .workflow-step { grid-template-columns: 56px 1fr; }
+    .build-row { grid-template-columns: 80px 1fr; }
+    .doc-footer { flex-direction: column; gap: 4px; align-items: center; text-align: center; }
+  }
+
+  /* Download bar */
+  .cfs-dl-bar { background: linear-gradient(90deg, rgba(56,217,245,0.08), rgba(56,217,245,0.03)); border-bottom: 1px solid rgba(56,217,245,0.15); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; position: relative; z-index: 10; }
+  .cfs-dl-badge { font-family: 'Orbitron', sans-serif; font-size: 8px; letter-spacing: 2px; color: #38d9f5; background: rgba(56,217,245,0.1); border: 1px solid rgba(56,217,245,0.2); padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+  .cfs-dl-label { font-size: 13px; color: #8090b0; }
+  .cfs-dl-label strong { color: #f0f0ff; }
+  .cfs-dl-btn { display: inline-flex; align-items: center; gap: 8px; background: #38d9f5; color: #000; border: none; padding: 10px 22px; border-radius: 6px; font-family: 'Orbitron', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+  .cfs-dl-btn:hover { background: #e8ff47; }
+
+</style>
+</head>
+<body>
+<div class="cfs-dl-bar">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <span class="cfs-dl-badge">FREE DOWNLOAD</span>
+    <span class="cfs-dl-label"><strong>AI Creator Stack Cheat Sheet</strong> — ContentForgeStudio.com</span>
+  </div>
+  <a href="creator-stack-cheat-sheet.html" download="creator-stack-cheat-sheet.html" class="cfs-dl-btn">⬇ &nbsp;Download This Page</a>
+</div>
+
+
+<div class="top-stripe"></div>
+
+<div class="cover">
+  <div class="cover-badge">CONTENT FORGE STUDIO · FREE RESOURCE PACK</div>
+  <svg class="hex-logo" viewBox="0 0 100 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="50,4 96,29 96,86 50,111 4,86 4,29" fill="none" stroke="#38D9F5" stroke-width="3"/>
+    <polygon points="50,14 86,34 86,81 50,101 14,81 14,34" fill="#0D1117" stroke="#38D9F5" stroke-width="1.5" opacity="0.6"/>
+    <text x="50" y="66" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="22" font-weight="900" fill="#ffffff">CFS</text>
+  </svg>
+  <h1>AI CREATOR STACK<br><span>CHEAT SHEET</span></h1>
+  <p class="cover-sub">IDEA → SCRIPT → VOICE → VIDEO → PUBLISH → INCOME</p>
+  <div class="cover-divider"></div>
+  <p class="cover-desc">The simple tool stack for turning one idea into a script, voiceover, video, post, lead magnet, and income path.</p>
+  <div class="cover-stats">
+    <div><span class="cover-stat-num">6</span><span class="cover-stat-label">Step Workflow</span></div>
+    <div><span class="cover-stat-num">5</span><span class="cover-stat-label">Goal Stacks</span></div>
+    <div><span class="cover-stat-num">30</span><span class="cover-stat-label">Min Build Plan</span></div>
+  </div>
+  <div class="cover-btns">
+    <a class="btn" href="https://preview.mailerlite.io/forms/2459143/190790534186403371/share">GET MORE FREE CFS RESOURCES</a>
+    <a class="btn btn-outline" href="https://www.youtube.com/@TheContentForgeStudio">SUBSCRIBE ON YOUTUBE</a>
+  </div>
+  <div class="cover-footer">
+    <span>CFS AI CREATOR STACK CHEAT SHEET</span>
+    <span>ContentForgeStudio.com</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- WHAT'S INSIDE -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">WHAT'S INSIDE</span></div>
+    <div class="section-divider"></div>
+    <h2>Your Complete Creator Toolkit</h2>
+    <p class="section-intro">Use this as a practical asset you can publish, reuse, or plug into your CFS-style creator workflow today.</p>
+    <div class="inside-grid">
+      <div class="inside-card"><span class="inside-num">01</span><div class="inside-title">The 6-Step Workflow</div><div class="inside-desc">Idea → script → voice → visuals → publish → monetize.</div></div>
+      <div class="inside-card"><span class="inside-num">02</span><div class="inside-title">Recommended AI Tools</div><div class="inside-desc">Where ElevenLabs, Murf AI, Seedance, and free tools fit.</div></div>
+      <div class="inside-card"><span class="inside-num">03</span><div class="inside-title">Tool Stack By Goal</div><div class="inside-desc">The right setup for Shorts, products, blogs, and offers.</div></div>
+      <div class="inside-card"><span class="inside-num">04</span><div class="inside-title">30-Minute Build Plan</div><div class="inside-desc">A fast workflow you can run start to finish today.</div></div>
+      <div class="inside-card"><span class="inside-num">05</span><div class="inside-title">Monetization Map</div><div class="inside-desc">Affiliate, lead magnet, service, and product income paths.</div></div>
+    </div>
+  </div>
+
+  <!-- 6-STEP WORKFLOW -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">THE 6-STEP WORKFLOW</span></div>
+    <div class="section-divider"></div>
+    <h2>The AI Creator Workflow</h2>
+    <p class="section-intro">One idea. Six steps. Repeatable every time.</p>
+    <div class="workflow-steps">
+      <div class="workflow-step">
+        <div class="workflow-step-num"><span>1</span></div>
+        <div class="workflow-step-content">
+          <div class="workflow-step-label">Idea</div>
+          <div class="workflow-step-desc">Start with one outcome your audience wants: save time, make money, create faster, or avoid a painful mistake. One idea per piece of content — never more.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="workflow-step-num"><span>2</span></div>
+        <div class="workflow-step-content">
+          <div class="workflow-step-label">Script</div>
+          <div class="workflow-step-desc">Use ChatGPT or Claude to turn the idea into a short hook, 3 value points, and a clear CTA. Target 45–75 seconds for Shorts, 8–12 minutes for long-form.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="workflow-step-num"><span>3</span></div>
+        <div class="workflow-step-content">
+          <div class="workflow-step-label">Voice</div>
+          <div class="workflow-step-desc">Use ElevenLabs or Murf AI to create clean, professional narration — especially for faceless videos. Free tiers on both cover 3–4 full videos per month.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="workflow-step-num"><span>4</span></div>
+        <div class="workflow-step-content">
+          <div class="workflow-step-label">Visuals</div>
+          <div class="workflow-step-desc">Use Seedance for AI-generated video clips, or screen recordings + CapCut for fast editing. Stick figure / illustrated thumbnails for Shorts. Reserve AI video for intros and high-impact moments.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="workflow-step-num"><span>5</span></div>
+        <div class="workflow-step-content">
+          <div class="workflow-step-label">Publish</div>
+          <div class="workflow-step-desc">Post as YouTube Short, Reel, or TikTok first. Then repurpose the script into a LinkedIn post, Pinterest pin, and email to your list. One piece of content = 5 touchpoints.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="workflow-step-num"><span>6</span></div>
+        <div class="workflow-step-content">
+          <div class="workflow-step-label">Monetize</div>
+          <div class="workflow-step-desc">Every post points to one destination: a freebie, your email list, the app waitlist, an affiliate tool, or your book. Traffic without a destination is just noise.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDED TOOLS -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">RECOMMENDED AI TOOLS</span></div>
+    <div class="section-divider"></div>
+    <h2>Where Each Tool Fits</h2>
+    <p class="section-intro">Keep the freebie valuable first. Let the tools support the result.</p>
+    <div class="tool-cards">
+      <div class="tool-card">
+        <span class="tool-card-tag">Step 1–2 · Script &amp; Ideas</span>
+        <div class="tool-card-name">ChatGPT / Claude</div>
+        <div class="tool-card-desc">Hooks, scripts, offer copy, email sequences, video outlines, content calendars, and prompt workflows.</div>
+        <div class="tool-card-free">Free tiers available on both</div>
+        <a class="btn-sm" href="https://contentforgestudio.com">CFS PROMPT PACKS ↗</a>
+      </div>
+      <div class="tool-card">
+        <span class="tool-card-tag">Step 3 · Voice</span>
+        <div class="tool-card-name">ElevenLabs</div>
+        <div class="tool-card-desc">Lifelike AI voiceovers for YouTube videos, Shorts, ads, courses, and creator content. The CFS YouTube channel runs on it.</div>
+        <div class="tool-card-free">Free: 10,000 chars/mo · No watermark</div>
+        <a class="btn-sm" href="https://try.elevenlabs.io/qr7w98295n2w">TRY ELEVENLABS ↗</a>
+      </div>
+      <div class="tool-card">
+        <span class="tool-card-tag">Step 3 · Voice (Alt)</span>
+        <div class="tool-card-name">Murf AI</div>
+        <div class="tool-card-desc">Studio-quality narration and voiceover tools for business content, product demos, and faceless video creation.</div>
+        <div class="tool-card-free">30% recurring commission / 24 months</div>
+        <a class="btn-sm" href="https://get.murf.ai/r1sirvfn5rz2">TRY MURF AI ↗</a>
+      </div>
+      <div class="tool-card">
+        <span class="tool-card-tag">Step 4 · Visuals</span>
+        <div class="tool-card-name">Seedance</div>
+        <div class="tool-card-desc">AI video creation and visual storytelling for scroll-stopping creator content. Free daily credits, no watermark on free tier.</div>
+        <div class="tool-card-free">Free daily credits · No watermark</div>
+        <a class="btn-sm" href="https://seedance.tv?fpr=brandon74">TRY SEEDANCE ↗</a>
+      </div>
+      <div class="tool-card">
+        <span class="tool-card-tag">Step 4 · Edit</span>
+        <div class="tool-card-name">CapCut</div>
+        <div class="tool-card-desc">Fast mobile and desktop editing for Shorts, Reels, and TikTok. Auto-captions, templates, and speed ramps built in.</div>
+        <div class="tool-card-free">Free · No watermark on short clips</div>
+        <a class="btn-sm" href="https://contentforgestudio.com">LEARN MORE ↗</a>
+      </div>
+      <div class="tool-card">
+        <span class="tool-card-tag">Step 2 · Design</span>
+        <div class="tool-card-name">Canva</div>
+        <div class="tool-card-desc">Thumbnails, lead magnets, carousels, and social graphics. Use AI text-to-image for quick visuals inside your designs.</div>
+        <div class="tool-card-free">Free tier covers most creator needs</div>
+        <a class="btn-sm" href="https://contentforgestudio.com">LEARN MORE ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL STACK BY GOAL -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">TOOL STACK BY GOAL</span></div>
+    <div class="section-divider"></div>
+    <h2>Pick Your Goal. Use This Stack.</h2>
+    <p class="section-intro">Don't use every tool for every goal. Match the stack to the output.</p>
+    <div class="goal-stacks">
+      <div class="goal-stack">
+        <div class="goal-label"><span class="goal-label-tag">Short-Form Video</span></div>
+        <div class="goal-flow">
+          <span class="goal-step">ChatGPT/Claude → Script</span><span class="goal-arrow">→</span>
+          <span class="goal-step">ElevenLabs/Murf → Voice</span><span class="goal-arrow">→</span>
+          <span class="goal-step">Seedance → Visuals</span><span class="goal-arrow">→</span>
+          <span class="goal-step">CapCut → Edit</span><span class="goal-arrow">→</span>
+          <span class="goal-step">CFS Freebie CTA</span>
+        </div>
+      </div>
+      <div class="goal-stack">
+        <div class="goal-label"><span class="goal-label-tag">Lead Magnet</span></div>
+        <div class="goal-flow">
+          <span class="goal-step">AI → Outline</span><span class="goal-arrow">→</span>
+          <span class="goal-step">AI Writing → Draft</span><span class="goal-arrow">→</span>
+          <span class="goal-step">Canva/HTML → Design</span><span class="goal-arrow">→</span>
+          <span class="goal-step">MailerLite → Opt-in</span><span class="goal-arrow">→</span>
+          <span class="goal-step">CFS Resource Hub</span>
+        </div>
+      </div>
+      <div class="goal-stack">
+        <div class="goal-label"><span class="goal-label-tag">Affiliate Content</span></div>
+        <div class="goal-flow">
+          <span class="goal-step">Pick One Tool</span><span class="goal-arrow">→</span>
+          <span class="goal-step">Demo One Use Case</span><span class="goal-arrow">→</span>
+          <span class="goal-step">Share Honest Outcome</span><span class="goal-arrow">→</span>
+          <span class="goal-step">Link to Freebie</span><span class="goal-arrow">→</span>
+          <span class="goal-step">Affiliate Link on Resource Page</span>
+        </div>
+      </div>
+      <div class="goal-stack">
+        <div class="goal-label"><span class="goal-label-tag">Service Offer</span></div>
+        <div class="goal-flow">
+          <span class="goal-step">AI → Deliverable Draft</span><span class="goal-arrow">→</span>
+          <span class="goal-step">Refine → Final Output</span><span class="goal-arrow">→</span>
+          <span class="goal-step">Package as Fiverr Gig</span><span class="goal-arrow">→</span>
+          <span class="goal-step">Repurpose as Content</span>
+        </div>
+      </div>
+      <div class="goal-stack">
+        <div class="goal-label"><span class="goal-label-tag">Digital Product</span></div>
+        <div class="goal-flow">
+          <span class="goal-step">Repeated Workflow</span><span class="goal-arrow">→</span>
+          <span class="goal-step">AI → Template/Pack</span><span class="goal-arrow">→</span>
+          <span class="goal-step">Design in Canva/HTML</span><span class="goal-arrow">→</span>
+          <span class="goal-step">Gumroad or CFS Site</span><span class="goal-arrow">→</span>
+          <span class="goal-step">Promote via Content</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 30-MINUTE BUILD PLAN -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">30-MINUTE BUILD PLAN</span></div>
+    <div class="section-divider"></div>
+    <h2>Build Something Today</h2>
+    <p class="section-intro">A full Short-form content piece — start to posted — in 30 minutes.</p>
+    <div class="build-plan">
+      <div class="build-row">
+        <div class="build-time"><span>0–5<br>MIN</span></div>
+        <div class="build-task">Pick one specific audience and one pain point they feel right now.</div>
+      </div>
+      <div class="build-row">
+        <div class="build-time"><span>5–10<br>MIN</span></div>
+        <div class="build-task">Generate 10 hooks with AI. Pick the one that would make you stop scrolling.</div>
+      </div>
+      <div class="build-row">
+        <div class="build-time"><span>10–15<br>MIN</span></div>
+        <div class="build-task">Write a 45–75 second script: hook → value point → proof → CTA to one freebie.</div>
+      </div>
+      <div class="build-row">
+        <div class="build-time"><span>15–20<br>MIN</span></div>
+        <div class="build-task">Create or record the voiceover using ElevenLabs, Murf AI, or your own voice.</div>
+      </div>
+      <div class="build-row">
+        <div class="build-time"><span>20–25<br>MIN</span></div>
+        <div class="build-task">Generate visuals in Seedance or collect screen recordings for CapCut.</div>
+      </div>
+      <div class="build-row">
+        <div class="build-time"><span>25–30<br>MIN</span></div>
+        <div class="build-task">Edit, add captions, post, and drop the freebie link in the description and first comment.</div>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>The Rule</strong>
+      <p>Done beats perfect. One post today beats a polished series next month. Ship, measure, double down on what works.</p>
+    </div>
+  </div>
+
+  <!-- MONETIZATION MAP -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">MONETIZATION MAP</span></div>
+    <div class="section-divider"></div>
+    <h2>Four Ways to Make Income</h2>
+    <p class="section-intro">Pick one lane to start. Add more as you build momentum.</p>
+    <div class="mono-grid">
+      <div class="mono-card">
+        <span class="mono-tag">Lane 01</span>
+        <div class="mono-title">Affiliate Income</div>
+        <ul class="mono-items">
+          <li>ElevenLabs — 22% recurring</li>
+          <li>Murf AI — 30% / 24 months</li>
+          <li>Seedance — 30% / 12 months</li>
+          <li>Amazon Associates — book + gear</li>
+          <li>Canva, Jasper, CapCut (pending)</li>
+        </ul>
+        <div class="mono-speed">⚡ Fastest path to first dollar</div>
+      </div>
+      <div class="mono-card">
+        <span class="mono-tag">Lane 02</span>
+        <div class="mono-title">Lead Magnet + Email</div>
+        <ul class="mono-items">
+          <li>Free guides drive opt-ins</li>
+          <li>Email list = owned audience</li>
+          <li>Deliver value → warm to offer</li>
+          <li>Promote affiliate tools in emails</li>
+          <li>Upsell book + app in welcome flow</li>
+        </ul>
+        <div class="mono-speed">🔁 Best long-term compounding asset</div>
+      </div>
+      <div class="mono-card">
+        <span class="mono-tag">Lane 03</span>
+        <div class="mono-title">Service Offers</div>
+        <ul class="mono-items">
+          <li>AI Content Sprint ($49–$149)</li>
+          <li>Thumbnail + Title Pack (Fiverr)</li>
+          <li>Faceless Short Video Pack</li>
+          <li>Resume/LinkedIn rewrite</li>
+          <li>Prompt pack for niche businesses</li>
+        </ul>
+        <div class="mono-speed">💰 Highest immediate revenue per sale</div>
+      </div>
+      <div class="mono-card">
+        <span class="mono-tag">Lane 04</span>
+        <div class="mono-title">Digital Products</div>
+        <ul class="mono-items">
+          <li>Prompt Like a Pro (Amazon)</li>
+          <li>CFS Creator Studio App</li>
+          <li>Future: prompt packs on Gumroad</li>
+          <li>Future: templates + swipe files</li>
+          <li>Future: CFS Vault membership</li>
+        </ul>
+        <div class="mono-speed">📈 Scales without more time</div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:24px;">
+      <strong>The System</strong>
+      <p>Content drives traffic → traffic hits a freebie → freebie builds the email list → emails warm to affiliate tools, book, and app → the system runs on repeat. AI speeds up every step.</p>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="section">
+    <div class="eyebrow"><div class="eyebrow-square"></div><span class="eyebrow-text">NEXT STEPS + CFS LINKS</span></div>
+    <div class="section-divider"></div>
+    <h2>Keep Building</h2>
+    <div class="resource-list">
+      <a class="resource-item" href="https://preview.mailerlite.io/forms/2459143/190790534186403371/share">
+        <div><div class="resource-label">Get the 25 Prompt Pack</div><div class="resource-desc">Free AI prompts for business, content, email, SEO, and social media.</div></div>
+        <span class="btn-sm">OPEN</span>
+      </a>
+      <a class="resource-item" href="https://preview.mailerlite.io/forms/2459143/190820244058539189/share">
+        <div><div class="resource-label">Join CFS App Early Access</div><div class="resource-desc">Get launch updates for the CFS Creator Studio app.</div></div>
+        <span class="btn-sm">OPEN</span>
+      </a>
+      <a class="resource-item" href="https://www.youtube.com/@TheContentForgeStudio">
+        <div><div class="resource-label">Subscribe on YouTube</div><div class="resource-desc">AI tool workflows, creator systems, and income-focused builds.</div></div>
+        <span class="btn-sm">OPEN</span>
+      </a>
+      <a class="resource-item" href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20">
+        <div><div class="resource-label">Grab Prompt Like a Pro</div><div class="resource-desc">100 battle-tested prompts across 10 categories. Kindle $9.99.</div></div>
+        <span class="btn-sm">OPEN</span>
+      </a>
+      <a class="resource-item" href="https://contentforgestudio.com">
+        <div><div class="resource-label">Visit ContentForgeStudio.com</div><div class="resource-desc">Free downloads, app, book, blog, and tools — all in one place.</div></div>
+        <span class="btn-sm">OPEN</span>
+      </a>
+    </div>
+    <div class="disclosure">
+      <strong>Affiliate Disclosure</strong>
+      Some links in this guide may be affiliate links, which means Content Forge Studio may earn a commission at no extra cost to you. This guide is educational and does not guarantee income. Results depend on skill, consistency, market demand, and execution.
+    </div>
+  </div>
+
+</div>
+
+<div class="doc-footer">
+  <span>CFS AI CREATOR STACK CHEAT SHEET</span>
+  <span>ContentForgeStudio.com · Turn AI Into Income</span>
+</div>
+
+</body>
+</html>

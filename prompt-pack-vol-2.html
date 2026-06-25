@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFS Prompt Pack Vol. 2 — Advanced AI Workflows · ContentForgeStudio.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow: #e8ff47;
+  --fire:   #ff5c1a;
+  --cyan:   #38d9f5;
+  --black:  #07070e;
+  --deep:   #0d0d1c;
+  --card:   #141428;
+  --border: rgba(56,217,245,0.12);
+  --steel:  #8090b0;
+  --dim:    #3a3a5a;
+  --white:  #f0f0ff;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Raleway', sans-serif; font-size: 15px; line-height: 1.7; overflow-x: hidden; min-height: 100vh; }
+
+.bg-layer { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(56,217,245,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(56,217,245,0.03) 1px, transparent 1px); background-size: 56px 56px; animation: gridDrift 60s linear infinite; }
+@keyframes gridDrift { 0% { background-position: 0 0; } 100% { background-position: 56px 56px; } }
+.bg-glow { position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(56,217,245,0.05) 0%, transparent 65%); }
+
+nav { position: relative; z-index: 10; padding: 0 52px; height: 68px; display: flex; align-items: center; justify-content: space-between; background: rgba(7,7,14,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-mark { width: 36px; height: 36px; border: 2px solid var(--cyan); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.nav-mark img { width: 34px; height: 34px; object-fit: contain; border-radius: 50%; }
+.nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
+.nav-top { font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; color: var(--white); letter-spacing: 1px; }
+.nav-bottom { font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; color: var(--cyan); letter-spacing: 1px; }
+.nav-studio { font-family: 'Raleway', sans-serif; font-size: 8px; letter-spacing: 4px; color: var(--steel); text-transform: uppercase; margin-top: 2px; }
+.nav-right { display: flex; gap: 24px; align-items: center; }
+.nav-link { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 2px; color: var(--steel); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+.nav-link:hover { color: var(--cyan); }
+.nav-cta { background: var(--cyan); color: #000; padding: 8px 20px; border-radius: 4px; font-weight: 700; }
+.nav-cta:hover { background: var(--yellow); color: #000; }
+
+/* Download bar */
+.dl-bar { position: relative; z-index: 5; background: linear-gradient(90deg, rgba(56,217,245,0.08), rgba(56,217,245,0.04)); border-bottom: 1px solid var(--border); padding: 14px 52px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.dl-bar-left { display: flex; align-items: center; gap: 12px; }
+.dl-badge { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 2px; color: var(--cyan); background: rgba(56,217,245,0.1); border: 1px solid rgba(56,217,245,0.2); padding: 4px 10px; border-radius: 20px; }
+.dl-label { font-size: 13px; color: var(--steel); }
+.dl-label strong { color: var(--white); }
+.dl-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--cyan); color: #000; border: none; padding: 10px 24px; border-radius: 6px; font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 700; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; white-space: nowrap; }
+.dl-btn:hover { background: var(--yellow); transform: translateY(-1px); }
+
+/* Hero */
+.page-hero { position: relative; z-index: 1; padding: 80px 52px 60px; text-align: center; }
+.hero-eyebrow { font-family: 'Orbitron', monospace; font-size: 10px; letter-spacing: 6px; color: var(--cyan); margin-bottom: 20px; opacity: 0.8; }
+.vol-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(56,217,245,0.08); border: 1px solid rgba(56,217,245,0.2); border-radius: 24px; padding: 8px 20px; margin-bottom: 24px; font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 3px; color: var(--cyan); }
+.vol-badge::before { content: '🚀'; font-size: 14px; }
+.hero-title { font-family: 'Orbitron', monospace; font-size: clamp(28px, 4.5vw, 52px); font-weight: 900; line-height: 1.05; letter-spacing: -1px; margin-bottom: 16px; }
+.hero-title .vol { color: var(--cyan); }
+.hero-title .vol2 { color: var(--yellow); }
+.hero-sub { font-size: 16px; color: var(--steel); max-width: 620px; margin: 0 auto 48px; font-weight: 300; line-height: 1.8; }
+.hero-stats { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+.h-stat-num { font-family: 'Orbitron', monospace; font-size: 32px; font-weight: 800; color: var(--cyan); line-height: 1; margin-bottom: 4px; }
+.h-stat-label { font-size: 11px; color: var(--steel); letter-spacing: 2px; text-transform: uppercase; }
+
+.divider { width: calc(100% - 104px); height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 52px; position: relative; z-index: 1; }
+
+/* Section */
+.section { position: relative; z-index: 1; padding: 72px 52px; max-width: 1100px; margin: 0 auto; }
+.section-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--cyan); margin-bottom: 12px; opacity: 0.7; }
+.section-title { font-family: 'Orbitron', monospace; font-size: clamp(20px, 2.8vw, 30px); font-weight: 800; margin-bottom: 48px; }
+.section-title span { color: var(--cyan); }
+
+/* Category blocks */
+.category-block { margin-bottom: 56px; }
+.cat-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.cat-num { font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; color: var(--cyan); background: rgba(56,217,245,0.08); border: 1px solid rgba(56,217,245,0.15); border-radius: 4px; padding: 4px 10px; letter-spacing: 2px; white-space: nowrap; }
+.cat-title { font-family: 'Orbitron', monospace; font-size: 14px; font-weight: 800; color: var(--white); letter-spacing: 1px; }
+.cat-desc { font-size: 12px; color: var(--steel); margin-top: 2px; }
+
+/* Prompt cards */
+.prompts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.prompt-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; position: relative; transition: border-color 0.2s; }
+.prompt-card:hover { border-color: rgba(56,217,245,0.25); }
+.prompt-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; border-radius: 10px 10px 0 0; }
+.pc-cyan::before { background: linear-gradient(90deg, var(--cyan), transparent); }
+.pc-yellow::before { background: linear-gradient(90deg, var(--yellow), transparent); }
+.pc-fire::before { background: linear-gradient(90deg, var(--fire), transparent); }
+.pc-steel::before { background: linear-gradient(90deg, var(--steel), transparent); }
+.pc-purple::before { background: linear-gradient(90deg, #a855f7, transparent); }
+
+.prompt-label { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 2px; color: var(--steel); margin-bottom: 10px; text-transform: uppercase; }
+.prompt-title { font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.4; }
+.prompt-text { font-size: 12px; color: #a0b0c8; line-height: 1.75; background: rgba(7,7,14,0.5); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 12px; font-family: 'Courier New', monospace; letter-spacing: 0.3px; }
+.prompt-text .bracket { color: var(--cyan); }
+.copy-btn { display: inline-flex; align-items: center; gap: 6px; font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 1px; color: var(--steel); background: none; border: 1px solid var(--dim); border-radius: 4px; padding: 5px 12px; cursor: pointer; transition: all 0.2s; }
+.copy-btn:hover { color: var(--cyan); border-color: rgba(56,217,245,0.3); }
+.copy-btn.copied { color: var(--cyan); border-color: var(--cyan); }
+.prompt-tip { font-size: 11px; color: var(--steel); margin-top: 8px; font-style: italic; display: flex; gap: 6px; align-items: flex-start; }
+.prompt-tip::before { content: '💡'; font-style: normal; flex-shrink: 0; font-size: 12px; }
+
+/* Pro tip blocks */
+.pro-tip-block { background: linear-gradient(135deg, rgba(232,255,71,0.04), rgba(7,7,14,0)); border: 1px solid rgba(232,255,71,0.12); border-radius: 10px; padding: 20px 24px; margin-top: 24px; display: flex; gap: 16px; align-items: flex-start; }
+.pro-tip-icon { font-size: 24px; flex-shrink: 0; }
+.pro-tip-title { font-family: 'Orbitron', monospace; font-size: 10px; letter-spacing: 2px; color: var(--yellow); margin-bottom: 6px; }
+.pro-tip-text { font-size: 13px; color: var(--steel); line-height: 1.7; }
+.pro-tip-text strong { color: var(--white); }
+
+/* Book upsell */
+.upsell-strip { position: relative; z-index: 1; background: linear-gradient(135deg, rgba(232,255,71,0.05), rgba(7,7,14,0) 60%), var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 60px 52px; }
+.upsell-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: center; }
+.upsell-book img { width: 120px; border-radius: 8px; box-shadow: 8px 8px 32px rgba(0,0,0,0.5); }
+.upsell-content .eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 4px; color: var(--yellow); margin-bottom: 10px; opacity: 0.8; }
+.upsell-content h2 { font-family: 'Orbitron', monospace; font-size: clamp(18px, 2.5vw, 28px); font-weight: 800; margin-bottom: 10px; }
+.upsell-content h2 span { color: var(--yellow); }
+.upsell-content p { font-size: 13px; color: var(--steel); font-weight: 300; max-width: 500px; line-height: 1.8; margin-bottom: 20px; }
+.upsell-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--yellow); color: #000; text-decoration: none; padding: 13px 28px; border-radius: 6px; font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; transition: background 0.2s, transform 0.2s; }
+.upsell-btn:hover { background: #fff; transform: translateY(-2px); }
+
+footer { position: relative; z-index: 1; background: var(--deep); border-top: 1px solid var(--border); padding: 20px 52px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.footer-copy { font-family: 'Orbitron', monospace; font-size: 9px; color: var(--dim); letter-spacing: 2px; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 12px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--cyan); }
+
+#backToTop { position: fixed; bottom: 32px; right: 32px; z-index: 999; width: 48px; height: 48px; border-radius: 50%; background: var(--cyan); border: none; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(56,217,245,0.4); font-size: 20px; transition: background 0.2s, transform 0.2s; }
+#backToTop:hover { background: var(--yellow); transform: translateY(-2px); }
+
+@media(max-width: 900px) {
+  nav, .dl-bar { padding: 0 20px; }
+  .dl-bar { padding: 12px 20px; }
+  .page-hero { padding: 72px 24px 48px; }
+  .section { padding: 56px 24px; }
+  .prompts-grid { grid-template-columns: 1fr; }
+  .upsell-inner { grid-template-columns: 1fr; }
+  .upsell-book { display: none; }
+  footer { flex-direction: column; text-align: center; padding: 20px 24px; }
+  .divider { width: calc(100% - 48px); margin: 0 24px; }
+  .hero-stats { gap: 28px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-layer">
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+</div>
+
+<nav>
+  <a href="https://contentforgestudio.com" class="nav-logo">
+    <div class="nav-mark">
+      <img src="CFS Logo_FINAL.png" alt="CFS Logo">
+    </div>
+    <div class="nav-wordmark">
+      <div style="display:flex;"><span class="nav-top">CONTENT</span><span class="nav-bottom">FORGE</span></div>
+      <div class="nav-studio">STUDIO</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="https://contentforgestudio.com/guides" class="nav-link">Free Guides</a>
+    <a href="https://contentforgestudio.com#videos" class="nav-link">Videos</a>
+    <a href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20" target="_blank" class="nav-link">Book</a>
+    <a href="https://contentforgestudio.com" class="nav-link nav-cta">Home</a>
+  </div>
+</nav>
+
+<!-- DOWNLOAD BAR -->
+<div class="dl-bar">
+  <div class="dl-bar-left">
+    <span class="dl-badge">FREE DOWNLOAD</span>
+    <span class="dl-label"><strong>CFS Prompt Pack Vol. 2</strong> — Advanced AI Workflows &amp; Income Systems</span>
+  </div>
+  <a href="prompt-pack-vol-2.html" download="CFS-Prompt-Pack-Vol-2.html" class="dl-btn">⬇ &nbsp;Download This Page</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-eyebrow">// CONTENTFORGESTUDIO.COM · FREE RESOURCES</div>
+  <div class="vol-badge">VOL. 2 — ADVANCED WORKFLOWS</div>
+  <h1 class="hero-title"><span class="vol">CFS</span> Prompt Pack<br><span class="vol2">Vol. 2</span></h1>
+  <p class="hero-sub">The next level prompt pack. Advanced workflows, automation systems, client-facing copy, and income-focused frameworks for creators who've mastered the basics and are ready to scale.</p>
+  <div class="hero-stats">
+    <div>
+      <div class="h-stat-num">25</div>
+      <div class="h-stat-label">Advanced Prompts</div>
+    </div>
+    <div>
+      <div class="h-stat-num">5</div>
+      <div class="h-stat-label">Power Categories</div>
+    </div>
+    <div>
+      <div class="h-stat-num">100%</div>
+      <div class="h-stat-label">Free Forever</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CATEGORY 1: PROMPT CHAINING & WORKFLOW SYSTEMS -->
+<div class="section">
+  <div class="section-eyebrow">// CATEGORY 01 OF 05</div>
+  <div class="section-title">Prompt Chaining &amp; <span>Workflow Systems</span></div>
+
+  <div class="category-block">
+    <div class="cat-header">
+      <span class="cat-num">CAT 01</span>
+      <div>
+        <div class="cat-title">⚡ Multi-Step AI Workflows</div>
+        <div class="cat-desc">Chain prompts together to build automated content pipelines — no coding required</div>
+      </div>
+    </div>
+
+    <div class="prompts-grid">
+
+      <div class="prompt-card pc-cyan">
+        <div class="prompt-label">Prompt 01 · Content Pipeline Builder</div>
+        <div class="prompt-title">Full Content Repurposing Chain</div>
+        <div class="prompt-text">I'm going to give you a YouTube video topic. Your job is to create a complete content chain: (1) a 1,500-word video script outline, (2) a 60-second Short script from the hook only, (3) 5 Twitter/X threads from key points, (4) a LinkedIn post from the conclusion, (5) an email subject line + 3-sentence teaser. Topic: <span class="bracket">[YOUR TOPIC]</span>. Start with the script outline.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Run each step separately for best results. Feed step 1's output into step 2 as context.</div>
+      </div>
+
+      <div class="prompt-card pc-cyan">
+        <div class="prompt-label">Prompt 02 · Offer Build Chain</div>
+        <div class="prompt-title">Digital Product Creation Pipeline</div>
+        <div class="prompt-text">Help me build a digital product from scratch using this chain: Step 1 — Validate the idea: Does <span class="bracket">[PRODUCT IDEA]</span> solve a real pain point for <span class="bracket">[TARGET AUDIENCE]</span>? Step 2 — Name it: Give me 5 product name options. Step 3 — Outline it: Create a full table of contents. Step 4 — Price it: What's the right price point and why? Run each step, then wait for my approval before continuing.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Use this to move from "idea" to "ready to sell" in under 2 hours.</div>
+      </div>
+
+      <div class="prompt-card pc-cyan">
+        <div class="prompt-label">Prompt 03 · Loop Engineering</div>
+        <div class="prompt-title">The Feedback Loop Prompt</div>
+        <div class="prompt-text">I'm going to share a piece of content I created. Your job: (1) Rate it 1–10 on hook strength, clarity, and CTA, (2) Identify the single weakest element, (3) Rewrite only that element — don't touch the rest, (4) Explain why your version is stronger. Here's the content: <span class="bracket">[PASTE YOUR CONTENT]</span></div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Run this on every piece of content before publishing. The single-element rewrite keeps your voice intact.</div>
+      </div>
+
+      <div class="prompt-card pc-cyan">
+        <div class="prompt-label">Prompt 04 · Batch Creation</div>
+        <div class="prompt-title">30 Days of Content in One Prompt</div>
+        <div class="prompt-text">Create a 30-day content plan for a <span class="bracket">[NICHE]</span> creator on YouTube. Format: Day number · Content type (Long-form/Short/Community post) · Topic title · Primary keyword · Hook line. Make 20 long-form, 8 Shorts, 2 community polls. Focus on topical authority — cluster related topics in the same week.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Batch this once per month. Export the table and drop it into your content calendar.</div>
+      </div>
+
+      <div class="prompt-card pc-cyan" style="grid-column: span 2;">
+        <div class="prompt-label">Prompt 05 · Master Workflow</div>
+        <div class="prompt-title">The CFS Content Operating System</div>
+        <div class="prompt-text">You are my AI content strategist. My channel is about <span class="bracket">[NICHE]</span>. My target viewer is <span class="bracket">[AUDIENCE]</span>. My income goal is <span class="bracket">[GOAL]</span>. Each week I'll give you a topic and you'll produce: a YouTube title (3 options), thumbnail text (under 5 words), full video script outline (hook + 3 main points + CTA), one Short script, and an email to my list announcing the video. Confirm you understand and ask me for this week's topic.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Save this as a custom instruction or pin it at the start of every new chat. This is your weekly operating system.</div>
+      </div>
+
+    </div>
+
+    <div class="pro-tip-block">
+      <div class="pro-tip-icon">⚡</div>
+      <div>
+        <div class="pro-tip-title">// PRO TIP — CHAIN LIKE A PRO</div>
+        <div class="pro-tip-text">The secret to advanced prompting isn't longer prompts — it's <strong>connected prompts</strong>. End each prompt with "Wait for my input before continuing." Then feed the output of step 1 as context into step 2. This keeps AI focused and prevents hallucination drift across long outputs.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CATEGORY 2: CLIENT-FACING COPY & PITCH FRAMEWORKS -->
+<div class="section">
+  <div class="section-eyebrow">// CATEGORY 02 OF 05</div>
+  <div class="section-title">Client-Facing Copy &amp; <span>Pitch Frameworks</span></div>
+
+  <div class="category-block">
+    <div class="cat-header">
+      <span class="cat-num">CAT 02</span>
+      <div>
+        <div class="cat-title">💼 Get Paid as a Creator</div>
+        <div class="cat-desc">Proposals, pitches, and copy that converts browsers into buyers</div>
+      </div>
+    </div>
+
+    <div class="prompts-grid">
+
+      <div class="prompt-card pc-yellow">
+        <div class="prompt-label">Prompt 06 · Brand Deal Pitch</div>
+        <div class="prompt-title">Cold Outreach to Brands</div>
+        <div class="prompt-text">Write a cold outreach email from a YouTube creator pitching a brand deal. Creator: <span class="bracket">[YOUR STATS/NICHE]</span>. Brand: <span class="bracket">[BRAND NAME + PRODUCT]</span>. Make it: under 150 words, lead with what's in it for them (not your stats), include one specific idea for how their product fits my content, end with a soft CTA to a 15-min call. No fluff. No "I hope this email finds you well."</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Personalize the "specific idea" line for every brand. That one line is what gets replies.</div>
+      </div>
+
+      <div class="prompt-card pc-yellow">
+        <div class="prompt-label">Prompt 07 · Freelance Proposal</div>
+        <div class="prompt-title">AI-Powered Service Proposal</div>
+        <div class="prompt-text">Write a freelance service proposal for a client who needs <span class="bracket">[SERVICE TYPE]</span>. Include: a one-paragraph problem statement (using their language), 3 deliverables with clear scope, a timeline, a price anchor with 2 tiers (standard and premium), and a risk reversal statement. Tone: confident, professional, no jargon. Client's industry: <span class="bracket">[INDUSTRY]</span>.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">The two-tier pricing anchor makes the premium feel like a deal. Always include it.</div>
+      </div>
+
+      <div class="prompt-card pc-yellow">
+        <div class="prompt-label">Prompt 08 · Sales Page Copy</div>
+        <div class="prompt-title">High-Converting Sales Page Structure</div>
+        <div class="prompt-text">Write a sales page for a digital product using this structure: (1) Headline — outcome-focused, (2) Subheadline — who it's for, (3) Problem section — agitate the pain, (4) Solution — introduce the product, (5) What's inside — bullet list, (6) Social proof placeholder, (7) Price + value stack, (8) Guarantee, (9) CTA. Product: <span class="bracket">[PRODUCT NAME + DESCRIPTION]</span>. Price: <span class="bracket">[PRICE]</span>. Audience: <span class="bracket">[WHO IT'S FOR]</span>.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Use this for Gumroad, Payhip, or your own site. The value stack section alone can justify 3x your price.</div>
+      </div>
+
+      <div class="prompt-card pc-yellow">
+        <div class="prompt-label">Prompt 09 · Testimonial Mining</div>
+        <div class="prompt-title">Turn Reviews Into Sales Copy</div>
+        <div class="prompt-text">I'm going to paste 5 customer reviews for my product. Your job: (1) Identify the 3 strongest emotional phrases, (2) Rewrite them as bullet points for a sales page (keep the customer's words as close as possible), (3) Write a headline using the most repeated outcome across the reviews. Here are the reviews: <span class="bracket">[PASTE REVIEWS]</span></div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Your customers write better copy than you do. This prompt extracts it automatically.</div>
+      </div>
+
+      <div class="prompt-card pc-yellow" style="grid-column: span 2;">
+        <div class="prompt-label">Prompt 10 · Objection Crusher</div>
+        <div class="prompt-title">Handle Every Sales Objection</div>
+        <div class="prompt-text">I sell <span class="bracket">[PRODUCT/SERVICE]</span> for <span class="bracket">[PRICE]</span> to <span class="bracket">[AUDIENCE]</span>. List the 5 most common objections my customers have before buying. For each objection: (1) State the objection as the customer would say it, (2) Write a 2–3 sentence response that addresses it without being defensive, (3) Suggest where in my sales process to place this response (sales page, FAQ, email sequence, etc.).</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Add these responses to your FAQ section. Answering objections before they're raised is what separates 1% conversion pages from 5%+ pages.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CATEGORY 3: AI AUTOMATION PROMPTS -->
+<div class="section">
+  <div class="section-eyebrow">// CATEGORY 03 OF 05</div>
+  <div class="section-title">AI Automation &amp; <span>Loop Engineering</span></div>
+
+  <div class="category-block">
+    <div class="cat-header">
+      <span class="cat-num">CAT 03</span>
+      <div>
+        <div class="cat-title">🔁 Work Less. Output More.</div>
+        <div class="cat-desc">Prompts that build systems, not just outputs — your creator autopilot</div>
+      </div>
+    </div>
+
+    <div class="prompts-grid">
+
+      <div class="prompt-card pc-fire">
+        <div class="prompt-label">Prompt 11 · SOP Builder</div>
+        <div class="prompt-title">Turn Any Process Into a System</div>
+        <div class="prompt-text">I'm going to describe how I currently do <span class="bracket">[TASK/PROCESS]</span>. Your job: (1) Identify the 3 biggest time wasters in my current process, (2) Rewrite it as a numbered SOP (Standard Operating Procedure) with clear steps, (3) Flag which steps could be replaced or accelerated with AI tools, (4) Give me the exact prompt I should use for the AI-assisted steps. Here's my current process: <span class="bracket">[DESCRIBE YOUR PROCESS]</span></div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Use this on your top 3 recurring tasks first. Most creators waste 60% of their time on things AI can do in 30 seconds.</div>
+      </div>
+
+      <div class="prompt-card pc-fire">
+        <div class="prompt-label">Prompt 12 · Email Automation</div>
+        <div class="prompt-title">5-Email Welcome Sequence</div>
+        <div class="prompt-text">Write a 5-email welcome sequence for new subscribers to my <span class="bracket">[NICHE]</span> email list. Email 1: Welcome + deliver the freebie. Email 2 (Day 2): My story — why I started. Email 3 (Day 4): Best free resource I've made. Email 4 (Day 6): Introduce my paid product <span class="bracket">[PRODUCT NAME + PRICE]</span>. Email 5 (Day 8): Soft close + FAQ. Tone: conversational, direct, no corporate fluff. Subject lines must be under 7 words.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Set this up once in MailerLite and it runs forever. Email 4 and 5 will generate passive sales on autopilot.</div>
+      </div>
+
+      <div class="prompt-card pc-fire">
+        <div class="prompt-label">Prompt 13 · Content Recycler</div>
+        <div class="prompt-title">Extract Maximum Value From One Video</div>
+        <div class="prompt-text">Here is the transcript from my YouTube video: <span class="bracket">[PASTE TRANSCRIPT]</span>. Extract and create: (1) 3 YouTube community post ideas, (2) 5 tweet-length insights (under 280 chars each), (3) 1 LinkedIn carousel outline (5 slides), (4) 1 email newsletter from the key takeaway, (5) 3 video title alternatives if I were to repurpose this as a new video. Format each section clearly.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">One video should power 2 weeks of content across platforms. This prompt does it in under 5 minutes.</div>
+      </div>
+
+      <div class="prompt-card pc-fire">
+        <div class="prompt-label">Prompt 14 · SEO Automation</div>
+        <div class="prompt-title">Full SEO Package from One Topic</div>
+        <div class="prompt-text">Give me a complete SEO package for a YouTube video about <span class="bracket">[TOPIC]</span>. Include: (1) Primary keyword + 4 LSI keywords, (2) Optimized title (2 options — clickbait and search-optimized), (3) Description (first 150 chars hook + full 500-char description with keywords), (4) 15 tags, (5) 3 suggested chapters with timestamps. Target audience: <span class="bracket">[AUDIENCE]</span>.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Copy the description straight into YouTube. The chapter format gets featured snippets on Google.</div>
+      </div>
+
+      <div class="prompt-card pc-fire" style="grid-column: span 2;">
+        <div class="prompt-label">Prompt 15 · Analytics Interpreter</div>
+        <div class="prompt-title">Turn YouTube Stats Into Action</div>
+        <div class="prompt-text">I'm going to share my YouTube video analytics. Analyze them and tell me: (1) What the CTR tells me about my packaging, (2) What the average view duration tells me about my content quality, (3) The single biggest lever to improve for my next video, (4) One hypothesis I should test in my next upload. Analytics: CTR <span class="bracket">[X%]</span> · AVD <span class="bracket">[X:XX / X%]</span> · Views <span class="bracket">[X]</span> · Impressions <span class="bracket">[X]</span> · Top traffic source <span class="bracket">[SOURCE]</span>.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Run this after every upload. Diagnosing what broke before moving on is how you compound channel growth.</div>
+      </div>
+
+    </div>
+
+    <div class="pro-tip-block">
+      <div class="pro-tip-icon">🔁</div>
+      <div>
+        <div class="pro-tip-title">// PRO TIP — BUILD ONCE, RUN FOREVER</div>
+        <div class="pro-tip-text">The creators winning with AI aren't using it to create individual pieces — they're using it to build <strong>reusable systems</strong>. Save your best prompts as custom instructions or pinned messages. The goal: open a new chat, drop in your content, and get a full week of output in one session.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CATEGORY 4: SCALE-FOCUSED INCOME PROMPTS -->
+<div class="section">
+  <div class="section-eyebrow">// CATEGORY 04 OF 05</div>
+  <div class="section-title">Scale-Focused <span>Income Systems</span></div>
+
+  <div class="category-block">
+    <div class="cat-header">
+      <span class="cat-num">CAT 04</span>
+      <div>
+        <div class="cat-title">📈 From First Dollar to First $10K</div>
+        <div class="cat-desc">Prompts built specifically to turn your content into revenue — not just views</div>
+      </div>
+    </div>
+
+    <div class="prompts-grid">
+
+      <div class="prompt-card pc-steel">
+        <div class="prompt-label">Prompt 16 · Affiliate Strategy</div>
+        <div class="prompt-title">Affiliate Stack Optimizer</div>
+        <div class="prompt-text">I create content about <span class="bracket">[NICHE]</span>. My audience is <span class="bracket">[AUDIENCE DESCRIPTION]</span>. Recommend 6 affiliate programs I should promote, ranked by: (1) commission rate, (2) audience fit, (3) recurring vs one-time. For each: name the program, explain why it fits my audience, and give me the opening line I'd use to introduce it naturally in a video. Avoid programs that require 100K+ followers to get approved.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Recurring commissions are worth 5x a one-time payout over 12 months. Prioritize them every time.</div>
+      </div>
+
+      <div class="prompt-card pc-steel">
+        <div class="prompt-label">Prompt 17 · Product Ladder</div>
+        <div class="prompt-title">Build Your Full Income Stack</div>
+        <div class="prompt-text">Based on my niche (<span class="bracket">[NICHE]</span>) and audience (<span class="bracket">[AUDIENCE]</span>), design a 4-tier product ladder: (1) Free lead magnet — what it is and what it teaches, (2) Low-ticket offer $7–$27 — what it is and how it's delivered, (3) Mid-ticket offer $97–$197 — format and promise, (4) High-ticket offer $497+ — what transformation it delivers. Make each tier a natural next step from the last.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">You don't need all 4 tiers on day 1. Start with the freebie and the low-ticket. Add tiers as your audience grows.</div>
+      </div>
+
+      <div class="prompt-card pc-steel">
+        <div class="prompt-label">Prompt 18 · Launch Sequence</div>
+        <div class="prompt-title">7-Day Product Launch Email Campaign</div>
+        <div class="prompt-text">Write a 7-day email launch sequence for my new product: <span class="bracket">[PRODUCT NAME]</span> at <span class="bracket">[PRICE]</span>. Structure: Day 1 — Tease (problem-focused), Day 2 — Story (how I built this), Day 3 — What's inside (features → benefits), Day 4 — Social proof (placeholder testimonials), Day 5 — Objections (address top 3), Day 6 — Urgency (closing tomorrow), Day 7 — Last chance + FAQ. Include subject lines for every email.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Day 6 and 7 typically drive 40–60% of launch revenue. Don't skip the urgency emails because they feel pushy.</div>
+      </div>
+
+      <div class="prompt-card pc-steel">
+        <div class="prompt-label">Prompt 19 · Passive Income Audit</div>
+        <div class="prompt-title">Find Hidden Money in Your Content</div>
+        <div class="prompt-text">I've been creating content about <span class="bracket">[NICHE]</span> for <span class="bracket">[TIME PERIOD]</span>. Here's what I currently do: <span class="bracket">[LIST YOUR INCOME STREAMS OR "NONE YET"]</span>. Audit my situation and identify: (1) The 3 fastest paths to my first $500/month from content, (2) One thing I'm likely leaving money on the table with right now, (3) The exact next step I should take this week. Be specific, not general.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Run this audit every 90 days. Your best income stream 6 months from now probably doesn't exist yet.</div>
+      </div>
+
+      <div class="prompt-card pc-steel" style="grid-column: span 2;">
+        <div class="prompt-label">Prompt 20 · Pricing Psychology</div>
+        <div class="prompt-title">Price Your Offer to Maximize Revenue</div>
+        <div class="prompt-text">I'm pricing a digital product for <span class="bracket">[AUDIENCE]</span> that delivers <span class="bracket">[TRANSFORMATION/OUTCOME]</span>. It includes: <span class="bracket">[LIST WHAT'S INCLUDED]</span>. Using pricing psychology principles (anchoring, charm pricing, value stacking), recommend: (1) The ideal price point, (2) How to frame the value stack to justify it, (3) A "most popular" tier if I were to offer 2–3 options, (4) The exact price display format ($XX vs $XX.00 vs "Just $XX").</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Most creators underprice by 2–3x. The right price is the one that makes your best customers say "that's a no-brainer" — not "that's cheap."</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CATEGORY 5: EXCLUSIVE FRAMEWORKS -->
+<div class="section">
+  <div class="section-eyebrow">// CATEGORY 05 OF 05</div>
+  <div class="section-title">Exclusive Frameworks <span>Not in Vol. 1</span></div>
+
+  <div class="category-block">
+    <div class="cat-header">
+      <span class="cat-num">CAT 05</span>
+      <div>
+        <div class="cat-title">🔒 Advanced Creator Frameworks</div>
+        <div class="cat-desc">Proprietary CFS frameworks for positioning, growth, and content strategy</div>
+      </div>
+    </div>
+
+    <div class="prompts-grid">
+
+      <div class="prompt-card pc-purple">
+        <div class="prompt-label">Prompt 21 · Positioning Framework</div>
+        <div class="prompt-title">The "Only I" Positioning Statement</div>
+        <div class="prompt-text">Help me build an "Only I" positioning statement for my creator brand. My niche: <span class="bracket">[NICHE]</span>. My background/experience: <span class="bracket">[YOUR STORY/SKILLS]</span>. My audience: <span class="bracket">[WHO YOU HELP]</span>. Complete this for me: "I'm the only creator who [UNIQUE METHOD] to help [AUDIENCE] achieve [OUTCOME] without [COMMON OBJECTION]." Give me 5 versions, ranked from weakest to strongest.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Put your strongest version in your YouTube About section and every social bio. Positioning is the most leveraged thing you can do — it does the selling before the sale.</div>
+      </div>
+
+      <div class="prompt-card pc-purple">
+        <div class="prompt-label">Prompt 22 · Hook Engineering</div>
+        <div class="prompt-title">The 3-Layer Hook System</div>
+        <div class="prompt-text">Write 10 video hooks for a video about <span class="bracket">[TOPIC]</span> targeting <span class="bracket">[AUDIENCE]</span>. Use these 5 hook frameworks (2 each): (1) Counterintuitive statement ("Most people think X… but actually Y"), (2) Specific number hook ("I made $X in 30 days by doing only this"), (3) Mistake-based hook ("The biggest mistake I see creators make with X"), (4) Result-first hook (lead with the outcome, build to the method), (5) Story hook (single-sentence story that creates open loops). Label each hook with its framework.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Test 2 hooks as A/B thumbnails. The hook that wins as a title almost always wins as a thumbnail text too.</div>
+      </div>
+
+      <div class="prompt-card pc-purple">
+        <div class="prompt-label">Prompt 23 · Audience Mirror</div>
+        <div class="prompt-title">Talk Exactly Like Your Audience</div>
+        <div class="prompt-text">I create content for <span class="bracket">[AUDIENCE]</span> who want to <span class="bracket">[DESIRED OUTCOME]</span>. Their biggest frustration is <span class="bracket">[MAIN PAIN POINT]</span>. Write a 200-word "voice of customer" profile that describes: how they talk about their problem (in their own words), what words and phrases they use vs. avoid, their biggest dream outcome in 1 sentence, and the thing they've already tried that didn't work. I'll use this to write content that sounds like I'm reading their mind.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Paste this profile at the start of every content creation session. It forces AI to write for your actual audience, not a generic one.</div>
+      </div>
+
+      <div class="prompt-card pc-purple">
+        <div class="prompt-label">Prompt 24 · Channel Strategy</div>
+        <div class="prompt-title">The 90-Day Channel Growth Blueprint</div>
+        <div class="prompt-text">I'm a YouTube creator in <span class="bracket">[NICHE]</span> with <span class="bracket">[SUBSCRIBER COUNT]</span> subscribers and <span class="bracket">[AVERAGE VIEWS/VIDEO]</span> average views. My goal is to reach <span class="bracket">[SUBSCRIBER GOAL]</span> in 90 days. Design a 90-day growth plan: (1) Weeks 1–4 strategy, (2) Weeks 5–8 strategy, (3) Weeks 9–12 strategy, (4) The single metric to focus on each phase, (5) What I should stop doing immediately. Be brutally honest about what the data suggests.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">Re-run this every 90 days with updated stats. The plan changes as you grow — what works at 500 subs breaks at 5K.</div>
+      </div>
+
+      <div class="prompt-card pc-purple" style="grid-column: span 2;">
+        <div class="prompt-label">Prompt 25 · The CFS Master Prompt</div>
+        <div class="prompt-title">Your Personalized AI Creator Assistant</div>
+        <div class="prompt-text">You are my personal AI creator assistant. Here's everything you need to know about me: Name: <span class="bracket">[NAME]</span>. Channel/brand: <span class="bracket">[BRAND NAME]</span>. Niche: <span class="bracket">[NICHE]</span>. Target audience: <span class="bracket">[AUDIENCE]</span>. Current stats: <span class="bracket">[SUBS/VIEWS/EMAIL LIST SIZE]</span>. Income goal: <span class="bracket">[MONTHLY GOAL]</span>. Biggest challenge right now: <span class="bracket">[MAIN STRUGGLE]</span>. Products/offers: <span class="bracket">[WHAT YOU SELL OR "NONE YET"]</span>. When I ask you questions, always factor in my niche, audience, and goals. Never give generic advice. Ask clarifying questions if you need more context. Start by analyzing my situation and giving me my single most important next move.</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">⎘ Copy Prompt</button>
+        <div class="prompt-tip">This is the crown jewel. Fill in your details once and save it. Start every strategy session with this prompt — the AI knows your whole situation and gives advice that actually fits your stage.</div>
+      </div>
+
+    </div>
+
+    <div class="pro-tip-block">
+      <div class="pro-tip-icon">🔒</div>
+      <div>
+        <div class="pro-tip-title">// PRO TIP — STACK THESE PROMPTS</div>
+        <div class="pro-tip-text">The creators who get the most out of this pack don't use one prompt at a time — they <strong>stack them into sessions</strong>. Start with Prompt 25 (your assistant setup), then run Prompt 23 (audience mirror), then feed both outputs into Prompt 22 (hooks). That's a full content strategy session in under 20 minutes. Want all 50 prompts from Vol. 1 + Vol. 2 in one place? Grab the full book below.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DOWNLOAD AGAIN -->
+<div class="section" style="text-align:center; padding-top: 48px; padding-bottom: 64px;">
+  <div class="section-eyebrow" style="text-align:center;">// SAVE THIS FOR LATER</div>
+  <div class="section-title" style="text-align:center; margin-bottom: 16px;">Download &amp; <span>Keep This Pack</span></div>
+  <p style="color: var(--steel); font-size: 14px; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto;">Save this page as an HTML file to your computer so you have all 25 prompts available offline — no login, no account, always accessible.</p>
+  <a href="prompt-pack-vol-2.html" download="CFS-Prompt-Pack-Vol-2.html" class="dl-btn" style="font-size: 11px; padding: 14px 32px;">⬇ &nbsp;Download CFS Prompt Pack Vol. 2</a>
+  <p style="font-size: 11px; color: var(--dim); margin-top: 16px;">Free HTML file · No account needed · Works offline</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- BOOK UPSELL -->
+<div class="upsell-strip">
+  <div class="upsell-inner">
+    <div class="upsell-book">
+      <img src="book-cover.png" alt="Prompt Like a Pro">
+    </div>
+    <div class="upsell-content">
+      <div class="eyebrow">// WANT ALL 100 PROMPTS?</div>
+      <h2>Grab the Full Book: <span>Prompt Like a Pro</span></h2>
+      <p>Vol. 1 + Vol. 2 represent 50 of the 100 prompts in the full book — each with the exact text, a real-world example, and how it was actually used to build ContentForge Studio. Get all 100 on Amazon.</p>
+      <a href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20" target="_blank" rel="noopener" class="upsell-btn">📖 &nbsp;Get It on Amazon</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-copy">© 2026 CONTENTFORGESTUDIO.COM</p>
+  <div class="footer-links">
+    <a href="https://contentforgestudio.com">Home</a>
+    <a href="https://contentforgestudio.com/guides">Free Guides</a>
+    <a href="https://youtube.com/@TheContentForgeStudio" target="_blank">YouTube</a>
+    <a href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20" target="_blank">Book</a>
+    <a href="https://contentforgestudio.com/privacy">Privacy Policy</a>
+  </div>
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const btn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => { btn.style.display = window.scrollY > 400 ? 'flex' : 'none'; });
+
+function copyPrompt(button) {
+  const card = button.closest('.prompt-card');
+  const text = card.querySelector('.prompt-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    button.textContent = '✓ Copied!';
+    button.classList.add('copied');
+    setTimeout(() => { button.textContent = '⎘ Copy Prompt'; button.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
