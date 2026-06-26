@@ -134,7 +134,31 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
 #backToTop { position: fixed; bottom: 32px; right: 32px; z-index: 999; width: 48px; height: 48px; border-radius: 50%; background: var(--cyan); border: none; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(56,217,245,0.4); font-size: 20px; transition: background 0.2s, transform 0.2s; }
 #backToTop:hover { background: var(--yellow); transform: translateY(-2px); }
 
-@media(max-width: 900px) {
+/* Vault card */
+.vault-card { background: linear-gradient(135deg, rgba(232,255,71,0.04), rgba(255,92,26,0.03)), var(--card); border: 1px solid rgba(232,255,71,0.18); border-radius: 16px; overflow: hidden; display: grid; grid-template-columns: 1fr 320px; position: relative; }
+.vault-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--yellow), var(--fire), var(--cyan)); }
+.vault-card-left { padding: 36px 36px 36px 36px; }
+.vault-card-right { background: rgba(7,7,14,0.6); border-left: 1px solid rgba(232,255,71,0.1); padding: 36px 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 16px; }
+.vault-badge { display: inline-flex; align-items: center; gap: 6px; font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 2px; padding: 5px 14px; border-radius: 20px; margin-bottom: 14px; background: rgba(232,255,71,0.1); color: var(--yellow); border: 1px solid rgba(232,255,71,0.25); }
+.vault-title { font-family: 'Orbitron', monospace; font-size: 22px; font-weight: 900; color: var(--white); line-height: 1.2; margin-bottom: 6px; }
+.vault-subtitle { font-family: 'Orbitron', monospace; font-size: 9px; color: var(--yellow); letter-spacing: 3px; margin-bottom: 16px; opacity: 0.8; }
+.vault-desc { font-size: 13px; color: var(--steel); font-weight: 300; line-height: 1.8; margin-bottom: 20px; max-width: 520px; }
+.vault-includes { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; margin-bottom: 20px; }
+.vault-includes li { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #a0b0c8; }
+.vault-includes li::before { content: '▸'; color: var(--yellow); font-size: 10px; flex-shrink: 0; }
+.vault-note { font-size: 11px; color: var(--dim); line-height: 1.65; font-style: italic; }
+.vault-price-block { margin-bottom: 8px; }
+.vault-price-label { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 3px; color: var(--steel); margin-bottom: 6px; }
+.vault-price { font-family: 'Orbitron', monospace; font-size: 56px; font-weight: 900; color: var(--yellow); line-height: 1; }
+.vault-price-sub { font-size: 11px; color: var(--steel); margin-top: 6px; }
+.vault-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--yellow); color: #000; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; transition: background 0.2s, transform 0.2s; width: 100%; animation: vaultPulse 2.5s ease-in-out infinite; }
+.vault-btn:hover { background: #fff; transform: translateY(-2px); animation: none; }
+@keyframes vaultPulse { 0% { box-shadow: 0 0 0 0 rgba(232,255,71,0.5); } 70% { box-shadow: 0 0 0 14px rgba(232,255,71,0); } 100% { box-shadow: 0 0 0 0 rgba(232,255,71,0); } }
+.vault-btn-note { font-size: 10px; color: var(--dim); line-height: 1.5; }
+.vault-includes-mini { display: flex; gap: 8px; font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 1px; color: var(--dim); flex-wrap: wrap; justify-content: center; }
+@media(max-width:900px) { .vault-card { grid-template-columns: 1fr; } .vault-card-right { border-left: none; border-top: 1px solid rgba(232,255,71,0.1); } .vault-includes { grid-template-columns: 1fr; } }
+
+
   nav { padding: 0 20px; }
   .page-hero { padding: 90px 24px 48px; }
   .guides-section { padding: 60px 24px; }
@@ -166,6 +190,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
   <div class="nav-right">
     <a href="https://contentforgestudio.com#tools" class="nav-link">Free Tools</a>
     <a href="https://contentforgestudio.com#videos" class="nav-link">Videos</a>
+    <a href="https://contentforgestudio.com/vault-store" class="nav-link" style="color:var(--yellow);">Vault Store</a>
     <a href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20" target="_blank" class="nav-link">Book</a>
     <a href="https://contentforgestudio.com" class="nav-link nav-cta">Home</a>
   </div>
@@ -457,6 +482,20 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
       </div>
     </div>
 
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- VAULT STORE STRIP -->
+<div class="upsell-strip" style="background:linear-gradient(135deg,rgba(232,255,71,0.05),rgba(7,7,14,0) 60%),var(--deep);border-top:1px solid rgba(232,255,71,0.1);border-bottom:1px solid rgba(232,255,71,0.1);">
+  <div class="upsell-inner">
+    <div class="upsell-content" style="max-width:100%;">
+      <div class="eyebrow" style="color:var(--yellow);">// LOOKING FOR PAID PRODUCTS?</div>
+      <h2>Visit the <span style="color:var(--yellow);">Vault Store</span></h2>
+      <p>Books, bundles, apps, and services — everything CFS has built to help you turn AI into income. The free guides are always here. The Vault Store is where the paid products live.</p>
+      <a href="https://contentforgestudio.com/vault-store" class="upsell-btn" style="background:var(--yellow);color:#000;">🔒 &nbsp;Browse the Vault Store</a>
+    </div>
   </div>
 </div>
 

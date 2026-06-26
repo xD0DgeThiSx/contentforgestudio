@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Creator Starter Vault — $1 Bundle · ContentForgeStudio.com</title>
+<meta name="description" content="The AI Creator Starter Vault — 7 CFS guides, prompt packs, and creator resources bundled into one organized download for $1.">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow: #e8ff47;
+  --fire:   #ff5c1a;
+  --cyan:   #38d9f5;
+  --black:  #07070e;
+  --deep:   #0d0d1c;
+  --card:   #141428;
+  --border: rgba(56,217,245,0.12);
+  --steel:  #8090b0;
+  --dim:    #3a3a5a;
+  --white:  #f0f0ff;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Raleway', sans-serif; font-size: 15px; line-height: 1.7; overflow-x: hidden; min-height: 100vh; }
+
+.bg-layer { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(56,217,245,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(56,217,245,0.03) 1px, transparent 1px); background-size: 56px 56px; animation: gridDrift 60s linear infinite; }
+@keyframes gridDrift { 0% { background-position: 0 0; } 100% { background-position: 56px 56px; } }
+.bg-glow { position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 900px; height: 900px; background: radial-gradient(circle, rgba(232,255,71,0.04) 0%, transparent 65%); }
+
+/* Nav */
+nav { position: relative; z-index: 10; padding: 0 52px; height: 68px; display: flex; align-items: center; justify-content: space-between; background: rgba(7,7,14,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-mark { width: 36px; height: 36px; border: 2px solid var(--cyan); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.nav-mark img { width: 34px; height: 34px; object-fit: contain; border-radius: 50%; }
+.nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
+.nav-top { font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; color: var(--white); letter-spacing: 1px; }
+.nav-bottom { font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; color: var(--cyan); letter-spacing: 1px; }
+.nav-studio { font-family: 'Raleway', sans-serif; font-size: 8px; letter-spacing: 4px; color: var(--steel); text-transform: uppercase; margin-top: 2px; }
+.nav-right { display: flex; gap: 24px; align-items: center; }
+.nav-link { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 2px; color: var(--steel); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+.nav-link:hover { color: var(--cyan); }
+.nav-cta { background: var(--cyan); color: #000; padding: 8px 20px; border-radius: 4px; font-weight: 700; }
+.nav-cta:hover { background: var(--yellow); }
+
+.divider { width: calc(100% - 104px); height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 52px; position: relative; z-index: 1; }
+
+/* Hero */
+.vault-hero { position: relative; z-index: 1; padding: 100px 52px 72px; text-align: center; }
+.hero-eyebrow { font-family: 'Orbitron', monospace; font-size: 10px; letter-spacing: 6px; color: var(--yellow); margin-bottom: 20px; opacity: 0.8; }
+.hero-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(232,255,71,0.08); border: 1px solid rgba(232,255,71,0.2); border-radius: 24px; padding: 8px 22px; margin-bottom: 28px; font-family: 'Orbitron', monospace; font-size: 10px; letter-spacing: 3px; color: var(--yellow); }
+.hero-title { font-family: 'Orbitron', monospace; font-size: clamp(30px, 5vw, 58px); font-weight: 900; line-height: 1.05; letter-spacing: -1px; margin-bottom: 16px; }
+.hero-title .hl { color: var(--yellow); }
+.hero-sub { font-size: 17px; color: var(--steel); max-width: 600px; margin: 0 auto 48px; font-weight: 300; line-height: 1.85; }
+.hero-price-row { display: flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
+.hero-price { font-family: 'Orbitron', monospace; font-size: 72px; font-weight: 900; color: var(--yellow); line-height: 1; }
+.hero-price-detail { text-align: left; }
+.hero-price-detail strong { display: block; font-family: 'Orbitron', monospace; font-size: 12px; letter-spacing: 2px; color: var(--white); margin-bottom: 4px; }
+.hero-price-detail span { font-size: 12px; color: var(--steel); }
+.hero-cta-group { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.cta-primary { display: inline-flex; align-items: center; gap: 12px; background: var(--yellow); color: #000; text-decoration: none; padding: 18px 40px; border-radius: 8px; font-family: 'Orbitron', monospace; font-size: 13px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; transition: background 0.2s, transform 0.2s; animation: vaultPulse 2.5s ease-in-out infinite; }
+.cta-primary:hover { background: #fff; transform: translateY(-3px); animation: none; box-shadow: 0 8px 32px rgba(232,255,71,0.25); }
+@keyframes vaultPulse { 0% { box-shadow: 0 0 0 0 rgba(232,255,71,0.5); } 70% { box-shadow: 0 0 0 16px rgba(232,255,71,0); } 100% { box-shadow: 0 0 0 0 rgba(232,255,71,0); } }
+.cta-secondary { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 2px; color: var(--steel); text-decoration: none; transition: color 0.2s; border-bottom: 1px solid var(--dim); padding-bottom: 2px; }
+.cta-secondary:hover { color: var(--cyan); border-color: var(--cyan); }
+.cta-note { font-size: 11px; color: var(--dim); margin-top: 4px; }
+
+/* What's inside */
+.section { position: relative; z-index: 1; padding: 72px 52px; max-width: 1100px; margin: 0 auto; }
+.section-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--cyan); margin-bottom: 12px; opacity: 0.7; }
+.section-title { font-family: 'Orbitron', monospace; font-size: clamp(20px, 3vw, 30px); font-weight: 800; margin-bottom: 40px; }
+.section-title span { color: var(--yellow); }
+
+.vault-items { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 32px; }
+.vault-item { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; display: flex; gap: 16px; align-items: flex-start; transition: border-color 0.2s; position: relative; overflow: hidden; }
+.vault-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+.vi-cyan::before { background: linear-gradient(90deg, var(--cyan), transparent); }
+.vi-yellow::before { background: linear-gradient(90deg, var(--yellow), transparent); }
+.vi-fire::before { background: linear-gradient(90deg, var(--fire), transparent); }
+.vi-steel::before { background: linear-gradient(90deg, var(--steel), transparent); }
+.vault-item:hover { border-color: rgba(232,255,71,0.2); }
+.vi-icon { font-size: 28px; flex-shrink: 0; line-height: 1; }
+.vi-body {}
+.vi-title { font-family: 'Orbitron', monospace; font-size: 12px; font-weight: 700; color: var(--white); margin-bottom: 4px; line-height: 1.3; }
+.vi-desc { font-size: 12px; color: var(--steel); line-height: 1.6; }
+.vi-free { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 1px; color: var(--cyan); margin-top: 6px; }
+
+/* Transparency block */
+.transparency { background: linear-gradient(135deg, rgba(56,217,245,0.04), rgba(7,7,14,0)), var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 36px 40px; margin-bottom: 0; }
+.transparency-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 4px; color: var(--cyan); margin-bottom: 14px; opacity: 0.7; }
+.transparency h3 { font-family: 'Orbitron', monospace; font-size: 18px; font-weight: 800; margin-bottom: 16px; }
+.transparency h3 span { color: var(--cyan); }
+.transparency p { font-size: 14px; color: var(--steel); line-height: 1.85; font-weight: 300; margin-bottom: 12px; max-width: 680px; }
+.transparency p:last-child { margin-bottom: 0; }
+.transparency p strong { color: var(--white); font-weight: 600; }
+
+/* Why $1 */
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.why-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px; text-align: center; }
+.why-icon { font-size: 32px; margin-bottom: 12px; }
+.why-title { font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; color: var(--white); margin-bottom: 8px; letter-spacing: 1px; }
+.why-desc { font-size: 12px; color: var(--steel); line-height: 1.65; }
+
+/* Bottom CTA strip */
+.cta-strip { position: relative; z-index: 1; background: linear-gradient(135deg, rgba(232,255,71,0.06), rgba(7,7,14,0) 60%), var(--deep); border-top: 1px solid rgba(232,255,71,0.1); border-bottom: 1px solid rgba(232,255,71,0.1); padding: 72px 52px; text-align: center; }
+.cta-strip-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--yellow); margin-bottom: 16px; opacity: 0.8; }
+.cta-strip h2 { font-family: 'Orbitron', monospace; font-size: clamp(22px, 3.5vw, 36px); font-weight: 900; margin-bottom: 14px; }
+.cta-strip h2 span { color: var(--yellow); }
+.cta-strip p { font-size: 14px; color: var(--steel); max-width: 520px; margin: 0 auto 36px; line-height: 1.8; font-weight: 300; }
+.cta-strip-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; align-items: center; }
+.cta-strip .cta-primary { font-size: 11px; padding: 16px 36px; }
+.cta-strip-free { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 2px; color: var(--steel); text-decoration: none; border: 1px solid var(--dim); padding: 14px 28px; border-radius: 6px; transition: border-color 0.2s, color 0.2s; }
+.cta-strip-free:hover { color: var(--cyan); border-color: rgba(56,217,245,0.4); }
+
+footer { position: relative; z-index: 1; background: var(--deep); border-top: 1px solid var(--border); padding: 20px 52px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.footer-copy { font-family: 'Orbitron', monospace; font-size: 9px; color: var(--dim); letter-spacing: 2px; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 12px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--cyan); }
+
+#backToTop { position: fixed; bottom: 32px; right: 32px; z-index: 999; width: 48px; height: 48px; border-radius: 50%; background: var(--yellow); color: #000; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(232,255,71,0.4); font-size: 20px; transition: background 0.2s, transform 0.2s; }
+#backToTop:hover { background: #fff; transform: translateY(-2px); }
+
+@media(max-width:900px) {
+  nav, .vault-hero, .cta-strip { padding-left: 24px; padding-right: 24px; }
+  .vault-hero { padding-top: 80px; }
+  .section { padding: 56px 24px; }
+  .vault-items { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; padding: 20px 24px; }
+  .divider { width: calc(100% - 48px); margin: 0 24px; }
+  .hero-price { font-size: 52px; }
+  .cta-strip-btns { flex-direction: column; }
+  .transparency { padding: 28px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-layer">
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+</div>
+
+<nav>
+  <a href="https://contentforgestudio.com" class="nav-logo">
+    <div class="nav-mark">
+      <img src="CFS Logo_FINAL.png" alt="CFS Logo">
+    </div>
+    <div class="nav-wordmark">
+      <div style="display:flex;"><span class="nav-top">CONTENT</span><span class="nav-bottom">FORGE</span></div>
+      <div class="nav-studio">STUDIO</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="https://contentforgestudio.com/guides" class="nav-link">Free Guides</a>
+    <a href="https://youtube.com/@TheContentForgeStudio" target="_blank" class="nav-link">YouTube</a>
+    <a href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20" target="_blank" class="nav-link">Book</a>
+    <a href="https://contentforgestudio.com" class="nav-link nav-cta">Home</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="vault-hero">
+  <div class="hero-eyebrow">// CONTENTFORGESTUDIO.COM · BUNDLE</div>
+  <div class="hero-badge">🔒 $1 CONVENIENCE BUNDLE</div>
+  <h1 class="hero-title">AI Creator<br><span class="hl">Starter Vault</span></h1>
+  <p class="hero-sub">7 CFS guides, prompt packs, checklists, and creator resources — packaged into one organized ZIP download to help you turn AI into income, faster.</p>
+  <div class="hero-price-row">
+    <div class="hero-price">$1</div>
+    <div class="hero-price-detail">
+      <strong>ONE-TIME PAYMENT</strong>
+      <span>Instant ZIP download via Gumroad</span><br>
+      <span>7 resources · No subscription · Keep forever</span>
+    </div>
+  </div>
+  <div class="hero-cta-group">
+    <a href="https://stromblad3.gumroad.com/l/ai-creator-starter-vault" target="_blank" rel="noopener" class="cta-primary">🔒 &nbsp;Get the Vault on Gumroad — $1</a>
+    <a href="https://contentforgestudio.com/guides" class="cta-secondary">Browse individual free guides instead</a>
+    <p class="cta-note">Checkout and file delivery handled by Gumroad · Secure payment</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WHAT'S INSIDE -->
+<div class="section">
+  <div class="section-eyebrow">// WHAT'S INSIDE</div>
+  <div class="section-title">Everything in <span>The Vault</span></div>
+
+  <div class="vault-items">
+    <div class="vault-item vi-fire">
+      <div class="vi-icon">🚀</div>
+      <div class="vi-body">
+        <div class="vi-title">AI Income Starter Kit</div>
+        <div class="vi-desc">The complete blueprint — 5 free AI tools, top affiliate programs, a 30-day content calendar, and your first video script template.</div>
+        <div class="vi-free">Also free at /income-starter-kit</div>
+      </div>
+    </div>
+    <div class="vault-item vi-cyan">
+      <div class="vi-icon">💡</div>
+      <div class="vi-body">
+        <div class="vi-title">25 AI Prompts for Creators</div>
+        <div class="vi-desc">25 battle-tested prompts for scripting, hooks, repurposing, offers, and titles — built for YouTube creators and side hustlers.</div>
+        <div class="vi-free">Also free at /prompts-for-creators</div>
+      </div>
+    </div>
+    <div class="vault-item vi-yellow">
+      <div class="vi-icon">💼</div>
+      <div class="vi-body">
+        <div class="vi-title">25 Battle-Tested Business Prompts</div>
+        <div class="vi-desc">Client proposals, sales copy, email sequences, and freelance frameworks — prompts that make money, not just content.</div>
+        <div class="vi-free">Also free at /prompts-business</div>
+      </div>
+    </div>
+    <div class="vault-item vi-steel">
+      <div class="vi-icon">🚀</div>
+      <div class="vi-body">
+        <div class="vi-title">CFS Prompt Pack Vol. 2</div>
+        <div class="vi-desc">25 advanced prompts — workflow chains, automation systems, income frameworks, and exclusive CFS methods not in Vol. 1.</div>
+        <div class="vi-free">Also free at /prompt-pack-vol-2</div>
+      </div>
+    </div>
+    <div class="vault-item vi-cyan">
+      <div class="vi-icon">⚙️</div>
+      <div class="vi-body">
+        <div class="vi-title">AI Creator Stack Cheat Sheet</div>
+        <div class="vi-desc">The exact tool stack used to run CFS — organized by workflow stage with free tiers, use cases, and affiliate links.</div>
+        <div class="vi-free">Also free at /creator-stack-cheat-sheet</div>
+      </div>
+    </div>
+    <div class="vault-item vi-yellow">
+      <div class="vi-icon">💰</div>
+      <div class="vi-body">
+        <div class="vi-title">AI Affiliate Program Tracker</div>
+        <div class="vi-desc">Every major AI affiliate program ranked by commission rate, cookie window, and earning potential — with a built-in tracking table.</div>
+        <div class="vi-free">Also free at /affiliate-program-tracker</div>
+      </div>
+    </div>
+    <div class="vault-item vi-fire" style="grid-column: span 2;">
+      <div class="vi-icon">📅</div>
+      <div class="vi-body">
+        <div class="vi-title">30-Day AI Content Calendar</div>
+        <div class="vi-desc">A done-for-you 30-day content plan — every day has a format, topic, and the AI prompt to create it. Built around affiliate income and product promotion. Just show up and publish.</div>
+        <div class="vi-free">Also free at /30-day-content-calendar</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TRANSPARENCY -->
+<div class="section" style="padding-top:56px;padding-bottom:56px;">
+  <div class="section-eyebrow">// HONEST BY DESIGN</div>
+  <div class="section-title">What This Is — <span>And What It Isn't</span></div>
+  <div class="transparency">
+    <div class="transparency-eyebrow">// FULL TRANSPARENCY</div>
+    <h3>The <span>Free Guides</span> Aren't Going Anywhere</h3>
+    <p>Every resource in this vault is <strong>also available individually for free</strong> on the <a href="https://contentforgestudio.com/guides" style="color:var(--cyan);text-decoration:none;">CFS Guides page</a>. Always has been. Always will be.</p>
+    <p>The Vault is a <strong>$1 convenience bundle</strong> — it packages everything into one organized ZIP so you don't have to hunt down each guide separately, download them one by one, or juggle multiple pages. One payment, one file, everything in one place.</p>
+    <p>The dollar also helps support Content Forge Studio — keeping the free guides free, the YouTube channel going, and the app in development. If that resonates with you, we appreciate it. If not, the free guides are right <a href="https://contentforgestudio.com/guides" style="color:var(--cyan);text-decoration:none;">over here</a>.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WHY $1 -->
+<div class="section" style="padding-top:56px;padding-bottom:56px;">
+  <div class="section-eyebrow">// WHY $1</div>
+  <div class="section-title">Three Reasons It <span>Costs a Dollar</span></div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">📦</div>
+      <div class="why-title">Convenience</div>
+      <div class="why-desc">One organized ZIP. No downloading 7 files from 7 pages. No sorting. Everything labeled and ready to use in under 60 seconds.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <div class="why-title">Support CFS</div>
+      <div class="why-desc">Keeping the free guides free, the channel running, and the app in development takes real time. $1 helps keep all of it going.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔗</div>
+      <div class="why-title">Skin in the Game</div>
+      <div class="why-desc">People who invest — even $1 — actually use what they download. This vault is built to be used, not forgotten in a downloads folder.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- BOTTOM CTA -->
+<div class="cta-strip">
+  <div class="cta-strip-eyebrow">// READY TO GRAB IT?</div>
+  <h2>Get the <span>AI Creator Starter Vault</span></h2>
+  <p>7 resources. One organized ZIP. One dollar. Checkout and delivery handled by Gumroad — secure, instant, no account required.</p>
+  <div class="cta-strip-btns">
+    <a href="https://stromblad3.gumroad.com/l/ai-creator-starter-vault" target="_blank" rel="noopener" class="cta-primary">🔒 &nbsp;Get the Vault on Gumroad — $1</a>
+    <a href="https://contentforgestudio.com/guides" class="cta-strip-free">Browse Free Guides</a>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-copy">© 2026 CONTENTFORGESTUDIO.COM</p>
+  <div class="footer-links">
+    <a href="https://contentforgestudio.com">Home</a>
+    <a href="https://contentforgestudio.com/guides">Free Guides</a>
+    <a href="https://youtube.com/@TheContentForgeStudio" target="_blank">YouTube</a>
+    <a href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20" target="_blank">Book</a>
+    <a href="https://contentforgestudio.com/privacy">Privacy Policy</a>
+  </div>
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const btn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => { btn.style.display = window.scrollY > 400 ? 'flex' : 'none'; });
+</script>
+</body>
+</html>
