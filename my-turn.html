@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Turn — A Documentary Series · ContentForgeStudio.com</title>
+<meta name="description" content="My Turn — A documentary about building real income on my own terms, in a world that wasn't designed for people like us to win. By B. Stromblad, ContentForge Studio.">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow: #e8ff47;
+  --fire:   #ff5c1a;
+  --cyan:   #38d9f5;
+  --black:  #07070e;
+  --deep:   #0d0d1c;
+  --card:   #141428;
+  --border: rgba(56,217,245,0.10);
+  --steel:  #8090b0;
+  --dim:    #3a3a5a;
+  --white:  #f0f0ff;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Raleway', sans-serif; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+
+/* Subtle grain overlay */
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.4; }
+
+/* Nav */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 52px; height: 68px; display: flex; align-items: center; justify-content: space-between; background: rgba(7,7,14,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(232,255,71,0.08); }
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-mark { width: 48px; height: 48px; border: 2px solid var(--cyan); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.nav-mark img { width: 44px; height: 44px; object-fit: contain; border-radius: 50%; }
+.nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
+.nav-top { font-family: 'Orbitron', monospace; font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: 1px; }
+.nav-bottom { font-family: 'Orbitron', monospace; font-size: 15px; font-weight: 700; color: var(--cyan); letter-spacing: 1px; }
+.nav-studio { font-size: 10px; letter-spacing: 4px; color: var(--steel); text-transform: uppercase; margin-top: 3px; }
+.nav-right { display: flex; gap: 24px; align-items: center; }
+.nav-link { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 2px; color: var(--steel); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+.nav-link:hover { color: var(--cyan); }
+.nav-series { color: var(--yellow) !important; font-weight: 700 !important; animation: seriesGlow 3s ease-in-out infinite; }
+@keyframes seriesGlow { 0%,100%{text-shadow:0 0 6px rgba(232,255,71,0.3)} 50%{text-shadow:0 0 16px rgba(232,255,71,0.8)} }
+.nav-vault { color: var(--yellow) !important; font-weight: 700 !important; animation: vaultGlow 2.5s ease-in-out infinite; }
+@keyframes vaultGlow { 0%,100%{text-shadow:0 0 6px rgba(232,255,71,0.4)} 50%{text-shadow:0 0 14px rgba(232,255,71,0.9)} }
+
+/* HERO — full viewport, left-aligned, cinematic */
+.hero { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 8vw 10vh; overflow: hidden; }
+
+.hero-bg-line { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--yellow), var(--fire) 40%, transparent); }
+
+.series-label { font-family: 'Orbitron', monospace; font-size: 10px; letter-spacing: 8px; color: var(--yellow); margin-bottom: 28px; opacity: 0.9; animation: fadeIn 1s ease 0.2s both; }
+
+.hero-title { font-family: 'Orbitron', monospace; font-size: clamp(56px, 12vw, 140px); font-weight: 900; line-height: 0.95; letter-spacing: -3px; color: var(--white); margin-bottom: 40px; animation: fadeIn 1s ease 0.4s both; }
+.hero-title .my { display: block; color: var(--white); }
+.hero-title .turn { display: block; color: var(--yellow); text-shadow: 0 0 60px rgba(232,255,71,0.3); }
+
+.hero-tagline-wrap { max-width: 680px; margin-bottom: 52px; animation: fadeIn 1s ease 0.6s both; }
+.hero-tagline { font-family: 'Raleway', sans-serif; font-size: clamp(15px, 2vw, 19px); font-weight: 300; color: var(--steel); line-height: 1.8; min-height: 2.4em; }
+.cursor { display: inline-block; width: 2px; height: 1em; background: var(--yellow); margin-left: 2px; vertical-align: text-bottom; animation: blink 0.8s step-end infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.hero-meta { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; animation: fadeIn 1s ease 1.8s both; }
+.hero-by { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 3px; color: var(--steel); }
+.hero-by span { color: var(--white); }
+.hero-divider { width: 1px; height: 20px; background: var(--dim); }
+.hero-badge { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 2px; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(232,255,71,0.2); color: var(--yellow); background: rgba(232,255,71,0.05); }
+.hero-scroll { display: flex; align-items: center; gap: 10px; font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 3px; color: var(--dim); cursor: pointer; transition: color 0.2s; }
+.hero-scroll:hover { color: var(--steel); }
+.hero-scroll-line { width: 40px; height: 1px; background: var(--dim); }
+
+/* Floating episode count */
+.hero-stat { position: absolute; right: 8vw; top: 50%; transform: translateY(-50%); text-align: right; animation: fadeIn 1s ease 1.2s both; }
+.hero-stat-num { font-family: 'Orbitron', monospace; font-size: clamp(80px, 14vw, 160px); font-weight: 900; color: rgba(232,255,71,0.04); line-height: 1; letter-spacing: -4px; }
+.hero-stat-label { font-family: 'Orbitron', monospace; font-size: 10px; letter-spacing: 4px; color: rgba(232,255,71,0.2); margin-top: -16px; }
+
+@keyframes fadeIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+/* Chapter divider */
+.chapter { display: flex; align-items: center; gap: 20px; padding: 0 8vw; margin: 0; }
+.chapter-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(232,255,71,0.15), transparent); }
+.chapter-label { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 4px; color: rgba(232,255,71,0.3); white-space: nowrap; }
+.chapter-line-r { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(232,255,71,0.15)); }
+
+/* Manifesto section */
+.manifesto { position: relative; z-index: 1; padding: 96px 8vw; max-width: 1100px; margin: 0 auto; }
+.manifesto-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--yellow); margin-bottom: 32px; opacity: 0.7; }
+.manifesto-block { margin-bottom: 64px; }
+.manifesto-block h2 { font-family: 'Orbitron', monospace; font-size: clamp(18px, 2.8vw, 28px); font-weight: 800; color: var(--white); margin-bottom: 20px; line-height: 1.2; }
+.manifesto-block h2 span { color: var(--yellow); }
+.manifesto-block p { font-size: 16px; color: var(--steel); font-weight: 300; line-height: 1.95; margin-bottom: 16px; max-width: 720px; }
+.manifesto-block p:last-child { margin-bottom: 0; }
+.manifesto-block p strong { color: var(--white); font-weight: 600; }
+.manifesto-block p em { color: var(--cyan); font-style: normal; }
+.pull-quote { border-left: 3px solid var(--yellow); padding: 20px 0 20px 28px; margin: 32px 0; max-width: 640px; }
+.pull-quote p { font-size: clamp(17px, 2.2vw, 22px); font-weight: 400; color: var(--white); line-height: 1.65; font-style: italic; }
+
+/* Founder section */
+.founder { position: relative; z-index: 1; padding: 80px 8vw; background: linear-gradient(135deg, rgba(232,255,71,0.02), rgba(7,7,14,0)), var(--deep); border-top: 1px solid rgba(232,255,71,0.08); border-bottom: 1px solid rgba(232,255,71,0.08); }
+.founder-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 72px; align-items: center; }
+.founder-photo { position: relative; }
+.founder-photo-circle { width: 260px; height: 260px; border-radius: 50%; overflow: hidden; border: 2px solid var(--yellow); box-shadow: 0 0 0 8px rgba(232,255,71,0.05), 0 0 60px rgba(232,255,71,0.12); }
+.founder-photo-circle img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: grayscale(100%) contrast(1.05); }
+.founder-name { font-family: 'Orbitron', monospace; font-size: 14px; font-weight: 700; color: var(--white); margin-top: 20px; letter-spacing: 1px; }
+.founder-role { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 3px; color: var(--yellow); margin-top: 4px; opacity: 0.8; }
+.founder-content .eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--yellow); margin-bottom: 16px; opacity: 0.7; }
+.founder-content h2 { font-family: 'Orbitron', monospace; font-size: clamp(20px, 3vw, 32px); font-weight: 800; line-height: 1.15; margin-bottom: 24px; }
+.founder-content h2 span { color: var(--yellow); }
+.founder-content p { font-size: 15px; color: var(--steel); font-weight: 300; line-height: 1.9; margin-bottom: 16px; max-width: 560px; }
+.founder-content p strong { color: var(--white); }
+
+/* Episodes section */
+.episodes { position: relative; z-index: 1; padding: 96px 8vw; max-width: 1100px; margin: 0 auto; }
+.episodes-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--cyan); margin-bottom: 12px; opacity: 0.7; }
+.episodes-title { font-family: 'Orbitron', monospace; font-size: clamp(20px, 3vw, 30px); font-weight: 800; margin-bottom: 48px; }
+.episodes-title span { color: var(--cyan); }
+
+.episode-list { display: flex; flex-direction: column; gap: 2px; }
+.episode-item { display: grid; grid-template-columns: 80px 1fr auto; gap: 24px; align-items: center; padding: 24px 28px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; transition: border-color 0.2s, background 0.2s; position: relative; overflow: hidden; }
+.episode-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--yellow); transform: scaleY(0); transition: transform 0.2s; transform-origin: bottom; }
+.episode-item:hover { border-color: rgba(232,255,71,0.2); background: rgba(20,20,40,0.8); }
+.episode-item:hover::before { transform: scaleY(1); }
+.ep-num { font-family: 'Orbitron', monospace; font-size: 28px; font-weight: 900; color: rgba(232,255,71,0.12); line-height: 1; }
+.ep-body {}
+.ep-label { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 2px; color: var(--steel); margin-bottom: 4px; }
+.ep-title { font-family: 'Orbitron', monospace; font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.ep-desc { font-size: 12px; color: var(--steel); line-height: 1.6; }
+.ep-status { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 2px; padding: 5px 12px; border-radius: 20px; white-space: nowrap; }
+.ep-live { background: rgba(56,217,245,0.08); color: var(--cyan); border: 1px solid rgba(56,217,245,0.2); }
+.ep-live::before { content: '● '; font-size: 7px; animation: dot 2s ease-in-out infinite; }
+@keyframes dot { 0%,100%{opacity:1}50%{opacity:0.3} }
+.ep-coming { background: rgba(58,58,90,0.3); color: var(--dim); border: 1px solid var(--dim); }
+
+/* Promise section */
+.promise { position: relative; z-index: 1; padding: 96px 8vw; text-align: center; }
+.promise-inner { max-width: 760px; margin: 0 auto; }
+.promise-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--yellow); margin-bottom: 24px; opacity: 0.7; }
+.promise-quote { font-family: 'Orbitron', monospace; font-size: clamp(22px, 4vw, 42px); font-weight: 900; line-height: 1.15; margin-bottom: 32px; }
+.promise-quote .line1 { display: block; color: var(--white); }
+.promise-quote .line2 { display: block; color: var(--yellow); }
+.promise-sub { font-size: 16px; color: var(--steel); font-weight: 300; line-height: 1.85; margin-bottom: 48px; }
+
+/* Follow CTA */
+.follow-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--yellow); color: #000; text-decoration: none; padding: 16px 36px; border-radius: 6px; font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; transition: background 0.2s, transform 0.2s; animation: ctaPulse 2.5s ease-in-out infinite; }
+.btn-primary:hover { background: #fff; transform: translateY(-2px); animation: none; }
+@keyframes ctaPulse { 0%{box-shadow:0 0 0 0 rgba(232,255,71,0.5)}70%{box-shadow:0 0 0 12px rgba(232,255,71,0)}100%{box-shadow:0 0 0 0 rgba(232,255,71,0)} }
+.btn-secondary { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--steel); text-decoration: none; padding: 16px 28px; border-radius: 6px; font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; border: 1px solid var(--dim); transition: border-color 0.2s, color 0.2s; }
+.btn-secondary:hover { color: var(--cyan); border-color: rgba(56,217,245,0.4); }
+
+/* Themes strip */
+.themes { position: relative; z-index: 1; background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 32px 8vw; overflow: hidden; }
+.themes-inner { display: flex; gap: 48px; white-space: nowrap; animation: themesScroll 30s linear infinite; }
+.themes-inner:hover { animation-play-state: paused; }
+.theme-item { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 3px; color: var(--dim); display: flex; align-items: center; gap: 16px; }
+.theme-item .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--yellow); opacity: 0.4; flex-shrink: 0; }
+@keyframes themesScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+footer { position: relative; z-index: 1; background: var(--deep); border-top: 1px solid var(--border); padding: 24px 52px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.footer-copy { font-family: 'Orbitron', monospace; font-size: 9px; color: var(--dim); letter-spacing: 2px; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 12px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--cyan); }
+
+#backToTop { position: fixed; bottom: 32px; right: 32px; z-index: 999; width: 48px; height: 48px; border-radius: 50%; background: var(--yellow); color: #000; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 20px; transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 20px rgba(232,255,71,0.3); }
+#backToTop:hover { background: #fff; transform: translateY(-2px); }
+
+@media(max-width:900px) {
+  nav { padding: 0 24px; }
+  .hero { padding: 0 24px 10vh; }
+  .hero-stat { display: none; }
+  .chapter { padding: 0 24px; }
+  .manifesto { padding: 72px 24px; }
+  .founder { padding: 64px 24px; }
+  .founder-inner { grid-template-columns: 1fr; gap: 40px; }
+  .founder-photo { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .founder-photo-circle { width: 200px; height: 200px; }
+  .episodes { padding: 72px 24px; }
+  .episode-item { grid-template-columns: 48px 1fr; gap: 16px; }
+  .ep-status { display: none; }
+  .promise { padding: 72px 24px; }
+  footer { flex-direction: column; text-align: center; padding: 20px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://contentforgestudio.com" class="nav-logo">
+    <div class="nav-mark">
+      <img src="CFS Logo_FINAL.png" alt="CFS Logo">
+    </div>
+    <div class="nav-wordmark">
+      <div style="display:flex;"><span class="nav-top">CONTENT</span><span class="nav-bottom">FORGE</span></div>
+      <div class="nav-studio">STUDIO</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="https://contentforgestudio.com/guides" class="nav-link">Free Guides</a>
+    <a href="https://youtube.com/@TheContentForgeStudio" target="_blank" class="nav-link">YouTube</a>
+    <a href="https://contentforgestudio.com/my-turn" class="nav-link nav-series">My Turn</a>
+    <a href="https://contentforgestudio.com/vault" class="nav-link nav-vault">🔒 The Vault</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-line"></div>
+
+  <div class="hero-stat" aria-hidden="true">
+    <div class="hero-stat-num">EP</div>
+    <div class="hero-stat-label">// IN PRODUCTION</div>
+  </div>
+
+  <div class="series-label">// A DOCUMENTARY SERIES · CONTENTFORGESTUDIO.COM</div>
+
+  <h1 class="hero-title">
+    <span class="my">MY</span>
+    <span class="turn">TURN.</span>
+  </h1>
+
+  <div class="hero-tagline-wrap">
+    <div class="hero-tagline" id="tagline"></div>
+  </div>
+
+  <div class="hero-meta">
+    <div class="hero-by">By <span>B. Stromblad</span></div>
+    <div class="hero-divider"></div>
+    <div class="hero-badge">BUILDING IN PUBLIC</div>
+    <div class="hero-divider"></div>
+    <div class="hero-badge">NO FILTERS</div>
+    <div class="hero-divider"></div>
+    <div class="hero-badge">REAL NUMBERS</div>
+    <div class="hero-scroll" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
+      <div class="hero-scroll-line"></div>
+      SCROLL
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER BREAK -->
+<div class="chapter">
+  <div class="chapter-line"></div>
+  <div class="chapter-label">// THE STORY</div>
+  <div class="chapter-line-r"></div>
+</div>
+
+<!-- MANIFESTO -->
+<div class="manifesto" id="story">
+  <div class="manifesto-eyebrow">// WHY THIS EXISTS</div>
+
+  <div class="manifesto-block">
+    <h2>This Is Not <span>Another Guru Channel.</span></h2>
+    <p>I'm not going to tell you I made $47,000 last month with one weird trick. I'm not going to sell you a course before I've proven the method works. I'm not going to perform success I haven't earned.</p>
+    <p>I've watched that content. I know what it looks like. And I know the feeling — that vague sense that something's off, that you're being sold something, that the person on screen is performing rather than living.</p>
+    <div class="pull-quote">
+      <p>"Integrity is my differentiator. Not just a value I list — a standard I'm held to. By you. By this community. By every episode I put out."</p>
+    </div>
+    <p>This is the real thing. The actual build. Real numbers, real mistakes, real wins when they come, and real slow weeks when they don't. No edits on the truth. Just one person, figuring it out in public — because that's the content I always wanted to find and never could.</p>
+  </div>
+
+  <div class="manifesto-block">
+    <h2>Why Most People <span>Never Take Their Turn.</span></h2>
+    <p>It's not laziness. It's not lack of ambition. It's conditioning.</p>
+    <p>From the moment we're born, we're being prepared — not for independence, but for participation. The system rewards compliance over creativity. It keeps people just comfortable enough not to leave, and just stressed enough never to feel free.</p>
+    <p>The conditioning doesn't feel like conditioning. <strong>It feels like common sense.</strong></p>
+    <p><em>Don't take risks. Be grateful for what you have. You're not special enough to do something different.</em></p>
+    <p>Those aren't your thoughts. They were installed. And most people never question them — not because they can't, but because nobody ever told them they were allowed to.</p>
+    <div class="pull-quote">
+      <p>"The window is still open. I'm telling you now — it is."</p>
+    </div>
+  </div>
+
+  <div class="manifesto-block">
+    <h2>AI <span>Changes the Math.</span></h2>
+    <p>For most of human history, the tools that created real leverage — publishing, broadcasting, software, education — belonged to institutions. To access them you needed capital, credentials, or connections.</p>
+    <p><strong>That's over.</strong></p>
+    <p>AI has put institutional-level capability in the hands of individuals. One person with the right tools can now do what used to require a team, a budget, and years of training. The barrier between idea and execution has collapsed.</p>
+    <p>That's not a small thing. That might be the thing that finally shifts the balance — if enough people use it to build honestly, share openly, and refuse to replicate the same broken structures they're trying to escape.</p>
+    <p>That's what this is. That's why it matters beyond one person's income journey.</p>
+  </div>
+</div>
+
+<!-- CHAPTER BREAK -->
+<div class="chapter">
+  <div class="chapter-line"></div>
+  <div class="chapter-label">// THE PERSON</div>
+  <div class="chapter-line-r"></div>
+</div>
+
+<!-- FOUNDER -->
+<div class="founder">
+  <div class="founder-inner">
+    <div class="founder-photo">
+      <div class="founder-photo-circle">
+        <img src="B_Pic_Headshot.png" alt="B. Stromblad — Founder, ContentForge Studio">
+      </div>
+      <div class="founder-name">B. Stromblad</div>
+      <div class="founder-role">FOUNDER · CONTENTFORGE STUDIO</div>
+    </div>
+    <div class="founder-content">
+      <div class="eyebrow">// ONE CREATOR. STILL BUILDING.</div>
+      <h2>Not a Guru.<br><span>Just Someone Who Decided.</span></h2>
+      <p>I have a job. I have a family. I have responsibilities. And I'm building ContentForge Studio anyway — not because the timing is perfect, but because I got tired of waiting for it to be.</p>
+      <p>I started CFS because I believe AI is the first tool in history that genuinely levels the playing field. That one person, with the right tools and enough conviction, can build something real — without a venture fund, without a media team, without selling their soul to do it.</p>
+      <p><strong>I work to live. I don't live to work.</strong> And I'm documenting every step of what it looks like to actually build that — in a world that wasn't designed for people like us to win.</p>
+      <p>My Turn is that story. Unfiltered. In real time. With you.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER BREAK -->
+<div class="chapter">
+  <div class="chapter-line"></div>
+  <div class="chapter-label">// THE SERIES</div>
+  <div class="chapter-line-r"></div>
+</div>
+
+<!-- EPISODES -->
+<div class="episodes">
+  <div class="episodes-eyebrow">// EPISODE ARCHIVE</div>
+  <div class="episodes-title">The <span>Episodes</span></div>
+
+  <div class="episode-list">
+
+    <div class="episode-item">
+      <div class="ep-num">01</div>
+      <div class="ep-body">
+        <div class="ep-label">EPISODE ONE · THE BEGINNING</div>
+        <div class="ep-title">This Is Where I Start</div>
+        <div class="ep-desc">The declaration. The real starting point — subscriber count, income, tools, and the plan. No warm-up. No pretending. This is day one, on the record.</div>
+      </div>
+      <div class="ep-status ep-coming">IN PRODUCTION</div>
+    </div>
+
+    <div class="episode-item">
+      <div class="ep-num">02</div>
+      <div class="ep-body">
+        <div class="ep-label">EPISODE TWO · FIRST 30 DAYS</div>
+        <div class="ep-title">What Actually Happened</div>
+        <div class="ep-desc">Real analytics. Real numbers. What worked, what didn't, and what I'm trying differently in month two.</div>
+      </div>
+      <div class="ep-status ep-coming">COMING SOON</div>
+    </div>
+
+    <div class="episode-item">
+      <div class="ep-num">03</div>
+      <div class="ep-body">
+        <div class="ep-label">EPISODE THREE · MILESTONE</div>
+        <div class="ep-title">The First Dollar</div>
+        <div class="ep-desc">How it happened, how long it took, and why the amount doesn't matter as much as what it proves.</div>
+      </div>
+      <div class="ep-status ep-coming">COMING SOON</div>
+    </div>
+
+    <div class="episode-item">
+      <div class="ep-num">04</div>
+      <div class="ep-body">
+        <div class="ep-label">EPISODE FOUR · THE BUILD</div>
+        <div class="ep-title">What's Working. What Isn't.</div>
+        <div class="ep-desc">An honest audit of the CFS stack — tools, content, income streams — three months in. No spin.</div>
+      </div>
+      <div class="ep-status ep-coming">COMING SOON</div>
+    </div>
+
+    <div class="episode-item" style="opacity:0.4;pointer-events:none;">
+      <div class="ep-num">—</div>
+      <div class="ep-body">
+        <div class="ep-label">MORE EPISODES</div>
+        <div class="ep-title">The Story Continues</div>
+        <div class="ep-desc">Every milestone, every pivot, every win and loss — documented as it happens. Subscribe to follow along.</div>
+      </div>
+      <div class="ep-status ep-coming">SUBSCRIBE TO FOLLOW</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- THEMES SCROLL -->
+<div class="themes">
+  <div class="themes-inner">
+    <div class="theme-item"><div class="dot"></div>STARTING OVER</div>
+    <div class="theme-item"><div class="dot"></div>IT'S NEVER TOO LATE</div>
+    <div class="theme-item"><div class="dot"></div>INTEGRITY AS A DIFFERENTIATOR</div>
+    <div class="theme-item"><div class="dot"></div>BUILDING IN PUBLIC</div>
+    <div class="theme-item"><div class="dot"></div>I WORK TO LIVE</div>
+    <div class="theme-item"><div class="dot"></div>NO FILTERS</div>
+    <div class="theme-item"><div class="dot"></div>AI CHANGES THE MATH</div>
+    <div class="theme-item"><div class="dot"></div>ONE CREATOR</div>
+    <div class="theme-item"><div class="dot"></div>REAL NUMBERS</div>
+    <div class="theme-item"><div class="dot"></div>MY TURN</div>
+    <!-- duplicate for seamless loop -->
+    <div class="theme-item"><div class="dot"></div>STARTING OVER</div>
+    <div class="theme-item"><div class="dot"></div>IT'S NEVER TOO LATE</div>
+    <div class="theme-item"><div class="dot"></div>INTEGRITY AS A DIFFERENTIATOR</div>
+    <div class="theme-item"><div class="dot"></div>BUILDING IN PUBLIC</div>
+    <div class="theme-item"><div class="dot"></div>I WORK TO LIVE</div>
+    <div class="theme-item"><div class="dot"></div>NO FILTERS</div>
+    <div class="theme-item"><div class="dot"></div>AI CHANGES THE MATH</div>
+    <div class="theme-item"><div class="dot"></div>ONE CREATOR</div>
+    <div class="theme-item"><div class="dot"></div>REAL NUMBERS</div>
+    <div class="theme-item"><div class="dot"></div>MY TURN</div>
+  </div>
+</div>
+
+<!-- PROMISE / CTA -->
+<div class="promise">
+  <div class="promise-inner">
+    <div class="promise-eyebrow">// THIS IS YOUR TURN TOO</div>
+    <div class="promise-quote">
+      <span class="line1">A documentary about building</span>
+      <span class="line2">real income on my own terms.</span>
+    </div>
+    <p class="promise-sub">In a world that wasn't designed for people like us to win.<br>Subscribe to follow every episode — the wins, the losses, the real numbers, all of it.</p>
+    <div class="follow-cta">
+      <a href="https://youtube.com/@TheContentForgeStudio" target="_blank" rel="noopener" class="btn-primary">▶ &nbsp;Subscribe on YouTube</a>
+      <a href="https://contentforgestudio.com/guides" class="btn-secondary">Get Free Resources</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-copy">© 2026 CONTENTFORGESTUDIO.COM · MY TURN</p>
+  <div class="footer-links">
+    <a href="https://contentforgestudio.com">Home</a>
+    <a href="https://contentforgestudio.com/guides">Free Guides</a>
+    <a href="https://contentforgestudio.com/my-turn">My Turn</a>
+    <a href="https://contentforgestudio.com/vault">The Vault</a>
+    <a href="https://youtube.com/@TheContentForgeStudio" target="_blank">YouTube</a>
+    <a href="https://contentforgestudio.com/privacy">Privacy Policy</a>
+  </div>
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Typewriter effect for tagline
+const text = "A documentary about building real income on my own terms — in a world that wasn't designed for people like us to win.";
+const el = document.getElementById('tagline');
+let i = 0;
+let started = false;
+
+function type() {
+  if (i < text.length) {
+    el.innerHTML = text.slice(0, ++i) + '<span class="cursor"></span>';
+    setTimeout(type, i < 3 ? 80 : Math.random() * 30 + 18);
+  } else {
+    el.innerHTML = text + '<span class="cursor"></span>';
+    setTimeout(() => {
+      el.querySelector('.cursor').style.animation = 'none';
+      el.querySelector('.cursor').style.opacity = '0';
+    }, 3000);
+  }
+}
+
+// Start typing after initial fade-in
+setTimeout(() => { type(); }, 900);
+
+// Back to top
+const btn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => { btn.style.display = window.scrollY > 400 ? 'flex' : 'none'; });
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.manifesto-block, .episode-item, .founder-content').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>

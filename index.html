@@ -46,6 +46,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 52px;
 .nav-links a:hover { color: var(--cyan); }
 .nav-cta { background: var(--cyan); color: #000 !important; padding: 8px 20px; border-radius: 4px; font-weight: 700 !important; transition: background 0.2s !important; }
 .nav-cta:hover { background: var(--yellow) !important; color: #000 !important; }
+.nav-vault { color: var(--yellow) !important; font-weight: 700 !important; animation: vaultGlow 2.5s ease-in-out infinite; }
+.nav-vault:hover { color: #fff !important; animation: none; }
+@keyframes vaultGlow { 0%,100% { text-shadow: 0 0 6px rgba(232,255,71,0.4), 0 0 12px rgba(232,255,71,0.2); } 50% { text-shadow: 0 0 14px rgba(232,255,71,0.9), 0 0 28px rgba(232,255,71,0.5); } }
+@keyframes seriesGlow { 0%,100%{text-shadow:0 0 6px rgba(255,92,26,0.4)} 50%{text-shadow:0 0 16px rgba(255,92,26,0.9)} }
 
 .hero { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; padding: 100px 52px 80px; overflow: hidden; }
 .hero::before { content: ''; position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); opacity: 0.4; animation: scanLine 6s ease-in-out infinite; pointer-events: none; }
@@ -70,7 +74,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 52px;
 @keyframes bounceDown { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
 
 section { position: relative; z-index: 1; padding: 100px 52px; max-width: 1160px; margin: 0 auto; }
-.section-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--cyan); margin-bottom: 14px; opacity: 0.7; }
+.section-eyebrow { font-family: 'Orbitron', monospace; font-size: 12px; letter-spacing: 4px; color: var(--cyan); margin-bottom: 14px; opacity: 0.85; }
 .section-title { font-family: 'Orbitron', monospace; font-size: clamp(22px, 4vw, 42px); font-weight: 800; line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.5px; }
 .section-title .c { color: var(--cyan); }
 .section-title .y { color: var(--yellow); }
@@ -287,13 +291,14 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
     </div>
   </a>
   <ul class="nav-links">
+    <li><a href="/guides">Free Guides</a></li>
     <li><a href="#tools">Free Tools</a></li>
     <li><a href="#income">Income</a></li>
     <li><a href="#videos">Videos</a></li>
     <li><a href="#book">Book</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="/vault-store" style="color:var(--yellow);font-weight:700;">Vault Store</a></li>
-    <li><a href="/guides" class="nav-cta">Free Guides</a></li>
+    <li><a href="/my-turn" style="color:var(--fire);font-weight:700;animation:seriesGlow 3s ease-in-out infinite;">My Turn</a></li>
+    <li><a href="/vault" class="nav-vault">🔒 The Vault</a></li>
   </ul>
 </nav>
 
@@ -318,7 +323,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
   </div>
   <div class="form-success" id="heroSuccess">✓ &nbsp;You're in! Check your inbox for the AI Income Starter Kit.</div>
   <p class="hero-form-note">Free AI Income Starter Kit · No spam · <span>Unsubscribe anytime</span></p>
-  <p style="margin-top:12px;font-size:12px;color:var(--dim);animation:fadeUp 1s ease 0.65s both;">Already know what you want? → <a href="/vault-store" style="color:var(--yellow);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(232,255,71,0.3);padding-bottom:1px;transition:border-color 0.2s;">Browse the Vault Store</a></p>
+  <p style="margin-top:12px;font-size:12px;color:var(--dim);animation:fadeUp 1s ease 0.65s both;">Already know what you want? → <a href="/vault" style="color:var(--yellow);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(232,255,71,0.3);padding-bottom:1px;transition:border-color 0.2s;">Browse The Vault 🔒</a></p>
 
   <div class="hero-stats">
     <div class="h-stat">
@@ -738,28 +743,39 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
   <div class="about-grid">
     <div>
       <div class="section-eyebrow">// ABOUT CFS</div>
-      <div class="section-title">Built on <span class="c">Honesty</span><br>Powered by AI</div>
-      <p style="font-size:15px;color:var(--steel);font-weight:300;line-height:1.85;margin-bottom:36px;">Content Forge Studio exists because most "make money online" content is either unrealistic, outdated, or designed to sell you something before you understand what you're buying.<br><br>We show our work. We disclose our affiliate links. We tell you when something doesn't perform as advertised. And we use every tool we recommend to build this channel itself.</p>
+      <div class="section-title">One Creator.<br><span class="c">Still Building.</span></div>
+      <p style="font-size:15px;color:var(--steel);font-weight:300;line-height:1.85;margin-bottom:36px;">
+        ContentForge Studio isn't a course empire or a polished media company. It's one person — working a job, raising a family, figuring out how to build real income with AI — and documenting every step along the way.<br><br>
+        I started CFS because every "make money with AI" channel I found was either selling a $997 course, flexing results I couldn't verify, or teaching theory without showing the actual work. I wanted something different. So I built it.<br><br>
+        Everything here — the free guides, the prompt packs, the book, the app — came out of tools and systems I actually use. I share what's working, what isn't, and what I'm trying next. No gatekeeping. No fake urgency. Just the real build, in real time.
+      </p>
       <div class="about-values">
         <div class="value-row">
           <div class="value-num">01</div>
           <div class="value-text">
-            <h4>Real Tools, Real Results</h4>
-            <p>We only cover tools we've tested. Income figures are real. We never inflate results or hide the work required.</p>
+            <h4>Still In It</h4>
+            <p>I'm not teaching from the other side of success. I'm a few steps ahead on the same path — sharing what's actually working right now, not five years ago.</p>
           </div>
         </div>
         <div class="value-row">
           <div class="value-num">02</div>
           <div class="value-text">
             <h4>No Gatekeeping</h4>
-            <p>Everything we know is on the channel. The workflow that produces our videos is the same workflow we teach.</p>
+            <p>The tools, workflows, and systems I use to build CFS are the same ones I share here — for free. If it works for me, you get access to it.</p>
           </div>
         </div>
         <div class="value-row">
           <div class="value-num">03</div>
           <div class="value-text">
-            <h4>Scalable from Zero</h4>
-            <p>Every strategy starts with a $0 budget. We built this channel on free tools — and we document every step.</p>
+            <h4>Built for People Like Us</h4>
+            <p>Not influencers. Not trust-fund entrepreneurs. Creators, freelancers, and side hustlers building something real with limited time, limited budget, and a lot of determination.</p>
+          </div>
+        </div>
+        <div class="value-row">
+          <div class="value-num">04</div>
+          <div class="value-text">
+            <h4>Honest by Design</h4>
+            <p>Affiliate links are always disclosed. Results are never inflated. And I'll tell you when something doesn't work just as fast as I'll tell you when it does.</p>
           </div>
         </div>
       </div>
@@ -767,7 +783,16 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
     <div class="about-mark">
       <div class="about-mark-orbit"></div>
       <div class="about-mark-orbit2"></div>
-      <img src="CFS Logo_FINAL.png" alt="CFS Logo" style="width:220px;height:220px;object-fit:contain;filter:drop-shadow(0 0 40px rgba(56,217,245,0.3));position:relative;z-index:1;">
+      <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:20px;">
+        <div style="width:240px;height:240px;border-radius:50%;overflow:hidden;border:2px solid var(--cyan);box-shadow:0 0 0 6px rgba(56,217,245,0.08),0 0 40px rgba(56,217,245,0.25),0 0 80px rgba(56,217,245,0.1);flex-shrink:0;">
+          <img src="B_Pic_Headshot.png" alt="B. Stromblad — Founder, ContentForge Studio" style="width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.05);">
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:var(--white);letter-spacing:1px;margin-bottom:4px;">B. Stromblad</div>
+          <div style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:var(--cyan);opacity:0.8;">FOUNDER · CONTENTFORGE STUDIO</div>
+        </div>
+        <img src="CFS Logo_FINAL.png" alt="CFS Logo" style="width:64px;height:64px;object-fit:contain;opacity:0.4;filter:drop-shadow(0 0 8px rgba(56,217,245,0.3));">
+      </div>
     </div>
   </div>
 </section>
@@ -777,8 +802,8 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
   <div class="footer-main">
     <div class="footer-brand">
       <h3>CONTENT<span>FORGE</span> STUDIO</h3>
-      <div class="tagline">// AI TOOLS · REAL RESULTS · BUILD INCOME</div>
-      <p>We forge clarity, content, and cashflow for creators and entrepreneurs building income with AI tools.</p>
+      <div class="tagline">// ONE CREATOR · REAL TOOLS · STILL BUILDING</div>
+      <p>Built by one creator, for creators. AI tools, income systems, and honest documentation of what's actually working — shared as it happens.</p>
     </div>
     <div class="footer-col">
       <h4>Channel</h4>
@@ -786,6 +811,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
         <li><a href="https://youtube.com/@TheContentForgeStudio" target="_blank">Latest Videos</a></li>
         <li><a href="https://youtube.com/@TheContentForgeStudio" target="_blank">Subscribe</a></li>
         <li><a href="#videos">Video Library</a></li>
+        <li><a href="/guides">Free Guides</a></li>
         <li><a href="#tools">Free Tools</a></li>
         <li><a href="#guide">Free Guide</a></li>
       </ul>
