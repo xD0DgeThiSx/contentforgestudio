@@ -50,6 +50,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 52px;
 .nav-vault:hover { color: #fff !important; animation: none; }
 @keyframes vaultGlow { 0%,100% { text-shadow: 0 0 6px rgba(232,255,71,0.4), 0 0 12px rgba(232,255,71,0.2); } 50% { text-shadow: 0 0 14px rgba(232,255,71,0.9), 0 0 28px rgba(232,255,71,0.5); } }
 @keyframes seriesGlow { 0%,100%{text-shadow:0 0 6px rgba(255,92,26,0.4)} 50%{text-shadow:0 0 16px rgba(255,92,26,0.9)} }
+@keyframes forgeGlow { 0%,100%{text-shadow:0 0 6px rgba(255,140,0,0.4)} 50%{text-shadow:0 0 16px rgba(255,140,0,0.9)} }
 
 .hero { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; padding: 100px 52px 80px; overflow: hidden; }
 .hero::before { content: ''; position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); opacity: 0.4; animation: scanLine 6s ease-in-out infinite; pointer-events: none; }
@@ -317,6 +318,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
     <li><a href="/prompt-like-a-pro">Book</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="/my-turn" style="color:var(--fire);font-weight:700;animation:seriesGlow 3s ease-in-out infinite;">My Turn</a></li>
+    <li><a href="/community" style="color:var(--forge);font-weight:700;animation:forgeGlow 2.5s ease-in-out infinite;">🔥 The Forge</a></li>
     <li><a href="/vault-store" class="nav-vault">🔒 The Vault</a></li>
   </ul>
 </nav>
@@ -342,7 +344,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
   </div>
   <div class="form-success" id="heroSuccess">✓ &nbsp;You're in! Check your inbox for the AI Income Starter Kit.</div>
   <p class="hero-form-note">Free AI Income Starter Kit · No spam · <span>Unsubscribe anytime</span></p>
-  <p style="margin-top:12px;font-size:12px;color:var(--dim);animation:fadeUp 1s ease 0.65s both;">Already know what you want? → <a href="/vault" style="color:var(--yellow);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(232,255,71,0.3);padding-bottom:1px;transition:border-color 0.2s;">Browse The Vault 🔒</a></p>
+  <p style="margin-top:12px;font-size:12px;color:var(--dim);animation:fadeUp 1s ease 0.65s both;">Already know what you want? → <a href="/vault-store" style="color:var(--yellow);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(232,255,71,0.3);padding-bottom:1px;">Browse The Vault 🔒</a> &nbsp;·&nbsp; <a href="/community" style="color:#ff8c00;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(255,140,0,0.3);padding-bottom:1px;">Join The Forge 🔥</a></p>
 
   <div class="hero-stats">
     <div class="h-stat">

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Forge — Founding Members · ContentForgeStudio.com</title>
+<meta name="description" content="The Forge — CFS founding member community. First 100 spots only. Join the movement being built in public from day one.">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow: #e8ff47;
+  --fire:   #ff5c1a;
+  --forge:  #ff8c00;
+  --cyan:   #38d9f5;
+  --black:  #07070e;
+  --deep:   #0d0d1c;
+  --card:   #141428;
+  --border: rgba(255,140,0,0.12);
+  --steel:  #8090b0;
+  --dim:    #3a3a5a;
+  --white:  #f0f0ff;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Raleway', sans-serif; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+
+/* Ember particles */
+.embers { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.ember { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: var(--forge); animation: rise linear infinite; opacity: 0; }
+@keyframes rise { 0%{transform:translateY(100vh) translateX(0);opacity:0} 10%{opacity:0.8} 90%{opacity:0.3} 100%{transform:translateY(-20px) translateX(var(--drift));opacity:0} }
+
+/* Nav */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 52px; height: 68px; display: flex; align-items: center; justify-content: space-between; background: rgba(7,7,14,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,140,0,0.1); }
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-mark { width: 48px; height: 48px; border: 2px solid var(--cyan); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.nav-mark img { width: 44px; height: 44px; object-fit: contain; border-radius: 50%; }
+.nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
+.nav-top { font-family: 'Orbitron', monospace; font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: 1px; }
+.nav-bottom { font-family: 'Orbitron', monospace; font-size: 15px; font-weight: 700; color: var(--cyan); letter-spacing: 1px; }
+.nav-studio { font-size: 10px; letter-spacing: 4px; color: var(--steel); text-transform: uppercase; margin-top: 3px; }
+.nav-right { display: flex; gap: 24px; align-items: center; }
+.nav-link { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 2px; color: var(--steel); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+.nav-link:hover { color: var(--cyan); }
+.nav-forge { color: var(--forge) !important; font-weight: 700 !important; animation: forgeGlow 2.5s ease-in-out infinite; }
+@keyframes forgeGlow { 0%,100%{text-shadow:0 0 6px rgba(255,140,0,0.4)}50%{text-shadow:0 0 16px rgba(255,140,0,0.9)} }
+.nav-vault { color: var(--yellow) !important; font-weight: 700 !important; animation: vaultGlow 2.5s ease-in-out infinite; }
+@keyframes vaultGlow { 0%,100%{text-shadow:0 0 6px rgba(232,255,71,0.4)}50%{text-shadow:0 0 14px rgba(232,255,71,0.9)} }
+.nav-home { background: var(--cyan); color: #000 !important; padding: 8px 20px; border-radius: 4px; font-weight: 700 !important; transition: background 0.2s !important; }
+.nav-home:hover { background: var(--yellow) !important; }
+
+/* HERO */
+.hero { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 52px 80px; overflow: hidden; }
+.hero-bg-glow { position: absolute; bottom: -20%; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(255,140,0,0.06) 0%, transparent 65%); pointer-events: none; }
+
+.forge-label { font-family: 'Orbitron', monospace; font-size: 11px; letter-spacing: 8px; color: var(--forge); margin-bottom: 24px; opacity: 0.9; animation: fadeUp 0.8s ease 0.1s both; }
+
+/* The big number — the hero IS the counter */
+.spots-display { position: relative; margin-bottom: 8px; animation: fadeUp 0.8s ease 0.2s both; }
+.spots-num { font-family: 'Orbitron', monospace; font-size: clamp(100px, 22vw, 220px); font-weight: 900; line-height: 0.85; color: var(--white); letter-spacing: -6px; position: relative; }
+.spots-num .count { color: var(--forge); }
+.spots-divider { font-family: 'Orbitron', monospace; font-size: clamp(40px, 8vw, 80px); font-weight: 900; color: var(--dim); letter-spacing: -2px; }
+.spots-total { font-family: 'Orbitron', monospace; font-size: clamp(100px, 22vw, 220px); font-weight: 900; line-height: 0.85; color: rgba(255,255,255,0.06); letter-spacing: -6px; }
+.spots-label { font-family: 'Orbitron', monospace; font-size: clamp(10px, 2vw, 16px); letter-spacing: 8px; color: var(--steel); margin-top: 16px; }
+
+.hero-title { font-family: 'Orbitron', monospace; font-size: clamp(24px, 4vw, 44px); font-weight: 900; line-height: 1.1; margin: 32px 0 16px; animation: fadeUp 0.8s ease 0.3s both; }
+.hero-title .hl { color: var(--forge); }
+.hero-title .hl-y { color: var(--yellow); }
+
+.hero-sub { font-size: clamp(14px, 2vw, 17px); color: var(--steel); font-weight: 300; max-width: 600px; margin: 0 auto 48px; line-height: 1.85; animation: fadeUp 0.8s ease 0.4s both; }
+
+/* Signup form */
+.forge-form-wrap { width: min(560px, 90vw); animation: fadeUp 0.8s ease 0.5s both; }
+.forge-form { display: flex; flex-direction: column; gap: 12px; background: rgba(20,20,40,0.8); border: 1px solid rgba(255,140,0,0.2); border-radius: 12px; padding: 28px; backdrop-filter: blur(10px); position: relative; overflow: hidden; }
+.forge-form::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--forge), var(--yellow), var(--fire)); }
+.forge-form input { background: rgba(7,7,14,0.8); border: 1px solid var(--dim); border-radius: 6px; padding: 14px 16px; color: var(--white); font-family: 'Raleway', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; }
+.forge-form input:focus { border-color: var(--forge); }
+.forge-form input::placeholder { color: var(--dim); }
+.forge-btn { background: var(--forge); color: #000; border: none; padding: 16px; border-radius: 6px; font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.2s, transform 0.2s; animation: forgePulse 2.5s ease-in-out infinite; }
+.forge-btn:hover { background: var(--yellow); transform: translateY(-2px); animation: none; }
+@keyframes forgePulse { 0%{box-shadow:0 0 0 0 rgba(255,140,0,0.5)}70%{box-shadow:0 0 0 12px rgba(255,140,0,0)}100%{box-shadow:0 0 0 0 rgba(255,140,0,0)} }
+.forge-form-note { font-size: 11px; color: var(--dim); text-align: center; }
+.forge-success { display: none; background: rgba(255,140,0,0.08); border: 1px solid rgba(255,140,0,0.3); border-radius: 8px; padding: 20px; text-align: center; }
+.forge-success p { font-family: 'Orbitron', monospace; font-size: 10px; letter-spacing: 2px; color: var(--forge); margin-bottom: 6px; }
+.forge-success span { font-size: 13px; color: var(--steel); }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
+
+/* Chapter breaks */
+.chapter { display: flex; align-items: center; gap: 20px; padding: 0 52px; position: relative; z-index: 1; }
+.ch-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,140,0,0.15), transparent); }
+.ch-label { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 4px; color: rgba(255,140,0,0.3); white-space: nowrap; }
+.ch-line-r { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,140,0,0.15)); }
+
+/* Manifesto section */
+.manifesto { position: relative; z-index: 1; padding: 88px 52px; max-width: 1000px; margin: 0 auto; }
+.manifesto-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--forge); margin-bottom: 28px; opacity: 0.7; }
+.manifesto-block { margin-bottom: 56px; }
+.manifesto-block h2 { font-family: 'Orbitron', monospace; font-size: clamp(18px, 3vw, 28px); font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
+.manifesto-block h2 .hl { color: var(--forge); }
+.manifesto-block h2 .hl-y { color: var(--yellow); }
+.manifesto-block p { font-size: 16px; color: var(--steel); font-weight: 300; line-height: 1.95; margin-bottom: 16px; max-width: 720px; }
+.manifesto-block p strong { color: var(--white); font-weight: 600; }
+.manifesto-block p em { color: var(--forge); font-style: normal; }
+.pull-quote { border-left: 3px solid var(--forge); padding: 16px 0 16px 28px; margin: 28px 0; max-width: 620px; }
+.pull-quote p { font-size: clamp(16px, 2.2vw, 21px); font-weight: 400; color: var(--white); line-height: 1.65; font-style: italic; }
+
+/* What you get */
+.perks { position: relative; z-index: 1; padding: 80px 52px; background: linear-gradient(135deg, rgba(255,140,0,0.04), rgba(7,7,14,0)), var(--deep); border-top: 1px solid rgba(255,140,0,0.1); border-bottom: 1px solid rgba(255,140,0,0.1); }
+.perks-inner { max-width: 1000px; margin: 0 auto; }
+.perks-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--forge); margin-bottom: 12px; opacity: 0.7; }
+.perks-title { font-family: 'Orbitron', monospace; font-size: clamp(20px, 3vw, 30px); font-weight: 800; margin-bottom: 48px; }
+.perks-title span { color: var(--forge); }
+.perks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 40px; }
+.perk-card { background: var(--card); border: 1px solid rgba(255,140,0,0.1); border-radius: 10px; padding: 22px 24px; display: flex; gap: 16px; align-items: flex-start; transition: border-color 0.2s; position: relative; overflow: hidden; }
+.perk-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--forge), transparent); }
+.perk-card:hover { border-color: rgba(255,140,0,0.25); }
+.perk-icon { font-size: 28px; flex-shrink: 0; line-height: 1; }
+.perk-title { font-family: 'Orbitron', monospace; font-size: 11px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.perk-desc { font-size: 12px; color: var(--steel); line-height: 1.6; }
+.perk-badge { display: inline-block; font-family: 'Orbitron', monospace; font-size: 7px; letter-spacing: 2px; padding: 2px 8px; border-radius: 10px; background: rgba(255,140,0,0.1); color: var(--forge); border: 1px solid rgba(255,140,0,0.2); margin-top: 6px; }
+
+/* The promise */
+.promise-block { background: rgba(255,140,0,0.04); border: 1px solid rgba(255,140,0,0.15); border-radius: 12px; padding: 32px 36px; }
+.promise-block h3 { font-family: 'Orbitron', monospace; font-size: 14px; font-weight: 800; color: var(--white); margin-bottom: 14px; }
+.promise-block h3 span { color: var(--forge); }
+.promise-block p { font-size: 14px; color: var(--steel); font-weight: 300; line-height: 1.85; max-width: 680px; }
+.promise-block p strong { color: var(--white); }
+
+/* Tiers preview */
+.tiers { position: relative; z-index: 1; padding: 88px 52px; max-width: 1000px; margin: 0 auto; }
+.tiers-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--steel); margin-bottom: 12px; opacity: 0.7; }
+.tiers-title { font-family: 'Orbitron', monospace; font-size: clamp(18px, 2.8vw, 26px); font-weight: 800; margin-bottom: 12px; }
+.tiers-title span { color: var(--yellow); }
+.tiers-sub { font-size: 14px; color: var(--steel); font-weight: 300; margin-bottom: 40px; max-width: 560px; line-height: 1.75; }
+.tiers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.tier-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 22px 18px; text-align: center; position: relative; overflow: hidden; opacity: 0.5; }
+.tier-card.active { opacity: 1; border-color: rgba(255,140,0,0.4); }
+.tier-card.active::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--forge), var(--yellow)); }
+.tier-name { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 700; color: var(--white); margin-bottom: 8px; letter-spacing: 2px; }
+.tier-price { font-family: 'Orbitron', monospace; font-size: 20px; font-weight: 900; color: var(--forge); margin-bottom: 4px; line-height: 1; }
+.tier-price.free { color: var(--yellow); }
+.tier-period { font-size: 10px; color: var(--steel); margin-bottom: 12px; }
+.tier-badge { font-family: 'Orbitron', monospace; font-size: 7px; letter-spacing: 2px; padding: 3px 10px; border-radius: 10px; display: inline-block; margin-bottom: 12px; }
+.tb-founder { background: rgba(255,140,0,0.1); color: var(--forge); border: 1px solid rgba(255,140,0,0.3); }
+.tb-coming { background: rgba(58,58,90,0.3); color: var(--dim); border: 1px solid var(--dim); }
+.tier-feature { font-size: 11px; color: var(--steel); line-height: 1.6; }
+
+/* Member ticker */
+.ticker-section { position: relative; z-index: 1; background: var(--deep); border-top: 1px solid rgba(255,140,0,0.08); border-bottom: 1px solid rgba(255,140,0,0.08); padding: 20px 0; overflow: hidden; }
+.ticker-label { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 4px; color: rgba(255,140,0,0.3); text-align: center; margin-bottom: 12px; }
+.ticker-wrap { overflow: hidden; }
+.ticker-inner { display: flex; gap: 40px; white-space: nowrap; animation: tickerScroll 20s linear infinite; }
+.ticker-member { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 2px; color: var(--dim); display: flex; align-items: center; gap: 10px; }
+.ticker-member .badge { color: var(--forge); }
+.ticker-member .spot { color: rgba(255,140,0,0.3); }
+@keyframes tickerScroll { 0%{transform:translateX(0)}100%{transform:translateX(-50%)} }
+
+/* Bottom CTA */
+.bottom-cta { position: relative; z-index: 1; padding: 100px 52px; text-align: center; background: linear-gradient(180deg, var(--black) 0%, rgba(255,140,0,0.04) 50%, var(--black) 100%); }
+.bottom-cta-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--forge); margin-bottom: 20px; opacity: 0.8; }
+.bottom-cta h2 { font-family: 'Orbitron', monospace; font-size: clamp(24px, 4vw, 44px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
+.bottom-cta h2 .hl { color: var(--forge); }
+.bottom-cta h2 .hl-y { color: var(--yellow); }
+.bottom-cta p { font-size: 15px; color: var(--steel); max-width: 520px; margin: 0 auto 48px; line-height: 1.85; font-weight: 300; }
+.spots-remaining { font-family: 'Orbitron', monospace; font-size: 13px; letter-spacing: 3px; color: var(--forge); margin-bottom: 32px; }
+.spots-remaining span { color: var(--white); font-size: 24px; font-weight: 900; }
+
+footer { position: relative; z-index: 1; background: var(--deep); border-top: 1px solid var(--border); padding: 20px 52px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.footer-copy { font-family: 'Orbitron', monospace; font-size: 9px; color: var(--dim); letter-spacing: 2px; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 12px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--cyan); }
+
+#backToTop { position: fixed; bottom: 32px; right: 32px; z-index: 999; width: 48px; height: 48px; border-radius: 50%; background: var(--forge); color: #000; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 20px; transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 20px rgba(255,140,0,0.3); }
+#backToTop:hover { background: var(--yellow); transform: translateY(-2px); }
+
+@media(max-width:900px) {
+  nav { padding: 0 20px; }
+  .hero { padding: 100px 24px 72px; }
+  .chapter { padding: 0 24px; }
+  .manifesto { padding: 72px 24px; }
+  .perks { padding: 64px 24px; }
+  .perks-grid { grid-template-columns: 1fr; }
+  .tiers { padding: 72px 24px; }
+  .tiers-grid { grid-template-columns: repeat(2,1fr); }
+  .bottom-cta { padding: 72px 24px; }
+  footer { flex-direction: column; text-align: center; padding: 20px 24px; }
+  .spots-num, .spots-total { font-size: clamp(72px, 20vw, 120px); }
+}
+</style>
+</head>
+<body>
+
+<!-- Ember particles -->
+<div class="embers" id="embers"></div>
+
+<nav>
+  <a href="https://contentforgestudio.com" class="nav-logo">
+    <div class="nav-mark">
+      <img src="CFS Logo_FINAL.png" alt="CFS Logo">
+    </div>
+    <div class="nav-wordmark">
+      <div style="display:flex;"><span class="nav-top">CONTENT</span><span class="nav-bottom">FORGE</span></div>
+      <div class="nav-studio">STUDIO</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="https://contentforgestudio.com/guides" class="nav-link">Free Guides</a>
+    <a href="https://contentforgestudio.com/my-turn" class="nav-link" style="color:var(--fire);font-weight:700;">My Turn</a>
+    <a href="https://contentforgestudio.com/community" class="nav-link nav-forge">The Forge</a>
+    <a href="https://contentforgestudio.com/vault-store" class="nav-link nav-vault">🔒 The Vault</a>
+    <a href="https://contentforgestudio.com" class="nav-link nav-home">Home</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-glow"></div>
+
+  <div class="forge-label">// THE FORGE · FOUNDING MEMBERS · CONTENTFORGESTUDIO.COM</div>
+
+  <!-- THE NUMBER IS THE HERO -->
+  <div class="spots-display">
+    <div style="display:flex;align-items:baseline;justify-content:center;gap:16px;flex-wrap:wrap;">
+      <span class="spots-num"><span class="count" id="spotsLeft">100</span></span>
+      <span class="spots-divider">/</span>
+      <span class="spots-total">100</span>
+    </div>
+    <div class="spots-label">FOUNDING SPOTS REMAINING</div>
+  </div>
+
+  <h1 class="hero-title">This Is <span class="hl">The Ground Floor.</span><br>Own It <span class="hl-y">Forever.</span></h1>
+
+  <p class="hero-sub">ContentForge Studio is being built right now — from zero, in public, documented through the My Turn series. We're inviting the first 100 people to be here from day one. Not as users. Not as subscribers. <strong style="color:var(--white);">As Forge Founders. Permanently.</strong></p>
+
+  <!-- MAILERLITE FORM — Replace FORM_ID with your Forge Founders form ID -->
+  <div class="forge-form-wrap">
+    <div class="forge-form" id="forgeForm">
+      <input type="text" id="forgeName" placeholder="First name...">
+      <input type="email" id="forgeEmail" placeholder="Email address...">
+      <button class="forge-btn" onclick="submitForge()">🔥 &nbsp;Claim My Founding Spot</button>
+      <p class="forge-form-note">Free forever for the first 100 · No credit card · No spam</p>
+    </div>
+    <div class="forge-success" id="forgeSuccess">
+      <p>// FOUNDING SPOT CLAIMED</p>
+      <span>Welcome to The Forge. You're in the first 100. Check your inbox — we'll be in touch with everything you need to get started.</span>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER: THE MOVEMENT -->
+<div class="chapter">
+  <div class="ch-line"></div>
+  <div class="ch-label">// WHY THIS EXISTS</div>
+  <div class="ch-line-r"></div>
+</div>
+
+<!-- MANIFESTO -->
+<div class="manifesto">
+  <div class="manifesto-eyebrow">// THE FORGE MANIFESTO</div>
+
+  <div class="manifesto-block">
+    <h2>Alone, You're Fighting <span class="hl">the System.</span><br>Together, You're <span class="hl-y">Building Around It.</span></h2>
+    <p>The conditioning works because it isolates. It makes you feel like wanting something different is a personal failing — your problem, your limitation, your missed window. When you're alone with that feeling, it's easy to believe it.</p>
+    <p>You're not alone.</p>
+    <div class="pull-quote">
+      <p>"I work to live. I don't live to work. And I'm building this community for people who feel the same way — people who are done watching someone else's dream and ready to start building their own."</p>
+    </div>
+    <p>The Forge is being built for everyone who found this page, read the manifesto, and thought — <em>that's me.</em> For everyone who's done with fake, done with hustle culture performance, done building someone else's dream on someone else's clock.</p>
+  </div>
+
+  <div class="manifesto-block">
+    <h2>The <span class="hl">Hive Mind</span> Is Real.</h2>
+    <p>We all bring something different. Different skills, different backgrounds, different experiences — different pieces of the same puzzle. One person figures out what converts on TikTok. Another cracks the affiliate stack. Someone else finds the prompt that cuts content time in half.</p>
+    <p>In a real community those wins don't stay with one person. <strong>They compound for everyone.</strong></p>
+    <p>That's not theory. That's not a buzzword. That's what happens when people with shared values and individual strengths pull in the same direction. The collective intelligence of 100 people who are all genuinely trying, all genuinely sharing, all genuinely invested in each other's success — that's an unfair advantage that no guru course can sell you.</p>
+    <p>You can't buy belonging. You can only build it. And that's what The Forge is.</p>
+  </div>
+
+  <div class="manifesto-block">
+    <h2>This Is <span class="hl">Bigger</span> Than a Side Hustle.</h2>
+    <p>AI is the first tool in history that genuinely levels the playing field for individuals. One person with the right tools can now do what used to require a team, a budget, and institutional backing.</p>
+    <p>But imagine what a <em>community</em> of those people can do.</p>
+    <p>When enough people build honestly, share openly, and refuse to replicate the same broken structures they're trying to escape — the math changes. Not just for one person. For everyone.</p>
+    <div class="pull-quote">
+      <p>"The first 100 people who walk through that door aren't joining a community. They're founding one. And that means something. Permanently."</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER: WHAT YOU GET -->
+<div class="chapter">
+  <div class="ch-line"></div>
+  <div class="ch-label">// FOUNDING MEMBER ACCESS</div>
+  <div class="ch-line-r"></div>
+</div>
+
+<!-- PERKS -->
+<div class="perks">
+  <div class="perks-inner">
+    <div class="perks-eyebrow">// WHAT FORGE FOUNDERS GET</div>
+    <div class="perks-title">Everything. <span>Free. Forever.</span></div>
+
+    <div class="perks-grid">
+      <div class="perk-card">
+        <div class="perk-icon">⚡</div>
+        <div>
+          <div class="perk-title">ContentForge AI — Pro Access</div>
+          <div class="perk-desc">Full access to all 5 tools in the ContentForge AI app. Hook Generator, Prompt Builder, Content Repurposer, Offer Builder, Title Generator — no limits.</div>
+          <div class="perk-badge">$19/MO VALUE · FREE FOR FOUNDERS</div>
+        </div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">📖</div>
+        <div>
+          <div class="perk-title">Prompt Like a Pro v2.0 — Digital Copy</div>
+          <div class="perk-desc">The full book. 100 battle-tested ChatGPT prompts across 10 categories. Yours to keep, forever, as a Forge Founder.</div>
+          <div class="perk-badge">DIGITAL COPY · FREE FOR FOUNDERS</div>
+        </div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">📦</div>
+        <div>
+          <div class="perk-title">Complete CFS Guide Vault</div>
+          <div class="perk-desc">All 7 CFS free guides organized in one place — prompt packs, income starter kit, cheat sheet, affiliate tracker, content calendar. Everything.</div>
+          <div class="perk-badge">ALL 7 RESOURCES · ORGANIZED</div>
+        </div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">🎬</div>
+        <div>
+          <div class="perk-title">My Turn — Insider Access</div>
+          <div class="perk-desc">Founding Members get My Turn episode updates before anyone else. Real numbers, real milestones, inside access to the build as it happens.</div>
+          <div class="perk-badge">BEFORE ANYONE ELSE</div>
+        </div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">🏆</div>
+        <div>
+          <div class="perk-title">Forge Founder Badge — Permanent</div>
+          <div class="perk-desc">Your founding status is permanent and public. The Forge Founder badge identifies you as someone who was here from day one — forever.</div>
+          <div class="perk-badge">PERMANENT · NON-TRANSFERABLE</div>
+        </div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">✨</div>
+        <div>
+          <div class="perk-title">Your Name in the Founder Ticker</div>
+          <div class="perk-desc">Every Forge Founder's name rolls in the live member ticker on CFS.com. Visible to every visitor. A permanent record of who was here first.</div>
+          <div class="perk-badge">LIVE ON CFS.COM</div>
+        </div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">🔐</div>
+        <div>
+          <div class="perk-title">Locked Founding Rate — Forever</div>
+          <div class="perk-desc">When paid tiers launch, Forge Founders keep their access at the founding rate — permanently. That's not a promotion. It's a commitment on the record.</div>
+          <div class="perk-badge">LOCKED FOREVER · GUARANTEED</div>
+        </div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">🤝</div>
+        <div>
+          <div class="perk-title">Direct Access to B. During the Build</div>
+          <div class="perk-desc">Founding Members get direct access during the build — questions answered, feedback heard, your experience shapes what The Forge becomes.</div>
+          <div class="perk-badge">DURING THE BUILD · REAL ACCESS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Promise -->
+    <div class="promise-block">
+      <h3>The <span>Founder Promise</span> — On the Record</h3>
+      <p>Founding Member status is <strong>permanent and irrevocable.</strong> When paid tiers launch — and they will — Forge Founders keep their access, their rate, and their founding status. Forever. This isn't marketing language. It's a commitment made publicly, in writing, to the first 100 people who believed in this before it was built. <strong>When it's gone, it's gone. No exceptions. No extensions.</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- MEMBER TICKER -->
+<div class="ticker-section">
+  <div class="ticker-label">// FORGE FOUNDERS · FIRST 100</div>
+  <div class="ticker-wrap">
+    <div class="ticker-inner" id="memberTicker">
+      <div class="ticker-member"><span class="badge">🔥</span> <span>YOUR NAME HERE</span> <span class="spot">· FOUNDER #001</span></div>
+      <div class="ticker-member"><span class="badge">🔥</span> <span>YOUR NAME HERE</span> <span class="spot">· FOUNDER #002</span></div>
+      <div class="ticker-member"><span class="badge">🔥</span> <span>YOUR NAME HERE</span> <span class="spot">· FOUNDER #003</span></div>
+      <div class="ticker-member"><span class="badge">🔥</span> <span>YOUR NAME HERE</span> <span class="spot">· FOUNDER #004</span></div>
+      <div class="ticker-member"><span class="badge">🔥</span> <span>YOUR NAME HERE</span> <span class="spot">· FOUNDER #005</span></div>
+      <div class="ticker-member"><span class="badge">🔥</span> <span class="spot">· 95 SPOTS REMAINING</span></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="ticker-member"><span class="badge">🔥</span> <span>YOUR NAME HERE</span> <span class="spot">· FOUNDER #001</span></div>
+      <div class="ticker-member"><span class="badge">🔥</span> <span>YOUR NAME HERE</span> <span class="spot">· FOUNDER #002</span></div>
+      <div class="ticker-member"><span class="badge">🔥</span> <span>YOUR NAME HERE</span> <span class="spot">· FOUNDER #003</span></div>
+      <div class="ticker-member"><span class="badge">🔥</span> <span>YOUR NAME HERE</span> <span class="spot">· FOUNDER #004</span></div>
+      <div class="ticker-member"><span class="badge">🔥</span> <span>YOUR NAME HERE</span> <span class="spot">· FOUNDER #005</span></div>
+      <div class="ticker-member"><span class="badge">🔥</span> <span class="spot">· 95 SPOTS REMAINING</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TIERS PREVIEW -->
+<div class="tiers">
+  <div class="tiers-eyebrow">// WHAT'S COMING</div>
+  <div class="tiers-title">The Full <span>Tier Structure</span> — Launching Soon</div>
+  <div class="tiers-sub">Forge Founders get in free and stay free at their founding rate when these tiers launch. This is what you're locking in today.</div>
+
+  <div class="tiers-grid">
+    <div class="tier-card active">
+      <div class="tier-name">THE FORGE</div>
+      <div class="tier-price free">FREE</div>
+      <div class="tier-period">Forever · Founding Members</div>
+      <div class="tier-badge tb-founder">FORGE FOUNDER</div>
+      <div class="tier-feature">Full Pro app access · Book included · All guides · Insider access · Permanent badge · Ticker listing · Locked rate</div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-name">THE BUILDER</div>
+      <div class="tier-price">$7</div>
+      <div class="tier-period">per month · Coming Soon</div>
+      <div class="tier-badge tb-coming">COMING SOON</div>
+      <div class="tier-feature">Community access · Monthly prompt drop · Builder badge · Guide library</div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-name">THE CREATOR</div>
+      <div class="tier-price">$19</div>
+      <div class="tier-period">per month · Coming Soon</div>
+      <div class="tier-badge tb-coming">COMING SOON</div>
+      <div class="tier-feature">Everything in Builder · Full app access · My Turn insider · Early product access · Creator badge</div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-name">VAULT MEMBER</div>
+      <div class="tier-price">$47</div>
+      <div class="tier-period">per month · Coming Soon</div>
+      <div class="tier-badge tb-coming">COMING SOON</div>
+      <div class="tier-feature">Everything · Direct Q&A · Monthly group call · Book included · Founding recognition · Vault badge</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER: CLAIM YOUR SPOT -->
+<div class="chapter">
+  <div class="ch-line"></div>
+  <div class="ch-label">// CLAIM YOUR SPOT</div>
+  <div class="ch-line-r"></div>
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta">
+  <div class="bottom-cta-eyebrow">// THIS IS THE GROUND FLOOR</div>
+  <h2>Be a <span class="hl">Forge Founder.</span><br>Own It <span class="hl-y">Forever.</span></h2>
+  <p>The first 100 people who join The Forge get everything — free, permanently, with founding status that never expires. When the 100 spots are gone, this offer is gone. No exceptions. No extensions.</p>
+  <div class="spots-remaining"><span id="spotsLeft2">100</span> OF 100 FOUNDING SPOTS REMAINING</div>
+
+  <div class="forge-form-wrap" style="margin:0 auto;">
+    <div class="forge-form" id="forgeForm2">
+      <input type="text" id="forgeName2" placeholder="First name...">
+      <input type="email" id="forgeEmail2" placeholder="Email address...">
+      <button class="forge-btn" onclick="submitForge2()">🔥 &nbsp;Claim My Founding Spot</button>
+      <p class="forge-form-note">Free forever for the first 100 · No credit card · No spam</p>
+    </div>
+    <div class="forge-success" id="forgeSuccess2">
+      <p>// FOUNDING SPOT CLAIMED</p>
+      <span>Welcome to The Forge. You're in the first 100. Check your inbox — everything you need is on its way.</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-copy">© 2026 CONTENTFORGESTUDIO.COM · THE FORGE</p>
+  <div class="footer-links">
+    <a href="https://contentforgestudio.com">Home</a>
+    <a href="https://contentforgestudio.com/guides">Free Guides</a>
+    <a href="https://contentforgestudio.com/my-turn">My Turn</a>
+    <a href="https://contentforgestudio.com/vault-store">The Vault</a>
+    <a href="https://contentforgestudio.com/community">The Forge</a>
+    <a href="https://contentforgestudio.com/privacy">Privacy Policy</a>
+  </div>
+</footer>
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Ember particles
+const embers = document.getElementById('embers');
+for(let i = 0; i < 20; i++) {
+  const e = document.createElement('div');
+  e.className = 'ember';
+  e.style.cssText = `
+    left: ${Math.random()*100}%;
+    width: ${Math.random()*3+1}px;
+    height: ${Math.random()*3+1}px;
+    animation-duration: ${Math.random()*8+6}s;
+    animation-delay: ${Math.random()*8}s;
+    --drift: ${(Math.random()-0.5)*100}px;
+    opacity: 0;
+  `;
+  embers.appendChild(e);
+}
+
+// Spots counter — update this number manually as signups come in
+const SPOTS_LEFT = 100;
+document.getElementById('spotsLeft').textContent = SPOTS_LEFT;
+document.getElementById('spotsLeft2').textContent = SPOTS_LEFT;
+
+// Form submission — wire to MailerLite
+// Replace MAILERLITE_FORM_ID with your actual Forge Founders form ID
+function submitForge() {
+  const name = document.getElementById('forgeName').value.trim();
+  const email = document.getElementById('forgeEmail').value.trim();
+  if (!name || !email) { alert('Please enter your name and email.'); return; }
+  
+  // POST to MailerLite
+  // Replace YOUR_FORM_ID with the actual MailerLite form ID
+  fetch('https://assets.mailerlite.com/jsonp/YOUR_FORM_ID/forms/YOUR_FORM_ID/subscribe', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields: { name, email } })
+  }).then(() => {
+    document.getElementById('forgeForm').style.display = 'none';
+    document.getElementById('forgeSuccess').style.display = 'block';
+  }).catch(() => {
+    document.getElementById('forgeForm').style.display = 'none';
+    document.getElementById('forgeSuccess').style.display = 'block';
+  });
+}
+
+function submitForge2() {
+  const name = document.getElementById('forgeName2').value.trim();
+  const email = document.getElementById('forgeEmail2').value.trim();
+  if (!name || !email) { alert('Please enter your name and email.'); return; }
+  fetch('https://assets.mailerlite.com/jsonp/YOUR_FORM_ID/forms/YOUR_FORM_ID/subscribe', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fields: { name, email } })
+  }).then(() => {
+    document.getElementById('forgeForm2').style.display = 'none';
+    document.getElementById('forgeSuccess2').style.display = 'block';
+  }).catch(() => {
+    document.getElementById('forgeForm2').style.display = 'none';
+    document.getElementById('forgeSuccess2').style.display = 'block';
+  });
+}
+
+// Back to top
+const btn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => { btn.style.display = window.scrollY > 400 ? 'flex' : 'none'; });
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.perk-card, .tier-card, .manifesto-block, .promise-block').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
