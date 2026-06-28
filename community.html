@@ -226,12 +226,12 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
       <span class="spots-divider">/</span>
       <span class="spots-total">100</span>
     </div>
-    <div class="spots-label">FOUNDING SPOTS REMAINING</div>
+    <div class="spots-label">FORGE MEMBER SPOTS REMAINING</div>
   </div>
 
-  <h1 class="hero-title">This Is <span class="hl">The Ground Floor.</span><br>Own It <span class="hl-y">Forever.</span></h1>
+  <h1 class="hero-title">This Is <span class="hl">The Ground Floor.</span><br>Member or <span class="hl-y">Founder.</span></h1>
 
-  <p class="hero-sub">ContentForge Studio is being built right now — from zero, in public, documented through the My Turn series. We're inviting the first 100 people to be here from day one. Not as users. Not as subscribers. <strong style="color:var(--white);">As Forge Founders. Permanently.</strong></p>
+  <p class="hero-sub">ContentForge Studio is being built right now — from zero, in public, documented through the My Turn series. We're inviting the first 100 people to be here from day one. Not as users. Not as subscribers. <strong style="color:var(--white);">As Forge Members — $7/mo, locked forever.</strong> Or go all in as a <strong style="color:var(--forge);">Forge Founder — $97 one-time, permanent access, forever.</strong></p>
 
   <!-- MAILERLITE FORM — Replace FORM_ID with your Forge Founders form ID -->
   <div class="forge-form-wrap">
@@ -239,7 +239,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
       <input type="text" id="forgeName" placeholder="First name...">
       <input type="email" id="forgeEmail" placeholder="Email address...">
       <button class="forge-btn" onclick="submitForge()">🔥 &nbsp;Claim My Founding Spot</button>
-      <p class="forge-form-note">Free forever for the first 100 · No credit card · No spam</p>
+      <p class="forge-form-note">First 100 only · $7/mo locked forever · Cancel anytime</p>
     </div>
     <div class="forge-success" id="forgeSuccess">
       <p>// FOUNDING SPOT CLAIMED</p>
@@ -354,7 +354,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
         <div class="perk-icon">🔐</div>
         <div>
           <div class="perk-title">Locked Founding Rate — Forever</div>
-          <div class="perk-desc">When paid tiers launch, Forge Founders keep their access at the founding rate — permanently. That's not a promotion. It's a commitment on the record.</div>
+          <div class="perk-desc">Forge Members lock in at $7/mo forever. Forge Founders own it permanently for $97 one-time — no monthly ever. When future tiers launch at $19-47/mo, your rate never changes.</div>
           <div class="perk-badge">LOCKED FOREVER · GUARANTEED</div>
         </div>
       </div>
@@ -371,7 +371,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
     <!-- The Promise -->
     <div class="promise-block">
       <h3>The <span>Founder Promise</span> — On the Record</h3>
-      <p>Founding Member status is <strong>permanent and irrevocable.</strong> When paid tiers launch — and they will — Forge Founders keep their access, their rate, and their founding status. Forever. This isn't marketing language. It's a commitment made publicly, in writing, to the first 100 people who believed in this before it was built. <strong>When it's gone, it's gone. No exceptions. No extensions.</strong></p>
+      <p><strong>Forge Member:</strong> $7/mo, locked forever, first 100 only. When future tiers launch at $19-47/mo, your rate never changes. Ever. <strong>Forge Founder:</strong> $97 one-time, permanent access, no monthly ever. 25 spots. When they're gone, they're gone. Both commitments are made publicly, in writing, on the record. <strong>No exceptions. No extensions. No BS.</strong></p>
     </div>
   </div>
 </div>
@@ -400,39 +400,66 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
 
 <!-- TIERS PREVIEW -->
 <div class="tiers">
-  <div class="tiers-eyebrow">// WHAT'S COMING</div>
-  <div class="tiers-title">The Full <span>Tier Structure</span> — Launching Soon</div>
-  <div class="tiers-sub">Forge Founders get in free and stay free at their founding rate when these tiers launch. This is what you're locking in today.</div>
+  <div class="tiers-eyebrow">// TWO WAYS IN</div>
+  <div class="tiers-title">Forge Member <span>or</span> Forge Founder.</div>
+  <div class="tiers-sub">Two types of people. Both treated with respect. Neither pressured. The offer speaks for itself.</div>
 
-  <div class="tiers-grid">
-    <div class="tier-card active">
-      <div class="tier-name">THE FORGE</div>
-      <div class="tier-price free">FREE</div>
-      <div class="tier-period">Forever · Founding Members</div>
-      <div class="tier-badge tb-founder">FORGE FOUNDER</div>
-      <div class="tier-feature">Full Pro app access · Book included · All guides · Insider access · Permanent badge · Ticker listing · Locked rate</div>
+  <div class="tiers-grid" style="grid-template-columns:repeat(2,1fr);max-width:700px;">
+
+    <!-- FORGE MEMBER -->
+    <div class="tier-card active" style="border-color:rgba(255,140,0,0.4);">
+      <div class="tier-name">🔥 FORGE MEMBER</div>
+      <div class="tier-price" style="color:var(--forge);font-size:32px;">$7</div>
+      <div class="tier-period">per month · locked forever · first 100 only</div>
+      <div class="tier-badge tb-founder">100 SPOTS · OPEN NOW</div>
+      <div class="tier-feature" style="text-align:left;margin-top:14px;">
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <span>✓ Full Pro app access</span>
+          <span>✓ Digital book — Prompt Like a Pro v2.0</span>
+          <span>✓ All 7 CFS guides</span>
+          <span>✓ My Turn insider access</span>
+          <span>✓ Forge Member badge — permanent</span>
+          <span>✓ Name in the member ticker</span>
+          <span>✓ $7/mo locked forever</span>
+          <span>✓ Direct access to B. during the build</span>
+        </div>
+      </div>
     </div>
-    <div class="tier-card">
-      <div class="tier-name">THE BUILDER</div>
-      <div class="tier-price">$7</div>
-      <div class="tier-period">per month · Coming Soon</div>
-      <div class="tier-badge tb-coming">COMING SOON</div>
-      <div class="tier-feature">Community access · Monthly prompt drop · Builder badge · Guide library</div>
+
+    <!-- FORGE FOUNDER -->
+    <div class="tier-card active" style="border-color:rgba(232,255,71,0.4);">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--yellow),var(--forge));"></div>
+      <div class="tier-name" style="color:var(--yellow);">⚡ FORGE FOUNDER</div>
+      <div class="tier-price" style="color:var(--yellow);font-size:32px;">$97</div>
+      <div class="tier-period">one-time · permanent · 25 spots only</div>
+      <div class="tier-badge" style="background:rgba(232,255,71,0.08);color:var(--yellow);border:1px solid rgba(232,255,71,0.2);">25 SPOTS · TRUE FOUNDER</div>
+      <div class="tier-feature" style="text-align:left;margin-top:14px;">
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <span>✓ Everything in Forge Member</span>
+          <span>✓ No monthly — ever. Own it permanently.</span>
+          <span>✓ Forge Founder badge — highest tier</span>
+          <span>✓ Permanently featured on community page</span>
+          <span>✓ Direct input on what The Forge becomes</span>
+          <span>✓ Equity of belonging — you helped build this</span>
+          <span>✓ Name displayed permanently — not just ticker</span>
+          <span>✓ First access to everything CFS builds next</span>
+        </div>
+      </div>
     </div>
-    <div class="tier-card">
-      <div class="tier-name">THE CREATOR</div>
-      <div class="tier-price">$19</div>
-      <div class="tier-period">per month · Coming Soon</div>
-      <div class="tier-badge tb-coming">COMING SOON</div>
-      <div class="tier-feature">Everything in Builder · Full app access · My Turn insider · Early product access · Creator badge</div>
+
+  </div>
+
+  <!-- Coming tiers -->
+  <div style="margin-top:24px;padding:20px 24px;background:rgba(7,7,14,0.6);border:1px solid var(--dim);border-radius:8px;text-align:center;">
+    <div style="font-family:'Orbitron',monospace;font-size:8px;letter-spacing:3px;color:var(--dim);margin-bottom:8px;">// FUTURE TIERS · COMING SOON</div>
+    <div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
+      <span style="font-family:'Orbitron',monospace;font-size:9px;color:var(--dim);">The Builder · $7/mo</span>
+      <span style="color:var(--dim);">·</span>
+      <span style="font-family:'Orbitron',monospace;font-size:9px;color:var(--dim);">The Creator · $19/mo</span>
+      <span style="color:var(--dim);">·</span>
+      <span style="font-family:'Orbitron',monospace;font-size:9px;color:var(--dim);">Vault Member · $47/mo</span>
     </div>
-    <div class="tier-card">
-      <div class="tier-name">VAULT MEMBER</div>
-      <div class="tier-price">$47</div>
-      <div class="tier-period">per month · Coming Soon</div>
-      <div class="tier-badge tb-coming">COMING SOON</div>
-      <div class="tier-feature">Everything · Direct Q&A · Monthly group call · Book included · Founding recognition · Vault badge</div>
-    </div>
+    <div style="font-size:12px;color:var(--dim);margin-top:8px;">Forge Members and Founders are locked in below these rates. Forever.</div>
   </div>
 </div>
 
@@ -446,16 +473,16 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
 <!-- BOTTOM CTA -->
 <div class="bottom-cta">
   <div class="bottom-cta-eyebrow">// THIS IS THE GROUND FLOOR</div>
-  <h2>Be a <span class="hl">Forge Founder.</span><br>Own It <span class="hl-y">Forever.</span></h2>
-  <p>The first 100 people who join The Forge get everything — free, permanently, with founding status that never expires. When the 100 spots are gone, this offer is gone. No exceptions. No extensions.</p>
-  <div class="spots-remaining"><span id="spotsLeft2">100</span> OF 100 FOUNDING SPOTS REMAINING</div>
+  <h2>Be a <span class="hl">Forge Member.</span><br>Or a <span class="hl-y">Forge Founder.</span></h2>
+  <p>First 100 Forge Members get full access locked at $7/mo forever — regardless of what future tiers cost. Or invest as a Forge Founder for $97 one-time and own your access permanently, no monthly ever. Both offers close when spots are gone. No exceptions.</p>
+  <div class="spots-remaining"><span id="spotsLeft2">100</span> OF 100 FORGE MEMBER SPOTS REMAINING</div>
 
   <div class="forge-form-wrap" style="margin:0 auto;">
     <div class="forge-form" id="forgeForm2">
       <input type="text" id="forgeName2" placeholder="First name...">
       <input type="email" id="forgeEmail2" placeholder="Email address...">
       <button class="forge-btn" onclick="submitForge2()">🔥 &nbsp;Claim My Founding Spot</button>
-      <p class="forge-form-note">Free forever for the first 100 · No credit card · No spam</p>
+      <p class="forge-form-note">First 100 only · $7/mo locked forever · Cancel anytime</p>
     </div>
     <div class="forge-success" id="forgeSuccess2">
       <p>// FOUNDING SPOT CLAIMED</p>
