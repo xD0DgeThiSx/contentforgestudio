@@ -509,8 +509,8 @@ function submitForge() {
   if (!name || !email) { alert('Please enter your name and email.'); return; }
   
   // POST to MailerLite
-  // Replace YOUR_FORM_ID with the actual MailerLite form ID
-  fetch('https://assets.mailerlite.com/jsonp/YOUR_FORM_ID/forms/YOUR_FORM_ID/subscribe', {
+  // Replace 191514560151160627 with the actual MailerLite form ID
+  fetch('https://assets.mailerlite.com/jsonp/191514560151160627/forms/191514560151160627/subscribe', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ fields: { name, email } })
@@ -527,7 +527,7 @@ function submitForge2() {
   const name = document.getElementById('forgeName2').value.trim();
   const email = document.getElementById('forgeEmail2').value.trim();
   if (!name || !email) { alert('Please enter your name and email.'); return; }
-  fetch('https://assets.mailerlite.com/jsonp/YOUR_FORM_ID/forms/YOUR_FORM_ID/subscribe', {
+  fetch('https://assets.mailerlite.com/jsonp/191514560151160627/forms/191514560151160627/subscribe', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ fields: { name, email } })
