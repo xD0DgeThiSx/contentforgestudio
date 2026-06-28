@@ -245,7 +245,26 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
 .ticker-item { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #000; display: flex; align-items: center; gap: 12px; }
 .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(0,0,0,0.4); }
 
-@media(max-width: 900px) {
+/* My Turn announcement strip */
+.my-turn-strip { position: relative; z-index: 1; background: linear-gradient(135deg, rgba(255,92,26,0.06), rgba(232,255,71,0.03) 50%, rgba(7,7,14,0)), var(--deep); border-top: 1px solid rgba(255,92,26,0.2); border-bottom: 1px solid rgba(255,92,26,0.2); padding: 36px 52px; overflow: hidden; }
+.my-turn-strip::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--fire), var(--yellow) 50%, transparent); }
+.mt-strip-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.mt-left { flex: 1; min-width: 280px; }
+.mt-live-badge { display: inline-flex; align-items: center; font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 3px; color: var(--fire); background: rgba(255,92,26,0.08); border: 1px solid rgba(255,92,26,0.2); padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; animation: badgePulse 2s ease-in-out infinite; }
+@keyframes badgePulse { 0%,100%{opacity:1}50%{opacity:0.6} }
+.mt-title { font-family: 'Orbitron', monospace; font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: var(--white); letter-spacing: -1px; line-height: 1; margin-bottom: 12px; }
+.mt-title span { color: var(--yellow); }
+.mt-sub { font-size: 13px; color: var(--steel); font-weight: 300; line-height: 1.75; max-width: 480px; }
+.mt-right { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+.mt-tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.mt-tags span { font-family: 'Orbitron', monospace; font-size: 7px; letter-spacing: 2px; padding: 3px 10px; border-radius: 3px; background: rgba(232,255,71,0.05); border: 1px solid rgba(232,255,71,0.1); color: var(--dim); }
+.mt-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--fire); color: #fff; text-decoration: none; padding: 13px 28px; border-radius: 6px; font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; transition: background 0.2s, transform 0.2s; animation: fireBtnPulse 2.5s ease-in-out infinite; white-space: nowrap; }
+.mt-btn:hover { background: var(--yellow); color: #000; transform: translateY(-2px); animation: none; }
+@keyframes fireBtnPulse { 0%{box-shadow:0 0 0 0 rgba(255,92,26,0.5)}70%{box-shadow:0 0 0 10px rgba(255,92,26,0)}100%{box-shadow:0 0 0 0 rgba(255,92,26,0)} }
+.mt-note { font-family: 'Orbitron', monospace; font-size: 8px; letter-spacing: 2px; color: var(--dim); }
+@media(max-width:900px) { .my-turn-strip { padding: 28px 24px; } .mt-right { align-items: flex-start; } .mt-tags { justify-content: flex-start; } }
+
+
   nav { padding: 0 20px; }
   .nav-links { display: none; }
   .hero { padding: 88px 24px 60px; }
@@ -366,6 +385,26 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
     <div class="ticker-item">▶ NEW VIDEOS WEEKLY<div class="ticker-dot"></div></div>
     <div class="ticker-item">📚 PROMPT LIKE A PRO — ON AMAZON NOW<div class="ticker-dot"></div></div>
     <div class="ticker-item">🔗 CONTENTFORGESTUDIO.COM<div class="ticker-dot"></div></div>
+  </div>
+</div>
+
+<!-- MY TURN ANNOUNCEMENT STRIP -->
+<div class="my-turn-strip">
+  <div class="mt-strip-inner">
+    <div class="mt-left">
+      <div class="mt-live-badge">🎬 &nbsp;NOW IN PRODUCTION</div>
+      <div class="mt-title">MY TURN</div>
+      <div class="mt-sub">A documentary about building real income on my own terms — in a world that wasn't designed for people like us to win.</div>
+    </div>
+    <div class="mt-right">
+      <div class="mt-tags">
+        <span>BUILDING IN PUBLIC</span>
+        <span>REAL NUMBERS</span>
+        <span>NO FILTERS</span>
+      </div>
+      <a href="/my-turn" class="mt-btn">Follow the Series →</a>
+      <div class="mt-note">Episode 01 dropping soon</div>
+    </div>
   </div>
 </div>
 

@@ -60,7 +60,7 @@ nav { position: relative; z-index: 10; padding: 0 52px; height: 68px; display: f
 
 /* Section */
 .section { position: relative; z-index: 1; padding: 72px 52px; max-width: 1180px; margin: 0 auto; }
-.section-eyebrow { font-family: 'Orbitron', monospace; font-size: 9px; letter-spacing: 6px; color: var(--purple); margin-bottom: 12px; opacity: 0.7; }
+.section-eyebrow { font-family: 'Orbitron', monospace; font-size: 12px; letter-spacing: 6px; color: var(--purple); margin-bottom: 12px; opacity: 0.7; }
 .section-title { font-family: 'Orbitron', monospace; font-size: clamp(18px, 2.8vw, 28px); font-weight: 800; margin-bottom: 36px; }
 .section-title .hl { color: var(--yellow); }
 .section-title .hl-purple { color: var(--purple); }
@@ -169,6 +169,11 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
   .divider { width: calc(100% - 48px); margin: 0 24px; }
   .hero-stats { gap: 28px; }
 }
+
+.nav-vault { color: var(--yellow) !important; font-weight: 700 !important; animation: vaultGlow 2.5s ease-in-out infinite; }
+.nav-vault:hover { color: #fff !important; animation: none; }
+@keyframes vaultGlow { 0%,100% { text-shadow: 0 0 6px rgba(232,255,71,0.4), 0 0 12px rgba(232,255,71,0.2); } 50% { text-shadow: 0 0 14px rgba(232,255,71,0.9), 0 0 28px rgba(232,255,71,0.5); } }
+
 </style>
 </head>
 <body>
@@ -191,7 +196,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
   <div class="nav-right">
     <a href="https://contentforgestudio.com/guides" class="nav-link">Free Guides</a>
     <a href="https://youtube.com/@TheContentForgeStudio" target="_blank" class="nav-link">YouTube</a>
-    <a href="https://contentforgestudio.com/vault-store" class="nav-link" style="color:var(--yellow);">Vault Store</a>
+    <a href="https://contentforgestudio.com/vault" class="nav-link nav-vault">🔒 The Vault</a>
     <a href="https://contentforgestudio.com" class="nav-link nav-cta">Home</a>
   </div>
 </nav>
@@ -256,7 +261,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
           <div class="prod-price-amt">$1</div>
           <div class="prod-price-label">One-time · Instant ZIP</div>
         </div>
-        <a href="https://stromblad3.gumroad.com/l/ai-creator-starter-vault" target="_blank" rel="noopener" class="prod-btn btn-yellow">🔒 &nbsp;Get the Vault</a>
+        <a href="https://contentforgestudio.com/vault" class="prod-btn btn-yellow">🔒 &nbsp;Get the Vault</a>
       </div>
     </div>
 
@@ -309,7 +314,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
         <div class="prod-badge pb-fire">📚 LIVE ON AMAZON</div>
         <div class="prod-icon">📖</div>
         <div class="prod-title">Prompt Like a Pro</div>
-        <div class="prod-subtitle">100 PROMPTS · REAL RESULTS · AI INCOME</div>
+        <div class="prod-subtitle">100 BATTLE-TESTED CHATGPT PROMPTS · FULLY UPDATED V2.0</div>
         <p class="prod-desc">The full book behind the free prompt packs. 100 battle-tested prompts across 10 categories — each one with the exact text, a real-world use case, and how it was used to build ContentForge Studio. The complete version of Vol. 1 + Vol. 2 and beyond.</p>
         <div class="prod-tags">
           <span class="prod-tag">Amazon KDP</span>
@@ -330,7 +335,7 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
           <div class="prod-price-amt" style="font-size:20px;">AMAZON</div>
           <div class="prod-price-label">Kindle + Paperback</div>
         </div>
-        <a href="https://www.amazon.com/dp/B0FX6WSWGL?tag=contentforges-20" target="_blank" rel="noopener" class="prod-btn btn-fire">📖 &nbsp;Get on Amazon</a>
+        <a href="https://contentforgestudio.com/prompt-like-a-pro" class="prod-btn btn-fire">📖 &nbsp;Learn More</a>
       </div>
     </div>
 
