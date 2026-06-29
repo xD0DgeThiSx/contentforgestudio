@@ -3,82 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>You're In — Forge Founder #XXX · ContentForgeStudio.com</title>
+<title>You’re a Forge Founder · ContentForgeStudio.com</title>
+<meta name="description" content="Thank you for becoming a Forge Founder. Next steps for Skool access, Founder verification, and CFS resources.">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root { --yellow:#e8ff47;--fire:#ff5c1a;--forge:#ff8c00;--cyan:#38d9f5;--black:#07070e;--deep:#0d0d1c;--card:#141428;--border:rgba(255,140,0,0.12);--steel:#8090b0;--dim:#3a3a5a;--white:#f0f0ff; }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--black);color:var(--white);font-family:'Raleway',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;overflow-x:hidden;}
-
-.bg-glow{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(255,140,0,0.06) 0%,transparent 65%);pointer-events:none;z-index:0;}
-
-.wrap{position:relative;z-index:1;max-width:640px;margin:0 auto;}
-.badge{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:4px;color:var(--forge);background:rgba(255,140,0,0.08);border:1px solid rgba(255,140,0,0.2);padding:6px 16px;border-radius:20px;display:inline-block;margin-bottom:32px;animation:pulse 2s ease-in-out infinite;}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,140,0,0.3)}50%{box-shadow:0 0 0 12px rgba(255,140,0,0)}}
-
-.icon{font-size:72px;margin-bottom:24px;animation:pop 0.6s ease both;}
-@keyframes pop{from{transform:scale(0.5);opacity:0}to{transform:scale(1);opacity:1}}
-
-h1{font-family:'Orbitron',monospace;font-size:clamp(28px,5vw,48px);font-weight:900;line-height:1.1;margin-bottom:16px;}
-h1 .hl{color:var(--forge);}
-h1 .hl-y{color:var(--yellow);}
-.sub{font-size:16px;color:var(--steel);font-weight:300;line-height:1.85;margin-bottom:48px;max-width:520px;}
-.sub strong{color:var(--white);}
-
-.next-steps{background:var(--card);border:1px solid rgba(255,140,0,0.15);border-radius:12px;padding:32px;text-align:left;margin-bottom:40px;position:relative;overflow:hidden;}
-.next-steps::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--forge),var(--yellow),var(--fire));}
-.next-steps h3{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:3px;color:var(--forge);margin-bottom:20px;}
-.step{display:flex;gap:16px;align-items:flex-start;margin-bottom:16px;}
-.step:last-child{margin-bottom:0;}
-.step-num{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:var(--forge);background:rgba(255,140,0,0.1);border:1px solid rgba(255,140,0,0.2);border-radius:4px;padding:4px 10px;flex-shrink:0;}
-.step-text{font-size:13px;color:var(--steel);line-height:1.7;}
-.step-text strong{color:var(--white);}
-
-.cta-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--forge);color:#000;text-decoration:none;padding:14px 28px;border-radius:6px;font-family:'Orbitron',monospace;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:background 0.2s,transform 0.2s;}
-.btn-primary:hover{background:var(--yellow);transform:translateY(-2px);}
-.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--steel);text-decoration:none;padding:14px 24px;border-radius:6px;font-family:'Orbitron',monospace;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--dim);transition:border-color 0.2s,color 0.2s;}
-.btn-secondary:hover{color:var(--cyan);border-color:rgba(56,217,245,0.4);}
-
-.footer-note{margin-top:48px;font-family:'Orbitron',monospace;font-size:8px;letter-spacing:3px;color:var(--dim);}
+:root{--yellow:#e8ff47;--fire:#ff5c1a;--forge:#ff8c00;--cyan:#38d9f5;--black:#07070e;--deep:#0d0d1c;--card:#141428;--border:rgba(255,140,0,.14);--steel:#8d9ab8;--dim:#434362;--white:#f0f0ff}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--black);color:var(--white);font-family:'Raleway',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;overflow-x:hidden}body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle at 50% 30%,rgba(255,140,0,.08),transparent 38%),radial-gradient(circle at 80% 72%,rgba(56,217,245,.04),transparent 30%);pointer-events:none;z-index:0}.bg-glow{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:820px;height:820px;background:radial-gradient(circle,rgba(255,140,0,.07) 0%,transparent 65%);pointer-events:none;z-index:0}.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto}.badge{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:4px;color:var(--forge);background:rgba(255,140,0,.08);border:1px solid rgba(255,140,0,.24);padding:7px 16px;border-radius:20px;display:inline-block;margin-bottom:30px;animation:pulse 2s ease-in-out infinite}@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,140,0,.3)}50%{box-shadow:0 0 0 12px rgba(255,140,0,0)}}.icon{font-size:74px;margin-bottom:22px;animation:pop .6s ease both}@keyframes pop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}h1{font-family:'Orbitron',monospace;font-size:clamp(30px,5vw,52px);font-weight:900;line-height:1.1;margin-bottom:16px}h1 .hl{color:var(--forge)}h1 .hl-y{color:var(--yellow)}.sub{font-size:16px;color:var(--steel);font-weight:300;line-height:1.85;margin:0 auto 38px;max-width:620px}.sub strong{color:var(--white)}.mission{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:var(--cyan);text-transform:uppercase;margin-bottom:30px}.next-steps{background:linear-gradient(145deg,rgba(20,20,40,.95),rgba(13,13,28,.95));border:1px solid rgba(255,140,0,.16);border-radius:14px;padding:32px;text-align:left;margin-bottom:34px;position:relative;overflow:hidden}.next-steps::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--forge),var(--yellow),var(--fire))}.next-steps h3{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:3px;color:var(--forge);margin-bottom:22px}.step{display:flex;gap:16px;align-items:flex-start;margin-bottom:18px}.step:last-child{margin-bottom:0}.step-num{font-family:'Orbitron',monospace;font-size:11px;font-weight:800;color:var(--forge);background:rgba(255,140,0,.1);border:1px solid rgba(255,140,0,.24);border-radius:5px;padding:5px 10px;flex-shrink:0}.step-text{font-size:13px;color:var(--steel);line-height:1.75}.step-text strong{color:var(--white)}.step-text a{color:var(--cyan);text-decoration:none;font-weight:700}.step-text a:hover{text-decoration:underline}.founder-box{background:rgba(232,255,71,.05);border:1px solid rgba(232,255,71,.22);border-radius:12px;padding:22px 24px;text-align:left;margin-bottom:34px}.founder-box h3{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:3px;color:var(--yellow);margin-bottom:12px}.founder-box p{font-size:13px;color:var(--steel);line-height:1.8}.founder-box strong{color:var(--white)}.cta-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--forge);color:#000;text-decoration:none;padding:14px 24px;border-radius:6px;font-family:'Orbitron',monospace;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;transition:background .2s,transform .2s}.btn-primary:hover{background:var(--yellow);transform:translateY(-2px)}.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--steel);text-decoration:none;padding:14px 20px;border-radius:6px;font-family:'Orbitron',monospace;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--dim);transition:border-color .2s,color .2s}.btn-secondary:hover{color:var(--cyan);border-color:rgba(56,217,245,.4)}.footer-note{margin-top:46px;font-family:'Orbitron',monospace;font-size:8px;letter-spacing:3px;color:var(--dim)}@media(max-width:720px){.next-steps,.founder-box{padding:24px}.cta-group{flex-direction:column}.btn-primary,.btn-secondary{justify-content:center;width:100%}}
 </style>
 </head>
 <body>
 <div class="bg-glow"></div>
 <div class="wrap">
-  <div class="badge">🔥 FORGE SPOT CLAIMED · CONFIRMED</div>
+  <div class="badge">🔥 FORGE FOUNDER PASS · PURCHASE RECEIVED</div>
   <div class="icon">🏆</div>
-  <h1>You're <span class="hl">In.</span><br><span class="hl-y">Welcome to The Forge.</span></h1>
-  <p class="sub">You just claimed your spot in The Forge. <strong>That means something.</strong> Check your inbox — everything you need is on its way. Welcome to the ground floor of something real.</p>
+  <h1>You’re a <span class="hl">Forge Founder.</span><br><span class="hl-y">Welcome to The Forge.</span></h1>
+  <p class="sub">Thank you for becoming one of the founding people behind Content Forge Studio. <strong>Your purchase is received.</strong> Your instant downloads are available through Payhip, and your Forge community access is manually verified next.</p>
+  <div class="mission">My Turn Starts Now · Build honestly. Share openly. Win together.</div>
 
   <div class="next-steps">
     <h3>// WHAT HAPPENS NEXT</h3>
     <div class="step">
       <div class="step-num">01</div>
-      <div class="step-text"><strong>Check your inbox</strong> — your welcome email is on its way with everything included in your Forge Member access. Check spam if you don't see it within a few minutes.</div>
+      <div class="step-text"><strong>Check your email</strong> — Payhip will send your purchase confirmation and download access. Your downloads include the Founder Pass access instructions PDF and the current AI Creator Starter Vault bonus.</div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
-      <div class="step-text"><strong>Want to upgrade to Forge Founder?</strong> — $97 one-time, permanent access, no monthly ever. 25 spots only. <a href="https://contentforgestudio.com/community" style="color:var(--forge);text-decoration:none;">Go back to the community page</a> to claim a Founder spot.</div>
+      <div class="step-text"><strong>Request access to The Forge on Skool</strong> — go to <a href="https://www.skool.com/the-forge-3823" target="_blank" rel="noopener">The Forge Skool community</a> and request access using the same email you used at checkout.</div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
-      <div class="step-text"><strong>Subscribe on YouTube</strong> — My Turn episodes drop there first. Forge Members get insider updates before the public, but you need to be subscribed to get them.</div>
+      <div class="step-text"><strong>Manual Founder verification</strong> — your Payhip purchase is manually checked and matched to your Skool request. This keeps Founder access clean, accurate, and founder-only.</div>
     </div>
     <div class="step">
       <div class="step-num">04</div>
-      <div class="step-text"><strong>Your name goes in the ticker</strong> — as we confirm members, names get added to the live ticker on the community page. Watch for yours.</div>
+      <div class="step-text"><strong>Founder access is added</strong> — access is typically added the same day. Please allow up to 24 hours, especially for late-night purchases, email delays, or Skool approval timing.</div>
     </div>
   </div>
 
-  <div class="cta-group">
-    <a href="https://youtube.com/@TheContentForgeStudio" target="_blank" class="btn-primary">▶ &nbsp;Subscribe on YouTube</a>
-    <a href="https://contentforgestudio.com/guides" class="btn-secondary">Browse Free Guides</a>
-    <a href="https://contentforgestudio.com" class="btn-secondary">Back to CFS</a>
+  <div class="founder-box">
+    <h3>// YOUR FOUNDER PASS INCLUDES</h3>
+    <p><strong>24 months of Forge access</strong>, permanent Forge Founder recognition, Founder badge/status, optional name listing on the CFS Founder page, bonus Founder resource drops, early input on CFS products and community direction, and first-look/beta access to the CFS mobile app when available.</p>
   </div>
 
-  <div class="footer-note">CONTENTFORGESTUDIO.COM · THE FORGE · FOUNDING MEMBER</div>
+  <div class="cta-group">
+    <a href="https://www.skool.com/the-forge-3823" target="_blank" rel="noopener" class="btn-primary">🔥 &nbsp;Request Skool Access</a>
+    <a href="https://contentforgestudio.com/guides" class="btn-secondary">Browse Free Guides</a>
+    <a href="https://youtube.com/@TheContentForgeStudio" target="_blank" rel="noopener" class="btn-secondary">YouTube</a>
+    <a href="https://contentforgestudio.com" class="btn-secondary">CFS Home</a>
+  </div>
+
+  <div class="footer-note">CONTENTFORGESTUDIO.COM · THE FORGE · FOUNDER PASS</div>
 </div>
 </body>
 </html>
