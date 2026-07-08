@@ -18,7 +18,7 @@
   body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:108px 24px 40px;text-align:center;overflow-x:hidden;}
 
   /* Background glow */
-  body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(255,98,0,0.06) 0%,transparent 65%);pointer-events:none;z-index:0;}
+  /* background handled by injected CSS below */
 
   .wrap{position:relative;z-index:1;max-width:620px;margin:0 auto;}
 
@@ -143,5 +143,14 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
   </div>
 
 </div>
+<script>
+  const embers = document.getElementById('embers');
+  for(let i = 0; i < 28; i++){
+    const e = document.createElement('div');
+    e.className = 'ember';
+    e.style.cssText = `left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*8}s;--drift:${(Math.random()-.5)*100}px`;
+    embers.appendChild(e);
+  }
+</script>
 </body>
 </html>
