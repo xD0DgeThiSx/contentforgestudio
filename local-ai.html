@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local AI Services for Golden, CO & the Front Range | Content Forge Studio</title>
+<meta name="description" content="AI-powered websites, lead capture, follow-up, and review systems for local small businesses in Golden, CO and the Denver Metro / Front Range area — built by Content Forge Studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Content Forge Studio — Local AI Services",
+  "url": "https://contentforgestudio.com/local-ai",
+  "areaServed": ["Golden, CO", "Denver Metro", "Front Range, Colorado"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Golden", "addressRegion": "CO", "addressCountry": "US" },
+  "description": "AI-powered websites, lead capture, follow-up, and review systems for local small businesses.",
+  "priceRange": "$149-$3500"
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07070e; --surface:#0d0d18; --card:#111120; --card2:#0e0e1c;
+    --border:rgba(255,255,255,0.07);
+    --orange:#ff6200; --cyan:#00cfff; --gold:#ffc842; --green:#00ffaa; --purple:#b06fff; --red:#ff4466;
+    --text:#dcdcf0; --muted:#7070a0; --dim:#50507a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;font-size:15px;line-height:1.7;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 48px;}
+  ::selection{background:var(--orange);color:#000;}
+
+  /* ── NAV ── */
+  nav{position:sticky;top:0;z-index:50;background:rgba(7,7,14,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;}
+  .logo{font-family:'Orbitron',monospace;font-weight:900;font-size:15px;letter-spacing:1px;}
+  .logo .cx{color:var(--cyan);} .logo .ox{color:var(--orange);}
+  .navlinks{display:flex;gap:28px;font-size:12.5px;letter-spacing:0.04em;color:var(--muted);}
+  .navlinks a:hover{color:var(--text);}
+  .nav-cta{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:1px;background:var(--orange);color:#000;padding:9px 18px;border-radius:5px;font-weight:700;white-space:nowrap;}
+  @media(max-width:760px){.navlinks{display:none;}}
+
+  /* ── HERO ── */
+  .hero{padding:76px 48px 40px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-120px;right:-120px;width:420px;height:420px;background:radial-gradient(circle,rgba(255,98,0,0.14),transparent 70%);pointer-events:none;}
+  .hero::after{content:'';position:absolute;bottom:-160px;left:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(0,207,255,0.10),transparent 70%);pointer-events:none;}
+  .hero-grid{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:center;position:relative;}
+  .tag{font-family:'Orbitron',monospace;font-size:10px;letter-spacing:6px;color:var(--orange);margin-bottom:18px;text-transform:uppercase;}
+  h1{font-family:'Orbitron',monospace;font-size:clamp(30px,4.2vw,52px);font-weight:900;line-height:1.08;margin-bottom:20px;}
+  h1 .cx{color:var(--cyan);} h1 .ox{color:var(--orange);}
+  .hero-sub{font-size:16px;color:var(--muted);max-width:520px;font-weight:300;margin-bottom:30px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{font-family:'Orbitron',monospace;font-size:12px;letter-spacing:1.5px;padding:15px 26px;border-radius:6px;font-weight:700;display:inline-block;transition:transform .15s, box-shadow .15s;}
+  .btn-primary{background:var(--orange);color:#000;box-shadow:0 0 0 rgba(255,98,0,0);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,98,0,0.28);}
+  .btn-secondary{border:1px solid var(--border);color:var(--text);background:rgba(255,255,255,0.02);}
+  .btn-secondary:hover{border-color:rgba(255,255,255,0.22);}
+
+  /* ── CO badge ── */
+  .co-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:30px;padding:6px 14px 6px 6px;font-size:12px;color:var(--muted);margin-bottom:22px;}
+  .co-badge .co-mark{width:20px;height:20px;border-radius:50%;background:#fff;position:relative;flex-shrink:0;}
+  .co-badge .co-mark::before{content:'';position:absolute;left:0;top:8px;width:100%;height:4px;background:var(--red);}
+  .co-badge .co-mark::after{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:50%;background:var(--gold);transform:translate(-50%,-50%);}
+  .co-badge b{color:var(--text);font-weight:700;}
+
+  /* chat demo — signature element */
+  .chatcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;position:relative;}
+  .chatcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0;background:linear-gradient(90deg,var(--orange),var(--cyan));}
+  .chat-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+  .chat-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);}
+  .chat-head span{font-family:'Orbitron',monospace;font-size:10.5px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;}
+  .chat-body{min-height:210px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;}
+  .bubble{max-width:88%;padding:10px 14px;border-radius:10px;font-size:13px;}
+  .bubble.user{align-self:flex-end;background:rgba(255,98,0,0.14);border:1px solid rgba(255,98,0,0.25);color:#ffd9b8;}
+  .bubble.bot{align-self:flex-start;background:rgba(0,207,255,0.08);border:1px solid rgba(0,207,255,0.2);color:#bfeeff;min-height:20px;}
+  .cursor{display:inline-block;width:6px;height:13px;background:var(--cyan);margin-left:2px;animation:blink 0.9s steps(1) infinite;vertical-align:middle;}
+  @keyframes blink{50%{opacity:0;}}
+  .chat-foot{margin-top:14px;font-size:11px;color:var(--dim);text-align:center;font-family:'Orbitron',monospace;letter-spacing:0.5px;}
+
+  /* ── SECTION HEAD ── */
+  .section{padding:64px 48px;}
+  .section.alt{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .sh{max-width:1120px;margin:0 auto 36px;}
+  .sh-eyebrow{font-family:'Orbitron',monospace;font-size:10px;letter-spacing:5px;color:var(--muted);text-transform:uppercase;margin-bottom:10px;}
+  .sh h2{font-family:'Orbitron',monospace;font-size:clamp(22px,2.6vw,32px);font-weight:900;}
+  .sh h2 .cx{color:var(--cyan);} .sh h2 .ox{color:var(--orange);}
+  .sh p{color:var(--muted);max-width:640px;font-weight:300;margin-top:10px;font-size:14.5px;}
+  .inner{max-width:1120px;margin:0 auto;}
+
+  /* ── PAIN GRID ── */
+  .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  .pain-item{background:var(--card2);padding:22px 20px;font-size:13.5px;color:var(--muted);display:flex;gap:10px;align-items:flex-start;}
+  .pain-item span.mk{color:var(--red);font-size:14px;line-height:1.4;}
+
+  /* ── SERVICE CARDS ── */
+  .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;}
+  .svc-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px 24px 22px;position:relative;overflow:hidden;transition:transform .18s, border-color .18s;}
+  .svc-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,0.16);}
+  .svc-num{font-family:'Orbitron',monospace;font-size:11px;color:var(--dim);letter-spacing:1px;margin-bottom:10px;}
+  .svc-card h3{font-family:'Orbitron',monospace;font-size:14.5px;letter-spacing:0.3px;margin-bottom:10px;color:var(--text);}
+  .svc-card p{font-size:13px;color:var(--muted);font-weight:300;}
+
+  /* ── PROCESS ── */
+  .steps{display:flex;flex-direction:column;gap:2px;}
+  .step{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:22px 4px;border-bottom:1px solid var(--border);}
+  .step:last-child{border-bottom:none;}
+  .step-num{font-family:'Orbitron',monospace;font-size:26px;font-weight:900;color:var(--orange);opacity:0.85;}
+  .step h4{font-size:15px;font-weight:700;margin-bottom:5px;}
+  .step p{font-size:13px;color:var(--muted);font-weight:300;max-width:560px;}
+
+  /* ── PACKAGES ── */
+  .pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
+  .pkg{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 26px;display:flex;flex-direction:column;}
+  .pkg.feat{border-color:rgba(255,98,0,0.35);background:linear-gradient(160deg,#16110c,var(--card));position:relative;}
+  .pkg.feat::before{content:'MOST STARTED';position:absolute;top:-11px;right:20px;background:var(--orange);color:#000;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:1.5px;padding:4px 10px;border-radius:4px;}
+  .pkg-name{font-family:'Orbitron',monospace;font-size:12.5px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:6px;}
+  .pkg-price{font-family:'Orbitron',monospace;font-size:30px;font-weight:900;margin-bottom:4px;}
+  .pkg-price span{font-size:13px;color:var(--muted);font-weight:400;}
+  .pkg-sub{font-size:12.5px;color:var(--dim);margin-bottom:18px;}
+  .pkg ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px;flex:1;}
+  .pkg li{font-size:13px;color:var(--muted);display:flex;gap:9px;align-items:flex-start;}
+  .pkg li span{color:var(--green);}
+  .pkg .btn{text-align:center;}
+  .support-strip{margin-top:18px;background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:20px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+  .support-strip h4{font-family:'Orbitron',monospace;font-size:13px;color:var(--gold);margin-bottom:4px;}
+  .support-strip p{font-size:12.5px;color:var(--muted);font-weight:300;max-width:520px;}
+
+  /* ── FORM ── */
+  .form-shell{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px;display:grid;grid-template-columns:1fr;gap:16px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;font-family:'Orbitron',monospace;}
+  input,select,textarea{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:11px 13px;color:var(--text);font-family:'Exo 2',sans-serif;font-size:13.5px;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan);}
+  textarea{resize:vertical;min-height:80px;}
+  .form-note{font-size:11.5px;color:var(--dim);margin-top:4px;}
+  .form-submit{margin-top:6px;}
+  @media(max-width:640px){.form-row{grid-template-columns:1fr;}}
+
+  /* ── FINAL CTA ── */
+  .final{text-align:center;padding:70px 48px;}
+  .final h2{font-family:'Orbitron',monospace;font-size:clamp(22px,3vw,34px);margin-bottom:14px;}
+  .final p{color:var(--muted);max-width:520px;margin:0 auto 26px;font-weight:300;font-size:14.5px;}
+
+  footer{border-top:1px solid var(--border);padding:32px 48px;text-align:center;color:var(--dim);font-family:'Orbitron',monospace;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .chatcard{max-width:480px;}
+  }
+  @media(max-width:600px){
+    .wrap,.section,.hero,footer{padding-left:22px;padding-right:22px;}
+    .form-shell{padding:22px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo"><span class="cx">CONTENT</span><span class="ox">FORGE</span></div>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#packages">Packages</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">FREE AI REVIEW</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="tag">Content Forge Studio · Local AI Services</div>
+      <h1>AI Systems for <span class="cx">Local</span><br>Small <span class="ox">Businesses</span></h1>
+      <p class="hero-sub">I help independent business owners use AI to save time, capture more leads, follow up faster, and look more professional online — without hiring an IT department.</p>
+      <div class="co-badge"><span class="co-mark"></span>Based in <b>Golden, CO</b> · Colorado-owned · Serving the Front Range</div>
+      <div class="cta-row">
+        <a href="#contact" class="btn btn-primary">Request a Free AI Opportunity Review</a>
+        <a href="#services" class="btn btn-secondary">See Service Options</a>
+      </div>
+    </div>
+    <div class="chatcard">
+      <div class="chat-head"><div class="chat-dot"></div><span>Website AI Assistant · Live Demo</span></div>
+      <div class="chat-body" id="chatBody"></div>
+      <div class="chat-foot">This is what your website could sound like</div>
+    </div>
+  </div>
+</header>
+
+<section class="section alt">
+  <div class="sh">
+    <div class="sh-eyebrow">The problem</div>
+    <h2>You don't need <span class="cx">more AI tools.</span> You need a system that <span class="ox">actually works.</span></h2>
+    <p>Most small business owners already know AI matters. What's missing isn't awareness — it's someone to actually set it up.</p>
+  </div>
+  <div class="inner">
+    <div class="pain-grid">
+      <div class="pain-item"><span class="mk">×</span>Missed calls and slow follow-up</div>
+      <div class="pain-item"><span class="mk">×</span>Outdated or weak website</div>
+      <div class="pain-item"><span class="mk">×</span>No easy way to capture leads</div>
+      <div class="pain-item"><span class="mk">×</span>Not enough Google reviews</div>
+      <div class="pain-item"><span class="mk">×</span>No time to post content</div>
+      <div class="pain-item"><span class="mk">×</span>Too many tools, not enough setup</div>
+      <div class="pain-item"><span class="mk">×</span>No IT person to connect it all</div>
+      <div class="pain-item"><span class="mk">×</span>Leads going cold with no follow-up</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:44px;padding-bottom:44px;">
+  <div class="inner" style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;border:1px solid var(--border);border-radius:12px;padding:24px 28px;background:var(--card2);">
+    <div>
+      <div class="sh-eyebrow" style="margin-bottom:8px;">Where I work</div>
+      <p style="font-size:14px;color:var(--text);font-weight:400;max-width:560px;">Headquartered in <strong>Golden, CO</strong>, working in-person across the Denver Metro and Front Range. Expanding to neighboring Colorado communities — virtual setup available for businesses outside the area.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="font-family:'Orbitron',monospace;font-size:10.5px;letter-spacing:1px;color:var(--gold);border:1px solid rgba(255,200,66,0.3);background:rgba(255,200,66,0.07);padding:7px 12px;border-radius:6px;">GOLDEN, CO — HQ</span>
+      <span style="font-family:'Orbitron',monospace;font-size:10.5px;letter-spacing:1px;color:var(--cyan);border:1px solid rgba(0,207,255,0.25);background:rgba(0,207,255,0.06);padding:7px 12px;border-radius:6px;">DENVER METRO</span>
+      <span style="font-family:'Orbitron',monospace;font-size:10.5px;letter-spacing:1px;color:var(--muted);border:1px solid var(--border);padding:7px 12px;border-radius:6px;">VIRTUAL — BY REQUEST</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="sh">
+    <div class="sh-eyebrow">What I build</div>
+    <h2>Six systems that turn <span class="cx">traffic</span> into <span class="ox">booked jobs.</span></h2>
+    <p>Practical, not theoretical. Every system below ships with something live on your site or in your inbox — not a slide deck.</p>
+  </div>
+  <div class="inner">
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-num">01</div>
+        <h3>Website + Lead Capture Setup</h3>
+        <p>A clean site or landing page built to explain your services and make it easy for people to contact you — quote forms, booking links, and an FAQ section that does the explaining for you.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">02</div>
+        <h3>AI Website Assistant</h3>
+        <p>A 24/7 helper on your site that answers the questions you get asked every day — hours, service area, pricing range, what to expect — and routes serious leads straight to you.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">03</div>
+        <h3>Missed-Lead Follow-Up System</h3>
+        <p>Auto-replies on form fills, missed-call text-backs, quote follow-ups, and re-engagement messages for old leads. Stop losing jobs because you didn't respond fast enough.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">04</div>
+        <h3>Google Review Growth Kit</h3>
+        <p>Review request templates, QR cards, and an automated follow-up sequence — plus AI-assisted responses so every review, good or bad, gets a fast reply.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">05</div>
+        <h3>AI Content System</h3>
+        <p>A repeatable content calendar — post ideas, captions, before/after templates, and seasonal promos — so you're not starting from a blank page every week.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">06</div>
+        <h3>AI QuickStart Training</h3>
+        <p>A hands-on 90-minute session showing you how to actually use ChatGPT, Claude, and Canva for estimates, emails, and daily admin — no lecture, just workflow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="process">
+  <div class="sh">
+    <div class="sh-eyebrow">How it works</div>
+    <h2>From <span class="cx">first call</span> to <span class="ox">live system</span> in four steps.</h2>
+  </div>
+  <div class="inner">
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div><h4>Free AI Opportunity Review</h4><p>A short call and a look at your current site, tools, and follow-up process. You get a written action plan either way — no obligation.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div><h4>Pick your package</h4><p>Start with a quick audit, a lead-capture setup, or the full system buildout — based on what the review actually turns up, not a sales pitch.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div><h4>Build and launch</h4><p>I build the site, forms, follow-up sequences, and review system, then walk you through it so you know exactly how it works.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div><h4>Ongoing support (optional)</h4><p>Monthly plan available for updates, content, and tweaks — so the system keeps working after launch day.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="packages">
+  <div class="sh">
+    <div class="sh-eyebrow">Pricing</div>
+    <h2>Three ways to <span class="cx">start.</span></h2>
+    <p>No bundled contracts. Start small and prove it out, or go straight to the full buildout — your call.</p>
+  </div>
+  <div class="inner">
+    <div class="pkg-grid">
+      <div class="pkg">
+        <div class="pkg-name">AI QuickStart Audit</div>
+        <div class="pkg-price">$149</div>
+        <div class="pkg-sub">Launch pricing · one-time</div>
+        <ul>
+          <li><span>✓</span>30–45 minute discovery call</li>
+          <li><span>✓</span>Review of current website, tools, and socials</li>
+          <li><span>✓</span>AI opportunity map</li>
+          <li><span>✓</span>3 recommended quick wins</li>
+          <li><span>✓</span>Simple written action plan</li>
+        </ul>
+        <a href="#contact" class="btn btn-secondary">Start Here</a>
+      </div>
+      <div class="pkg feat">
+        <div class="pkg-name">AI Lead Capture Setup</div>
+        <div class="pkg-price">$499<span> +</span></div>
+        <div class="pkg-sub">One-time build</div>
+        <ul>
+          <li><span>✓</span>Landing page or website refresh</li>
+          <li><span>✓</span>Contact / quote form</li>
+          <li><span>✓</span>AI-assisted copy + FAQ section</li>
+          <li><span>✓</span>Basic follow-up message templates</li>
+          <li><span>✓</span>Google review link setup</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Get Started</a>
+      </div>
+      <div class="pkg">
+        <div class="pkg-name">AI Business System Buildout</div>
+        <div class="pkg-price">$1,500<span> +</span></div>
+        <div class="pkg-sub">Full setup</div>
+        <ul>
+          <li><span>✓</span>Website or landing page</li>
+          <li><span>✓</span>AI website assistant / FAQ bot</li>
+          <li><span>✓</span>Missed-lead follow-up workflow</li>
+          <li><span>✓</span>Review request system</li>
+          <li><span>✓</span>Content templates + owner walkthrough</li>
+        </ul>
+        <a href="#contact" class="btn btn-secondary">Let's Talk</a>
+      </div>
+    </div>
+    <div class="support-strip">
+      <div><h4>Monthly Support — $99+/mo</h4><p>Chatbot updates, monthly content calendar, review responses, and workflow tweaks — for clients who want the system maintained, not just built.</p></div>
+      <a href="#contact" class="btn btn-secondary">Ask About Support</a>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="contact">
+  <div class="sh">
+    <div class="sh-eyebrow">Get started</div>
+    <h2>Request your free <span class="cx">AI Opportunity</span> <span class="ox">Review.</span></h2>
+    <p>Tell me a bit about your business. I'll follow up with a time to talk and a written action plan — even if we never work together.</p>
+  </div>
+  <div class="inner">
+    <form class="form-shell" id="leadForm">
+      <div class="form-row">
+        <div><label for="fname">Name</label><input id="fname" name="fname" type="text" required></div>
+        <div><label for="fbiz">Business Name</label><input id="fbiz" name="fbiz" type="text" required></div>
+      </div>
+      <div class="form-row">
+        <div><label for="fsite">Website (if you have one)</label><input id="fsite" name="fsite" type="text" placeholder="yourbusiness.com"></div>
+        <div><label for="ftype">Business Type</label><input id="ftype" name="ftype" type="text" placeholder="e.g. Painting, Salon, Bookkeeping"></div>
+      </div>
+      <div class="form-row">
+        <div><label for="femail">Email</label><input id="femail" name="femail" type="email" required></div>
+        <div><label for="fphone">Phone (optional)</label><input id="fphone" name="fphone" type="tel"></div>
+      </div>
+      <div>
+        <label for="fneed">What do you need the most help with?</label>
+        <textarea id="fneed" name="fneed" placeholder="e.g. My website doesn't generate leads, I miss calls when I'm on job sites, I need more Google reviews..."></textarea>
+      </div>
+      <div class="form-note">This form opens your email client with everything filled in — nothing is stored or sent anywhere else. Swap this for a MailerLite embed once the form ID is set up.</div>
+      <button type="submit" class="btn btn-primary form-submit" style="justify-self:start;border:none;cursor:pointer;">Send My Free Review Request</button>
+    </form>
+  </div>
+</section>
+
+<section class="final">
+  <h2>Your business deserves a system, not another to-do.</h2>
+  <p>Built and run by Brandon Stromblad out of Golden, CO — practical AI, no hype, no IT department required.</p>
+  <a href="#contact" class="btn btn-primary">Request a Free AI Opportunity Review</a>
+</section>
+
+<footer>
+  Content Forge Studio · Local AI Services · Golden, CO · contentforgestudio.com/local-ai
+</footer>
+
+<script>
+  // Signature hero element: cycling AI-assistant chat demo
+  const convos = [
+    ["Do you serve Lakewood?", "Yes — we cover Lakewood and the surrounding Denver metro area."],
+    ["How soon can I get a quote?", "Most quotes go out within 24 hours of your request."],
+    ["Can I send photos for an estimate?", "Absolutely, just upload them in the form below."],
+    ["What should I do before you arrive?", "Just clear the work area — we'll handle the rest."]
+  ];
+  const body = document.getElementById('chatBody');
+  let i = 0;
+
+  function typeLine(el, text, speed, cb){
+    let idx = 0;
+    el.innerHTML = '';
+    const curs = document.createElement('span');
+    curs.className = 'cursor';
+    el.appendChild(document.createTextNode(''));
+    el.appendChild(curs);
+    const timer = setInterval(() => {
+      idx++;
+      el.childNodes[0].textContent = text.slice(0, idx);
+      if(idx >= text.length){
+        clearInterval(timer);
+        curs.remove();
+        if(cb) cb();
+      }
+    }, speed);
+  }
+
+  function runConvo(){
+    body.innerHTML = '';
+    const [q, a] = convos[i % convos.length];
+    const userBubble = document.createElement('div');
+    userBubble.className = 'bubble user';
+    userBubble.textContent = q;
+    body.appendChild(userBubble);
+
+    const botBubble = document.createElement('div');
+    botBubble.className = 'bubble bot';
+    body.appendChild(botBubble);
+
+    setTimeout(() => {
+      typeLine(botBubble, a, 22, () => {
+        i++;
+        setTimeout(runConvo, 2200);
+      });
+    }, 500);
+  }
+  runConvo();
+
+  // Lead form -> mailto fallback (no backend wired yet)
+  document.getElementById('leadForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const f = new FormData(this);
+    const subject = encodeURIComponent('AI Opportunity Review Request — ' + (f.get('fbiz') || 'New Business'));
+    const bodyText = encodeURIComponent(
+      'Name: ' + f.get('fname') + '\n' +
+      'Business: ' + f.get('fbiz') + '\n' +
+      'Website: ' + f.get('fsite') + '\n' +
+      'Business Type: ' + f.get('ftype') + '\n' +
+      'Email: ' + f.get('femail') + '\n' +
+      'Phone: ' + f.get('fphone') + '\n' +
+      'What they need help with: ' + f.get('fneed')
+    );
+    window.location.href = 'mailto:ContentForgeStudio@proton.me?subject=' + subject + '&body=' + bodyText;
+  });
+</script>
+
+</body>
+</html>
