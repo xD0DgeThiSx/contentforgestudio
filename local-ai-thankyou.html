@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request Received — Content Forge Studio · Local AI Services</title>
+<meta name="description" content="Your free AI Opportunity Review request has been received. Content Forge Studio will be in touch within 24 hours.">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07070e; --surface:#0d0d18; --card:#111120;
+    --border:rgba(255,255,255,0.07);
+    --orange:#ff6200; --cyan:#00cfff; --gold:#ffc842; --green:#00ffaa;
+    --text:#dcdcf0; --muted:#7070a0; --dim:#50507a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;overflow-x:hidden;}
+
+  /* Background glow */
+  body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(255,98,0,0.06) 0%,transparent 65%);pointer-events:none;z-index:0;}
+
+  .wrap{position:relative;z-index:1;max-width:620px;margin:0 auto;}
+
+  .badge{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:4px;color:var(--green);background:rgba(0,255,170,0.08);border:1px solid rgba(0,255,170,0.2);padding:6px 16px;border-radius:20px;display:inline-block;margin-bottom:28px;animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,255,170,0.25)}50%{box-shadow:0 0 0 10px rgba(0,255,170,0)}}
+
+  .icon{font-size:64px;margin-bottom:20px;animation:pop 0.6s ease both;}
+  @keyframes pop{from{transform:scale(0.5);opacity:0}to{transform:scale(1);opacity:1}}
+
+  h1{font-family:'Orbitron',monospace;font-size:clamp(24px,4vw,38px);font-weight:900;line-height:1.1;margin-bottom:14px;}
+  h1 .hl{color:var(--orange);}
+  h1 .hl-c{color:var(--cyan);}
+  .sub{font-size:15px;color:var(--muted);font-weight:300;line-height:1.85;margin-bottom:40px;max-width:500px;}
+  .sub strong{color:var(--text);}
+
+  /* Next steps */
+  .next-steps{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 32px;text-align:left;margin-bottom:32px;position:relative;overflow:hidden;}
+  .next-steps::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--orange),var(--cyan));}
+  .next-steps h3{font-family:'Orbitron',monospace;font-size:10px;letter-spacing:3px;color:var(--orange);margin-bottom:20px;}
+  .step{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;}
+  .step:last-child{margin-bottom:0;}
+  .step-num{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:var(--orange);background:rgba(255,98,0,0.1);border:1px solid rgba(255,98,0,0.2);border-radius:4px;padding:4px 10px;flex-shrink:0;line-height:1.4;}
+  .step-text{font-size:13px;color:var(--muted);line-height:1.7;}
+  .step-text strong{color:var(--text);}
+
+  /* Response time badge */
+  .response-time{display:inline-flex;align-items:center;gap:10px;background:rgba(0,207,255,0.06);border:1px solid rgba(0,207,255,0.15);border-radius:8px;padding:12px 20px;margin-bottom:32px;}
+  .rt-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);flex-shrink:0;animation:blink 2s ease-in-out infinite;}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+  .rt-text{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;color:var(--cyan);}
+
+  /* CTA buttons */
+  .cta-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;}
+  .btn{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:13px 24px;border-radius:6px;text-decoration:none;transition:background .2s,transform .2s,color .2s;display:inline-flex;align-items:center;gap:8px;}
+  .btn-primary{background:var(--orange);color:#000;}
+  .btn-primary:hover{background:var(--gold);transform:translateY(-2px);}
+  .btn-secondary{background:transparent;color:var(--muted);border:1px solid var(--border);}
+  .btn-secondary:hover{color:var(--cyan);border-color:rgba(0,207,255,0.3);}
+
+  /* Demo teaser */
+  .demo-teaser{background:rgba(0,207,255,0.04);border:1px solid rgba(0,207,255,0.1);border-radius:10px;padding:20px 24px;margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;text-align:left;}
+  .demo-teaser-left .label{font-family:'Orbitron',monospace;font-size:8px;letter-spacing:3px;color:var(--cyan);margin-bottom:4px;opacity:.7;}
+  .demo-teaser-left p{font-size:13px;color:var(--muted);font-weight:300;}
+  .demo-teaser-left p strong{color:var(--text);}
+  .demo-btn{font-family:'Orbitron',monospace;font-size:8px;letter-spacing:2px;padding:9px 18px;border-radius:6px;text-decoration:none;color:var(--cyan);border:1px solid rgba(0,207,255,0.25);white-space:nowrap;transition:background .2s,color .2s;}
+  .demo-btn:hover{background:var(--cyan);color:#000;}
+
+  .footer-note{font-family:'Orbitron',monospace;font-size:8px;letter-spacing:3px;color:var(--dim);}
+  .footer-note a{color:var(--dim);text-decoration:none;transition:color .2s;}
+  .footer-note a:hover{color:var(--cyan);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="badge">✓ REQUEST RECEIVED</div>
+  <div class="icon">🎯</div>
+
+  <h1>Got It.<br><span class="hl">You're on the list.</span></h1>
+  <p class="sub">Your free AI Opportunity Review request has been received. <strong>Expect a response within 24 hours</strong> — usually faster. We'll follow up with a time to talk and a written action plan for your business.</p>
+
+  <div class="response-time">
+    <div class="rt-dot"></div>
+    <div class="rt-text">TYPICAL RESPONSE TIME: UNDER 24 HOURS</div>
+  </div>
+
+  <div class="next-steps">
+    <h3>// WHAT HAPPENS NEXT</h3>
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-text"><strong>Check your inbox</strong> — a confirmation is on its way. Check spam if you don't see it within a few minutes.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-text"><strong>We review your business</strong> — before we talk, we'll do a quick audit of your current online presence so the conversation is specific to you, not generic.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-text"><strong>You get a written action plan</strong> — even if we never work together, you'll leave the call with a clear picture of what AI systems would actually move the needle for your business.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-text"><strong>No pressure, no pitch deck</strong> — this is a real conversation, not a sales funnel. If it's a fit, great. If not, the plan is yours to keep.</div>
+    </div>
+  </div>
+
+  <div class="demo-teaser">
+    <div class="demo-teaser-left">
+      <div class="label">// WHILE YOU WAIT</div>
+      <p><strong>See a live example</strong> — Summit Peak Painting Co. is a fictional local business built to show exactly what an AI-powered site looks like in action.</p>
+    </div>
+    <a href="https://contentforgestudio.com/local-ai-demo" class="demo-btn">View Demo →</a>
+  </div>
+
+  <div class="cta-group">
+    <a href="https://contentforgestudio.com/local-ai" class="btn btn-secondary">← Back to Local AI</a>
+    <a href="https://contentforgestudio.com" class="btn btn-secondary">ContentForge Studio</a>
+  </div>
+
+  <div class="footer-note">
+    CONTENT FORGE STUDIO · GOLDEN, CO · <a href="https://contentforgestudio.com">CONTENTFORGESTUDIO.COM</a>
+  </div>
+
+</div>
+</body>
+</html>
