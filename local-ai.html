@@ -155,6 +155,9 @@
     .form-shell{padding:22px;}
   }
 </style>
+<!-- MailerLite Universal -->
+<script>(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');ml('account','2459143');</script>
+<!-- End MailerLite Universal -->
 </head>
 <body>
 
@@ -358,31 +361,7 @@
     <p>Tell me a bit about your business. I'll follow up with a time to talk and a written action plan — even if we never work together.</p>
   </div>
   <div class="inner">
-    <!-- MailerLite embed — replace data-form value with your Local AI Leads form ID -->
     <div class="ml-embedded" data-form="192385729303676014"></div>
-    <!-- Fallback until MailerLite form is live -->
-    <div id="fallback-form" style="max-width:680px;margin:0 auto;">
-      <form class="form-shell" id="leadForm">
-        <div class="form-row">
-          <div><label for="fname">Name</label><input id="fname" name="fname" type="text" required></div>
-          <div><label for="fbiz">Business Name</label><input id="fbiz" name="fbiz" type="text" required></div>
-        </div>
-        <div class="form-row">
-          <div><label for="fsite">Website (if you have one)</label><input id="fsite" name="fsite" type="text" placeholder="yourbusiness.com"></div>
-          <div><label for="ftype">Business Type</label><input id="ftype" name="ftype" type="text" placeholder="e.g. Painting, Salon, Bookkeeping"></div>
-        </div>
-        <div class="form-row">
-          <div><label for="femail">Email</label><input id="femail" name="femail" type="email" required></div>
-          <div><label for="fphone">Phone (optional)</label><input id="fphone" name="fphone" type="tel"></div>
-        </div>
-        <div>
-          <label for="fneed">What do you need the most help with?</label>
-          <textarea id="fneed" name="fneed" placeholder="e.g. My website doesn't generate leads, I miss calls when I'm on job sites, I need more Google reviews..."></textarea>
-        </div>
-        <div class="form-note">⚡ MailerLite form (ID: 192385729303676014) is active above. Remove this fallback form once you confirm the ML embed is rendering correctly on the live site.</div>
-        <button type="submit" class="btn btn-primary form-submit" style="justify-self:start;border:none;cursor:pointer;">Send My Free Review Request</button>
-      </form>
-    </div>
   </div>
 </section>
 
@@ -461,23 +440,6 @@
     }, 500);
   }
   runConvo();
-
-  // Lead form -> mailto fallback (no backend wired yet)
-  document.getElementById('leadForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const f = new FormData(this);
-    const subject = encodeURIComponent('AI Opportunity Review Request — ' + (f.get('fbiz') || 'New Business'));
-    const bodyText = encodeURIComponent(
-      'Name: ' + f.get('fname') + '\n' +
-      'Business: ' + f.get('fbiz') + '\n' +
-      'Website: ' + f.get('fsite') + '\n' +
-      'Business Type: ' + f.get('ftype') + '\n' +
-      'Email: ' + f.get('femail') + '\n' +
-      'Phone: ' + f.get('fphone') + '\n' +
-      'What they need help with: ' + f.get('fneed')
-    );
-    window.location.href = 'mailto:ContentForgeStudio@proton.me?subject=' + subject + '&body=' + bodyText;
-  });
 </script>
 
 </body>
