@@ -146,7 +146,7 @@
 <body>
 
 <div class="demo-banner">
-  <strong>DEMO SITE</strong> — a fictional business built by Content Forge Studio to show what an AI-powered local business site looks like. <a href="/local-ai">See how this was built →</a>
+  <strong>DEMO SITE</strong> — Every system on this page is real and available for your business. This is what yours could look like. <a href="/local-ai">Request a free AI Opportunity Review →</a>
 </div>
 
 <nav>
@@ -161,7 +161,7 @@
       <a href="#reviews">Reviews</a>
       <a href="#quote">Contact</a>
     </div>
-    <a href="#quote" class="nav-phone">(303) 555-0142</a>
+    <a href="tel:7204491176" class="nav-phone">(720) 449-1176</a>
   </div>
 </nav>
 
@@ -318,12 +318,15 @@
   <div class="sys-wrap">
     <div class="sh"><div class="eyebrow" style="color:var(--gold);">Behind the scenes</div><h2>What makes this site different</h2><p>Every local business site can look good. This one also works while you're on a job site.</p></div>
     <div class="sys-grid">
-      <div class="sys-item"><div class="sys-check">✓</div><p><b>Instant lead capture</b>No form submission goes unanswered, ever.</p></div>
-      <div class="sys-item"><div class="sys-check">✓</div><p><b>Auto-reply after inquiry</b>Homeowners get confirmation in seconds, not hours.</p></div>
-      <div class="sys-item"><div class="sys-check">✓</div><p><b>Quote follow-up reminders</b>Nobody has to remember to circle back.</p></div>
-      <div class="sys-item"><div class="sys-check">✓</div><p><b>Google review request workflow</b>Reviews come in automatically after each job.</p></div>
-      <div class="sys-item"><div class="sys-check">✓</div><p><b>FAQ assistant</b>Answers the questions you get asked every day.</p></div>
-      <div class="sys-item"><div class="sys-check">✓</div><p><b>Mobile-first & local SEO</b>Built to get found and used from a phone.</p></div>
+      <div class="sys-item"><div class="sys-check">✓</div><p><b>Without: Missed calls = lost jobs</b>With this system: every inquiry gets an instant auto-reply, even at 9pm.</p></div>
+      <div class="sys-item"><div class="sys-check">✓</div><p><b>Without: Following up manually</b>With this system: quote reminders go out automatically — nobody falls through the cracks.</p></div>
+      <div class="sys-item"><div class="sys-check">✓</div><p><b>Without: Chasing Google reviews</b>With this system: review requests fire automatically after each completed job.</p></div>
+      <div class="sys-item"><div class="sys-check">✓</div><p><b>Without: Answering the same questions all day</b>With this system: the AI assistant handles FAQs 24/7 so you can focus on the work.</p></div>
+      <div class="sys-item"><div class="sys-check">✓</div><p><b>Without: A website that just sits there</b>With this system: your site captures, qualifies, and follows up on leads automatically.</p></div>
+      <div class="sys-item"><div class="sys-check">✓</div><p><b>Without: Guessing where leads come from</b>With this system: you see exactly which source drives the most booked jobs.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="/local-ai" class="btn btn-primary" style="background:var(--gold);color:var(--navy);display:inline-block;">Get This System for Your Business →</a>
     </div>
   </div>
 </section>
@@ -357,6 +360,17 @@
   const panel = document.getElementById('chatPanel');
   const body = document.getElementById('chatBody');
   launcher.addEventListener('click', () => panel.classList.toggle('open'));
+
+  // Auto-open chat after 5 seconds to ensure visitors see it
+  setTimeout(() => {
+    if (!panel.classList.contains('open')) {
+      panel.classList.add('open');
+      // Subtle bounce on launcher to draw attention
+      launcher.style.animation = 'none';
+      launcher.style.transform = 'scale(1.08)';
+      setTimeout(() => { launcher.style.transform = 'scale(1)'; }, 300);
+    }
+  }, 5000);
   document.querySelectorAll('.cprompt').forEach(btn => {
     btn.addEventListener('click', () => {
       const q = document.createElement('div');

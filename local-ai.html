@@ -167,6 +167,7 @@
       <a href="#packages">Packages</a>
       <a href="#contact">Contact</a>
     </div>
+    <a href="tel:7204491176" style="font-size:12px;color:var(--muted);letter-spacing:0.04em;">(720) 449-1176</a>
     <a href="#contact" class="nav-cta">FREE AI REVIEW</a>
   </div>
 </nav>
@@ -181,6 +182,7 @@
       <div class="cta-row">
         <a href="#contact" class="btn btn-primary">Request a Free AI Opportunity Review</a>
         <a href="#services" class="btn btn-secondary">See Service Options</a>
+        <a href="/local-ai-demo" class="btn btn-secondary" style="border-color:rgba(56,217,245,0.4);color:#38d9f5;">👁 &nbsp;See Live Demo</a>
       </div>
     </div>
     <div class="chatcard">
@@ -356,37 +358,58 @@
     <p>Tell me a bit about your business. I'll follow up with a time to talk and a written action plan — even if we never work together.</p>
   </div>
   <div class="inner">
-    <form class="form-shell" id="leadForm">
-      <div class="form-row">
-        <div><label for="fname">Name</label><input id="fname" name="fname" type="text" required></div>
-        <div><label for="fbiz">Business Name</label><input id="fbiz" name="fbiz" type="text" required></div>
-      </div>
-      <div class="form-row">
-        <div><label for="fsite">Website (if you have one)</label><input id="fsite" name="fsite" type="text" placeholder="yourbusiness.com"></div>
-        <div><label for="ftype">Business Type</label><input id="ftype" name="ftype" type="text" placeholder="e.g. Painting, Salon, Bookkeeping"></div>
-      </div>
-      <div class="form-row">
-        <div><label for="femail">Email</label><input id="femail" name="femail" type="email" required></div>
-        <div><label for="fphone">Phone (optional)</label><input id="fphone" name="fphone" type="tel"></div>
-      </div>
-      <div>
-        <label for="fneed">What do you need the most help with?</label>
-        <textarea id="fneed" name="fneed" placeholder="e.g. My website doesn't generate leads, I miss calls when I'm on job sites, I need more Google reviews..."></textarea>
-      </div>
-      <div class="form-note">This form opens your email client with everything filled in — nothing is stored or sent anywhere else. Swap this for a MailerLite embed once the form ID is set up.</div>
-      <button type="submit" class="btn btn-primary form-submit" style="justify-self:start;border:none;cursor:pointer;">Send My Free Review Request</button>
-    </form>
+    <!-- MailerLite embed — replace data-form value with your Local AI Leads form ID -->
+    <div class="ml-embedded" data-form="192385729303676014"></div>
+    <!-- Fallback until MailerLite form is live -->
+    <div id="fallback-form" style="max-width:680px;margin:0 auto;">
+      <form class="form-shell" id="leadForm">
+        <div class="form-row">
+          <div><label for="fname">Name</label><input id="fname" name="fname" type="text" required></div>
+          <div><label for="fbiz">Business Name</label><input id="fbiz" name="fbiz" type="text" required></div>
+        </div>
+        <div class="form-row">
+          <div><label for="fsite">Website (if you have one)</label><input id="fsite" name="fsite" type="text" placeholder="yourbusiness.com"></div>
+          <div><label for="ftype">Business Type</label><input id="ftype" name="ftype" type="text" placeholder="e.g. Painting, Salon, Bookkeeping"></div>
+        </div>
+        <div class="form-row">
+          <div><label for="femail">Email</label><input id="femail" name="femail" type="email" required></div>
+          <div><label for="fphone">Phone (optional)</label><input id="fphone" name="fphone" type="tel"></div>
+        </div>
+        <div>
+          <label for="fneed">What do you need the most help with?</label>
+          <textarea id="fneed" name="fneed" placeholder="e.g. My website doesn't generate leads, I miss calls when I'm on job sites, I need more Google reviews..."></textarea>
+        </div>
+        <div class="form-note">⚡ MailerLite form (ID: 192385729303676014) is active above. Remove this fallback form once you confirm the ML embed is rendering correctly on the live site.</div>
+        <button type="submit" class="btn btn-primary form-submit" style="justify-self:start;border:none;cursor:pointer;">Send My Free Review Request</button>
+      </form>
+    </div>
   </div>
 </section>
 
 <section class="final">
   <h2>Your business deserves a system, not another to-do.</h2>
   <p>Built and run by Brandon Stromblad out of Golden, CO — practical AI, no hype, no IT department required.</p>
-  <a href="#contact" class="btn btn-primary">Request a Free AI Opportunity Review</a>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
+    <a href="#contact" class="btn btn-primary">Request a Free AI Opportunity Review</a>
+    <a href="/local-ai-demo" class="btn btn-secondary" style="border-color:rgba(56,217,245,0.4);color:#38d9f5;">👁 &nbsp;See Live Demo</a>
+  </div>
 </section>
 
-<footer>
-  Content Forge Studio · Local AI Services · Golden, CO · contentforgestudio.com/local-ai
+<section style="background:var(--surface);border-top:1px solid var(--border);padding:40px 48px;text-align:center;">
+  <div style="max-width:640px;margin:0 auto;">
+    <div style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:4px;color:var(--muted);margin-bottom:12px;">// ABOUT THE BUILDER</div>
+    <p style="font-size:14px;color:var(--muted);font-weight:300;line-height:1.8;margin-bottom:20px;">These AI systems are built by B. Stromblad — a solo founder documenting what it actually looks like to build real income with AI, from zero, in public. No hype. No IT department. Just practical systems that work.</p>
+    <a href="https://contentforgestudio.com/my-turn" style="font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,207,255,0.3);padding-bottom:2px;">Follow the My Turn documentary series →</a>
+  </div>
+</section>
+
+<footer style="background:var(--surface);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+  <span style="font-size:12px;color:var(--dim);">Content Forge Studio · Local AI Services · Golden, CO · <a href="tel:7204491176" style="color:var(--muted);text-decoration:none;">(720) 449-1176</a></span>
+  <div style="display:flex;gap:20px;align-items:center;">
+    <a href="https://contentforgestudio.com" style="font-size:12px;color:var(--muted);transition:color .2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--muted)'">ContentForgeStudio.com</a>
+    <a href="https://contentforgestudio.com/my-turn" style="font-size:12px;color:var(--muted);transition:color .2s;" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--muted)'">My Turn Series</a>
+    <a href="https://contentforgestudio.com/local-ai-demo" style="font-size:12px;color:var(--muted);transition:color .2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--muted)'">View Demo</a>
+  </div>
 </footer>
 
 <script>
