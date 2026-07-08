@@ -15,7 +15,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;overflow-x:hidden;}
+  body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;font-size:15px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:108px 24px 40px;text-align:center;overflow-x:hidden;}
 
   /* Background glow */
   body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(255,98,0,0.06) 0%,transparent 65%);pointer-events:none;z-index:0;}
@@ -69,9 +69,29 @@
   .footer-note{font-family:'Orbitron',monospace;font-size:8px;letter-spacing:3px;color:var(--dim);}
   .footer-note a{color:var(--dim);text-decoration:none;transition:color .2s;}
   .footer-note a:hover{color:var(--cyan);}
+.embers{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}.ember{position:absolute;width:2px;height:2px;border-radius:50%;background:#ff8c00;animation:rise linear infinite;opacity:0}@keyframes rise{0%{transform:translateY(100vh);opacity:0}10%{opacity:.75}100%{transform:translateY(-20px) translateX(var(--drift));opacity:0}}
+body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(56,217,245,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(56,217,245,.025) 1px,transparent 1px),radial-gradient(circle at 50% 10%,rgba(255,140,0,.12),transparent 34%),radial-gradient(circle at 78% 70%,rgba(56,217,245,.045),transparent 30%);background-size:56px 56px,56px 56px,auto,auto;pointer-events:none;z-index:0;}
 </style>
 </head>
 <body>
+<div class="embers" id="embers"></div>
+<nav style="position:fixed;top:0;left:0;right:0;height:68px;padding:0 52px;z-index:50;display:flex;align-items:center;justify-content:space-between;background:rgba(7,7,14,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,217,245,.1);">
+  <a href="https://contentforgestudio.com" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+    <div style="width:48px;height:48px;border:2px solid #38d9f5;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px rgba(56,217,245,.16);">
+      <img src="CFS Logo_FINAL.png" alt="Content Forge Studio" style="width:44px;height:44px;object-fit:contain;">
+    </div>
+    <div>
+      <div><span style="font-family:Orbitron,monospace;font-size:15px;font-weight:900;letter-spacing:1px;color:#f0f0ff;">CONTENT</span><span style="font-family:Orbitron,monospace;font-size:15px;font-weight:900;letter-spacing:1px;color:#38d9f5;">FORGE</span></div>
+      <div style="font-size:10px;letter-spacing:4px;color:#8090b0;text-transform:uppercase;">STUDIO</div>
+    </div>
+  </a>
+  <div style="display:flex;gap:22px;align-items:center;">
+    <a href="https://contentforgestudio.com/local-ai" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:#8090b0;text-decoration:none;text-transform:uppercase;">Local AI</a>
+    <a href="https://contentforgestudio.com/local-ai-demo" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:#8090b0;text-decoration:none;text-transform:uppercase;">Demo</a>
+    <a href="https://contentforgestudio.com/guides" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:#8090b0;text-decoration:none;text-transform:uppercase;">Free Guides</a>
+    <a href="https://contentforgestudio.com" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;background:#38d9f5;color:#000;padding:8px 16px;border-radius:4px;text-decoration:none;white-space:nowrap;">CFS Home</a>
+  </div>
+</nav>
 <div class="wrap">
 
   <div class="badge">✓ REQUEST RECEIVED</div>
