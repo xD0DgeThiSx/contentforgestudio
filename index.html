@@ -31,11 +31,14 @@ section,footer{position:relative;z-index:1}.hero{min-height:100vh;padding:116px 
 /* About / headshot */
 .about-strip{position:relative;z-index:1;background:linear-gradient(135deg,rgba(56,217,245,.03),rgba(7,7,14,0)),var(--deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 52px}.about-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;gap:72px;align-items:center}.about-photo-wrap{display:flex;flex-direction:column;align-items:center;gap:16px}.about-photo{width:240px;height:240px;border-radius:50%;overflow:hidden;border:2px solid var(--cyan);box-shadow:0 0 0 8px rgba(56,217,245,.05),0 0 60px rgba(56,217,245,.15)}.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.05)}.about-name{font-family:Orbitron,monospace;font-size:14px;font-weight:700;color:var(--white);letter-spacing:1px}.about-role{font-family:Orbitron,monospace;font-size:8px;letter-spacing:3px;color:var(--cyan);opacity:.8}.about-content .eyebrow{font-family:Orbitron,monospace;font-size:9px;letter-spacing:6px;color:var(--cyan);margin-bottom:16px;opacity:.7}.about-content h2{font-family:Orbitron,monospace;font-size:clamp(20px,3vw,32px);font-weight:800;line-height:1.15;margin-bottom:24px}.about-content h2 span{color:var(--cyan)}.about-content p{font-size:15px;color:var(--steel);font-weight:300;line-height:1.9;margin-bottom:16px;max-width:560px}.about-content p strong{color:var(--white)}.about-values{display:flex;flex-direction:column;gap:14px;margin-top:24px}.value-row{display:flex;gap:16px;align-items:flex-start}.value-num{font-family:Orbitron,monospace;font-size:11px;font-weight:700;color:var(--cyan);background:rgba(56,217,245,.08);border:1px solid rgba(56,217,245,.15);border-radius:4px;padding:4px 10px;flex-shrink:0}.value-row h4{font-family:Orbitron,monospace;font-size:10px;font-weight:700;color:var(--white);margin-bottom:4px;letter-spacing:1px}.value-row p{font-size:13px;color:var(--steel);line-height:1.65}
 @media(max-width:900px){.my-turn-strip{padding:28px 24px}.mt-right{align-items:flex-start}.mt-tags{justify-content:flex-start}.about-strip{padding:56px 24px}.about-inner{grid-template-columns:1fr;gap:40px}}
+/* Local AI section */
+.local-ai-strip{position:relative;z-index:1;background:linear-gradient(135deg,rgba(56,217,245,.04),rgba(7,7,14,0) 60%),var(--deep);border-top:1px solid rgba(56,217,245,.1);border-bottom:1px solid rgba(56,217,245,.1);padding:88px 52px}.local-ai-inner{max-width:1180px;margin:0 auto}.local-ai-head{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:flex-start;margin-bottom:48px;flex-wrap:wrap}.local-ai-title-block .eyebrow{font-family:Orbitron,monospace;font-size:9px;letter-spacing:6px;color:var(--cyan);margin-bottom:12px;opacity:.7}.local-ai-title-block h2{font-family:Orbitron,monospace;font-size:clamp(22px,3.5vw,38px);font-weight:800;line-height:1.1;margin-bottom:14px}.local-ai-title-block h2 span{color:var(--cyan)}.local-ai-title-block p{font-size:15px;color:var(--steel);font-weight:300;line-height:1.85;max-width:560px}.local-ai-cta-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0}.local-ai-btn{display:inline-flex;align-items:center;gap:10px;background:var(--cyan);color:#000;text-decoration:none;padding:14px 28px;border-radius:6px;font-family:Orbitron,monospace;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:background .2s,transform .2s;white-space:nowrap}.local-ai-btn:hover{background:var(--yellow);transform:translateY(-2px)}.local-ai-btn-sub{font-family:Orbitron,monospace;font-size:8px;letter-spacing:2px;color:var(--dim);text-align:right}.local-ai-systems{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}.ls-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 24px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}.ls-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),transparent)}.ls-card:hover{border-color:rgba(56,217,245,.25);transform:translateY(-2px)}.ls-icon{font-size:28px;margin-bottom:12px;line-height:1}.ls-title{font-family:Orbitron,monospace;font-size:11px;font-weight:700;color:var(--white);margin-bottom:6px}.ls-desc{font-size:12px;color:var(--steel);line-height:1.65}.local-ai-demo-strip{background:rgba(7,7,14,.6);border:1px solid rgba(56,217,245,.12);border-radius:10px;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}.demo-strip-left .demo-label{font-family:Orbitron,monospace;font-size:8px;letter-spacing:3px;color:var(--cyan);margin-bottom:4px;opacity:.7}.demo-strip-left p{font-size:13px;color:var(--steel);font-weight:300}.demo-strip-left p strong{color:var(--white)}.demo-btn{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--cyan);text-decoration:none;padding:10px 22px;border-radius:6px;font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(56,217,245,.3);transition:background .2s,color .2s;white-space:nowrap}.demo-btn:hover{background:var(--cyan);color:#000}
+@media(max-width:900px){.local-ai-strip{padding:64px 24px}.local-ai-head{grid-template-columns:1fr}.local-ai-cta-wrap{align-items:flex-start}.local-ai-btn-sub{text-align:left}.local-ai-systems{grid-template-columns:1fr}.local-ai-demo-strip{flex-direction:column}}
 </style>
 </head>
 <body>
 <div class="embers" id="embers"></div>
-<nav><a href="https://contentforgestudio.com" class="nav-logo"><div class="nav-mark"><img src="CFS Logo_FINAL.png" alt="Content Forge Studio Logo"></div><div><div><span class="nav-top">CONTENT</span><span class="nav-bottom">FORGE</span></div><div class="nav-studio">STUDIO</div></div></a><div class="nav-right"><a href="https://contentforgestudio.com/guides" class="nav-link">Free Guides</a><a href="https://contentforgestudio.com/my-turn" class="nav-link">My Turn</a><a href="https://contentforgestudio.com/community" class="nav-link nav-forge">The Forge</a><a href="https://contentforgestudio.com/vault-store" class="nav-link nav-vault">The Vault</a><a href="https://contentforgestudio.com" class="nav-link nav-home">Home</a></div></nav>
+<nav><a href="https://contentforgestudio.com" class="nav-logo"><div class="nav-mark"><img src="CFS Logo_FINAL.png" alt="Content Forge Studio Logo"></div><div><div><span class="nav-top">CONTENT</span><span class="nav-bottom">FORGE</span></div><div class="nav-studio">STUDIO</div></div></a><div class="nav-right"><a href="https://contentforgestudio.com/guides" class="nav-link">Free Guides</a><a href="https://contentforgestudio.com/my-turn" class="nav-link">My Turn</a><a href="https://contentforgestudio.com/community" class="nav-link nav-forge">The Forge</a><a href="https://contentforgestudio.com/local-ai" class="nav-link" style="color:var(--cyan);font-weight:700;">AI Systems</a><a href="https://contentforgestudio.com/vault-store" class="nav-link nav-vault">The Vault</a><a href="https://contentforgestudio.com" class="nav-link nav-home">Home</a></div></nav>
 <section class="hero"><div class="hero-grid"><div class="hero-copy"><div class="kicker">// CONTENT FORGE STUDIO</div><h1><span class="your">Your</span> Turn Starts <span class="now">Now.</span></h1><p class="hero-tagline" id="hero-tagline"></p><div class="mission">Build honestly. Share openly. Win together.</div><div class="cta-row"><a class="btn btn-primary" href="https://contentforgestudio.com/community">Join The Forge</a><a class="btn btn-secondary" href="https://contentforgestudio.com/guides">Start With Free Guides</a><a class="btn btn-ghost" href="https://contentforgestudio.com/my-turn">Watch My Turn</a></div></div><div class="path-grid"><a class="path-card" href="https://contentforgestudio.com/community"><div class="icon">🔥</div><div><h3>The Forge</h3><p>Community, build notes, roadmaps, and resource drops for builders taking their turn.</p></div></a><a class="path-card" href="https://contentforgestudio.com/guides"><div class="icon">🧭</div><div><h3>Free Guides</h3><p>Start here with practical tools, prompts, and playbooks. No email required.</p></div></a><a class="path-card" href="https://contentforgestudio.com/vault-store"><div class="icon">🔒</div><div><h3>The Vault</h3><p>Paid products, prompt packs, books, and creator resources built from the CFS workflow.</p></div></a><a class="path-card" href="https://contentforgestudio.com/my-turn"><div class="icon">🎬</div><div><h3>My Turn</h3><p>The build-in-public documentary. Real numbers. Season One — now streaming.</p></div></a></div></div></section>
 <div class="chapter"><div class="ch-line"></div><div class="ch-label">// CHOOSE YOUR PATH</div><div class="ch-line-r"></div></div>
 <section class="section"><div class="section-head"><div class="eyebrow">// FOUR WAYS IN</div><h2>Start Where <span>You Are.</span></h2><p>Some people need community. Some need free resources. Some are ready for paid tools. Some connect with the story first. Pick the door that fits your next move.</p></div><div class="cards"><a class="card" href="https://contentforgestudio.com/community"><div class="card-icon">🔥</div><h3>The Forge</h3><p>The CFS community for creators, freelancers, side hustlers, entrepreneurs, and small business owners taking their turn.</p></a><a class="card" href="https://contentforgestudio.com/guides"><div class="card-icon">🧭</div><h3>Free Guides</h3><p>Free tools, prompts, and starter resources designed to help you move from idea to action.</p></a><a class="card" href="https://contentforgestudio.com/vault-store"><div class="card-icon">🔒</div><h3>The Vault</h3><p>Prompt packs, playbooks, books, bundles, and practical resources built from the CFS workflow.</p></a><a class="card" href="https://contentforgestudio.com/my-turn"><div class="card-icon">🎬</div><h3>My Turn</h3><p>The founder story, public build, lessons learned, experiments, and mission behind the studio.</p></a></div></section>
@@ -82,6 +85,62 @@ section,footer{position:relative;z-index:1}.hero{min-height:100vh;padding:116px 
   </div>
 </div>
 <div class="section"><div class="section-head"><div class="eyebrow">// UTILITY PROMISE</div><h2>Turn AI Into <span>Useful Assets.</span></h2><p>The practical side of CFS is simple: use AI to create content, offers, products, workflows, and systems that can support real income lanes.</p></div><div class="utility-grid"><div class="utility-card"><h3>For Creators</h3><p>Scripts, content systems, thumbnails, offers, lead magnets, and publishing workflows.</p></div><div class="utility-card"><h3>For Freelancers</h3><p>Service packaging, delivery systems, client assets, copy, audits, and proposal support.</p></div><div class="utility-card"><h3>For Side Hustlers</h3><p>Starter products, affiliate content, simple funnels, digital resources, and practical experiments.</p></div></div></div></section>
+<section class="local-ai-strip">
+  <div class="local-ai-inner">
+    <div class="local-ai-head">
+      <div class="local-ai-title-block">
+        <div class="eyebrow">// FOR LOCAL BUSINESS</div>
+        <h2>AI Systems That <span>Actually Work.</span></h2>
+        <p>The same AI systems we build for ourselves — adapted for local small businesses ready to stop losing leads. Websites, follow-up automation, review systems, and lead capture built to run while you're on the job.</p>
+      </div>
+      <div class="local-ai-cta-wrap">
+        <a href="https://contentforgestudio.com/local-ai" class="local-ai-btn">See AI Systems →</a>
+        <div class="local-ai-btn-sub">Golden, CO · Front Range · Denver Metro</div>
+      </div>
+    </div>
+
+    <div class="local-ai-systems">
+      <div class="ls-card">
+        <div class="ls-icon">🌐</div>
+        <div class="ls-title">AI-Powered Website</div>
+        <div class="ls-desc">Fast, mobile-first sites built to convert visitors into booked jobs — not just look good.</div>
+      </div>
+      <div class="ls-card">
+        <div class="ls-icon">📲</div>
+        <div class="ls-title">Lead Capture & Follow-Up</div>
+        <div class="ls-desc">Automated systems that respond to new leads instantly — before your competition even picks up the phone.</div>
+      </div>
+      <div class="ls-card">
+        <div class="ls-icon">⭐</div>
+        <div class="ls-title">Review Generation</div>
+        <div class="ls-desc">Automated review requests that build your reputation on Google while you focus on the work.</div>
+      </div>
+      <div class="ls-card">
+        <div class="ls-icon">📅</div>
+        <div class="ls-title">Booking & Scheduling</div>
+        <div class="ls-desc">Let customers book directly from your site. No back-and-forth. No missed calls. Just confirmed appointments.</div>
+      </div>
+      <div class="ls-card">
+        <div class="ls-icon">💬</div>
+        <div class="ls-title">AI Chat Assistant</div>
+        <div class="ls-desc">Answer common questions, qualify leads, and capture contact info 24/7 — even when you're on a job site.</div>
+      </div>
+      <div class="ls-card">
+        <div class="ls-icon">📊</div>
+        <div class="ls-title">Analytics & Reporting</div>
+        <div class="ls-desc">Know exactly where your leads come from and which systems are generating the most booked jobs.</div>
+      </div>
+    </div>
+
+    <div class="local-ai-demo-strip">
+      <div class="demo-strip-left">
+        <div class="demo-label">// LIVE DEMO</div>
+        <p><strong>See it in action</strong> — Summit Peak Painting Co. is a fictional local business built to show exactly what an AI-powered site looks like in the real world.</p>
+      </div>
+      <a href="https://contentforgestudio.com/local-ai-demo" class="demo-btn">View Live Demo →</a>
+    </div>
+  </div>
+</section>
 <section class="bottom"><div class="eyebrow">// THIS IS THE FRONT DOOR</div><h2><span>Your Turn</span> Starts Now.</h2><p>Join the community, grab the free guides, explore the Vault, or follow the My Turn build. Pick the path that gets you moving today.</p><div class="cta-row" style="justify-content:center"><a class="btn btn-primary" href="https://contentforgestudio.com/community">Join The Forge</a><a class="btn btn-secondary" href="https://contentforgestudio.com/guides">Start With Free Guides</a><a class="btn btn-ghost" href="https://contentforgestudio.com/vault-store">Explore The Vault</a></div></section>
 <footer><p class="footer-copy">© 2026 CONTENTFORGESTUDIO.COM · MY TURN STARTS NOW</p><div class="footer-links"><a href="https://contentforgestudio.com/guides">Free Guides</a><a href="https://contentforgestudio.com/my-turn">My Turn</a><a href="https://contentforgestudio.com/community">The Forge</a><a href="https://contentforgestudio.com/vault-store">The Vault</a><a href="https://youtube.com/@TheContentForgeStudio" target="_blank" rel="noopener">YouTube</a><a href="https://contentforgestudio.com/privacy">Privacy</a></div></footer>
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
