@@ -378,28 +378,29 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
     <p>Tell me a bit about your business. I'll follow up with a time to talk and a written action plan — even if we never work together.</p>
   </div>
   <div class="inner">
-    <form class="form-shell" id="leadForm" name="local-ai-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="submitLead(event)">
-      <input type="hidden" name="form-name" value="local-ai-leads">
-      <input type="hidden" name="bot-field" style="display:none;"><!-- honeypot for spam -->
+    <form class="form-shell" id="leadForm" name="local-ai-free-review" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="submitLead(event)">
+      <input type="hidden" name="form-name" value="local-ai-free-review">
+      <p style="position:absolute;left:-9999px;"><label>Don't fill this out: <input name="bot-field"></label></p>
       <div class="form-row">
-        <div><label for="fname">Your Name</label><input id="fname" name="name" type="text" required placeholder="First and last name"></div>
-        <div><label for="fbiz">Business Name</label><input id="fbiz" name="company" type="text" required placeholder="Your business name"></div>
+        <div><label for="fname">Your Name</label><input id="fname" name="fname" type="text" required placeholder="First and last name"></div>
+        <div><label for="fbiz">Business Name</label><input id="fbiz" name="fbiz" type="text" required placeholder="Your business name"></div>
       </div>
       <div class="form-row">
-        <div><label for="fsite">Website (if you have one)</label><input id="fsite" name="website" type="text" placeholder="yourbusiness.com"></div>
-        <div><label for="ftype">Business Type</label><input id="ftype" name="business_type" type="text" placeholder="e.g. Painting, Salon, HVAC"></div>
+        <div><label for="fsite">Website (if you have one)</label><input id="fsite" name="fsite" type="text" placeholder="yourbusiness.com"></div>
+        <div><label for="ftype">Business Type</label><input id="ftype" name="ftype" type="text" placeholder="e.g. Painting, Salon, HVAC"></div>
       </div>
       <div class="form-row">
-        <div><label for="femail">Email Address</label><input id="femail" name="email" type="email" required placeholder="your@email.com"></div>
-        <div><label for="fphone">Phone (optional)</label><input id="fphone" name="phone" type="tel" placeholder="(720) 000-0000"></div>
+        <div><label for="femail">Email Address</label><input id="femail" name="femail" type="email" required placeholder="your@email.com"></div>
+        <div><label for="fphone">Phone (optional)</label><input id="fphone" name="fphone" type="tel" placeholder="(720) 000-0000"></div>
       </div>
       <div>
         <label for="fneed">What do you need the most help with?</label>
-        <textarea id="fneed" name="message" placeholder="e.g. My website doesn't generate leads, I miss calls when I'm on job sites, I need more Google reviews..."></textarea>
+        <textarea id="fneed" name="fneed" placeholder="e.g. My website doesn't generate leads, I miss calls when I'm on job sites, I need more Google reviews..."></textarea>
       </div>
       <div id="form-error" style="display:none;color:#ff6200;font-size:13px;margin-top:8px;"></div>
       <button type="submit" class="btn btn-primary form-submit" id="submitBtn" style="justify-self:start;border:none;cursor:pointer;">Send My Free Review Request →</button>
     </form>
+    <p style="margin-top:16px;font-size:13px;color:#8090b0;">Already know you want to get started? <a href="/local-ai-intake" style="color:#38d9f5;text-decoration:underline;">Skip to the full intake form →</a></p>
   </div>
 </section>
 
@@ -478,54 +479,32 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
   }
   runConvo();
 
-  // Lead form — Netlify captures all fields, also tries MailerLite API
+  // Lead form — submits to Netlify Forms, then redirects
   async function submitLead(e) {
     e.preventDefault();
+    const form = e.target;
     const btn = document.getElementById('submitBtn');
+    const errorBox = document.getElementById('form-error');
     btn.textContent = 'Sending...';
     btn.disabled = true;
+    errorBox.style.display = 'none';
 
-    const name = document.getElementById('fname').value.trim();
-    const email = document.getElementById('femail').value.trim();
-    const biz = document.getElementById('fbiz').value.trim();
-    const site = document.getElementById('fsite').value.trim();
-    const type = document.getElementById('ftype').value.trim();
-    const phone = document.getElementById('fphone').value.trim();
-    const need = document.getElementById('fneed').value.trim();
-
-    // 1. Submit to Netlify Forms (primary capture)
-    const formData = new FormData();
-    formData.append('form-name', 'local-ai-leads');
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('company', biz);
-    formData.append('website', site);
-    formData.append('business_type', type);
-    formData.append('phone', phone);
-    formData.append('message', need);
+    const data = new URLSearchParams(new FormData(form)).toString();
 
     try {
-      await fetch('/', { method: 'POST', body: formData });
-    } catch(err) { /* silent */ }
-
-    // 2. Also try MailerLite API (secondary — may fail due to CORS but worth trying)
-    try {
-      await fetch('https://connect.mailerlite.com/api/subscribers', {
+      const res = await fetch('/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiNTM2NjUyM2YzZDFmYThlMmQ3ZTRmOTIzYjM1OTFkMjE5NjNjMzliMjI3YTk1YzU0ZWFjYzgwZDY0NmU5ZjEzZDQ0MGEzNThhY2NhNGE5NmMiLCJpYXQiOjE3ODM1MzQ0ODMuMTg5ODA2LCJuYmYiOjE3ODM1MzQ0ODMuMTg5ODA4LCJleHAiOjQ5MzkyMDgwODMuMTg1NzcsInN1YiI6IjI0NzU4MjMiLCJzY29wZXMiOltdfQ.QjznLcI8tdYLGaSwDOV20gKLbDq70Ec7QoTLe9-Wsn98l8TfAomj1rbgEFowwgwTuiVTMGTJhZBX6ypHXhKtZLuiKf_wtsoE6f8WlIi5MieVtOqV-qAyvQXcwHf7mvrnQ9qJatBDP952ZU82Nmx1N4FxX_rqZu-MPgH2zqM6VmmaK7EhOyaPTThrxW1gltVTDBVDG-Ap300o4kfZTqWPZixjAgdMpHQ5PFjTaGPZrYd-tNHjjPFlyFtd_am39coJN1cwxIclmUpcD3yLVIEKwQLUMMS2X_cUthBuG6CLCTQ2lzJyg2MPod4V4vy1t_R27uwL1iP2hOEr9CsA8OxAaviTun7JFJVudRwQuQLoon69Ufcykjs_0FI7ofKeqhJQlz5sNTtD2kSQnazUxnrkcxafTv0QeWCxyHIcWgihjHaQdMkqwdbv4r1_FFlBHPB6hNW6ykiQXmPIbrMShHFDzh5oE9HICfzWoP-eQH5EwI_hK__QWivwplkNVywxICQcOxleTsOt-UevE51wsufau_DplTUPWnDoGQlvVOl5eFHR0GSdewwNOI9YvGIYZKujBXqWXwBXijgW0tsMJOzN4reHRwkABf6kdZWFdGx-i61Y1y06FjF5WRoVh7gDGsNNsV-n6BVc1BcVZC2vcyEpRwnTCtiQziCNIGPZoH07LJY'
-        },
-        body: JSON.stringify({
-          email: email,
-          fields: { name, company: biz, phone, website: site, business_type: type, last_name: need },
-          groups: ['192385761136346481']
-        })
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data
       });
-    } catch(err) { /* silent */ }
-
-    // Always redirect
-    window.location.href = '/local-ai-thankyou';
+      if (!res.ok) throw new Error('Submission failed: ' + res.status);
+      window.location.href = '/local-ai-thankyou';
+    } catch (err) {
+      btn.textContent = 'Send My Free Review Request →';
+      btn.disabled = false;
+      errorBox.textContent = "Something went wrong sending that — please try again, or email me directly at brandon.stromblad@gmail.com.";
+      errorBox.style.display = 'block';
+    }
   }
 </script>
 
