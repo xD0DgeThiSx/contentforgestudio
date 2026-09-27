@@ -3,29 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Local AI Services for Golden, CO & the Front Range | Content Forge Studio</title>
-<meta name="description" content="AI-powered websites, lead capture, follow-up, and review systems for local small businesses in Golden, CO and the Denver Metro / Front Range area — built by Content Forge Studio.">
+<title>Websites & AI Systems for Small Businesses | Content Forge Studio</title>
+<meta name="description" content="Custom websites, landing pages, and practical AI assessment and implementation for small businesses anywhere — no location restriction. Built by Content Forge Studio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "Content Forge Studio — Local AI Services",
-  "url": "https://contentforgestudio.com/local-ai",
-  "areaServed": ["Golden, CO", "Denver Metro", "Front Range, Colorado"],
+  "name": "Content Forge Studio — Website & AI Services",
+  "url": "https://contentforgestudio.com/website-and-ai",
+  "areaServed": "United States",
   "address": { "@type": "PostalAddress", "addressLocality": "Golden", "addressRegion": "CO", "addressCountry": "US" },
-  "description": "AI-powered websites, lead capture, follow-up, and review systems for local small businesses.",
+  "description": "Website and landing page design, plus practical AI assessment and implementation, for small businesses anywhere.",
   "priceRange": "$149-$3500"
 }
-
-  // Ember particles
-  const embers=document.getElementById('embers');
-  for(let i=0;i<28;i++){
-    const e=document.createElement('div');
-    e.className='ember';
-    e.style.cssText=`left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*8}s;--drift:${(Math.random()-.5)*100}px`;
-    embers.appendChild(e);
-  }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
 <style>
@@ -42,7 +33,6 @@
   .wrap{max-width:1120px;margin:0 auto;padding:0 48px;}
   ::selection{background:var(--orange);color:#000;}
 
-  /* ── NAV ── */
   nav{position:sticky;top:0;z-index:50;background:rgba(7,7,14,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;}
   .logo{font-family:'Orbitron',monospace;font-weight:900;font-size:15px;letter-spacing:1px;}
@@ -52,7 +42,6 @@
   .nav-cta{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:1px;background:var(--orange);color:#000;padding:9px 18px;border-radius:5px;font-weight:700;white-space:nowrap;}
   @media(max-width:760px){.navlinks{display:none;}}
 
-  /* ── HERO ── */
   .hero{padding:96px 48px 40px;position:relative;overflow:hidden;}
   .hero::before{content:'';position:absolute;top:-120px;right:-120px;width:420px;height:420px;background:radial-gradient(circle,rgba(255,98,0,0.14),transparent 70%);pointer-events:none;}
   .hero::after{content:'';position:absolute;bottom:-160px;left:-100px;width:420px;height:420px;background:radial-gradient(circle,rgba(0,207,255,0.10),transparent 70%);pointer-events:none;}
@@ -68,14 +57,12 @@
   .btn-secondary{border:1px solid var(--border);color:var(--text);background:rgba(255,255,255,0.02);}
   .btn-secondary:hover{border-color:rgba(255,255,255,0.22);}
 
-  /* ── CO badge ── */
   .co-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:30px;padding:6px 14px 6px 6px;font-size:12px;color:var(--muted);margin-bottom:22px;}
   .co-badge .co-mark{width:20px;height:20px;border-radius:50%;background:#fff;position:relative;flex-shrink:0;}
   .co-badge .co-mark::before{content:'';position:absolute;left:0;top:8px;width:100%;height:4px;background:var(--red);}
   .co-badge .co-mark::after{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:50%;background:var(--gold);transform:translate(-50%,-50%);}
   .co-badge b{color:var(--text);font-weight:700;}
 
-  /* chat demo — signature element */
   .chatcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;position:relative;}
   .chatcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0;background:linear-gradient(90deg,var(--orange),var(--cyan));}
   .chat-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border);}
@@ -89,7 +76,6 @@
   @keyframes blink{50%{opacity:0;}}
   .chat-foot{margin-top:14px;font-size:11px;color:var(--dim);text-align:center;font-family:'Orbitron',monospace;letter-spacing:0.5px;}
 
-  /* ── SECTION HEAD ── */
   .section{padding:64px 48px;}
   .section.alt{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
   .sh{max-width:1120px;margin:0 auto 36px;}
@@ -100,12 +86,10 @@
   .inner{max-width:1120px;margin:0 auto;}
   .ml-embedded{min-height:400px;display:block;}
 
-  /* ── PAIN GRID ── */
   .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
   .pain-item{background:var(--card2);padding:22px 20px;font-size:13.5px;color:var(--muted);display:flex;gap:10px;align-items:flex-start;}
   .pain-item span.mk{color:var(--red);font-size:14px;line-height:1.4;}
 
-  /* ── SERVICE CARDS ── */
   .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;}
   .svc-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px 24px 22px;position:relative;overflow:hidden;transition:transform .18s, border-color .18s;}
   .svc-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,0.16);}
@@ -113,7 +97,6 @@
   .svc-card h3{font-family:'Orbitron',monospace;font-size:14.5px;letter-spacing:0.3px;margin-bottom:10px;color:var(--text);}
   .svc-card p{font-size:13px;color:var(--muted);font-weight:300;}
 
-  /* ── PROCESS ── */
   .steps{display:flex;flex-direction:column;gap:2px;}
   .step{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:22px 4px;border-bottom:1px solid var(--border);}
   .step:last-child{border-bottom:none;}
@@ -121,7 +104,6 @@
   .step h4{font-size:15px;font-weight:700;margin-bottom:5px;}
   .step p{font-size:13px;color:var(--muted);font-weight:300;max-width:560px;}
 
-  /* ── PACKAGES ── */
   .pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
   .pkg{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 26px;display:flex;flex-direction:column;}
   .pkg.feat{border-color:rgba(255,98,0,0.35);background:linear-gradient(160deg,#16110c,var(--card));position:relative;}
@@ -138,7 +120,6 @@
   .support-strip h4{font-family:'Orbitron',monospace;font-size:13px;color:var(--gold);margin-bottom:4px;}
   .support-strip p{font-size:12.5px;color:var(--muted);font-weight:300;max-width:520px;}
 
-  /* ── FORM ── */
   .form-shell{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px;display:grid;grid-template-columns:1fr;gap:16px;}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;font-family:'Orbitron',monospace;}
@@ -149,7 +130,6 @@
   .form-submit{margin-top:6px;}
   @media(max-width:640px){.form-row{grid-template-columns:1fr;}}
 
-  /* ── FINAL CTA ── */
   .final{text-align:center;padding:70px 48px;}
   .final h2{font-family:'Orbitron',monospace;font-size:clamp(22px,3vw,34px);margin-bottom:14px;}
   .final p{color:var(--muted);max-width:520px;margin:0 auto 26px;font-weight:300;font-size:14.5px;}
@@ -185,8 +165,8 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
     <a href="#services" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:#8090b0;text-decoration:none;text-transform:uppercase;">Services</a>
     <a href="#process" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:#8090b0;text-decoration:none;text-transform:uppercase;">Process</a>
     <a href="#packages" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:#8090b0;text-decoration:none;text-transform:uppercase;">Packages</a>
-    <a href="#contact" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:#8090b0;text-decoration:none;text-transform:uppercase;">Contact</a>
     <a href="#faq" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:#8090b0;text-decoration:none;text-transform:uppercase;">FAQ</a>
+    <a href="#contact" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:#8090b0;text-decoration:none;text-transform:uppercase;">Contact</a>
     <a href="tel:7204491176" style="font-family:Orbitron,monospace;font-size:11px;font-weight:700;letter-spacing:1px;color:#f0f0ff;text-decoration:none;">(720) 449-1176</a>
     <a href="#contact" style="font-family:Orbitron,monospace;font-size:10px;font-weight:700;letter-spacing:2px;background:#ff6200;color:#000;padding:9px 18px;border-radius:5px;text-decoration:none;white-space:nowrap;">FREE AI REVIEW</a>
     <a href="https://contentforgestudio.com" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;background:#38d9f5;color:#000;padding:8px 16px;border-radius:4px;text-decoration:none;white-space:nowrap;">CFS Home</a>
@@ -196,14 +176,14 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
 <header class="hero">
   <div class="hero-grid">
     <div>
-      <div class="tag">Content Forge Studio · Local AI Services</div>
-      <h1>AI Systems for <span class="cx">Local</span><br>Small <span class="ox">Businesses</span></h1>
-      <p class="hero-sub">I help independent business owners use AI to save time, capture more leads, follow up faster, and look more professional online — without hiring an IT department.</p>
-      <div class="co-badge"><span class="co-mark"></span>Based in <b>Golden, CO</b> · Colorado-owned · Serving the Front Range</div>
+      <div class="tag">Content Forge Studio · Website &amp; AI Services</div>
+      <h1>Websites &amp; AI Systems<br>for <span class="cx">Every</span> Small <span class="ox">Business</span></h1>
+      <p class="hero-sub">I design conversion-ready websites and landing pages, and set up the AI tools that actually help your business — no guesswork, no wasted subscriptions, no "AI transformation" jargon.</p>
+      <div class="co-badge"><span class="co-mark"></span>Based in <b>Golden, CO</b> · Remote-friendly · Working Nationwide</div>
       <div class="cta-row">
         <a href="#contact" class="btn btn-primary">Request a Free AI Opportunity Review</a>
         <a href="#services" class="btn btn-secondary">See Service Options</a>
-        <a href="/local-ai-demo" class="btn btn-secondary" style="border-color:rgba(56,217,245,0.4);color:#38d9f5;">👁 &nbsp;See Live Demo</a>
+        <a href="/local-ai-demo" class="btn btn-secondary" style="border-color:rgba(56,217,245,0.4);color:#38d9f5;">👁 &nbsp;See a Live Example</a>
       </div>
     </div>
     <div class="chatcard">
@@ -237,13 +217,13 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
 <section class="section" style="padding-top:44px;padding-bottom:44px;">
   <div class="inner" style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;border:1px solid var(--border);border-radius:12px;padding:24px 28px;background:var(--card2);">
     <div>
-      <div class="sh-eyebrow" style="margin-bottom:8px;">Where I work</div>
-      <p style="font-size:14px;color:var(--text);font-weight:400;max-width:560px;">Headquartered in <strong>Golden, CO</strong>, working in-person across the Denver Metro and Front Range. Expanding to neighboring Colorado communities — virtual setup available for businesses outside the area.</p>
+      <div class="sh-eyebrow" style="margin-bottom:8px;">Who this is for</div>
+      <p style="font-size:14px;color:var(--text);font-weight:400;max-width:560px;">Based in <strong>Golden, CO</strong> — working with small business owners everywhere. In person locally across the Front Range, fully remote for everyone else.</p>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <span style="font-family:'Orbitron',monospace;font-size:10.5px;letter-spacing:1px;color:var(--gold);border:1px solid rgba(255,200,66,0.3);background:rgba(255,200,66,0.07);padding:7px 12px;border-radius:6px;">GOLDEN, CO — HQ</span>
-      <span style="font-family:'Orbitron',monospace;font-size:10.5px;letter-spacing:1px;color:var(--cyan);border:1px solid rgba(0,207,255,0.25);background:rgba(0,207,255,0.06);padding:7px 12px;border-radius:6px;">DENVER METRO</span>
-      <span style="font-family:'Orbitron',monospace;font-size:10.5px;letter-spacing:1px;color:var(--muted);border:1px solid var(--border);padding:7px 12px;border-radius:6px;">VIRTUAL — BY REQUEST</span>
+      <span style="font-family:'Orbitron',monospace;font-size:10.5px;letter-spacing:1px;color:var(--cyan);border:1px solid rgba(0,207,255,0.25);background:rgba(0,207,255,0.06);padding:7px 12px;border-radius:6px;">REMOTE-FRIENDLY</span>
+      <span style="font-family:'Orbitron',monospace;font-size:10.5px;letter-spacing:1px;color:var(--gold);border:1px solid rgba(255,200,66,0.3);background:rgba(255,200,66,0.07);padding:7px 12px;border-radius:6px;">NATIONWIDE</span>
+      <span style="font-family:'Orbitron',monospace;font-size:10.5px;letter-spacing:1px;color:var(--muted);border:1px solid var(--border);padding:7px 12px;border-radius:6px;">GOLDEN, CO — HQ</span>
     </div>
   </div>
 </section>
@@ -251,41 +231,24 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
 <section class="section" id="services">
   <div class="sh">
     <div class="sh-eyebrow">What I build</div>
-    <h2>Six systems that turn <span class="cx">traffic</span> into <span class="ox">booked jobs.</span></h2>
-    <p>Practical, not theoretical. Every system below ships with something live on your site or in your inbox — not a slide deck.</p>
+    <h2>Two things that <span class="cx">actually move</span> the <span class="ox">needle.</span></h2>
+    <p>No bloated menu. Just a site that converts, and the AI systems worth having behind it.</p>
   </div>
   <div class="inner">
     <div class="svc-grid">
       <div class="svc-card">
         <div class="svc-num">01</div>
-        <h3>Website + Lead Capture Setup</h3>
-        <p>A clean site or landing page built to explain your services and make it easy for people to contact you — quote forms, booking links, and an FAQ section that does the explaining for you.</p>
+        <h3>Website &amp; Landing Page Design/Build</h3>
+        <p>Custom-built or refreshed site, mobile-first and conversion-focused — clear service copy, one obvious call-to-action, a working contact/quote form, and an FAQ section built in.</p>
       </div>
       <div class="svc-card">
         <div class="svc-num">02</div>
-        <h3>AI Website Assistant</h3>
-        <p>A 24/7 helper on your site that answers the questions you get asked every day — hours, service area, pricing range, what to expect — and routes serious leads straight to you.</p>
+        <h3>AI Assessment &amp; Implementation</h3>
+        <p>A plain-English review of your site, tools, and lead process — what's working, what's leaking leads, what to fix first — then hands-on setup: a website FAQ assistant, faster follow-up, and a tool stack that actually fits.</p>
       </div>
-      <div class="svc-card">
-        <div class="svc-num">03</div>
-        <h3>Missed-Lead Follow-Up System</h3>
-        <p>Auto-replies on form fills, missed-call text-backs, quote follow-ups, and re-engagement messages for old leads. Stop losing jobs because you didn't respond fast enough.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-num">04</div>
-        <h3>Google Review Growth Kit</h3>
-        <p>Review request templates, QR cards, and an automated follow-up sequence — plus AI-assisted responses so every review, good or bad, gets a fast reply.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-num">05</div>
-        <h3>AI Content System</h3>
-        <p>A repeatable content calendar — post ideas, captions, before/after templates, and seasonal promos — so you're not starting from a blank page every week.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-num">06</div>
-        <h3>AI QuickStart Training</h3>
-        <p>A hands-on 90-minute session showing you how to actually use ChatGPT, Claude, and Canva for estimates, emails, and daily admin — no lecture, just workflow.</p>
-      </div>
+    </div>
+    <div class="support-strip">
+      <div><h4 style="color:var(--cyan);">Also available once we're working together</h4><p>Review-generation systems, AI content prompts and workflows, and ongoing monthly support — the next step after the first two are in place, not the headline offer.</p></div>
     </div>
   </div>
 </section>
@@ -303,11 +266,11 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <div><h4>Pick your package</h4><p>Start with a quick audit, a lead-capture setup, or the full system buildout — based on what the review actually turns up, not a sales pitch.</p></div>
+        <div><h4>Pick your package</h4><p>Start with a quick audit, a website &amp; AI implementation setup, or the full system buildout — based on what the review actually turns up, not a sales pitch.</p></div>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <div><h4>Build and launch</h4><p>I build the site, forms, follow-up sequences, and review system, then walk you through it so you know exactly how it works.</p></div>
+        <div><h4>Build and launch</h4><p>I build the site, forms, follow-up sequences, and AI systems, then walk you through it so you know exactly how it works.</p></div>
       </div>
       <div class="step">
         <div class="step-num">04</div>
@@ -339,7 +302,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
         <a href="#contact" class="btn btn-secondary">Start Here</a>
       </div>
       <div class="pkg feat">
-        <div class="pkg-name">AI Lead Capture Setup</div>
+        <div class="pkg-name">Website &amp; AI Implementation Setup</div>
         <div class="pkg-price">$499<span> +</span></div>
         <div class="pkg-sub">One-time build</div>
         <ul>
@@ -380,20 +343,20 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
   <div class="inner">
     <div class="svc-grid">
       <div class="svc-card">
-        <h3>Do you only work with local businesses?</h3>
-        <p>My hands-on, in-person work is focused on Golden and the Front Range. If you're outside that area, <a href="/website-and-ai" style="color:var(--cyan);">check out our general Website &amp; AI page</a> &mdash; everything there works fully remote.</p>
+        <h3>What exactly do you build?</h3>
+        <p>Websites, landing pages, and the AI systems around them — lead capture, follow-up, FAQ assistants, and the tool setup behind all of it.</p>
       </div>
       <div class="svc-card">
-        <h3>What happens after I request the free review?</h3>
-        <p>You'll get a short reply or a quick call with the first 2&ndash;3 things I'd fix, and a recommendation for next steps &mdash; no obligation either way.</p>
+        <h3>Do I need to already understand AI tools?</h3>
+        <p>No. That's the point of the Free Review and the Audit — you get a plain-English plan, not a lecture.</p>
       </div>
       <div class="svc-card">
-        <h3>Do you guarantee more leads, reviews, or sales?</h3>
-        <p>No. I don't promise guaranteed leads, rankings, review counts, or revenue. I install the systems that make it realistically easier to capture and follow up on the business you're already generating.</p>
+        <h3>Are you local, and can I get in-person help?</h3>
+        <p>Based in Golden, CO. If you're in the Front Range and want an in-person consult, check out the <a href="/local-ai" style="color:var(--cyan);">local page</a> — otherwise everything here works fully remote.</p>
       </div>
       <div class="svc-card">
-        <h3>Are you licensed/insured?</h3>
-        <p>Ask me directly and I'll give you current details &mdash; happy to share before we start any project.</p>
+        <h3>Do you guarantee more leads or sales?</h3>
+        <p>No — I don't promise guaranteed leads, rankings, or revenue. I install the systems that make it realistically easier to capture and follow up on the leads you're already getting.</p>
       </div>
     </div>
   </div>
@@ -406,8 +369,8 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
     <p>Tell me a bit about your business. I'll follow up with a time to talk and a written action plan — even if we never work together.</p>
   </div>
   <div class="inner">
-    <form class="form-shell" id="leadForm" name="local-ai-free-review" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="submitLead(event)">
-      <input type="hidden" name="form-name" value="local-ai-free-review">
+    <form class="form-shell" id="leadForm" name="website-ai-free-review" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="submitLead(event)">
+      <input type="hidden" name="form-name" value="website-ai-free-review">
       <p style="position:absolute;left:-9999px;"><label>Don't fill this out: <input name="bot-field"></label></p>
       <div class="form-row">
         <div><label for="fname">Your Name</label><input id="fname" name="fname" type="text" required placeholder="First and last name"></div>
@@ -415,7 +378,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
       </div>
       <div class="form-row">
         <div><label for="fsite">Website (if you have one)</label><input id="fsite" name="fsite" type="text" placeholder="yourbusiness.com"></div>
-        <div><label for="ftype">Business Type</label><input id="ftype" name="ftype" type="text" placeholder="e.g. Painting, Salon, HVAC"></div>
+        <div><label for="ftype">Business Type</label><input id="ftype" name="ftype" type="text" placeholder="e.g. Coaching, E-commerce, Consulting"></div>
       </div>
       <div class="form-row">
         <div><label for="femail">Email Address</label><input id="femail" name="femail" type="email" required placeholder="your@email.com"></div>
@@ -423,34 +386,33 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
       </div>
       <div>
         <label for="fneed">What do you need the most help with?</label>
-        <textarea id="fneed" name="fneed" placeholder="e.g. My website doesn't generate leads, I miss calls when I'm on job sites, I need more Google reviews..."></textarea>
+        <textarea id="fneed" name="fneed" placeholder="e.g. My website doesn't generate leads, I don't know which AI tools are worth using, I need both a new site and an AI setup..."></textarea>
       </div>
       <div id="form-error" style="display:none;color:#ff6200;font-size:13px;margin-top:8px;"></div>
       <button type="submit" class="btn btn-primary form-submit" id="submitBtn" style="justify-self:start;border:none;cursor:pointer;">Send My Free Review Request →</button>
     </form>
-    <p style="margin-top:16px;font-size:13px;color:#8090b0;">Already know you want to get started? <a href="/local-ai-intake" style="color:#38d9f5;text-decoration:underline;">Skip to the full intake form →</a></p>
   </div>
 </section>
 
 <section class="final">
   <h2>Your business deserves a system, not another to-do.</h2>
-  <p>Built and run by Brandon Stromblad out of Golden, CO — practical AI, no hype, no IT department required.</p>
+  <p>Built and run by Brandon Stromblad out of Golden, CO — practical AI, no hype, no IT department required, wherever you're located.</p>
   <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
     <a href="#contact" class="btn btn-primary">Request a Free AI Opportunity Review</a>
-    <a href="/local-ai-demo" class="btn btn-secondary" style="border-color:rgba(56,217,245,0.4);color:#38d9f5;">👁 &nbsp;See Live Demo</a>
+    <a href="/local-ai-demo" class="btn btn-secondary" style="border-color:rgba(56,217,245,0.4);color:#38d9f5;">👁 &nbsp;See a Live Example</a>
   </div>
 </section>
 
 <section style="background:var(--surface);border-top:1px solid var(--border);padding:40px 48px;text-align:center;">
   <div style="max-width:640px;margin:0 auto;">
     <div style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:4px;color:var(--muted);margin-bottom:12px;">// ABOUT THE BUILDER</div>
-    <p style="font-size:14px;color:var(--muted);font-weight:300;line-height:1.8;margin-bottom:8px;">These AI systems are built by B. Stromblad — a solo founder based in Golden, CO who helps local businesses implement practical AI systems that capture more leads, follow up faster, and run more efficiently without adding complexity or headcount.</p>
+    <p style="font-size:14px;color:var(--muted);font-weight:300;line-height:1.8;margin-bottom:8px;">These systems are built by B. Stromblad — a solo founder based in Golden, CO who helps small businesses implement practical AI systems that capture more leads, follow up faster, and run more efficiently without adding complexity or headcount.</p>
     <p style="font-size:14px;color:var(--muted);font-weight:300;line-height:1.8;margin-bottom:20px;">On the creator side, ContentForge Studio also helps individual creators, freelancers, and side hustlers use AI to build real income through content, digital products, and online tools — all documented openly at <a href="https://contentforgestudio.com" style="color:var(--cyan);text-decoration:none;">contentforgestudio.com</a>.</p>
   </div>
 </section>
 
 <footer style="background:var(--surface);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
-  <span style="font-size:12px;color:var(--dim);">Content Forge Studio · Local AI Services · Golden, CO · <a href="tel:7204491176" style="color:var(--muted);text-decoration:none;">(720) 449-1176</a></span>
+  <span style="font-size:12px;color:var(--dim);">Content Forge Studio · Website &amp; AI Services · Golden, CO · <a href="tel:7204491176" style="color:var(--muted);text-decoration:none;">(720) 449-1176</a></span>
   <div style="display:flex;gap:20px;align-items:center;">
     <a href="https://contentforgestudio.com" style="font-size:12px;color:var(--muted);transition:color .2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--muted)'">ContentForgeStudio.com</a>
     <a href="https://contentforgestudio.com/local-ai-demo" style="font-size:12px;color:var(--muted);transition:color .2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--muted)'">View Demo</a>
@@ -458,12 +420,19 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
 </footer>
 
 <script>
-  // Signature hero element: cycling AI-assistant chat demo
+  const embers=document.getElementById('embers');
+  for(let i=0;i<28;i++){
+    const e=document.createElement('div');
+    e.className='ember';
+    e.style.cssText=`left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*8}s;--drift:${(Math.random()-.5)*100}px`;
+    embers.appendChild(e);
+  }
+
   const convos = [
-    ["Do you serve Lakewood?", "Yes — we cover Lakewood and the surrounding Denver metro area."],
-    ["How soon can I get a quote?", "Most quotes go out within 24 hours of your request."],
-    ["Can I send photos for an estimate?", "Absolutely, just upload them in the form below."],
-    ["What should I do before you arrive?", "Just clear the work area — we'll handle the rest."]
+    ["Do you offer a free consultation?", "Yes — every project starts with a free AI Opportunity Review."],
+    ["How fast can you turn around a new site?", "Most builds ship in 3–7 days depending on scope."],
+    ["Can I see an example first?", "Absolutely, check out the live demo below."],
+    ["Do you work with businesses outside Colorado?", "Yes — everything here works fully remote, nationwide."]
   ];
   const body = document.getElementById('chatBody');
   let i = 0;
@@ -507,7 +476,6 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
   }
   runConvo();
 
-  // Lead form — submits to Netlify Forms, then redirects
   async function submitLead(e) {
     e.preventDefault();
     const form = e.target;
@@ -526,7 +494,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
         body: data
       });
       if (!res.ok) throw new Error('Submission failed: ' + res.status);
-      window.location.href = '/local-ai-thankyou';
+      window.location.href = '/website-ai-thankyou';
     } catch (err) {
       btn.textContent = 'Send My Free Review Request →';
       btn.disabled = false;
