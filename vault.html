@@ -139,6 +139,17 @@ footer { position: relative; z-index: 1; background: var(--deep); border-top: 1p
 @keyframes vaultGlow { 0%,100% { text-shadow: 0 0 6px rgba(232,255,71,0.4), 0 0 12px rgba(232,255,71,0.2); } 50% { text-shadow: 0 0 14px rgba(232,255,71,0.9), 0 0 28px rgba(232,255,71,0.5); } }
 
 </style>
+<style>
+@media(max-width:760px){
+  nav{position:sticky!important;flex-direction:column;align-items:stretch;height:auto;padding:12px 0 10px;gap:8px;}
+  nav>.nav-logo{padding:0 16px;}
+  nav>.nav-right{display:flex;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:0 16px 4px;gap:16px;justify-content:flex-start;}
+  nav>.nav-right::-webkit-scrollbar{display:none;}
+  nav>.nav-right .nav-link{flex:0 0 auto;white-space:nowrap;}
+  .nav-studio{display:block!important;}
+  .nav-wordmark{display:flex!important;}
+}
+</style>
 </head>
 <body>
 

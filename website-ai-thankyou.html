@@ -65,11 +65,20 @@
 .embers{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}.ember{position:absolute;width:2px;height:2px;border-radius:50%;background:#ff8c00;animation:rise linear infinite;opacity:0}@keyframes rise{0%{transform:translateY(100vh);opacity:0}10%{opacity:.75}100%{transform:translateY(-20px) translateX(var(--drift));opacity:0}}
 body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(56,217,245,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(56,217,245,.025) 1px,transparent 1px),radial-gradient(circle at 50% 10%,rgba(255,140,0,.12),transparent 34%),radial-gradient(circle at 78% 70%,rgba(56,217,245,.045),transparent 30%);background-size:56px 56px,56px 56px,auto,auto;pointer-events:none;z-index:0;}
 </style>
+<style>
+@media(max-width:760px){
+  nav{position:sticky!important;flex-direction:column!important;align-items:stretch!important;height:auto!important;padding:12px 0 10px!important;gap:8px;}
+  nav>.nav-logo-group{padding:0 16px;}
+  nav>.nav-links-row{display:flex!important;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:0 16px 4px;gap:16px!important;justify-content:flex-start!important;}
+  nav>.nav-links-row::-webkit-scrollbar{display:none;}
+  nav>.nav-links-row a{flex:0 0 auto;white-space:nowrap;}
+}
+</style>
 </head>
 <body>
 <div class="embers" id="embers"></div>
 <nav style="position:fixed;top:0;left:0;right:0;height:68px;padding:0 52px;z-index:50;display:flex;align-items:center;justify-content:space-between;background:rgba(7,7,14,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,217,245,.1);">
-  <a href="https://contentforgestudio.com" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+  <a href="https://contentforgestudio.com" class="nav-logo-group" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
     <div style="width:48px;height:48px;border:2px solid #38d9f5;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px rgba(56,217,245,.16);">
       <img src="CFS Logo_FINAL.png" alt="Content Forge Studio" style="width:44px;height:44px;object-fit:contain;">
     </div>
@@ -78,7 +87,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
       <div style="font-size:10px;letter-spacing:4px;color:#8090b0;text-transform:uppercase;">STUDIO</div>
     </div>
   </a>
-  <div style="display:flex;gap:22px;align-items:center;">
+  <div class="nav-links-row" style="display:flex;gap:22px;align-items:center;">
     <a href="https://contentforgestudio.com/website-and-ai" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:#8090b0;text-decoration:none;text-transform:uppercase;">Website &amp; AI</a>
     <a href="https://contentforgestudio.com/local-ai-demo" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:#8090b0;text-decoration:none;text-transform:uppercase;">Demo</a>
     <a href="https://contentforgestudio.com/guides" style="font-family:Orbitron,monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:#8090b0;text-decoration:none;text-transform:uppercase;">Free Guides</a>
@@ -145,5 +154,8 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
     embers.appendChild(e);
   }
 </script>
+<style>#backToTop{position:fixed;bottom:32px;right:32px;z-index:999;width:48px;height:48px;border-radius:50%;background:#ff6200;color:#000;border:none;display:none;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.35);}</style>
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+<script>const backToTopBtn=document.getElementById('backToTop');window.addEventListener('scroll',()=>{backToTopBtn.style.display=window.scrollY>400?'flex':'none';});</script>
 </body>
 </html>
