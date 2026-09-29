@@ -50,7 +50,8 @@
   h1{font-family:'Orbitron',monospace;font-size:clamp(30px,4.2vw,52px);font-weight:900;line-height:1.08;margin-bottom:20px;}
   h1 .cx{color:var(--cyan);} h1 .ox{color:var(--orange);}
   .hero-sub{font-size:16px;color:var(--muted);max-width:520px;font-weight:300;margin-bottom:30px;}
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .cta-row{display:flex;flex-direction:column;gap:12px;max-width:420px;}
+  .cta-row .btn{width:100%;box-sizing:border-box;text-align:center;}
   .btn{font-family:'Orbitron',monospace;font-size:12px;letter-spacing:1.5px;padding:15px 26px;border-radius:6px;font-weight:700;display:inline-block;transition:transform .15s, box-shadow .15s;}
   .btn-primary{background:var(--orange);color:#000;box-shadow:0 0 0 rgba(255,98,0,0);}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,98,0,0.28);}
@@ -193,6 +194,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
       <div class="cta-row">
         <a href="#contact" class="btn btn-primary">Request a Free AI Opportunity Review</a>
         <a href="#services" class="btn btn-secondary">See Service Options</a>
+        <a href="#contact" class="btn btn-secondary" style="border-color:rgba(255,200,66,0.4);color:#ffc842;">Already Know What You Want? Skip to Intake Form</a>
         <a href="/local-ai-demo" class="btn btn-secondary" style="border-color:rgba(56,217,245,0.4);color:#38d9f5;">👁 &nbsp;See a Live Example</a>
       </div>
     </div>
