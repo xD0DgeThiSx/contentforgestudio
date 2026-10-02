@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brandon Stromblad — Content Forge Studio</title>
+<meta name="description" content="Digital business card for Brandon Stromblad, Founder of Content Forge Studio." />
+<link rel="icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Raleway:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Raleway', sans-serif;
+    background: radial-gradient(circle at 50% 0%, #16163a 0%, #07071a 60%, #0d0d1a 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 16px;
+    color: #f0f0ff;
+  }
+  .card {
+    width: 100%;
+    max-width: 380px;
+    background: #111120;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(56, 217, 245, 0.25);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(56,217,245,0.08);
+  }
+  .card-header {
+    background: linear-gradient(135deg, #0d0d26 0%, #16163a 100%);
+    padding: 30px 24px 22px;
+    text-align: center;
+    border-bottom: 1px solid rgba(56,217,245,0.15);
+  }
+  .card-header img.logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 0 20px rgba(56,217,245,0.35);
+  }
+  .card-header h1 {
+    margin: 0;
+    font-family: 'Orbitron', monospace;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    background: linear-gradient(90deg, #38d9f5, #b06fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .card-header p {
+    margin: 8px 0 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #8090b0;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .card-body { padding: 22px 24px 8px; }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-decoration: none;
+    color: #f0f0ff;
+  }
+  .contact-row:last-child { border-bottom: none; }
+  .contact-row .icon {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: rgba(56,217,245,0.1);
+    border: 1px solid rgba(56,217,245,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+  .contact-row .text { font-size: 14px; font-weight: 500; word-break: break-word; }
+  .contact-row .label {
+    font-size: 10px;
+    color: #8090b0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 2px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .qr-section { padding: 18px 24px 6px; text-align: center; }
+  .qr-section img.qr {
+    width: 148px;
+    height: 148px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 8px;
+  }
+  .qr-section .caption {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #8090b0;
+    margin-top: 10px;
+    letter-spacing: 0.03em;
+  }
+  .actions { padding: 20px 24px 26px; display: flex; flex-direction: column; gap: 10px; }
+  .btn {
+    display: block;
+    text-align: center;
+    padding: 13px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+  }
+  .btn-primary { background: linear-gradient(90deg, #38d9f5, #6228d7); color: #07071a; }
+  .btn-secondary { background: transparent; color: #ff6200; border: 1px solid rgba(255,98,0,0.4); }
+  .footer-note {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #50507a;
+    padding: 0 24px 22px;
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+      <img class="logo" src="/icon-192.png" alt="Content Forge Studio" />
+      <h1>Brandon Stromblad</h1>
+      <p>Founder, Content Forge Studio</p>
+    </div>
+
+    <div class="card-body">
+      <a class="contact-row" href="tel:+17204491176">
+        <span class="icon">&#128222;</span>
+        <span class="text"><span class="label">Phone</span>720-449-1176</span>
+      </a>
+      <a class="contact-row" href="mailto:ContentForgeStudio@proton.me">
+        <span class="icon">&#9993;&#65039;</span>
+        <span class="text"><span class="label">Email</span>ContentForgeStudio@proton.me</span>
+      </a>
+      <a class="contact-row" href="https://contentforgestudio.com" target="_blank" rel="noopener">
+        <span class="icon">&#127760;</span>
+        <span class="text"><span class="label">Website</span>contentforgestudio.com</span>
+      </a>
+    </div>
+
+    <div class="qr-section">
+      <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATYAAAE2CAIAAABk3in+AAAF30lEQVR4nO3dMY5bNxRA0UzgwnvI/peWPbiTW6cIhYCh3+XXOe1gJI3mX7B5ePx6vV5/AFV/Tn8AYEWikCZRSJMopEkU0iQKaRKFNIlCmkQh7dv6x9+///V7Psdv8+PH34deef1drd936nfPOfepPu2ZdIpCmkQhTaKQJlFIkyikSRTSJAppEoU0iULam+mitanJlbXnTZ+sNSd1pp6N5z2TTlFIkyikSRTSJAppEoU0iUKaRCFNopAmUUjbmi5ae97kys5fdO7b2Hnlqa1IU/uWbnwmnaKQJlFIkyikSRTSJAppEoU0iUKaRCFNopB2cLqIX+3M8UzN4ux8Zv4vTlFIkyikSRTSJAppEoU0iUKaRCFNopAmUUgzXfQfTN1B1rzta+3Gz9zkFIU0iUKaRCFNopAmUUiTKKRJFNIkCmkShbSD00U3zpc8bx9P8w6yqWfjxmfSKQppEoU0iUKaRCFNopAmUUiTKKRJFNIkCmlb00XPm8VZ27kp7NwtY+fed2cWZ+p9n/dMOkUhTaKQJlFIkyikSRTSJAppEoU0iUKaRCHt6/V6TX+Ghzh399nU/FBzbunTOEUhTaKQJlFIkyikSRTSJAppEoU0iUKaRCHtzXTR1I6Zc5t+zr3yufdt/u6O5iRWk1MU0iQKaRKFNIlCmkQhTaKQJlFIkyikSRTSxm5Gu3FGZOrGrua3MaU58XbulZ2ikCZRSJMopEkU0iQKaRKFNIlCmkQhTaKQtrW76JzmjMi5953ambTjxtmyG59npyikSRTSJAppEoU0iUKaRCFNopAmUUiTKKS92V00tRdnZ75kavrkxo1KTc3ZsqnJJKcopEkU0iQKaRKFNIlCmkQhTaKQJlFIkyikvdldtNbcBHPjfMmN8zTNb3Lt3JNzbi7NKQppEoU0iUKaRCFNopAmUUiTKKRJFNIkCmlbN6NNTa7cePfZufdda26f2vG8XU1rTlFIkyikSRTSJAppEoU0iUKaRCFNopAmUUjb2l20NjVf0pzFaW7rmXLufzS1f2iH3UVwMYlCmkQhTaKQJlFIkyikSRTSJAppEoW0g9NFO6YmhJ63cad529fzJs/O7bVyikKaRCFNopAmUUiTKKRJFNIkCmkShTSJQtrWdNGNM0A33pt2441s59y4jcl0ETyWRCFNopAmUUiTKKRJFNIkCmkShTSJQtqVu4tunC9Za27c2Xnlc27cP7Tzyk5RSJMopEkU0iQKaRKFNIlCmkQhTaKQJlFI+7b+cfNerbWpyaSpV27OHq09byvSub/IKQppEoU0iUKaRCFNopAmUUiTKKRJFNIkCmlvpot25i2mJlem9tPcaGp+qDkv1fzvO0UhTaKQJlFIkyikSRTSJAppEoU0iUKaRCHtzc1o52ZEpn53x9Rum3NTL1PTNjfuLpr6rpyikCZRSJMopEkU0iQKaRKFNIlCmkQhTaKQ9ma66NM0J5PWmluC1ppTTc2pNacopEkU0iQKaRKFNIlCmkQhTaKQJlFIkyikvbkZrbljZsd6kqN5N9ba1Ge+cUJox9RmI6copEkU0iQKaRKFNIlCmkQhTaKQJlFIkyikvZkuWmvO4uxMRJ2bEbnxlad2+aw172s7N3vkFIU0iUKaRCFNopAmUUiTKKRJFNIkCmkShbSt6aK1G28Za85LrZ2bAWpuJzqn+d93ikKaRCFNopAmUUiTKKRJFNIkCmkShTSJQtrB6aIbfdpNcFMbldamdiY15+GcopAmUUiTKKRJFNIkCmkShTSJQppEIU2ikGa66B+m5mmm5lqa23rWpv5Ha25Ggw8lUUiTKKRJFNIkCmkShTSJQppEIU2ikHZwuujGyZW1G2dTnreN6Zxzc0t2F8FjSRTSJAppEoU0iUKaRCFNopAmUUiTKKRtTRc9b3LlxvmhHTfemzb1qaam5ZyikCZRSJMopEkU0iQKaRKFNIlCmkQhTaKQ9vV6vaY/A/CvnKKQJlFIkyikSRTSJAppEoU0iUKaRCFNopD2EyopNKIp0PtLAAAAAElFTkSuQmCC" alt="QR code linking to this card" />
+      <div class="caption">SCAN TO OPEN THIS CARD</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="saveContact()">Save to Contacts</button>
+      <a class="btn btn-secondary" href="https://contentforgestudio.com" target="_blank" rel="noopener">Visit Website</a>
+    </div>
+
+    <div class="footer-note">CONTENT FORGE STUDIO &middot; WEB DESIGN &amp; LOCAL LEAD GENERATION</div>
+  </div>
+
+  <script>
+    function saveContact() {
+      var vcard = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "N:Stromblad;Brandon;;;",
+        "FN:Brandon Stromblad",
+        "ORG:Content Forge Studio",
+        "TITLE:Founder",
+        "TEL;TYPE=CELL:720-449-1176",
+        "EMAIL;TYPE=INTERNET:ContentForgeStudio@proton.me",
+        "URL:https://contentforgestudio.com",
+        "END:VCARD"
+      ].join("\r\n");
+      var blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "Brandon-Stromblad.vcf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+    }
+  </script>
+</body>
+</html>
