@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Keating Pipeworks | Plumbing in Arvada, CO</title>
+<meta name="description" content="Keating Pipeworks - plumbing repair and installation in Arvada, Colorado. Call 303-263-9121." />
+<style>
+  :root { --navy:#0f2a43; --navy2:#17406a; --copper:#c8702a; --copper2:#e0883f; --ink:#1c2733; --muted:#5b6b7b; --bg:#f5f7fa; --white:#fff; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:var(--ink); background:var(--white); line-height:1.55; }
+  a { color:inherit; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
+  .sample-bar { background:#fff4e5; border-bottom:1px solid #f1d3a8; color:#7a4a10; font-size:13px; text-align:center; padding:8px 12px; }
+  .sample-bar a { font-weight:700; }
+  header { position:sticky; top:0; z-index:10; background:var(--navy); color:#fff; }
+  .nav { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; }
+  .brand { font-weight:800; font-size:20px; letter-spacing:.2px; text-decoration:none; }
+  .brand span { color:var(--copper2); }
+  .nav-links { display:flex; gap:22px; font-size:15px; }
+  .nav-links a { text-decoration:none; opacity:.9; }
+  .nav-links a:hover { opacity:1; }
+  .btn { display:inline-block; background:var(--copper); color:#fff; text-decoration:none; font-weight:700; padding:12px 22px; border-radius:999px; border:0; font-size:16px; cursor:pointer; }
+  .btn:hover { background:var(--copper2); }
+  .btn.ghost { background:transparent; border:2px solid rgba(255,255,255,.7); }
+  .btn.ghost:hover { background:rgba(255,255,255,.12); }
+  .hero { background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%); color:#fff; padding:84px 0 92px; }
+  .hero h1 { font-size:clamp(34px,5.5vw,56px); line-height:1.08; margin:0 0 16px; max-width:720px; }
+  .hero p { font-size:19px; max-width:620px; margin:0 0 28px; color:#d6e2ee; }
+  .hero .actions { display:flex; flex-wrap:wrap; gap:12px; }
+  .pill { display:inline-block; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); border-radius:999px; padding:6px 14px; font-size:13px; margin-bottom:18px; }
+  section { padding:72px 0; }
+  h2 { font-size:clamp(26px,3.6vw,36px); margin:0 0 10px; color:var(--navy); }
+  .lead { color:var(--muted); max-width:620px; margin:0 0 36px; font-size:18px; }
+  .grid { display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+  .card { background:var(--white); border:1px solid #e3e9f0; border-radius:16px; padding:24px; box-shadow:0 6px 18px rgba(15,42,67,.06); }
+  .card .ico { width:44px; height:44px; border-radius:12px; background:#fdeedd; color:var(--copper); display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:14px; }
+  .card h3 { margin:0 0 6px; font-size:19px; color:var(--navy); }
+  .card p { margin:0; color:var(--muted); font-size:15px; }
+  .alt { background:var(--bg); }
+  .steps { counter-reset:s; display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+  .step { background:var(--white); border-radius:16px; padding:24px; border:1px solid #e3e9f0; }
+  .step:before { counter-increment:s; content:counter(s); display:inline-flex; width:34px; height:34px; border-radius:50%; background:var(--navy); color:#fff; align-items:center; justify-content:center; font-weight:700; margin-bottom:12px; }
+  .step h3 { margin:0 0 6px; color:var(--navy); }
+  .step p { margin:0; color:var(--muted); font-size:15px; }
+  .reviews { border:2px dashed #c9d5e2; border-radius:16px; padding:28px; text-align:center; color:var(--muted); background:var(--white); }
+  .reviews strong { color:var(--navy); }
+  .contact { display:grid; gap:28px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); align-items:start; }
+  .info p { margin:6px 0; font-size:17px; }
+  .info a { color:var(--navy2); font-weight:700; }
+  form { background:var(--white); border:1px solid #e3e9f0; border-radius:16px; padding:24px; box-shadow:0 6px 18px rgba(15,42,67,.06); }
+  label { display:block; font-size:13px; font-weight:700; color:var(--navy); margin:12px 0 4px; }
+  input, textarea { width:100%; padding:12px 14px; border:1px solid #cdd8e3; border-radius:10px; font:inherit; }
+  textarea { min-height:90px; resize:vertical; }
+  .note { font-size:12px; color:var(--muted); margin-top:10px; }
+  footer { background:var(--navy); color:#c3d2e0; padding:30px 0; font-size:14px; }
+  footer .row { display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; }
+  .cfs { background:#0b1f33; color:#c3d2e0; text-align:center; padding:18px 12px; font-size:14px; }
+  .cfs a { color:var(--copper2); font-weight:700; }
+  .callbar { display:none; }
+  @media (max-width:760px) {
+    .nav-links { display:none; }
+    .hero { padding:56px 0 64px; }
+    section { padding:52px 0; }
+    .callbar { display:block; position:fixed; left:0; right:0; bottom:0; background:var(--copper); text-align:center; padding:14px; z-index:20; }
+    .callbar a { color:#fff; font-weight:800; text-decoration:none; font-size:18px; }
+    body { padding-bottom:56px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-bar">Sample design prepared for Keating Pipeworks by <a href="https://contentforgestudio.com" target="_blank" rel="noopener">Content Forge Studio</a>. This is a preview, not their live website.</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">Keating <span>Pipeworks</span></a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn" href="tel:+13032639121">Call 303-263-9121</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <span class="pill">Plumbing in Arvada, CO</span>
+      <h1>Plumbing problems solved the first time.</h1>
+      <p>From leaky faucets and clogged drains to water heaters and pipe repair, Keating Pipeworks keeps Arvada homes running. Call today to get on the schedule.</p>
+      <div class="actions">
+        <a class="btn" href="tel:+13032639121">Call 303-263-9121</a>
+        <a class="btn ghost" href="#contact">Request a call back</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <h2>Plumbing services</h2>
+      <p class="lead">Repairs, replacements, and installs for homes and small businesses in Arvada and the surrounding west Denver area.</p>
+      <div class="grid">
+        <div class="card"><div class="ico">&#128167;</div><h3>Leak detection and repair</h3><p>Dripping faucets, running toilets, and hidden leaks found and fixed before they turn into water damage.</p></div>
+        <div class="card"><div class="ico">&#128703;</div><h3>Drain cleaning</h3><p>Slow or clogged sinks, tubs, and main lines cleared so water flows the way it should.</p></div>
+        <div class="card"><div class="ico">&#128293;</div><h3>Water heaters</h3><p>Repair, replacement, and installation of tank and tankless water heaters.</p></div>
+        <div class="card"><div class="ico">&#128295;</div><h3>Pipe repair and repiping</h3><p>Burst, corroded, or aging pipes repaired or replaced with durable materials.</p></div>
+        <div class="card"><div class="ico">&#128703;</div><h3>Fixtures and installs</h3><p>Toilets, sinks, faucets, garbage disposals, and more installed cleanly and tested.</p></div>
+        <div class="card"><div class="ico">&#128680;</div><h3>Urgent problems</h3><p>Burst pipe or backup? Call right away and get a real person on the line.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="alt">
+    <div class="wrap">
+      <h2>Simple from start to finish</h2>
+      <p class="lead">No runaround. Here is what working with Keating Pipeworks looks like.</p>
+      <div class="steps">
+        <div class="step"><h3>Call or send a message</h3><p>Tell us what is going on and get on the schedule.</p></div>
+        <div class="step"><h3>We find the problem</h3><p>We look it over and explain your options in plain English.</p></div>
+        <div class="step"><h3>Fixed and tested</h3><p>The work gets done right, cleaned up, and checked before we leave.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="wrap">
+      <h2>What customers say</h2>
+      <p class="lead">Real feedback builds trust before the phone even rings.</p>
+      <div class="reviews">
+        <p><strong>Your best Yelp reviews go here.</strong></p>
+        <p>We would feature your top 4 and 5 star reviews, with a link to your full profile, so new visitors see your strongest work first.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="alt">
+    <div class="wrap">
+      <h2>Get in touch</h2>
+      <p class="lead">Call, or send a quick message and we will get back to you.</p>
+      <div class="contact">
+        <div class="info">
+          <p><strong>Phone:</strong> <a href="tel:+13032639121">303-263-9121</a></p>
+          <p><strong>Address:</strong> <a href="https://www.google.com/maps/search/?api=1&query=5611+Kendall+Ct+Arvada+CO+80002" target="_blank" rel="noopener">5611 Kendall Ct, Arvada, CO 80002</a></p>
+          <p><strong>Service area:</strong> Arvada and the west Denver metro</p>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('This is a sample form. On the live site, messages would go straight to Keating Pipeworks.');">
+          <label for="n">Name</label><input id="n" type="text" placeholder="Your name" />
+          <label for="p">Phone</label><input id="p" type="tel" placeholder="Best number to reach you" />
+          <label for="m">What do you need help with?</label><textarea id="m" placeholder="Tell us about the problem"></textarea>
+          <p style="margin:16px 0 0"><button class="btn" type="submit">Request a call back</button></p>
+          <p class="note">Sample form for demonstration.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap row">
+    <span>&copy; Keating Pipeworks &middot; 5611 Kendall Ct, Arvada, CO 80002</span>
+    <span>303-263-9121</span>
+  </div>
+</footer>
+
+<div class="cfs">Like what you see? This sample was built by <a href="https://contentforgestudio.com" target="_blank" rel="noopener">Content Forge Studio</a>. Call Brandon at <a href="tel:+17204491176">720-449-1176</a> or email <a href="mailto:ContentForgeStudio@pm.me">ContentForgeStudio@pm.me</a>.</div>
+
+<div class="callbar"><a href="tel:+13032639121">Call Keating Pipeworks</a></div>
+
+</body>
+</html>
