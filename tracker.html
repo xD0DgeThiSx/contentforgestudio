@@ -2,1036 +2,1007 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ContentForgeStudio · Command Center</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Raleway:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0d0d18">
+<title>B's Career Command Center</title>
+<link rel="icon" type="image/png" href="/cfs-badge-sm.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
 <style>
+  /* ---------- CFS theme (matches Local Lead Radar / Command Center) ---------- */
   :root {
+    color-scheme: dark;
     --bg: #07070e;
-    --surface: #0d0d1a;
+    --surface: #0d0d18;
     --card: #111120;
     --card2: #0e0e1c;
-    --border: rgba(56,217,245,0.1);
-    --cyan: #38d9f5;
-    --yellow: #e8ff47;
-    --fire: #ff5c1a;
+    --card3: #171728;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --orange: #ff6200;
+    --orange2: #ff8438;
+    --cyan: #00cfff;
+    --gold: #ffc842;
     --green: #00ffaa;
-    --purple: #b06fff;
-    --steel: #8090b0;
-    --dim: #363658;
-    --white: #f0f0ff;
     --red: #ff4466;
+    --purple: #b06fff;
+    --text: #dcdcf0;
+    --muted: #8c8cb6;
+    --dim: #6a6a94;
   }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  * { box-sizing: border-box; }
+  html { font-size: 17px; scroll-behavior: smooth; }
   body {
-    background: var(--bg);
-    color: var(--white);
-    font-family: 'Raleway', sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    min-height: 100vh;
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "Exo 2", ui-sans-serif, system-ui, sans-serif;
+    background-image:
+      radial-gradient(900px 500px at 0% 0%, rgba(255, 98, 0, 0.07), transparent 60%),
+      radial-gradient(800px 500px at 100% 100%, rgba(0, 207, 255, 0.06), transparent 60%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: Orbitron, "Exo 2", sans-serif; letter-spacing: 0.01em; overflow-wrap: anywhere; margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--orange); color: #fff; }
+  ::placeholder { color: var(--dim); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: #26263e; border-radius: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  input[type="checkbox"] { accent-color: var(--orange); }
+
+  /* ---------- App shell ---------- */
+  .cfs-sidebar {
+    position: fixed; top: 0; bottom: 0; left: 0; width: 248px; z-index: 40;
+    display: flex; flex-direction: column; padding: 18px 14px; overflow-y: auto;
+    background: var(--surface); border-right: 1px solid var(--border);
+  }
+  .cfs-brand { display: block; padding: 4px 8px 16px; margin-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .cfs-brand img { width: 60px; height: 60px; border-radius: 999px; }
+  .cfs-brand .row { display: flex; align-items: center; gap: 12px; }
+  .cfs-brand .t1 { margin-top: 14px; white-space: nowrap; font-family: Orbitron, sans-serif; font-size: 10px; letter-spacing: 0.15em; color: var(--orange); text-transform: uppercase; font-weight: 700; }
+  .cfs-brand .t2 { font-family: Orbitron, sans-serif; font-size: 15px; font-weight: 700; color: #fff; line-height: 1.2; }
+  .cfs-nav { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+  .cfs-nav a, .cfs-nav button {
+    display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px; border-radius: 10px; border: 0;
+    background: transparent; color: var(--muted); font: inherit; font-weight: 600; font-size: 16px; cursor: pointer; text-align: left;
+  }
+  .cfs-nav a:hover, .cfs-nav button:hover { background: rgba(255, 255, 255, 0.05); color: var(--text); }
+  .cfs-nav a.active { background: rgba(255, 98, 0, 0.13); color: #fff; box-shadow: inset 3px 0 0 var(--orange); }
+  .cfs-nav button.open { color: #fff; }
+  .cfs-nav svg { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .cfs-sub { display: flex; flex-direction: column; gap: 6px; margin: 0 0 4px 30px; padding-left: 10px; border-left: 1px solid var(--border); }
+  .cfs-nav .cfs-sub button { padding: 8px 10px; font-size: 15px; border-radius: 8px; }
+  .cfs-foot { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border); font-size: 14px; color: var(--dim); }
+  .cfs-foot .em { color: var(--muted); word-break: break-all; margin-bottom: 10px; }
+  .cfs-foot button { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid var(--border-strong); background: transparent; color: var(--text); font: inherit; font-weight: 600; cursor: pointer; }
+  .cfs-foot button:hover { border-color: var(--orange); }
+
+  .cfs-main { margin-left: 248px; min-width: 0; padding: 24px 28px 60px; }
+  .cfs-rail { display: none; }
+  @media (min-width: 1280px) {
+    .cfs-main { margin-right: 248px; }
+    .cfs-rail {
+      display: flex; flex-direction: column; gap: 4px; overflow-y: auto;
+      position: fixed; top: 0; bottom: 0; right: 0; width: 248px; z-index: 30; padding: 18px 14px;
+      background: var(--surface); border-left: 1px solid var(--border);
+    }
+  }
+  .cfs-rail .hd { font-family: Orbitron, sans-serif; font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 4px 8px 12px; margin: 0 0 6px; border-bottom: 1px solid var(--border); }
+  .cfs-rail .grp { padding: 18px 8px 10px; }
+  .cfs-rail .sub { margin: 0 0 12px; font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); font-weight: 700; font-family: Orbitron, sans-serif; }
+  .cfs-rail .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 11px 0; font-size: 16px; color: var(--muted); border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
+  .cfs-rail .row strong { font-family: Orbitron, sans-serif; font-size: 17px; color: #fff; }
+  .cfs-rail .act { display: block; padding: 12px; margin-bottom: 10px; border: 1px solid var(--border-strong); border-radius: 10px; font-size: 15px; font-weight: 600; color: var(--text); }
+  .cfs-rail .act:hover { border-color: var(--orange); }
+
+  .cfs-topbar { display: none; }
+  .cfs-scrim { display: none; }
+  @media (max-width: 1023px) {
+    .cfs-sidebar { transform: translateX(-100%); transition: transform 0.2s ease; }
+    .cfs-sidebar.open { transform: none; }
+    .cfs-main { margin-left: 0; padding: 16px 16px 60px; }
+    .cfs-topbar {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      position: sticky; top: 0; z-index: 30; padding: 10px 16px; padding-top: calc(10px + env(safe-area-inset-top, 0px));
+      background: rgba(13, 13, 24, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+    }
+    .cfs-topbar button { border: 1px solid var(--border-strong); background: transparent; color: var(--text); border-radius: 10px; padding: 8px 12px; font: inherit; font-weight: 700; cursor: pointer; }
+    .cfs-topbar .t2 { font-family: Orbitron, sans-serif; font-size: 14px; font-weight: 700; color: #fff; }
+    .cfs-scrim.open { display: block; position: fixed; inset: 0; z-index: 35; background: rgba(0, 0, 0, 0.55); }
   }
 
-  /* ── HEADER ── */
-  .header {
-    background: rgba(7,7,14,0.95);
-    border-bottom: 1px solid var(--border);
-    padding: 20px 40px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    backdrop-filter: blur(12px);
-  }
-  .header-left { display: flex; align-items: center; gap: 16px; }
-  .header-mark {
-    width: 36px; height: 36px;
-    border: 2px solid var(--cyan);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .header-mark span {
-    font-family: 'Orbitron', monospace;
-    font-size: 11px; font-weight: 800;
-    color: var(--cyan);
-  }
-  .header-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 13px; font-weight: 800;
-    letter-spacing: 1px;
-  }
-  .header-title em { font-style: normal; color: var(--cyan); }
-  .header-sub {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px; letter-spacing: 3px;
-    color: var(--dim); margin-top: 2px;
-  }
-  .header-right { display: flex; gap: 16px; align-items: center; }
-  .overall-progress {
-    display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
-  }
-  .op-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px; letter-spacing: 3px; color: var(--dim);
-  }
-  .op-bar {
-    width: 200px; height: 6px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 3px; overflow: hidden;
-  }
-  .op-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--cyan), var(--green));
-    border-radius: 3px;
-    transition: width 0.5s ease;
-  }
-  .op-pct {
-    font-family: 'Orbitron', monospace;
-    font-size: 13px; font-weight: 700;
-    color: var(--cyan);
-  }
+  /* ---------- Cards / sections ---------- */
+  .card { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 16px; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.04); }
+  .block { padding: 22px; margin-top: 18px; scroll-margin-top: 80px; }
+  .eyebrow { font-size: 14px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); font-family: Orbitron, sans-serif; }
+  .label-sm { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); font-family: Orbitron, sans-serif; font-weight: 600; margin-bottom: 8px; }
 
-  /* ── LAYOUT ── */
-  .main { max-width: 1200px; margin: 0 auto; padding: 40px; }
+  .search-card { padding: 18px 22px; }
+  .search-card input { margin-top: 2px; }
 
-  /* ── STATS ROW ── */
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 12px;
-    margin-bottom: 40px;
-  }
-  .stat-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 18px 20px;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-  }
-  .stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-  }
-  .sc-cyan::before { background: var(--cyan); }
-  .sc-yellow::before { background: var(--yellow); }
-  .sc-fire::before { background: var(--fire); }
-  .sc-green::before { background: var(--green); }
-  .sc-purple::before { background: var(--purple); }
-  .stat-num {
-    font-family: 'Orbitron', monospace;
-    font-size: 32px; font-weight: 900;
-    line-height: 1; margin-bottom: 4px;
-  }
-  .sc-cyan .stat-num { color: var(--cyan); }
-  .sc-yellow .stat-num { color: var(--yellow); }
-  .sc-fire .stat-num { color: var(--fire); }
-  .sc-green .stat-num { color: var(--green); }
-  .sc-purple .stat-num { color: var(--purple); }
-  .stat-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px; letter-spacing: 2px;
-    color: var(--dim); text-transform: uppercase;
-  }
+  .hero { padding: 28px 30px; margin-top: 14px; background: var(--card2); }
+  .hero .eyebrow { letter-spacing: 0.24em; color: var(--text); }
+  .hero h1 { font-size: clamp(30px, 4.4vw, 52px); font-weight: 700; line-height: 1.12; color: #fff; margin-top: 6px; }
+  .hero p { max-width: 560px; margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: #fff; }
+  .pill-badge { display: inline-block; margin-top: 16px; border: 1px solid var(--border-strong); background: rgba(255, 255, 255, 0.07); border-radius: 999px; padding: 8px 16px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; }
 
-  /* ── SECTION ── */
-  .section { margin-bottom: 36px; }
-  .section-header {
-    display: flex; align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
+  .sec-head {
+    border: 1px solid var(--border-strong); border-radius: 14px; padding: 18px 20px;
+    background-image: linear-gradient(135deg, #14142a 0%, #0f0f1e 55%, #1a110a 100%);
   }
-  .section-title-row { display: flex; align-items: center; gap: 12px; }
-  .section-icon { font-size: 18px; }
-  .section-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 13px; font-weight: 700;
-    letter-spacing: 1px;
-  }
-  .section-progress {
-    display: flex; align-items: center; gap: 10px;
-  }
-  .sp-bar {
-    width: 120px; height: 4px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 2px; overflow: hidden;
-  }
-  .sp-fill {
-    height: 100%; border-radius: 2px;
-    transition: width 0.4s ease;
-  }
-  .sp-text {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px; color: var(--steel);
-    min-width: 40px; text-align: right;
-  }
+  .sec-head .top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .sec-head .dot { display: inline-flex; width: 40px; height: 40px; border-radius: 999px; align-items: center; justify-content: center; background: var(--bg); color: var(--text); }
+  .sec-head .dot svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .sec-head .bar { margin-top: 12px; height: 4px; width: 80px; border-radius: 999px; background: var(--orange); }
+  .sec-head h2 { margin-top: 12px; font-size: clamp(22px, 3vw, 32px); font-weight: 700; color: #fff; line-height: 1.2; }
+  .sec-head p { margin: 10px 0 0; max-width: 760px; font-size: 15px; line-height: 1.6; color: #a2a2c8; }
+  .tag { display: inline-block; border-radius: 999px; padding: 5px 14px; font-size: 14px; font-weight: 600; background: rgba(0, 207, 255, 0.12); color: var(--cyan); }
 
-  /* ── TASK GRID ── */
-  .task-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 8px;
-  }
+  .inner { margin-top: 18px; border: 1px solid var(--border-strong); border-radius: 14px; padding: 18px 20px; background: var(--card2); }
+  .inner-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .inner-top .live { font-size: 13px; color: var(--muted); }
 
-  /* ── TASK ITEM ── */
-  .task {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 16px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s, transform 0.15s;
-    user-select: none;
-    position: relative;
+  .na-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+  .na-item {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left; width: 100%;
+    background: var(--card); border: 1px solid var(--border-strong); border-radius: 14px; padding: 12px 14px; color: var(--text); font: inherit; cursor: pointer;
   }
-  .task:hover { border-color: rgba(56,217,245,0.25); transform: translateY(-1px); }
-  .task.done {
-    background: rgba(0,255,170,0.04);
-    border-color: rgba(0,255,170,0.15);
-  }
-  .task.done .task-text { color: var(--dim); text-decoration: line-through; }
-  .task.done .task-sub { color: rgba(54,54,88,0.7); }
+  .na-item:hover { border-color: var(--orange); }
+  .na-item .co { font-weight: 700; font-size: 15px; color: #fff; }
+  .na-item .rl { font-size: 13px; color: #6bb6ff; margin-top: 2px; }
+  .na-pill { flex: none; border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+  .na-pill.late { background: rgba(255, 68, 102, 0.14); color: #ff6b86; }
+  .na-pill.today { background: rgba(255, 200, 66, 0.13); color: var(--gold); }
+  .na-more { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+  .na-empty { font-size: 15px; color: var(--muted); padding: 6px 0; }
 
-  .task-check {
-    width: 20px; height: 20px;
-    border: 2px solid var(--dim);
-    border-radius: 4px;
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-    margin-top: 1px;
-  }
-  .task.done .task-check {
-    background: var(--green);
-    border-color: var(--green);
-  }
-  .task.done .task-check::after {
-    content: '✓';
-    color: #000;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1;
-  }
+  .sum-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 18px; }
+  .sum-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 20px; text-align: left; color: var(--text); font: inherit; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .sum-card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5); }
+  .sum-card .num { font-family: Orbitron, sans-serif; font-size: 2rem; font-weight: 700; line-height: 1; color: var(--orange); margin: 0; }
+  .sum-card .lbl { margin: 12px 0 0; font-family: Orbitron, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .sum-card .meter { margin-top: 12px; height: 4px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
+  .sum-card .meter div { height: 100%; border-radius: 999px; }
+  .sum-card .help { margin: 12px 0 0; font-size: 15px; color: var(--dim); }
+  .sum-card .view { margin: 12px 0 0; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); }
 
-  .task-body { flex: 1; }
-  .task-text { font-size: 13px; font-weight: 500; color: var(--white); line-height: 1.4; }
-  .task-sub { font-size: 11px; color: var(--steel); font-weight: 300; margin-top: 3px; }
+  /* ---------- Forms ---------- */
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 18px; }
+  label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; font-family: Orbitron, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+  input[type="text"], input[type="date"], input[type="email"], input[type="password"], input[type="search"], select, textarea {
+    width: 100%; padding: 10px 14px; border: 1px solid var(--border-strong); border-radius: 14px;
+    background: var(--card2); color: var(--text); font-family: inherit; font-size: 15px; outline: none;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(255, 98, 0, 0.25); }
+  textarea { resize: vertical; min-height: 44px; }
+  select option { background: var(--card2); color: var(--text); }
+  .checkbox-row { display: flex; align-items: center; gap: 8px; padding-top: 24px; }
+  .checkbox-row input[type="checkbox"] { width: 17px; height: 17px; }
+  .checkbox-row label { margin: 0; font-size: 12px; color: var(--text); }
+  .form-actions { grid-column: 1 / -1; display: flex; justify-content: flex-end; align-items: center; gap: 8px; margin-top: 4px; }
 
-  .task-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 8px; letter-spacing: 1px;
-    padding: 2px 7px; border-radius: 3px;
-    flex-shrink: 0; align-self: flex-start;
-    margin-top: 2px;
+  button { font-family: "Exo 2", sans-serif; }
+  .btn-primary {
+    background: var(--orange); color: #120700; border: none; border-radius: 999px; padding: 11px 22px;
+    font-size: 14px; font-weight: 700; letter-spacing: 0.04em; cursor: pointer;
   }
-  .tb-urgent { background: rgba(255,92,26,0.15); color: var(--fire); border: 1px solid rgba(255,92,26,0.25); }
-  .tb-today { background: rgba(232,255,71,0.1); color: var(--yellow); border: 1px solid rgba(232,255,71,0.2); }
-  .tb-soon { background: rgba(56,217,245,0.1); color: var(--cyan); border: 1px solid rgba(56,217,245,0.2); }
-  .tb-ongoing { background: rgba(176,111,255,0.1); color: var(--purple); border: 1px solid rgba(176,111,255,0.2); }
-  .tb-done { background: rgba(0,255,170,0.1); color: var(--green); border: 1px solid rgba(0,255,170,0.2); }
+  .btn-primary:hover { background: var(--orange2); }
+  .btn-primary:disabled, .btn-ghost:disabled { opacity: 0.55; cursor: default; }
+  .btn-ghost { background: transparent; border: 1px solid var(--border-strong); color: var(--text); border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .btn-ghost:hover { border-color: var(--orange); }
+  .btn-danger { color: #ff6b86; border-color: rgba(255, 68, 102, 0.45); }
+  .btn-danger:hover { background: rgba(255, 68, 102, 0.14); border-color: #ff6b86; }
+  .btn-accent-outline { color: var(--orange2); border-color: rgba(255, 98, 0, 0.5); }
 
-  /* ── APP CONCEPT CARD ── */
-  .app-card {
-    background: linear-gradient(135deg, rgba(176,111,255,0.08), rgba(56,217,245,0.04));
-    border: 1px solid rgba(176,111,255,0.2);
-    border-radius: 14px;
-    padding: 28px 32px;
-    margin-bottom: 36px;
-  }
-  .app-header {
-    display: flex; align-items: center;
-    gap: 14px; margin-bottom: 16px;
-  }
-  .app-icon {
-    font-size: 32px;
-  }
-  .app-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 18px; font-weight: 800;
-    color: var(--purple);
-  }
-  .app-subtitle {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px; letter-spacing: 3px;
-    color: var(--dim); margin-top: 2px;
-  }
-  .app-desc {
-    font-size: 13px; color: var(--steel);
-    font-weight: 300; margin-bottom: 20px;
-    max-width: 700px; line-height: 1.8;
-  }
-  .app-features {
-    display: flex; flex-wrap: wrap; gap: 8px;
-  }
-  .app-feature {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px; letter-spacing: 1px;
-    padding: 4px 12px; border-radius: 4px;
-    background: rgba(176,111,255,0.1);
-    color: var(--purple);
-    border: 1px solid rgba(176,111,255,0.2);
-  }
+  /* ---------- Table ---------- */
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 14px; }
+  .filters button { background: transparent; border: 1px solid var(--border-strong); color: var(--muted); border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .filters button:hover { border-color: var(--orange); color: var(--text); }
+  .filters button.active { background: var(--orange); border-color: var(--orange); color: #120700; }
+  .top-actions { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
 
-  /* ── INCOME TRACKER ── */
-  .income-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 10px;
-    margin-bottom: 36px;
-  }
-  .income-item {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 14px 16px;
-  }
-  .income-source {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px; letter-spacing: 2px;
-    color: var(--dim); margin-bottom: 6px;
-    text-transform: uppercase;
-  }
-  .income-amount {
-    font-family: 'Orbitron', monospace;
-    font-size: 22px; font-weight: 800;
-    color: var(--green); line-height: 1;
-    margin-bottom: 4px;
-  }
-  .income-status {
-    font-size: 11px; color: var(--dim);
-    font-weight: 300;
-  }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 820px; }
+  th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 600; padding: 10px; border-bottom: 1px solid var(--border-strong); white-space: nowrap; font-family: Orbitron, sans-serif; text-transform: uppercase; letter-spacing: 0.12em; }
+  td { padding: 12px 10px; border-bottom: 1px solid var(--border); font-size: 15px; vertical-align: top; }
+  tbody tr:hover { background: rgba(255, 98, 0, 0.04); }
+  .company { font-weight: 700; color: #fff; }
+  .title-cell { color: #a2a2c8; font-size: 14px; }
+  .mono { font-size: 14px; color: var(--muted); }
+  .days-ago { display: block; font-size: 12px; color: var(--dim); margin-top: 2px; }
+  select.status-select { font-size: 14px; padding: 6px 10px; min-width: 130px; border-radius: 999px; }
+  select.status-select.s-applied { color: #6bb6ff; border-color: rgba(0, 207, 255, 0.35); }
+  select.status-select.s-screen { color: var(--gold); border-color: rgba(255, 200, 66, 0.4); }
+  select.status-select.s-interview { color: var(--orange2); border-color: rgba(255, 98, 0, 0.5); }
+  select.status-select.s-offer { color: var(--green); border-color: rgba(0, 255, 170, 0.4); }
+  select.status-select.s-rejected { color: #ff6b86; border-color: rgba(255, 68, 102, 0.4); }
+  select.status-select.s-noresponse { color: var(--muted); }
+  .flag-icons { display: flex; gap: 5px; }
+  .flag { font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 6px; border: 1px solid var(--border-strong); color: var(--dim); letter-spacing: 0.06em; }
+  .flag.on { color: var(--orange2); border-color: rgba(255, 98, 0, 0.5); background: rgba(255, 98, 0, 0.14); }
+  .followup-due { color: #ff6b86; font-weight: 700; }
+  .row-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+  .empty { text-align: center; color: var(--muted); padding: 30px 10px; font-size: 15px; }
 
-  /* ── RESET BTN ── */
-  .reset-btn {
-    background: rgba(255,68,102,0.1);
-    border: 1px solid rgba(255,68,102,0.2);
-    color: var(--red);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px; letter-spacing: 2px;
-    padding: 6px 14px; border-radius: 4px;
-    cursor: pointer; transition: background 0.2s;
-  }
-  .reset-btn:hover { background: rgba(255,68,102,0.2); }
+  .detail-row td { background: rgba(7, 7, 14, 0.55); }
+  .detail-close-bar { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  .detail-grid .full { grid-column: 1 / -1; }
 
-  /* ── NOTES ── */
-  .notes-box {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 36px;
-  }
-  .notes-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px; letter-spacing: 3px;
-    color: var(--cyan); margin-bottom: 10px;
-    text-transform: uppercase;
-  }
-  .notes-input {
-    width: 100%;
-    background: rgba(0,0,0,0.3);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px 16px;
-    font-family: 'Raleway', sans-serif;
-    font-size: 13px; color: var(--white);
-    font-weight: 300; line-height: 1.7;
-    resize: vertical; min-height: 80px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .notes-input:focus { border-color: rgba(56,217,245,0.3); }
-  .notes-input::placeholder { color: var(--dim); }
+  .week-list { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .week-list li { padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; gap: 10px; }
+  .week-list li:last-child { border-bottom: none; }
+  .week-empty { color: var(--muted); font-size: 15px; padding: 6px 0; }
 
-  @media(max-width:600px){
-    .header { padding: 14px 20px; }
-    .main { padding: 20px; }
-    .task-grid { grid-template-columns: 1fr; }
-    .op-bar { width: 120px; }
-  }
+  .hidden-box { display: none; margin-top: 12px; }
+  .hidden-box.show { display: block; }
+  .banner { background: rgba(255, 68, 102, 0.13); border: 1px solid rgba(255, 68, 102, 0.35); color: #ff6b86; border-radius: 14px; padding: 12px 16px; margin-top: 14px; font-size: 15px; }
+
+  /* ---------- Login ---------- */
+  #login-screen { min-height: 100vh; display: none; align-items: center; justify-content: center; padding: 20px; }
+  .login-card { width: 100%; max-width: 440px; padding: 32px; }
+  .login-card .badge-wrap { display: flex; justify-content: center; }
+  .login-card .badge-wrap img { width: 96px; height: 96px; border-radius: 999px; box-shadow: 0 0 0 1px var(--border-strong), 0 18px 40px rgba(0, 0, 0, 0.5); }
+  .login-card .eyebrow { text-align: center; margin-top: 22px; letter-spacing: 0.2em; }
+  .login-card h1 { text-align: center; margin-top: 10px; font-size: 24px; color: #fff; line-height: 1.25; }
+  .login-card p.note { text-align: center; color: var(--muted); font-size: 15px; margin: 12px 0 0; }
+  .login-card input { margin-top: 14px; }
+  #login-error { color: #ff6b86; font-size: 14px; min-height: 20px; margin-top: 12px; text-align: center; }
+  .login-card .btn-primary { width: 100%; margin-top: 10px; padding: 13px; }
+  #app { display: none; }
+  #loading-msg { color: var(--muted); font-size: 15px; padding: 80px 0; text-align: center; letter-spacing: 0.1em; text-transform: uppercase; font-family: Orbitron, sans-serif; }
 </style>
 </head>
 <body>
 
-<!-- ── HEADER ── -->
-<div class="header">
-  <div class="header-left">
-    <div style="height:44px;border-radius:6px;overflow:hidden;flex-shrink:0;">
-      <video autoplay muted playsinline style="height:44px;width:auto;display:block;">
-        <source src="CFS_logo_master.mp4" type="video/mp4">
-        <source src="CFS_logo_master.webm" type="video/webm">
-      </video>
-    </div>
-    <div>
-      <div class="header-title">CONTENT<em>FORGE</em>STUDIO</div>
-      <div class="header-sub">// COMMAND CENTER · PRODUCTION TRACKER</div>
-    </div>
-  </div>
-  <div class="header-right">
-    <div class="overall-progress">
-      <div class="op-label">// OVERALL PROGRESS</div>
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div class="op-bar"><div class="op-fill" id="overallBar" style="width:0%"></div></div>
-        <div class="op-pct" id="overallPct">0%</div>
-      </div>
-    </div>
-    <button class="reset-btn" onclick="resetAll()">RESET ALL</button>
+<!-- Login -->
+<div id="login-screen">
+  <div class="card login-card">
+    <div class="badge-wrap"><img src="/cfs-badge-sm.png" alt="Content Forge Studio"></div>
+    <p class="eyebrow">Internal Access</p>
+    <h1>Sign in to Career Command Center</h1>
+    <p class="note">Use the same email and password as Command Center.</p>
+    <form id="login-form">
+      <input type="email" id="login-email" placeholder="Email" autocomplete="username" autofocus required>
+      <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" required>
+      <div id="login-error" role="alert"></div>
+      <button type="submit" class="btn-primary" id="login-btn">Sign in</button>
+    </form>
   </div>
 </div>
 
-<div class="main">
+<div id="loading-msg">Loading…</div>
 
-  <!-- ── STATS ── -->
-  <div class="stats-row">
-    <div class="stat-card sc-cyan">
-      <div class="stat-num" id="stat-total">0</div>
-      <div class="stat-label">Tasks Complete</div>
-    </div>
-    <div class="stat-card sc-yellow">
-      <div class="stat-num" id="stat-channel">0%</div>
-      <div class="stat-label">Channel Setup</div>
-    </div>
-    <div class="stat-card sc-fire">
-      <div class="stat-num" id="stat-video">0%</div>
-      <div class="stat-label">Video #1 Done</div>
-    </div>
-    <div class="stat-card sc-green">
-      <div class="stat-num" id="stat-affil">0%</div>
-      <div class="stat-label">Affiliates Live</div>
-    </div>
-    <div class="stat-card sc-purple">
-      <div class="stat-num" id="stat-web">0%</div>
-      <div class="stat-label">Website Live</div>
-    </div>
-  </div>
+<div id="app">
+  <div class="cfs-scrim" id="scrim"></div>
 
-  <!-- ── INCOME TRACKER ── -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title-row">
-        <div class="section-icon">💰</div>
-        <div class="section-title" style="color:var(--green)">INCOME TRACKER</div>
+  <aside class="cfs-sidebar" id="sidebar">
+    <div class="cfs-brand">
+      <div class="row">
+        <img src="/cfs-badge-sm.png" alt="Content Forge Studio" width="60" height="60">
+        <div class="t2">B's Career<br>Command Center</div>
       </div>
+      <div class="t1">Content Forge Studio</div>
     </div>
-    <div class="income-row">
-      <div class="income-item">
-        <div class="income-source">Affiliate Links</div>
-        <div class="income-amount">$0</div>
-        <div class="income-status">Pending approval</div>
+    <nav class="cfs-nav" id="nav">
+      <a href="#overview" class="active" data-nav><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>Overview</a>
+      <a href="#followups" data-nav><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v4l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Follow-ups</a>
+      <a href="#applications" data-nav><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Applications</a>
+      <a href="#log" data-nav><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Log New</a>
+      <a href="#import" data-nav><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v3H9zM7 5H5a1 1 0 00-1 1v14a1 1 0 001 1h14a1 1 0 001-1V6a1 1 0 00-1-1h-2"/></svg>Quick Import</a>
+      <button type="button" id="data-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>Data</button>
+      <div class="cfs-sub" id="data-sub" style="display:none;">
+        <button type="button" data-export="csv">Export CSV</button>
+        <button type="button" data-export="json">Export JSON backup</button>
+        <button type="button" data-export="copy">Copy JSON</button>
       </div>
-      <div class="income-item">
-        <div class="income-source">AdSense</div>
-        <div class="income-amount">$0</div>
-        <div class="income-status">Need 1K subs / 4K hrs</div>
+      <button type="button" id="admin-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>Admin</button>
+      <div class="cfs-sub" id="admin-sub" style="display:none;">
+        <button type="button" class="signout">Sign out</button>
       </div>
-      <div class="income-item">
-        <div class="income-source">Digital Products</div>
-        <div class="income-amount">$0</div>
-        <div class="income-status">Building</div>
-      </div>
-      <div class="income-item">
-        <div class="income-source">Sponsorships</div>
-        <div class="income-amount">$0</div>
-        <div class="income-status">Month 3 target</div>
-      </div>
-      <div class="income-item">
-        <div class="income-source">CFS App</div>
-        <div class="income-amount">$0</div>
-        <div class="income-status">In planning</div>
-      </div>
-      <div class="income-item">
-        <div class="income-source">30-Day Target</div>
-        <div class="income-amount" style="color:var(--yellow)">$200</div>
-        <div class="income-status">Day 1 of 30</div>
-      </div>
+    </nav>
+    <div class="cfs-foot">
+      <div class="em" id="user-email"></div>
+      <button type="button" class="signout">Sign out</button>
     </div>
-  </div>
+  </aside>
 
-  <!-- ── AFFILIATE APPLICATIONS ── -->
-  <div class="section" id="sec-affil">
-    <div class="section-header">
-      <div class="section-title-row">
-        <div class="section-icon">🔗</div>
-        <div class="section-title" style="color:var(--yellow)">AFFILIATE APPLICATIONS</div>
-      </div>
-      <div class="section-progress">
-        <div class="sp-bar"><div class="sp-fill" id="bar-affil" style="width:0%;background:var(--yellow)"></div></div>
-        <div class="sp-text" id="txt-affil">0/6</div>
-      </div>
+  <div class="cfs-main" id="overview">
+    <div class="cfs-topbar">
+      <button type="button" id="menu-btn" aria-label="Open menu">Menu</button>
+      <span class="t2">Career Command Center</span>
     </div>
-    <div class="task-grid" id="grid-affil">
-      <div class="task" onclick="toggleTask(this,'affil')" data-id="a1">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Apply — ElevenLabs Affiliate</div>
-          <div class="task-sub">elevenlabs.io/affiliates · 22% recurring</div>
-        </div>
-        <div class="task-badge tb-urgent">TONIGHT</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'affil')" data-id="a2">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Apply — Murf AI Affiliate</div>
-          <div class="task-sub">murf.ai/affiliate · 30% recurring/24mo</div>
-        </div>
-        <div class="task-badge tb-urgent">TONIGHT</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'affil')" data-id="a3">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Apply — Jasper AI Affiliate</div>
-          <div class="task-sub">jasper.ai/affiliates · 25% recurring/yr</div>
-        </div>
-        <div class="task-badge tb-urgent">TONIGHT</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'affil')" data-id="a4">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Apply — Writesonic Affiliate</div>
-          <div class="task-sub">writesonic.com/affiliate · 30% lifetime</div>
-        </div>
-        <div class="task-badge tb-urgent">TONIGHT</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'affil')" data-id="a5">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Apply — Amazon Associates</div>
-          <div class="task-sub">affiliate-program.amazon.com · instant approval</div>
-        </div>
-        <div class="task-badge tb-urgent">TONIGHT</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'affil')" data-id="a6">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Apply — Canva Affiliate</div>
-          <div class="task-sub">canva.com/affiliates · $36/referral</div>
-        </div>
-        <div class="task-badge tb-urgent">TONIGHT</div>
-      </div>
-    </div>
-  </div>
 
-  <!-- ── CHANNEL SETUP ── -->
-  <div class="section" id="sec-channel">
-    <div class="section-header">
-      <div class="section-title-row">
-        <div class="section-icon">📺</div>
-        <div class="section-title" style="color:var(--cyan)">YOUTUBE CHANNEL SETUP</div>
-      </div>
-      <div class="section-progress">
-        <div class="sp-bar"><div class="sp-fill" id="bar-channel" style="width:0%;background:var(--cyan)"></div></div>
-        <div class="sp-text" id="txt-channel">0/12</div>
-      </div>
-    </div>
-    <div class="task-grid" id="grid-channel">
-      <div class="task" onclick="toggleTask(this,'channel')" data-id="c1">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Create Brand Channel</div>
-          <div class="task-sub">YouTube Studio → Switch Account → Add Channel</div>
-        </div>
-        <div class="task-badge tb-urgent">TONIGHT</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'channel')" data-id="c2">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Claim @ContentForgeStudio handle</div>
-          <div class="task-sub">Customization → Basic Info → Handle</div>
-        </div>
-        <div class="task-badge tb-urgent">TONIGHT</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'channel')" data-id="c3">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Upload Banner (2560×1440 PNG)</div>
-          <div class="task-sub">Customization → Branding → Banner Image</div>
-        </div>
-        <div class="task-badge tb-today">TODAY</div>
-      </div>
-      <div class="task done" onclick="toggleTask(this,'channel')" data-id="c4">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Banner Designed & Ready</div>
-          <div class="task-sub">CFS_Banner_2560x1440.png — complete ✓</div>
-        </div>
-        <div class="task-badge tb-done">DONE</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'channel')" data-id="c5">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Upload Profile Icon</div>
-          <div class="task-sub">CFs circle mark at 800×800px</div>
-        </div>
-        <div class="task-badge tb-today">TODAY</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'channel')" data-id="c6">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Paste Channel Description</div>
-          <div class="task-sub">From Channel SEO Package → Section 01</div>
-        </div>
-        <div class="task-badge tb-today">TODAY</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'channel')" data-id="c7">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Add Channel Keywords</div>
-          <div class="task-sub">Settings → Channel → Basic Info → Keywords</div>
-        </div>
-        <div class="task-badge tb-today">TODAY</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'channel')" data-id="c8">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Add Channel Links</div>
-          <div class="task-sub">ContentForgeStudio.com + socials</div>
-        </div>
-        <div class="task-badge tb-today">TODAY</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'channel')" data-id="c9">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Set Country → United States</div>
-          <div class="task-sub">Settings → Channel → Advanced Settings</div>
-        </div>
-        <div class="task-badge tb-today">TODAY</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'channel')" data-id="c10">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Create 5 Playlists</div>
-          <div class="task-sub">AI Side Hustle · Tool Reviews · Build With AI · Forge Report · Start Here</div>
-        </div>
-        <div class="task-badge tb-soon">SOON</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'channel')" data-id="c11">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Set Video Watermark</div>
-          <div class="task-sub">Customization → Branding → Video Watermark</div>
-        </div>
-        <div class="task-badge tb-soon">SOON</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'channel')" data-id="c12">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Produce & Set Channel Trailer</div>
-          <div class="task-sub">60-sec faceless intro · ElevenLabs + Seedance</div>
-        </div>
-        <div class="task-badge tb-soon">SOON</div>
-      </div>
-    </div>
-  </div>
+    <div id="error-slot"></div>
 
-  <!-- ── VIDEO #1 PRODUCTION ── -->
-  <div class="section" id="sec-video">
-    <div class="section-header">
-      <div class="section-title-row">
-        <div class="section-icon">🎬</div>
-        <div class="section-title" style="color:var(--fire)">VIDEO #1 PRODUCTION</div>
-      </div>
-      <div class="section-progress">
-        <div class="sp-bar"><div class="sp-fill" id="bar-video" style="width:0%;background:var(--fire)"></div></div>
-        <div class="sp-text" id="txt-video">0/12</div>
-      </div>
-    </div>
-    <div class="task-grid" id="grid-video">
-      <div class="task" onclick="toggleTask(this,'video')" data-id="v1">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Generate Scene 1 — Hook (Veo 3.1)</div>
-          <div class="task-sub">Cinematic studio environment · 8s · Google Flow</div>
-        </div>
-        <div class="task-badge tb-today">DAY 1</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'video')" data-id="v2">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Generate Scene 1 — Income Montage (Seedance)</div>
-          <div class="task-sub">Floating dollars, neon charts · 5s</div>
-        </div>
-        <div class="task-badge tb-today">DAY 1</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'video')" data-id="v3">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Generate Scene 2 — Brand Sting (Veo 3.1)</div>
-          <div class="task-sub">Forge spark + CFS wordmark materializing · 4s</div>
-        </div>
-        <div class="task-badge tb-today">DAY 1</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'video')" data-id="v4">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Generate Tools #1–5 B-Roll (Seedance)</div>
-          <div class="task-sub">Voice wave, design montage, writing AI, video split, studio · 5–6s each</div>
-        </div>
-        <div class="task-badge tb-today">DAY 1</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'video')" data-id="v5">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Generate Income Visuals (Veo 3.1)</div>
-          <div class="task-sub">Payment notifications, invoice shots, analytics · 4–5s each</div>
-        </div>
-        <div class="task-badge tb-today">DAY 1</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'video')" data-id="v6">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Record Screen Walkthroughs</div>
-          <div class="task-sub">ElevenLabs dashboard · 15–20s · OBS or screen capture</div>
-        </div>
-        <div class="task-badge tb-today">DAY 1</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'video')" data-id="v7">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Record Voiceover in ElevenLabs</div>
-          <div class="task-sub">Full script · Adam or Daniel voice · export MP3</div>
-        </div>
-        <div class="task-badge tb-today">DAY 1</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'video')" data-id="v8">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Edit in DaVinci Resolve</div>
-          <div class="task-sub">Sync VO to footage · color grade to brand palette · add music</div>
-        </div>
-        <div class="task-badge tb-soon">DAY 2</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'video')" data-id="v9">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Add YouTube Audio Library Music</div>
-          <div class="task-sub">Cinematic/tech background track · royalty free</div>
-        </div>
-        <div class="task-badge tb-soon">DAY 2</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'video')" data-id="v10">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Build Thumbnail in Canva</div>
-          <div class="task-sub">Template A · 1280×720 · "5 AI Tools That Pay You in 2026"</div>
-        </div>
-        <div class="task-badge tb-soon">DAY 3</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'video')" data-id="v11">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Write YouTube Description</div>
-          <div class="task-sub">Timestamps + all 6 affiliate links + CFS.com resource link</div>
-        </div>
-        <div class="task-badge tb-soon">DAY 3</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'video')" data-id="v12">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">PUBLISH Video #1 🚀</div>
-          <div class="task-sub">Upload · add tags · set thumbnail · add to playlist · go live</div>
-        </div>
-        <div class="task-badge tb-soon">DAY 3</div>
-      </div>
-    </div>
-  </div>
+    <section class="card search-card">
+      <label class="label-sm" for="search-input" style="margin-bottom:6px;">Search all applications</label>
+      <input type="search" id="search-input" placeholder="Find any application by company, role, platform, contact, salary, or notes">
+    </section>
 
-  <!-- ── WEBSITE BUILD ── -->
-  <div class="section" id="sec-web">
-    <div class="section-header">
-      <div class="section-title-row">
-        <div class="section-icon">🌐</div>
-        <div class="section-title" style="color:var(--green)">WEBSITE — CONTENTFORGESTUDIO.COM</div>
-      </div>
-      <div class="section-progress">
-        <div class="sp-bar"><div class="sp-fill" id="bar-web" style="width:0%;background:var(--green)"></div></div>
-        <div class="sp-text" id="txt-web">0/6</div>
-      </div>
-    </div>
-    <div class="task-grid" id="grid-web">
-      <div class="task done" onclick="toggleTask(this,'web')" data-id="w1">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Website designed & built</div>
-          <div class="task-sub">Full landing page HTML complete ✓</div>
-        </div>
-        <div class="task-badge tb-done">DONE</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'web')" data-id="w2">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Deploy to Netlify (free)</div>
-          <div class="task-sub">Upload HTML file → connect ContentForgeStudio.com domain</div>
-        </div>
-        <div class="task-badge tb-today">TODAY</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'web')" data-id="w3">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Set up email capture</div>
-          <div class="task-sub">Mailchimp free → connect form on homepage</div>
-        </div>
-        <div class="task-badge tb-soon">SOON</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'web')" data-id="w4">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Add real affiliate links to tool cards</div>
-          <div class="task-sub">Replace placeholder # links once approved</div>
-        </div>
-        <div class="task-badge tb-soon">SOON</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'web')" data-id="w5">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Create Free AI Starter Kit PDF</div>
-          <div class="task-sub">Lead magnet · 5 tools + 8 affiliates + 30-day plan</div>
-        </div>
-        <div class="task-badge tb-soon">SOON</div>
-      </div>
-      <div class="task" onclick="toggleTask(this,'web')" data-id="w6">
-        <div class="task-check"></div>
-        <div class="task-body">
-          <div class="task-text">Add Video #1 to Latest Videos section</div>
-          <div class="task-sub">Update site once video is live on YouTube</div>
-        </div>
-        <div class="task-badge tb-ongoing">ONGOING</div>
-      </div>
-    </div>
-  </div>
+    <section class="card hero">
+      <div class="eyebrow">Content Forge Studio</div>
+      <h1>B's Career Command Center</h1>
+      <p>Every application, one place — so nothing slips through and every follow-up gets sent on time.</p>
+      <span class="pill-badge">Private · Synced to Supabase · Owner login only</span>
+    </section>
 
-  <!-- ── VIDEO RESEARCH PROTOCOL ── -->
-  <div class="section" id="sec-research">
-    <div class="section-header">
-      <div class="section-title-row">
-        <div class="section-icon">🔬</div>
-        <div class="section-title" style="color:var(--purple)">VIDEO RESEARCH PROTOCOL</div>
+    <section class="card block" id="followups">
+      <div class="sec-head">
+        <div class="top">
+          <span class="dot"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <span class="eyebrow">Action Snapshot</span>
+        </div>
+        <div class="bar"></div>
+        <h2>What should I follow up on today?</h2>
+        <p>A focused daily view of the applications that need a follow-up, a message, or a nudge right now.</p>
       </div>
-      <div class="section-progress">
-        <div class="sp-bar"><div class="sp-fill" id="bar-research" style="width:0%;background:var(--purple)"></div></div>
-        <div class="sp-text" id="txt-research">0/7</div>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-bottom:16px;">
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 18px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--purple);margin-bottom:8px;">// THE MONEY SIGNAL</div>
-        <div style="font-size:13px;color:var(--steel);font-weight:300;line-height:1.7;">Small/medium channel + huge video = <span style="color:var(--yellow);font-weight:600;">topic opportunity.</span> That's the undervalued repeatable pattern.</div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 18px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--purple);margin-bottom:8px;">// FREE RESEARCH STACK</div>
-        <div style="font-size:13px;color:var(--steel);font-weight:300;line-height:1.7;">YouTube manual → Google Trends → TubeBuddy free → vidIQ free → ViewStats (later)</div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 18px;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--purple);margin-bottom:8px;">// VIEWS/DAY BENCHMARK</div>
-        <div style="font-size:13px;color:var(--steel);font-weight:300;line-height:1.7;"><span style="color:var(--green);">500+/day</span> = strong. <span style="color:var(--yellow);">100–500/day</span> = decent. <span style="color:var(--fire);">Under 100</span> = skip.</div>
-      </div>
-    </div>
-    <div style="background:var(--card);border:1px solid rgba(176,111,255,0.15);border-radius:10px;overflow:hidden;">
-      <div style="background:rgba(176,111,255,0.08);padding:12px 20px;border-bottom:1px solid rgba(176,111,255,0.1);">
-        <div style="font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:var(--purple);">RUN THIS BEFORE EVERY VIDEO SCRIPT — Starting Video #2</div>
-      </div>
-      <div style="padding:16px 20px;">
-        <div class="task-grid">
-          <div class="task" onclick="toggleTask(this,'research')" data-id="res1">
-            <div class="task-check"></div>
-            <div class="task-body"><div class="task-text">Step 1 — Pick Topic</div><div class="task-sub">Content calendar, Forge Report ideas, or trending AI news</div></div>
-            <div class="task-badge tb-ongoing">STEP 1</div>
+
+      <div class="inner">
+        <div class="inner-top">
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <span class="eyebrow">Needs attention now</span>
+            <span class="tag" id="na-tag">0 follow-ups</span>
           </div>
-          <div class="task" onclick="toggleTask(this,'research')" data-id="res2">
-            <div class="task-check"></div>
-            <div class="task-body"><div class="task-text">Step 2 — Manual YouTube Search</div><div class="task-sub">Search topic · log top 5 videos · note views + channel size</div></div>
-            <div class="task-badge tb-ongoing">STEP 2</div>
-          </div>
-          <div class="task" onclick="toggleTask(this,'research')" data-id="res3">
-            <div class="task-check"></div>
-            <div class="task-body"><div class="task-text">Step 3 — Spot the Opportunity Signal</div><div class="task-sub">Small/medium channel with breakout video = green light</div></div>
-            <div class="task-badge tb-ongoing">STEP 3</div>
-          </div>
-          <div class="task" onclick="toggleTask(this,'research')" data-id="res4">
-            <div class="task-check"></div>
-            <div class="task-body"><div class="task-text">Step 4 — Calculate Views/Day</div><div class="task-sub">Total views ÷ days since published · target 500+/day</div></div>
-            <div class="task-badge tb-ongoing">STEP 4</div>
-          </div>
-          <div class="task" onclick="toggleTask(this,'research')" data-id="res5">
-            <div class="task-check"></div>
-            <div class="task-body"><div class="task-text">Step 5 — Validate on Google Trends</div><div class="task-sub">trends.google.com · rising = go · fading = reframe or skip</div></div>
-            <div class="task-badge tb-ongoing">STEP 5</div>
-          </div>
-          <div class="task" onclick="toggleTask(this,'research')" data-id="res6">
-            <div class="task-check"></div>
-            <div class="task-body"><div class="task-text">Step 6 — TubeBuddy Keyword Score</div><div class="task-sub">Free tier · search volume + competition · aim for Good/Excellent</div></div>
-            <div class="task-badge tb-ongoing">STEP 6</div>
-          </div>
-          <div class="task" onclick="toggleTask(this,'research')" data-id="res7">
-            <div class="task-check"></div>
-            <div class="task-body"><div class="task-text">Step 7 — Green Light · Begin Scripting</div><div class="task-sub">Topic validated · hand off to Claude for full script + shot prompts</div></div>
-            <div class="task-badge tb-ongoing">STEP 7</div>
-          </div>
+          <span class="live">Live · refreshes every minute</span>
         </div>
+        <div id="na-body"></div>
       </div>
-    </div>
-  </div>
 
-  <!-- ── APP CONCEPT ── -->
-  <div class="app-card">
-    <div class="app-header">
-      <div class="app-icon">📱</div>
-      <div>
-        <div class="app-title">THE FORGE APP</div>
-        <div class="app-subtitle">// CREATOR BRAND-BUILDING PLATFORM · IN PLANNING</div>
+      <div class="sum-grid" id="sum-grid"></div>
+    </section>
+
+    <section class="card block" id="week-panel">
+      <span class="eyebrow">This week</span>
+      <div style="margin-top:14px;" id="week-content"></div>
+    </section>
+
+    <section class="card block" id="log">
+      <div class="sec-head">
+        <div class="top"><span class="dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span class="eyebrow">Log a new application</span></div>
+        <div class="bar"></div>
+        <h2>Add what you just applied to</h2>
       </div>
-    </div>
-    <p class="app-desc">
-      A start-to-finish brand building app for creators and entrepreneurs. The channel teaches it, the app delivers it. Every CFS video becomes a product demo. Every viewer is a potential user. The channel and app feed each other infinitely — the ultimate content-to-product flywheel.
-    </p>
-    <div class="app-features">
-      <span class="app-feature">Brand Roadmap</span>
-      <span class="app-feature">Live Progress Tracker</span>
-      <span class="app-feature">Push Notifications</span>
-      <span class="app-feature">Insights Dashboard</span>
-      <span class="app-feature">AI Assistant</span>
-      <span class="app-feature">Image Generator</span>
-      <span class="app-feature">Video Generator</span>
-      <span class="app-feature">Viral Idea Engine</span>
-      <span class="app-feature">Affiliate Hub</span>
-      <span class="app-feature">Content Calendar</span>
-      <span class="app-feature">Revenue Tracker</span>
-      <span class="app-feature">Channel Analytics</span>
-    </div>
+      <form id="add-form">
+        <div class="form-grid">
+          <div><label for="company">Company</label><input type="text" id="company" required></div>
+          <div><label for="jobtitle">Job title</label><input type="text" id="jobtitle" required></div>
+          <div><label for="platform">Platform</label><input type="text" id="platform" placeholder="LinkedIn, Indeed, ZipRecruiter..."></div>
+          <div><label for="dateApplied">Date applied</label><input type="date" id="dateApplied" required></div>
+          <div>
+            <label for="status">Status</label>
+            <select id="status">
+              <option value="applied">Applied</option>
+              <option value="screen">Phone Screen</option>
+              <option value="interview">Interview</option>
+              <option value="offer">Offer</option>
+              <option value="rejected">Rejected</option>
+              <option value="noresponse">No Response</option>
+            </select>
+          </div>
+          <div><label for="followup">Follow-up (default +7 days)</label><input type="date" id="followup"></div>
+          <div><label for="contactName">Contact name</label><input type="text" id="contactName" placeholder="Recruiter / hiring manager"></div>
+          <div><label for="contactEmail">Contact email</label><input type="email" id="contactEmail"></div>
+          <div><label for="salary">Salary range</label><input type="text" id="salary" placeholder="$55k - $70k"></div>
+          <div class="checkbox-row"><input type="checkbox" id="coverLetter"><label for="coverLetter">Cover letter submitted</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="messageSent"><label for="messageSent">Message sent to employer</label></div>
+          <div style="grid-column: 1 / -1;"><label for="notes">Notes</label><textarea id="notes" placeholder="Referral, angle used, anything worth remembering..."></textarea></div>
+          <div style="grid-column: 1 / -1;"><label for="interviewPrep">Interview prep notes</label><textarea id="interviewPrep" placeholder="Talking points, questions to ask, research on the company..."></textarea></div>
+          <div class="form-actions"><button type="submit" class="btn-primary">Add application</button></div>
+        </div>
+      </form>
+    </section>
+
+    <section class="card block" id="import">
+      <div class="sec-head">
+        <div class="top"><span class="dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v3H9zM7 5H5a1 1 0 00-1 1v14a1 1 0 001 1h14a1 1 0 001-1V6a1 1 0 00-1-1h-2"/></svg></span><span class="eyebrow">Quick import</span></div>
+        <div class="bar"></div>
+        <h2>Paste JSON, import in one click</h2>
+        <p>Paste a block of JSON (I can generate this for you when I find new postings) and import it — no retyping fields. Duplicates are skipped automatically.</p>
+      </div>
+      <textarea id="import-textarea" rows="5" style="margin-top:18px;" placeholder='[{"company":"Acme Corp","title":"Account Manager","platform":"Indeed","dateApplied":"2026-10-01","status":"applied","coverLetter":true,"notes":"..."}]'></textarea>
+      <div class="form-actions" style="margin-top:12px; display:flex; justify-content:flex-end; gap:8px;">
+        <button type="button" class="btn-ghost" id="import-sample-btn">Fill example</button>
+        <button type="button" class="btn-primary" id="import-btn">Import applications</button>
+      </div>
+      <div id="import-status" style="margin-top:10px; font-size:14px;"></div>
+    </section>
+
+    <section class="card block" id="applications">
+      <div class="sec-head">
+        <div class="top"><span class="dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span><span class="eyebrow">Applications</span><span class="tag" id="apps-tag">0 shown</span></div>
+        <div class="bar"></div>
+        <h2>Every application in one list</h2>
+      </div>
+      <div class="top-actions">
+        <button class="btn-ghost btn-accent-outline" id="backfill-btn">Set missing follow-ups (+7 days)</button>
+        <button class="btn-ghost" data-export="csv">Export CSV</button>
+        <button class="btn-ghost" data-export="json">Export JSON backup</button>
+        <button class="btn-ghost btn-accent-outline" data-export="copy">Copy JSON</button>
+      </div>
+      <div id="export-status" style="min-height:20px; margin-top:8px; text-align:right; font-size:14px;"></div>
+      <div id="export-box" class="hidden-box">
+        <label for="export-text">Select all, copy, and paste it where you need it.</label>
+        <textarea id="export-text" rows="8" readonly></textarea>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="table-scroll">
+        <table id="app-table">
+          <thead>
+            <tr><th>Company</th><th>Role</th><th>Applied</th><th>Status</th><th>Follow-up</th><th>Flags</th><th></th></tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+        <div class="empty" id="empty-msg" style="display:none;">No applications match — add one above or clear the search.</div>
+      </div>
+    </section>
   </div>
 
-  <!-- ── NOTES ── -->
-  <div class="notes-box">
-    <div class="notes-label">// SESSION NOTES & IDEAS</div>
-    <textarea class="notes-input" id="notesArea" placeholder="Add notes, ideas, or action items here..."></textarea>
-  </div>
-
+  <aside class="cfs-rail" aria-label="Live snapshot">
+    <p class="hd">Live snapshot</p>
+    <div id="rail-body"></div>
+    <div class="grp">
+      <p class="sub">Quick actions</p>
+      <a href="#log" class="act" data-nav>Log a new application</a>
+      <a href="#followups" class="act" data-nav>Review follow-ups</a>
+      <a href="#import" class="act" data-nav>Quick import</a>
+    </div>
+  </aside>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
-  // ── STATE ──
-  const state = {
-    affil: { total: 6, done: new Set() },
-    channel: { total: 12, done: new Set(['c4']) },
-    video: { total: 12, done: new Set() },
-    web: { total: 6, done: new Set(['w1']) },
-    research: { total: 7, done: new Set() }
+const SUPABASE_URL = 'https://dwfctlijtpfsanihijic.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_EQ7nzMnUozn5AG7rExEW2w_j5HRlX0W';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const db = sb.schema('job_tracker');
+
+const STATUS_LABELS = {
+  applied: 'Applied', screen: 'Phone Screen', interview: 'Interview',
+  offer: 'Offer', rejected: 'Rejected', noresponse: 'No Response'
+};
+
+let apps = [];
+let activeFilter = 'all';
+let searchText = '';
+let expandedIds = new Set();
+let savedFlashId = null;
+
+/* ---------- helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function ymd(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+function todayStr() { return ymd(new Date()); }
+function addDays(dateStr, days) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + 'T00:00:00');
+  d.setDate(d.getDate() + days);
+  return ymd(d);
+}
+function daysUntil(dateStr) {
+  if (!dateStr) return null;
+  const today = new Date(); today.setHours(0,0,0,0);
+  return Math.round((new Date(dateStr + 'T00:00:00') - today) / 86400000);
+}
+function daysSince(dateStr) {
+  if (!dateStr) return null;
+  const today = new Date(); today.setHours(0,0,0,0);
+  return Math.round((today - new Date(dateStr + 'T00:00:00')) / 86400000);
+}
+function fmtDate(dateStr) {
+  if (!dateStr) return '—';
+  return new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+function showError(msg) {
+  $('error-slot').innerHTML = msg ? `<div class="banner"><strong>Error:</strong> ${escapeHtml(msg)}</div>` : '';
+}
+function isDue(a) { return a.followup && daysUntil(a.followup) <= 0 && a.status !== 'rejected'; }
+
+/* ---------- row mapping (camelCase UI <-> snake_case DB) ---------- */
+function fromRow(r) {
+  return {
+    id: r.id, company: r.company || '', title: r.title || '', platform: r.platform || '',
+    dateApplied: r.date_applied || '', status: r.status || 'applied', followup: r.followup || '',
+    contactName: r.contact_name || '', contactEmail: r.contact_email || '', salary: r.salary || '',
+    coverLetter: !!r.cover_letter, messageSent: !!r.message_sent,
+    notes: r.notes || '', interviewPrep: r.interview_prep || ''
   };
+}
+function toRow(a) {
+  return {
+    company: a.company, title: a.title, platform: a.platform || '',
+    date_applied: a.dateApplied || null,
+    status: STATUS_LABELS[a.status] ? a.status : 'applied',
+    followup: a.followup || null,
+    contact_name: a.contactName || '', contact_email: a.contactEmail || '', salary: a.salary || '',
+    cover_letter: !!a.coverLetter, message_sent: !!a.messageSent,
+    notes: a.notes || '', interview_prep: a.interviewPrep || ''
+  };
+}
 
-  // ── INIT ──
-  function init() {
-    // Load from localStorage
-    const saved = localStorage.getItem('cfs-tracker');
-    if (saved) {
-      const data = JSON.parse(saved);
-      for (const [key, ids] of Object.entries(data.tasks || {})) {
-        if (state[key]) state[key].done = new Set(ids);
-      }
-      if (data.notes) document.getElementById('notesArea').value = data.notes;
-    }
+/* ---------- data layer ---------- */
+async function loadApps() {
+  const { data, error } = await db.from('applications').select('*').order('date_applied', { ascending: false });
+  if (error) { showError('Could not load applications: ' + error.message); return false; }
+  apps = (data || []).map(fromRow);
+  showError('');
+  return true;
+}
+async function insertApps(list) {
+  const { data, error } = await db.from('applications').insert(list.map(toRow)).select();
+  if (error) { showError('Could not save: ' + error.message); return null; }
+  const rows = (data || []).map(fromRow);
+  apps.push(...rows);
+  return rows;
+}
+async function updateApp(id, patch) {
+  const { error } = await db.from('applications').update(patch).eq('id', id);
+  if (error) { showError('Could not save changes: ' + error.message); return false; }
+  showError('');
+  return true;
+}
+async function deleteApp(id) {
+  const { error } = await db.from('applications').delete().eq('id', id);
+  if (error) { showError('Could not delete: ' + error.message); return false; }
+  return true;
+}
 
-    // Apply done states to DOM
-    document.querySelectorAll('.task').forEach(task => {
-      const section = task.closest('.section').id.replace('sec-', '');
-      const id = task.dataset.id;
-      if (state[section] && state[section].done.has(id)) {
-        task.classList.add('done');
+/* ---------- rendering ---------- */
+function renderRail() {
+  const overdue = apps.filter(a => isDue(a) && daysUntil(a.followup) < 0).length;
+  const dueToday = apps.filter(a => isDue(a) && daysUntil(a.followup) === 0).length;
+  const count = s => apps.filter(a => a.status === s).length;
+  const row = (label, val, hot) => `<div class="row"><span>${label}</span><strong${hot && val > 0 ? ' style="color:#ff6b86"' : ''}>${val}</strong></div>`;
+  $('rail-body').innerHTML = `
+    <div class="grp"><p class="sub">Needs attention</p>${row('Overdue follow-ups', overdue, true)}${row('Due today', dueToday, true)}</div>
+    <div class="grp"><p class="sub">Applications</p>
+      ${row('Total', apps.length)}
+      ${row('Applied', count('applied'))}
+      ${row('Phone screens', count('screen'))}
+      ${row('Interviews', count('interview'))}
+      ${row('Offers', count('offer'))}
+      ${row('No response', count('noresponse'))}
+      ${row('Rejected', count('rejected'))}
+    </div>`;
+}
+
+function renderSnapshot() {
+  const due = apps.filter(isDue).sort((a, b) => a.followup.localeCompare(b.followup));
+  $('na-tag').textContent = due.length + ' follow-up' + (due.length === 1 ? '' : 's') + ' due';
+  const shown = due.slice(0, 8);
+  if (!shown.length) {
+    $('na-body').innerHTML = '<div class="na-empty">Nothing due right now — nice. Check back tomorrow.</div>';
+  } else {
+    $('na-body').innerHTML = '<div class="na-grid">' + shown.map(a => {
+      const d = daysUntil(a.followup);
+      const pill = d < 0 ? `<span class="na-pill late">${Math.abs(d)}d overdue</span>` : '<span class="na-pill today">Due today</span>';
+      return `<button type="button" class="na-item" data-open="${escapeHtml(a.id)}">
+        <div><div class="co">${escapeHtml(a.company)}</div><div class="rl">${escapeHtml(a.title)}${a.platform ? ' · ' + escapeHtml(a.platform) : ''}</div></div>${pill}</button>`;
+    }).join('') + '</div>' + (due.length > shown.length ? `<p class="na-more">+ ${due.length - shown.length} more in the Applications list below.</p>` : '');
+  }
+  $('na-body').querySelectorAll('[data-open]').forEach(btn => btn.addEventListener('click', () => openApp(btn.dataset.open)));
+
+  const cards = [
+    { label: 'Follow-ups due', value: due.length, accent: '#ff4466', helper: 'Past or on their follow-up date.', filter: 'due' },
+    { label: 'Applied this week', value: apps.filter(a => a.dateApplied && daysSince(a.dateApplied) >= 0 && daysSince(a.dateApplied) <= 6).length, accent: '#00cfff', helper: 'Submitted in the last 7 days.', filter: 'all' },
+    { label: 'Screens / interviews', value: apps.filter(a => ['screen','interview'].includes(a.status)).length, accent: '#ff6200', helper: 'In conversation with a hiring team.', filter: 'convo' },
+    { label: 'Still active', value: apps.filter(a => !['rejected','noresponse'].includes(a.status)).length, accent: '#00ffaa', helper: 'Not rejected or gone quiet.', filter: 'active' },
+    { label: 'No response', value: apps.filter(a => a.status === 'noresponse').length, accent: '#ffc842', helper: 'Worth a fresh touch.', filter: 'noresponse' }
+  ];
+  $('sum-grid').innerHTML = cards.map(c => `
+    <button type="button" class="sum-card" data-sum="${c.filter}">
+      <p class="num">${c.value}</p>
+      <p class="lbl">${c.label}</p>
+      <div class="meter"><div style="width:${c.value > 0 ? 100 : 0}%; background:${c.accent};"></div></div>
+      <p class="help">${c.helper}</p>
+      <p class="view">View →</p>
+    </button>`).join('');
+  $('sum-grid').querySelectorAll('[data-sum]').forEach(btn => btn.addEventListener('click', () => {
+    activeFilter = btn.dataset.sum;
+    renderAll();
+    $('applications').scrollIntoView({ behavior: 'smooth' });
+  }));
+}
+
+function renderWeek() {
+  const applied = apps.filter(a => a.dateApplied && daysSince(a.dateApplied) >= 0 && daysSince(a.dateApplied) <= 6);
+  const next = apps.filter(a => a.followup && daysUntil(a.followup) <= 6 && a.status !== 'rejected')
+    .sort((a, b) => a.followup.localeCompare(b.followup));
+  let html = '<div class="detail-grid">';
+  html += `<div><span class="label-sm">Applied in the last 7 days (${applied.length})</span>`;
+  html += applied.length
+    ? '<ul class="week-list">' + applied.map(a => `<li><span>${escapeHtml(a.company)}</span><span class="mono">${fmtDate(a.dateApplied)}</span></li>`).join('') + '</ul>'
+    : '<div class="week-empty">Nothing logged this week yet.</div>';
+  html += '</div>';
+  html += '<div><span class="label-sm">Follow-ups due (next 7 days)</span>';
+  html += next.length
+    ? '<ul class="week-list">' + next.map(a => {
+        const d = daysUntil(a.followup);
+        const label = d < 0 ? `${Math.abs(d)}d overdue` : d === 0 ? 'today' : `in ${d}d`;
+        return `<li><span>${escapeHtml(a.company)}</span><span class="mono" style="${d <= 0 ? 'color:#ff6b86;' : ''}">${label}</span></li>`;
+      }).join('') + '</ul>'
+    : '<div class="week-empty">Nothing due this week.</div>';
+  html += '</div></div>';
+  $('week-content').innerHTML = html;
+}
+
+function filterLabel(key) {
+  return { all: 'All', due: 'Follow-up due', convo: 'Screens / interviews', active: 'Still active' }[key] || STATUS_LABELS[key];
+}
+function matchesFilter(a) {
+  switch (activeFilter) {
+    case 'all': return true;
+    case 'due': return isDue(a);
+    case 'convo': return ['screen', 'interview'].includes(a.status);
+    case 'active': return !['rejected', 'noresponse'].includes(a.status);
+    default: return a.status === activeFilter;
+  }
+}
+function matchesSearch(a) {
+  const q = searchText.trim().toLowerCase();
+  if (!q) return true;
+  return [a.company, a.title, a.platform, a.contactName, a.contactEmail, a.salary, a.notes, a.interviewPrep]
+    .some(v => String(v || '').toLowerCase().includes(q));
+}
+
+function renderFilters() {
+  const keys = ['all', ...Object.keys(STATUS_LABELS), 'due'];
+  const countFor = k => k === 'all' ? apps.length : k === 'due' ? apps.filter(isDue).length : apps.filter(a => a.status === k).length;
+  // special filters (convo/active) show as an extra chip only when selected from a summary card
+  if (['convo', 'active'].includes(activeFilter)) keys.push(activeFilter);
+  const filtersEl = $('filters');
+  filtersEl.innerHTML = keys.map(k => {
+    const n = k === 'convo' ? apps.filter(a => ['screen','interview'].includes(a.status)).length
+            : k === 'active' ? apps.filter(a => !['rejected','noresponse'].includes(a.status)).length
+            : countFor(k);
+    return `<button data-filter="${k}" class="${activeFilter === k ? 'active' : ''}">${filterLabel(k)} (${n})</button>`;
+  }).join('');
+  filtersEl.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => { activeFilter = btn.dataset.filter; renderAll(); }));
+}
+
+function renderDetailRow(a) {
+  const id = escapeHtml(a.id);
+  const justSaved = savedFlashId === a.id;
+  return `
+    <tr class="detail-row" data-detail-id="${id}">
+      <td colspan="7">
+      <div class="detail-panel" data-app-id="${id}">
+        <div class="detail-close-bar">
+          <span style="color: var(--orange2); font-size:14px; ${justSaved ? '' : 'visibility:hidden;'}">Saved ✓</span>
+          <button type="button" class="btn-ghost btn-accent-outline" data-save="${id}">Save changes</button>
+          <button type="button" class="btn-ghost" data-toggle="${id}">Close details ✕</button>
+        </div>
+        <div class="detail-grid">
+          <div><label>Company</label><input type="text" data-field="company" value="${escapeHtml(a.company)}"></div>
+          <div><label>Job title</label><input type="text" data-field="title" value="${escapeHtml(a.title)}"></div>
+          <div><label>Date applied</label><input type="date" data-field="dateApplied" value="${escapeHtml(a.dateApplied)}"></div>
+          <div><label>Follow-up date</label><input type="date" data-field="followup" value="${escapeHtml(a.followup)}"></div>
+          <div><label>Platform</label><input type="text" data-field="platform" value="${escapeHtml(a.platform)}"></div>
+          <div><label>Contact name</label><input type="text" data-field="contactName" value="${escapeHtml(a.contactName)}"></div>
+          <div><label>Contact email</label><input type="email" data-field="contactEmail" value="${escapeHtml(a.contactEmail)}"></div>
+          <div><label>Salary range</label><input type="text" data-field="salary" value="${escapeHtml(a.salary)}"></div>
+          <div class="checkbox-row"><input type="checkbox" data-field="coverLetter" ${a.coverLetter ? 'checked' : ''}><label>Cover letter submitted</label></div>
+          <div class="checkbox-row"><input type="checkbox" data-field="messageSent" ${a.messageSent ? 'checked' : ''}><label>Message sent to employer</label></div>
+          <div class="full"><label>Notes</label><textarea data-field="notes" rows="3">${escapeHtml(a.notes)}</textarea></div>
+          <div class="full"><label>Interview prep notes</label><textarea data-field="interviewPrep" rows="3">${escapeHtml(a.interviewPrep)}</textarea></div>
+        </div>
+      </div>
+      </td>
+    </tr>`;
+}
+
+async function saveDetailPanel(id) {
+  const panel = document.querySelector(`.detail-panel[data-app-id="${CSS.escape(id)}"]`);
+  const app = apps.find(a => a.id === id);
+  if (!panel || !app) return true;
+  const draft = Object.assign({}, app);
+  panel.querySelectorAll('[data-field]').forEach(el => {
+    draft[el.dataset.field] = el.type === 'checkbox' ? el.checked : el.value;
+  });
+  if (!draft.company.trim() || !draft.title.trim()) { showError('Company and job title can\'t be empty.'); return false; }
+  const ok = await updateApp(id, toRow(draft));
+  if (ok) Object.assign(app, draft);
+  return ok;
+}
+
+function openApp(id) {
+  activeFilter = 'all';
+  searchText = '';
+  $('search-input').value = '';
+  expandedIds.add(id);
+  renderAll();
+  const row = document.querySelector(`tr[data-id="${CSS.escape(id)}"]`);
+  if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function renderTable() {
+  const tbody = $('table-body');
+  const emptyMsg = $('empty-msg');
+  const list = apps.filter(a => matchesFilter(a) && matchesSearch(a))
+    .sort((a, b) => (b.dateApplied || '').localeCompare(a.dateApplied || ''));
+  $('apps-tag').textContent = list.length + ' shown';
+
+  if (!list.length) { tbody.innerHTML = ''; emptyMsg.style.display = 'block'; return; }
+  emptyMsg.style.display = 'none';
+
+  tbody.innerHTML = list.map(a => {
+    const due = isDue(a);
+    const ds = daysSince(a.dateApplied);
+    const dsLabel = ds === null ? '' : ds === 0 ? 'today' : `${ds}d ago`;
+    const expanded = expandedIds.has(a.id);
+    const id = escapeHtml(a.id);
+    return `
+      <tr data-id="${id}">
+        <td class="company">${escapeHtml(a.company)}</td>
+        <td class="title-cell">${escapeHtml(a.title)}</td>
+        <td class="mono">${fmtDate(a.dateApplied)}<span class="days-ago">${dsLabel}</span></td>
+        <td>
+          <select class="status-select s-${escapeHtml(a.status)}" data-id="${id}">
+            ${Object.entries(STATUS_LABELS).map(([k,l]) => `<option value="${k}" ${a.status===k?'selected':''}>${l}</option>`).join('')}
+          </select>
+        </td>
+        <td class="mono ${due ? 'followup-due' : ''}">${a.followup ? fmtDate(a.followup) : '—'}</td>
+        <td><div class="flag-icons"><span class="flag ${a.coverLetter ? 'on' : ''}">CL</span><span class="flag ${a.messageSent ? 'on' : ''}">MSG</span></div></td>
+        <td class="row-actions">
+          <button class="btn-ghost btn-accent-outline" data-toggle="${id}">${expanded ? 'Hide' : 'Details'}</button>
+          <button class="btn-ghost btn-danger" data-delete="${id}">Delete</button>
+        </td>
+      </tr>
+      ${expanded ? renderDetailRow(a) : ''}`;
+  }).join('');
+
+  tbody.querySelectorAll('.status-select').forEach(sel => {
+    sel.addEventListener('change', async (e) => {
+      const app = apps.find(a => a.id === sel.dataset.id);
+      if (!app) return;
+      const prev = app.status;
+      app.status = e.target.value;
+      const ok = await updateApp(app.id, { status: app.status });
+      if (!ok) app.status = prev;
+      renderAll();
+    });
+  });
+  tbody.querySelectorAll('[data-delete]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.dataset.delete;
+      const app = apps.find(a => a.id === id);
+      if (!app) return;
+      if (!window.confirm('Delete ' + app.company + ' — ' + app.title + '? This can\'t be undone.')) return;
+      if (await deleteApp(id)) {
+        apps = apps.filter(a => a.id !== id);
+        expandedIds.delete(id);
+        renderAll();
       }
     });
-
-    updateAll();
-  }
-
-  // ── TOGGLE TASK ──
-  function toggleTask(el, section) {
-    const id = el.dataset.id;
-    el.classList.toggle('done');
-    if (el.classList.contains('done')) {
-      state[section].done.add(id);
-    } else {
-      state[section].done.delete(id);
-    }
-    updateAll();
-    save();
-  }
-
-  // ── UPDATE ALL ──
-  function updateAll() {
-    let totalDone = 0;
-    let totalAll = 0;
-
-    for (const [key, s] of Object.entries(state)) {
-      const done = s.done.size;
-      const total = s.total;
-      const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-
-      totalDone += done;
-      totalAll += total;
-
-      // Progress bars
-      const bar = document.getElementById(`bar-${key}`);
-      const txt = document.getElementById(`txt-${key}`);
-      if (bar) bar.style.width = pct + '%';
-      if (txt) txt.textContent = `${done}/${total}`;
-
-      // Stat cards
-      const statMap = { affil: 'stat-affil', channel: 'stat-channel', video: 'stat-video', web: 'stat-web' };
-      const statEl = document.getElementById(statMap[key]);
-      if (statEl) statEl.textContent = pct + '%';
-    }
-
-    // Overall
-    const overallPct = totalAll > 0 ? Math.round((totalDone / totalAll) * 100) : 0;
-    document.getElementById('overallBar').style.width = overallPct + '%';
-    document.getElementById('overallPct').textContent = overallPct + '%';
-    document.getElementById('stat-total').textContent = totalDone;
-  }
-
-  // ── SAVE ──
-  function save() {
-    const data = {
-      tasks: {},
-      notes: document.getElementById('notesArea').value
-    };
-    for (const [key, s] of Object.entries(state)) {
-      data.tasks[key] = [...s.done];
-    }
-    localStorage.setItem('cfs-tracker', JSON.stringify(data));
-  }
-
-  // ── RESET ──
-  function resetAll() {
-    if (!confirm('Reset all progress? This cannot be undone.')) return;
-    for (const s of Object.values(state)) s.done.clear();
-    // Re-mark the pre-done items
-    state.channel.done.add('c4');
-    state.web.done.add('w1');
-    document.querySelectorAll('.task').forEach(t => t.classList.remove('done'));
-    // Re-apply pre-done
-    document.querySelectorAll('[data-id="c4"],[data-id="w1"]').forEach(t => t.classList.add('done'));
-    updateAll();
-    save();
-  }
-
-  // ── NOTES AUTO-SAVE ──
-  document.getElementById('notesArea').addEventListener('input', () => {
-    clearTimeout(window._noteTimer);
-    window._noteTimer = setTimeout(save, 800);
   });
+  tbody.querySelectorAll('[data-toggle]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.dataset.toggle;
+      if (expandedIds.has(id)) {
+        const ok = await saveDetailPanel(id);   // closing saves first so nothing is lost
+        if (!ok) return;
+        expandedIds.delete(id);
+        savedFlashId = null;
+      } else {
+        expandedIds.add(id);
+      }
+      renderAll();
+    });
+  });
+  tbody.querySelectorAll('[data-save]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.dataset.save;
+      btn.disabled = true;
+      const ok = await saveDetailPanel(id);
+      savedFlashId = ok ? id : null;
+      renderAll();
+    });
+  });
+}
 
-  // ── RUN ──
-  init();
+function renderAll() {
+  renderRail();
+  renderSnapshot();
+  renderWeek();
+  renderFilters();
+  renderTable();
+}
+
+/* ---------- search ---------- */
+$('search-input').addEventListener('input', (e) => { searchText = e.target.value; renderTable(); });
+
+/* ---------- add form ---------- */
+$('add-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const dateApplied = $('dateApplied').value;
+  const entry = {
+    company: $('company').value.trim(), title: $('jobtitle').value.trim(), platform: $('platform').value.trim(),
+    dateApplied, status: $('status').value, followup: $('followup').value || addDays(dateApplied, 7),
+    contactName: $('contactName').value.trim(), contactEmail: $('contactEmail').value.trim(), salary: $('salary').value.trim(),
+    coverLetter: $('coverLetter').checked, messageSent: $('messageSent').checked,
+    notes: $('notes').value.trim(), interviewPrep: $('interviewPrep').value.trim()
+  };
+  submitBtn.disabled = true;
+  const rows = await insertApps([entry]);
+  submitBtn.disabled = false;
+  if (!rows) return;
+  form.reset();
+  $('dateApplied').value = todayStr();
+  renderAll();
+});
+
+/* ---------- follow-up backfill ---------- */
+$('backfill-btn').addEventListener('click', async () => {
+  const btn = $('backfill-btn');
+  const original = btn.textContent;
+  const targets = apps.filter(a => !a.followup && a.status !== 'rejected' && a.dateApplied);
+  let filled = 0;
+  for (const a of targets) {
+    const f = addDays(a.dateApplied, 7);
+    if (await updateApp(a.id, { followup: f })) { a.followup = f; filled++; }
+  }
+  if (filled > 0) renderAll();
+  btn.textContent = filled > 0 ? `Set ${filled} follow-up${filled === 1 ? '' : 's'}` : 'Nothing to set';
+  setTimeout(() => { btn.textContent = original; }, 2500);
+});
+
+/* ---------- export ---------- */
+function exportStatus(msg, color) { const el = $('export-status'); el.textContent = msg; el.style.color = color || 'var(--muted)'; }
+function showExportBox(text) {
+  const ta = $('export-text');
+  ta.value = text;
+  $('export-box').classList.add('show');
+  ta.focus(); ta.select();
+}
+function buildCsv() {
+  const headers = ['Company','Title','Platform','Date Applied','Status','Follow-up','Contact Name','Contact Email','Salary','Cover Letter','Message Sent','Notes','Interview Prep'];
+  const rows = apps.map(a => [a.company, a.title, a.platform, a.dateApplied, STATUS_LABELS[a.status] || a.status, a.followup, a.contactName, a.contactEmail, a.salary, a.coverLetter ? 'Yes' : 'No', a.messageSent ? 'Yes' : 'No', a.notes, a.interviewPrep]);
+  return [headers, ...rows].map(r => r.map(v => `"${(v||'').toString().replace(/"/g,'""')}"`).join(',')).join('\n');
+}
+function buildJson() {
+  return JSON.stringify(apps.map(a => ({
+    company: a.company, title: a.title, platform: a.platform, dateApplied: a.dateApplied,
+    status: a.status, followup: a.followup, contactName: a.contactName, contactEmail: a.contactEmail,
+    salary: a.salary, coverLetter: !!a.coverLetter, messageSent: !!a.messageSent,
+    notes: a.notes, interviewPrep: a.interviewPrep
+  })), null, 2);
+}
+function saveFile(filename, text, mime) {
+  if (!apps.length) { exportStatus('Nothing to export yet.', 'var(--gold)'); return; }
+  try {
+    const url = URL.createObjectURL(new Blob([text], { type: mime }));
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    exportStatus('Saved ' + filename + '.', 'var(--orange2)');
+  } catch (err) {
+    showExportBox(text);
+    exportStatus('Could not download here. Copy the text below instead.', 'var(--gold)');
+  }
+}
+async function doExport(kind) {
+  if (kind === 'csv') return saveFile('career-command-center.csv', buildCsv(), 'text/csv');
+  if (kind === 'json') return saveFile('career-command-center-backup.json', buildJson(), 'application/json');
+  if (!apps.length) { exportStatus('Nothing to copy yet.', 'var(--gold)'); return; }
+  const text = buildJson();
+  showExportBox(text);
+  try { await navigator.clipboard.writeText(text); exportStatus('Copied ' + apps.length + ' applications.', 'var(--orange2)'); }
+  catch (e) { exportStatus('Select the text below and copy it manually.', 'var(--gold)'); }
+}
+document.querySelectorAll('[data-export]').forEach(btn => btn.addEventListener('click', () => doExport(btn.dataset.export)));
+
+/* ---------- quick import ---------- */
+const IMPORT_SAMPLE = [{
+  company: "Acme Corp", title: "Account Manager", platform: "Indeed",
+  dateApplied: todayStr(), status: "applied", followup: "",
+  contactName: "", contactEmail: "", salary: "", coverLetter: true, messageSent: false,
+  notes: "Example entry — replace with a real one or paste what Claude gives you."
+}];
+$('import-sample-btn').addEventListener('click', () => { $('import-textarea').value = JSON.stringify(IMPORT_SAMPLE, null, 2); });
+$('import-btn').addEventListener('click', async () => {
+  const statusEl = $('import-status');
+  const raw = $('import-textarea').value.trim();
+  if (!raw) { statusEl.textContent = 'Paste some JSON first.'; statusEl.style.color = 'var(--gold)'; return; }
+  let parsed;
+  try { parsed = JSON.parse(raw); if (!Array.isArray(parsed)) parsed = [parsed]; }
+  catch (e) { statusEl.textContent = 'Could not parse that as JSON — check for a stray comma or quote.'; statusEl.style.color = '#ff6b86'; return; }
+  const toAdd = [];
+  let skipped = 0;
+  const key = c => String(c).trim().toLowerCase();
+  parsed.forEach(item => {
+    if (!item || !item.company || !item.title) { skipped++; return; }
+    if (apps.concat(toAdd).some(a => key(a.company) === key(item.company) && key(a.title) === key(item.title))) { skipped++; return; }
+    const applied = item.dateApplied || todayStr();
+    toAdd.push({
+      company: String(item.company).trim(), title: String(item.title).trim(),
+      platform: item.platform ? String(item.platform).trim() : '',
+      dateApplied: applied, status: STATUS_LABELS[item.status] ? item.status : 'applied',
+      followup: item.followup || addDays(applied, 7),
+      contactName: item.contactName ? String(item.contactName).trim() : '',
+      contactEmail: item.contactEmail ? String(item.contactEmail).trim() : '',
+      salary: item.salary ? String(item.salary).trim() : '',
+      coverLetter: !!item.coverLetter, messageSent: !!item.messageSent,
+      notes: item.notes ? String(item.notes).trim() : '',
+      interviewPrep: item.interviewPrep ? String(item.interviewPrep).trim() : ''
+    });
+  });
+  let added = 0;
+  if (toAdd.length) {
+    const rows = await insertApps(toAdd);
+    if (!rows) { statusEl.textContent = 'Import failed — nothing was saved.'; statusEl.style.color = '#ff6b86'; return; }
+    added = rows.length;
+  }
+  renderAll();
+  $('import-textarea').value = '';
+  statusEl.style.color = added > 0 ? 'var(--orange2)' : 'var(--gold)';
+  statusEl.textContent = `Imported ${added} application${added === 1 ? '' : 's'}.` + (skipped > 0 ? ` Skipped ${skipped} (duplicate or missing company/title).` : '');
+});
+
+/* ---------- sidebar behavior ---------- */
+function closeMenu() { $('sidebar').classList.remove('open'); $('scrim').classList.remove('open'); }
+$('menu-btn').addEventListener('click', () => { $('sidebar').classList.add('open'); $('scrim').classList.add('open'); });
+$('scrim').addEventListener('click', closeMenu);
+$('data-toggle').addEventListener('click', () => {
+  const sub = $('data-sub'); const open = sub.style.display === 'none';
+  sub.style.display = open ? 'flex' : 'none'; $('data-toggle').classList.toggle('open', open);
+});
+$('admin-toggle').addEventListener('click', () => {
+  const sub = $('admin-sub'); const open = sub.style.display === 'none';
+  sub.style.display = open ? 'flex' : 'none'; $('admin-toggle').classList.toggle('open', open);
+});
+document.querySelectorAll('[data-nav]').forEach(a => a.addEventListener('click', () => {
+  document.querySelectorAll('.cfs-nav a[data-nav]').forEach(n => n.classList.toggle('active', n === a || n.getAttribute('href') === a.getAttribute('href')));
+  closeMenu();
+}));
+document.querySelectorAll('[data-export]').forEach(btn => btn.addEventListener('click', closeMenu));
+
+/* ---------- auth ---------- */
+function showLogin() {
+  $('loading-msg').style.display = 'none';
+  $('app').style.display = 'none';
+  $('login-screen').style.display = 'flex';
+  apps = [];
+}
+async function showApp(session) {
+  $('login-screen').style.display = 'none';
+  $('loading-msg').style.display = 'block';
+  await loadApps();
+  $('loading-msg').style.display = 'none';
+  $('app').style.display = 'block';
+  $('dateApplied').value = todayStr();
+  try { $('user-email').textContent = (session && session.user && session.user.email) || ''; } catch (e) {}
+  renderAll();
+}
+$('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = $('login-btn'); const err = $('login-error');
+  err.textContent = ''; btn.disabled = true;
+  const { data, error } = await sb.auth.signInWithPassword({ email: $('login-email').value.trim(), password: $('login-password').value });
+  btn.disabled = false;
+  if (error) { err.textContent = 'Sign-in failed: ' + error.message; return; }
+  $('login-password').value = '';
+  await showApp(data && data.session);
+});
+document.querySelectorAll('.signout').forEach(b => b.addEventListener('click', async () => { await sb.auth.signOut(); showLogin(); }));
+sb.auth.onAuthStateChange((event) => { if (event === 'SIGNED_OUT') showLogin(); });
+
+setInterval(() => { if ($('app').style.display === 'block') { renderRail(); renderSnapshot(); renderWeek(); } }, 60000);
+
+(async function boot() {
+  const { data } = await sb.auth.getSession();
+  if (data && data.session) await showApp(data.session); else showLogin();
+})();
 </script>
 </body>
 </html>
