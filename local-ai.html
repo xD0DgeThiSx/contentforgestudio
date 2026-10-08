@@ -33,20 +33,36 @@
   "@type": "ProfessionalService",
   "name": "Content Forge Studio — Local AI Services",
   "url": "https://contentforgestudio.com/local-ai",
-  "areaServed": ["Golden, CO", "Denver Metro", "Front Range, Colorado"],
+  "areaServed": [
+    { "@type": "City", "name": "Golden, CO" },
+    { "@type": "City", "name": "Denver, CO" },
+    { "@type": "City", "name": "Lakewood, CO" },
+    { "@type": "City", "name": "Arvada, CO" },
+    { "@type": "City", "name": "Wheat Ridge, CO" },
+    { "@type": "City", "name": "Westminster, CO" },
+    { "@type": "City", "name": "Littleton, CO" },
+    { "@type": "City", "name": "Englewood, CO" },
+    { "@type": "City", "name": "Morrison, CO" },
+    { "@type": "City", "name": "Evergreen, CO" },
+    { "@type": "City", "name": "Broomfield, CO" },
+    { "@type": "City", "name": "Thornton, CO" },
+    { "@type": "City", "name": "Centennial, CO" },
+    { "@type": "City", "name": "Aurora, CO" },
+    { "@type": "AdministrativeArea", "name": "Front Range, Colorado" }
+  ],
+  "telephone": "+1-720-449-1176",
+  "logo": "https://contentforgestudio.com/cfs-logo-128.png",
+  "image": "https://contentforgestudio.com/og-image.jpg",
+  "founder": { "@type": "Person", "name": "Brandon Stromblad" },
+  "sameAs": [
+    "https://share.google/gbyGgXkdE6ZsxZAcB",
+    "https://www.youtube.com/@TheContentForgeStudio",
+    "https://www.fiverr.com/xd0dgethisx"
+  ],
   "address": { "@type": "PostalAddress", "addressLocality": "Golden", "addressRegion": "CO", "addressCountry": "US" },
   "description": "AI-powered websites, lead capture, follow-up, and review systems for local small businesses.",
   "priceRange": "$149-$3500"
 }
-
-  // Ember particles
-  const embers=document.getElementById('embers');
-  for(let i=0;i<28;i++){
-    const e=document.createElement('div');
-    e.className='ember';
-    e.style.cssText=`left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*8}s;--drift:${(Math.random()-.5)*100}px`;
-    embers.appendChild(e);
-  }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
 <style>
@@ -588,6 +604,16 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
 
 <style>#backToTop{position:fixed;bottom:32px;right:32px;z-index:999;width:48px;height:48px;border-radius:50%;background:#ff6200;color:#000;border:none;display:none;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.35);}</style>
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+<script>
+  // Ember particles
+  const embers=document.getElementById('embers');
+  for(let i=0;i<28;i++){
+    const e=document.createElement('div');
+    e.className='ember';
+    e.style.cssText=`left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*8}s;--drift:${(Math.random()-.5)*100}px`;
+    embers.appendChild(e);
+  }
+</script>
 <script>const backToTopBtn=document.getElementById('backToTop');window.addEventListener('scroll',()=>{backToTopBtn.style.display=window.scrollY>400?'flex':'none';});</script>
 </body>
 </html>
