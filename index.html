@@ -101,7 +101,7 @@
   .chat-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border);}
   .chat-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);}
   .chat-head span{font-family:'Orbitron',monospace;font-size:10.5px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;}
-  .chat-body{min-height:210px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;}
+  .chat-body{contain:layout paint;min-height:210px;height:210px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;}
   .bubble{max-width:88%;padding:10px 14px;border-radius:10px;font-size:13px;}
   .bubble.user{align-self:flex-end;background:rgba(255,98,0,0.14);border:1px solid rgba(255,98,0,0.25);color:#ffd9b8;}
   .bubble.bot{align-self:flex-start;background:rgba(0,207,255,0.08);border:1px solid rgba(0,207,255,0.2);color:#bfeeff;min-height:20px;}
@@ -180,7 +180,7 @@
     .wrap,.section,.hero,footer{padding-left:22px;padding-right:22px;}
     .form-shell{padding:22px;}
   }
-.embers{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}.ember{position:absolute;width:2px;height:2px;border-radius:50%;background:#ff8c00;animation:rise linear infinite;opacity:0}@keyframes rise{0%{transform:translateY(100vh);opacity:0}10%{opacity:.75}100%{transform:translateY(-20px) translateX(var(--drift));opacity:0}}
+.embers{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}.ember{position:absolute;width:2px;height:2px;border-radius:50%;background:#ff8c00;animation:rise linear infinite;opacity:0;will-change:transform,opacity}@keyframes rise{0%{transform:translateY(100vh);opacity:0}10%{opacity:.75}100%{transform:translateY(-20px) translateX(var(--drift));opacity:0}}
 body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(56,217,245,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(56,217,245,.025) 1px,transparent 1px),radial-gradient(circle at 50% 10%,rgba(255,140,0,.12),transparent 34%),radial-gradient(circle at 78% 70%,rgba(56,217,245,.045),transparent 30%);background-size:56px 56px,56px 56px,auto,auto;pointer-events:none;z-index:0;}
 </style>
 <style>
@@ -497,7 +497,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
 
 <script>
   const embers=document.getElementById('embers');
-  function startEmbers(){for(let i=0;i<28;i++){
+  function startEmbers(){const n=window.innerWidth<700?12:28;for(let i=0;i<n;i++){
     const e=document.createElement('div');
     e.className='ember';
     e.style.cssText=`left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*8}s;--drift:${(Math.random()-.5)*100}px`;
@@ -522,7 +522,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
     el.appendChild(curs);
     const timer = setInterval(() => {
       idx++;
-      el.childNodes[0].textContent = text.slice(0, idx);
+      el.childNodes[0].data = text.slice(0, idx);
       if(idx >= text.length){
         clearInterval(timer);
         curs.remove();
@@ -531,7 +531,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
     }, speed);
   }
 
-  function runConvo(){
+  function runConvo(first){
     body.innerHTML = '';
     const [q, a] = convos[i % convos.length];
     const userBubble = document.createElement('div');
@@ -543,6 +543,12 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
     botBubble.className = 'bubble bot';
     body.appendChild(botBubble);
 
+    if(first){
+      botBubble.textContent = a;
+      i++;
+      setTimeout(runConvo, 6000);
+      return;
+    }
     setTimeout(() => {
       typeLine(botBubble, a, 22, () => {
         i++;
@@ -550,7 +556,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
       });
     }, 500);
   }
-  window.addEventListener('load',()=>{setTimeout(()=>{startEmbers();runConvo();},300);});
+  window.addEventListener('load',()=>{setTimeout(()=>{startEmbers();runConvo(true);},300);});
 
   async function submitLead(e) {
     e.preventDefault();
