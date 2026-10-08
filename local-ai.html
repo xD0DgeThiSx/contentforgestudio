@@ -54,7 +54,7 @@
     --bg:#07070e; --surface:#0d0d18; --card:#111120; --card2:#0e0e1c;
     --border:rgba(255,255,255,0.07);
     --orange:#ff6200; --cyan:#00cfff; --gold:#ffc842; --green:#00ffaa; --purple:#b06fff; --red:#ff4466;
-    --text:#dcdcf0; --muted:#7070a0; --dim:#50507a;
+    --text:#dcdcf0; --muted:#8585b0; --dim:#7a7aa8;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -139,7 +139,7 @@
   .step{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:22px 4px;border-bottom:1px solid var(--border);}
   .step:last-child{border-bottom:none;}
   .step-num{font-family:'Orbitron',monospace;font-size:26px;font-weight:900;color:var(--orange);opacity:0.85;}
-  .step h4{font-size:15px;font-weight:700;margin-bottom:5px;}
+  .step h3{font-size:15px;font-weight:700;margin-bottom:5px;}
   .step p{font-size:13px;color:var(--muted);font-weight:300;max-width:560px;}
 
   /* ── PACKAGES ── */
@@ -156,7 +156,7 @@
   .pkg li span{color:var(--green);}
   .pkg .btn{text-align:center;}
   .support-strip{margin-top:18px;background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:20px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
-  .support-strip h4{font-family:'Orbitron',monospace;font-size:13px;color:var(--gold);margin-bottom:4px;}
+  .support-strip h3{font-family:'Orbitron',monospace;font-size:13px;color:var(--gold);margin-bottom:4px;}
   .support-strip p{font-size:12.5px;color:var(--muted);font-weight:300;max-width:520px;}
 
   /* ── FORM ── */
@@ -225,6 +225,7 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
     <a href="#contact" style="font-family:Orbitron,monospace;font-size:10px;font-weight:700;letter-spacing:2px;background:#ff6200;color:#000;padding:9px 18px;border-radius:5px;text-decoration:none;white-space:nowrap;">FREE AI REVIEW</a>
   </div>
 </nav>
+<main id="main">
 
 <header class="hero">
   <div class="hero-grid">
@@ -336,19 +337,19 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
-        <div><h4>Free AI Opportunity Review</h4><p>A relaxed 20–30 minute call to talk through your business and where AI could realistically help. No slides, no written report — just an honest conversation to see if it makes sense to work together.</p></div>
+        <div><h3>Free AI Opportunity Review</h3><p>A relaxed 20–30 minute call to talk through your business and where AI could realistically help. No slides, no written report — just an honest conversation to see if it makes sense to work together.</p></div>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <div><h4>Pick your package</h4><p>Start with a quick audit, a lead-capture setup, or the full system buildout — based on what the review actually turns up, not a sales pitch.</p></div>
+        <div><h3>Pick your package</h3><p>Start with a quick audit, a lead-capture setup, or the full system buildout — based on what the review actually turns up, not a sales pitch.</p></div>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <div><h4>Build and launch</h4><p>I build the site, forms, follow-up sequences, and review system, then walk you through it so you know exactly how it works.</p></div>
+        <div><h3>Build and launch</h3><p>I build the site, forms, follow-up sequences, and review system, then walk you through it so you know exactly how it works.</p></div>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <div><h4>Ongoing support (optional)</h4><p>Monthly plan available for updates, content, and tweaks — so the system keeps working after launch day.</p></div>
+        <div><h3>Ongoing support (optional)</h3><p>Monthly plan available for updates, content, and tweaks — so the system keeps working after launch day.</p></div>
       </div>
     </div>
   </div>
@@ -415,11 +416,11 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
       </div>
     </div>
     <div class="support-strip">
-      <div><h4>Monthly Support — $99+/mo</h4><p>Chatbot updates, monthly content calendar, review responses, and workflow tweaks — for clients who want the system maintained, not just built.</p></div>
+      <div><h3>Monthly Support — $99+/mo</h3><p>Chatbot updates, monthly content calendar, review responses, and workflow tweaks — for clients who want the system maintained, not just built.</p></div>
       <a href="#contact" class="btn btn-secondary">Ask About Support</a>
     </div>
     <div class="support-strip">
-      <div><h4 style="color:var(--cyan);">Local Services Ads Management — $299/mo</h4><p>I set up and manage your Google Local Services Ads campaign — your ad spend is billed separately, directly by Google.</p></div>
+      <div><h3 style="color:var(--cyan);">Local Services Ads Management — $299/mo</h3><p>I set up and manage your Google Local Services Ads campaign — your ad spend is billed separately, directly by Google.</p></div>
       <a href="#contact" class="btn btn-secondary">Ask About This</a>
     </div>
   </div>
@@ -497,8 +498,9 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(5
   </div>
 </section>
 
+</main>
 <footer style="background:var(--surface);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
-  <span style="font-size:12px;color:var(--dim);">Content Forge Studio · Local AI Services · Golden, CO · <a href="tel:7204491176" style="color:var(--muted);text-decoration:none;">(720) 449-1176</a></span>
+  <span style="font-size:12px;color:var(--dim);">Content Forge Studio · Local AI Services · Golden, CO · <a href="tel:7204491176" style="color:var(--muted);text-decoration:underline;text-underline-offset:3px;">(720) 449-1176</a></span>
   <div style="display:flex;gap:20px;align-items:center;">
     <a href="https://contentforgestudio.com" style="font-size:12px;color:var(--muted);transition:color .2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--muted)'">ContentForgeStudio.com</a>
     <a href="https://contentforgestudio.com/local-ai-demo" style="font-size:12px;color:var(--muted);transition:color .2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--muted)'">View Demo</a>

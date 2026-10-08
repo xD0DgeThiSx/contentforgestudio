@@ -11,9 +11,9 @@
   :root{
     --cream:#faf7f2; --card:#ffffff; --line:#e9e2d6;
     --navy:#1c2b3e; --navy2:#263a52;
-    --terra:#c1602f; --terra-dk:#a34e22;
+    --terra:#a34e22; --terra-dk:#8c4119;
     --green:#3a6f52; --gold:#d9a441;
-    --ink:#2a2a2f; --muted:#6b6f76;
+    --ink:#2a2a2f; --muted:#5a5e66;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -165,6 +165,7 @@
     <a href="tel:7204491176" class="nav-phone">(720) 449-1176</a>
   </div>
 </nav>
+<main id="main">
 
 <header class="hero">
   <div class="hero-grid">
@@ -234,19 +235,19 @@
   <div class="form-card">
     <form id="quoteForm">
       <div class="form-row">
-        <div><label>Name</label><input type="text" required></div>
-        <div><label>Phone</label><input type="tel" required></div>
+        <div><label for="f-name">Name</label><input id="f-name" type="text" required></div>
+        <div><label for="f-phone">Phone</label><input id="f-phone" type="tel" required></div>
       </div>
       <div class="form-row">
-        <div><label>Email</label><input type="email" required></div>
-        <div><label>ZIP Code</label><input type="text" placeholder="80401"></div>
+        <div><label for="f-email">Email</label><input id="f-email" type="email" required></div>
+        <div><label for="f-zip">ZIP Code</label><input id="f-zip" type="text" placeholder="80401"></div>
       </div>
       <div class="form-row">
-        <div><label>What needs painting?</label><select><option>Interior</option><option>Exterior</option><option>Cabinets</option><option>Not sure yet</option></select></div>
-        <div><label>Timeline</label><select><option>ASAP</option><option>Within a month</option><option>Just planning ahead</option></select></div>
+        <div><label for="f-project">What needs painting?</label><select id="f-project"><option>Interior</option><option>Exterior</option><option>Cabinets</option><option>Not sure yet</option></select></div>
+        <div><label for="f-timeline">Timeline</label><select id="f-timeline"><option>ASAP</option><option>Within a month</option><option>Just planning ahead</option></select></div>
       </div>
       <div class="form-row full">
-        <div><label>Anything else we should know?</label><textarea placeholder="Square footage, number of rooms, colors you're considering..."></textarea></div>
+        <div><label for="f-notes">Anything else we should know?</label><textarea id="f-notes" placeholder="Square footage, number of rooms, colors you're considering..."></textarea></div>
       </div>
       <div class="ai-note">💬 <span><b>Automated for you:</b> the moment this form is submitted, the homeowner gets an instant confirmation text, a quote-follow-up reminder two days later, and — once the job's done — a review request. No one has to remember to send these.</span></div>
       <div style="margin-top:18px;">
@@ -338,6 +339,7 @@
   <a href="/local-ai" class="btn btn-primary">Request a Free AI Opportunity Review</a>
 </section>
 
+</main>
 <footer>
   Summit Peak Painting Co. is a fictional business created by <a href="https://contentforgestudio.com/local-ai">Content Forge Studio</a> to demonstrate AI-powered local business systems. · <a href="https://contentforgestudio.com/local-ai">Get this for your business →</a> · <a href="https://contentforgestudio.com" style="color:#8b96a8;">ContentForgeStudio.com</a>
 </footer>
