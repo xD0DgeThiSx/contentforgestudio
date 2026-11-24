@@ -11,7 +11,35 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#07070e">
 <link rel="icon" type="image/png" href="/cfs-badge-sm.png">
-<style>[hidden]{display:none!important}html{-webkit-text-size-adjust:100%}</style>
+<style>[hidden]{display:none!important}html{-webkit-text-size-adjust:100%}
+/* ---- map tab ---- */
+#v-map .mapbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 10px; }
+#v-map .mapbar button { min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); font-weight: 600; font-size: 14px; }
+#v-map .mapbar button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: #fff; }
+#v-map .mapbar button:hover { border-color: var(--accent); }
+#v-map .mapcount { margin-left: auto; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+#tmap { width: 100%; height: calc(100vh - 290px); min-height: 380px; border-radius: 14px; border: 1px solid var(--line-strong); background: #0b0b14; overflow: hidden; z-index: 0; }
+#v-map .maplegend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 10px 2px 0; font-size: 13px; color: var(--muted); }
+#v-map .maplegend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+#v-map .maplegend i.hollow { background: transparent !important; border: 2px dashed var(--muted); width: 12px; height: 12px; box-sizing: border-box; }
+#v-map .nearlist { margin-top: 12px; display: grid; gap: 6px; }
+#v-map .nearlist h3 { margin: 0 0 2px; font: 700 11px var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+#v-map .nearlist button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 48px; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); text-align: left; font-size: 14px; }
+#v-map .nearlist button:hover { border-color: var(--accent); }
+#v-map .nearlist .d { flex: none; min-width: 52px; font-weight: 700; color: var(--accent2); font-variant-numeric: tabular-nums; }
+#v-map .nearlist .n { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#v-map .nearlist .n small { display: block; color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; }
+#v-map .mapmsg { margin: 8px 2px 0; font-size: 13px; color: var(--accent2); }
+.leaflet-container { font-family: var(--body); background: #0b0b14; }
+.leaflet-bar a, .leaflet-bar a:hover { background: var(--surface); color: var(--ink); border-bottom: 1px solid var(--line-strong); }
+.leaflet-bar a:hover { color: var(--accent); }
+.leaflet-control-attribution { background: rgba(7, 7, 14, .75) !important; color: var(--dim) !important; font-size: 10px; }
+.leaflet-control-attribution a { color: var(--muted) !important; }
+.leaflet-tooltip.maptip { background: var(--surface); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,.5); font: 600 13px var(--body); padding: 5px 9px; }
+.leaflet-tooltip.maptip::before { display: none; }
+.homepin { width: 26px; height: 26px; border-radius: 50%; background: #ffc842; border: 3px solid #07070e; box-shadow: 0 0 0 2px #ffc842, 0 2px 8px rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; color: #07070e; font: 900 12px var(--display); }
+@media (max-width: 480px) { #tmap { height: calc(100vh - 330px); min-height: 360px; } }
+</style>
 <title>B's Territory Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,7 +93,7 @@ button { cursor: pointer; }
 .titlebar { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 h1 { font: 700 22px/1.1 var(--display); letter-spacing: -0.01em; margin: 0; }
 .sub { color: var(--muted); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
-.views { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 12px; padding: 4px; background: var(--line); border-radius: 12px; }
+.views { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-top: 12px; padding: 4px; background: var(--line); border-radius: 12px; }
 .views button { border: 0; background: transparent; border-radius: 9px; min-height: 40px; font-weight: 600; font-size: 13px; color: var(--muted); padding: 0 2px; }
 .views button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
 .badge { display: inline-block; min-width: 20px; padding: 0 6px; margin-left: 6px; border-radius: 10px; background: var(--warn); color: #fff; font-size: 12px; line-height: 20px; font-variant-numeric: tabular-nums; }
@@ -296,6 +324,7 @@ h1 { font: 700 18px/1.2 var(--display); letter-spacing: 0.02em; color: var(--acc
   .row, .stop { margin-bottom: 8px; }
 }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 </head>
 <body>
 <div id="auth" class="auth" hidden>
@@ -342,12 +371,26 @@ h1 { font: 700 18px/1.2 var(--display); letter-spacing: 0.02em; color: var(--acc
     <section id="v-drive" hidden></section>
     <section id="v-follow" hidden></section>
     <section id="v-log" hidden></section>
+    <section id="v-map" hidden>
+      <div class="mapbar">
+        <button type="button" id="map-follow" aria-pressed="false" aria-label="Follow my location live">Follow me</button>
+        <button type="button" id="map-near" aria-label="Show offices near my location">Near me</button>
+        <button type="button" id="map-hide" aria-pressed="false">Hide worked</button>
+        <button type="button" id="map-fit">Fit all</button>
+        <span class="mapcount" id="map-count"></span>
+      </div>
+      <div id="tmap" role="application" aria-label="Map of office locations"></div>
+      <div class="maplegend" id="map-legend"></div>
+      <p class="mapmsg" id="map-msg" hidden></p>
+      <div class="nearlist" id="map-nearlist" hidden></div>
+    </section>
     <p class="note" id="syncnote"></p>
   </main>
 </div>
 <div id="sheetroot"></div>
 <div id="toast" class="toast" hidden></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
 (function () {
@@ -390,6 +433,7 @@ h1 { font: 700 18px/1.2 var(--display); letter-spacing: 0.02em; color: var(--acc
   var officeState = {}, visits = [], vmap = {};
   var view = lsGet('tv-view', 'route'), day = lsGet('tv-day', 'Day 1'), filter = lsGet('tv-filter', 'all'), q = '';
   if (DAYS.indexOf(day) < 0) day = 'Day 1';
+  if (['route','map','drive','follow','log'].indexOf(view) < 0) view = 'route';
   var HOME = null, DAYMETA = {}, driveDay = lsGet('tv-driveday', ''), onlyRem = lsGet('tv-onlyrem', '1') === '1';
   var openId = null, editing = null, lastFocus = null, store = null, mode = 'local', dl = null, loaded = false;
 
@@ -502,15 +546,121 @@ h1 { font: 700 18px/1.2 var(--display); letter-spacing: 0.02em; color: var(--acc
     rebuildIndex();
   }
 
+
+  /* map tab */
+  var DAYCOL = { 'Day 1': '#5aa9ff', 'Day 2': '#ff8438', 'Day 3': '#00ffaa', 'Day 4': '#b06fff', 'Day 5': '#ffc842' };
+  var tmap = null, tlayer = null, tme = null, tacc = null, watchId = null, lockCenter = true, lastNear = 0, lastLL = null, mapHide = false, mapFit = true, mapKey = '';
+  function mapOffices() {
+    return OFFICES.filter(function (o) {
+      if (day !== 'All' && o.day !== day) return false;
+      if (mapHide && statusOf(o) !== 'To visit') return false;
+      return typeof o.lat === 'number' && typeof o.lon === 'number';
+    });
+  }
+  function renderMap() {
+    var box = $('#tmap'); if (!box) return;
+    var msg = $('#map-msg');
+    if (typeof L === 'undefined') { msg.hidden = false; msg.textContent = 'The map could not load. Check your connection and reload.'; return; }
+    if (!tmap) {
+      tmap = L.map(box, { zoomControl: true, attributionControl: true, preferCanvas: true });
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { subdomains: 'abcd', maxZoom: 19, attribution: '&copy; OpenStreetMap &copy; CARTO' }).addTo(tmap);
+      tlayer = L.layerGroup().addTo(tmap);
+      if (HOME) L.marker(HOME, { icon: L.divIcon({ className: '', html: '<div class="homepin">H</div>', iconSize: [26, 26], iconAnchor: [13, 13] }), title: 'Home (Golden)', keyboard: false, zIndexOffset: -500 }).addTo(tmap).bindTooltip('Home (Golden)', { className: 'maptip', direction: 'top' });
+      tmap.setView(HOME || [39.75, -105.0], 11);
+      $('#map-near').addEventListener('click', nearMe);
+      $('#map-follow').addEventListener('click', toggleFollow);
+      tmap.on('dragstart', function () { if (watchId !== null) { lockCenter = false; $('#map-follow').textContent = 'Re-center'; } });
+      $('#map-hide').addEventListener('click', function () { mapHide = !mapHide; this.setAttribute('aria-pressed', String(mapHide)); renderMap(); });
+      $('#map-fit').addEventListener('click', function () { mapFit = true; renderMap(); });
+      var lg = $('#map-legend');
+      ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'].forEach(function (d) { lg.append(h('span', {}, h('i', { style: 'background:' + DAYCOL[d] }), d)); });
+      lg.append(h('span', {}, h('i', { class: 'hollow' }), 'Approximate spot'));
+      lg.append(h('span', {}, h('i', { style: 'background:#8c8cb6;opacity:.45' }), 'Already worked'));
+    }
+    var list = mapOffices(), key = day + '|' + mapHide;
+    if (key !== mapKey) { mapKey = key; mapFit = true; }
+    tlayer.clearLayers();
+    var pts = [];
+    list.forEach(function (o) {
+      var done = statusOf(o) !== 'To visit', col = DAYCOL[o.day] || '#dcdcf0', ll = [o.lat, o.lon];
+      var m = o.approx
+        ? L.circleMarker(ll, { radius: 9, weight: 2, dashArray: '3 3', color: done ? '#8c8cb6' : col, fillColor: col, fillOpacity: 0.12 })
+        : L.circleMarker(ll, { radius: 9, weight: 2, color: done ? '#8c8cb6' : '#07070e', fillColor: col, fillOpacity: done ? 0.35 : 0.95 });
+      m.bindTooltip(nameOf(o) + (o.approx ? ' (approx.)' : ''), { className: 'maptip', direction: 'top', offset: [0, -6] });
+      m.on('click', function () { openSheet(o.id, null); });
+      m.addTo(tlayer); pts.push(ll);
+    });
+    $('#map-count').textContent = list.length + (list.length === 1 ? ' office' : ' offices');
+    msg.hidden = true;
+    tmap.invalidateSize();
+    if (mapFit && pts.length) { tmap.fitBounds(L.latLngBounds(pts).pad(0.08), { maxZoom: 14 }); mapFit = false; }
+  }
+
+  function showMe(ll, acc) {
+    lastLL = ll;
+    if (!tme) {
+      tacc = L.circle(ll, { radius: acc || 20, weight: 1, color: '#00cfff', fillColor: '#00cfff', fillOpacity: 0.12, interactive: false }).addTo(tmap);
+      tme = L.circleMarker(ll, { radius: 8, color: '#fff', weight: 3, fillColor: '#00cfff', fillOpacity: 1, interactive: false }).addTo(tmap);
+    } else { tme.setLatLng(ll); tacc.setLatLng(ll); tacc.setRadius(acc || 20); }
+  }
+  function milesTo(ll, o) { return tmap.distance(ll, [o.lat, o.lon]) / 1609.344; }
+  function renderNear(ll) {
+    var box = $('#map-nearlist');
+    var near = OFFICES.filter(function (o) { return typeof o.lat === 'number' && statusOf(o) === 'To visit' && (day === 'All' || o.day === day); })
+      .map(function (o) { return { o: o, m: milesTo(ll, o) }; }).sort(function (a, b) { return a.m - b.m; }).slice(0, 5);
+    box.replaceChildren(h('h3', { text: 'Closest to you (not yet worked)' }));
+    near.forEach(function (n) {
+      box.append(h('button', { type: 'button', onclick: function () { openSheet(n.o.id, null); } },
+        h('span', { class: 'd', text: n.m < 0.1 ? Math.round(n.m * 5280) + ' ft' : n.m.toFixed(1) + ' mi' }),
+        h('span', { class: 'n' }, nameOf(n.o), h('small', { text: n.o.address + (n.o.suite ? ' ' + n.o.suite : '') + ' · ' + n.o.day }))));
+    });
+    box.hidden = !near.length;
+  }
+  function stopFollow() {
+    if (watchId !== null) { navigator.geolocation.clearWatch(watchId); watchId = null; }
+    var b = $('#map-follow'); if (b) { b.setAttribute('aria-pressed', 'false'); b.textContent = 'Follow me'; }
+  }
+  function toggleFollow() {
+    var msg = $('#map-msg'), btn = $('#map-follow');
+    if (watchId !== null && !lockCenter) { lockCenter = true; btn.textContent = 'Following'; if (lastLL) tmap.setView(lastLL, Math.max(tmap.getZoom(), 14)); return; }
+    if (watchId !== null) { stopFollow(); return; }
+    if (!navigator.geolocation) { msg.hidden = false; msg.textContent = 'This device cannot share its location.'; return; }
+    msg.hidden = true; lockCenter = true; lastNear = 0;
+    btn.setAttribute('aria-pressed', 'true'); btn.textContent = 'Following';
+    var first = true;
+    watchId = navigator.geolocation.watchPosition(function (p) {
+      var ll = [p.coords.latitude, p.coords.longitude];
+      showMe(ll, p.coords.accuracy);
+      if (first) { first = false; tmap.setView(ll, 15); }
+      else if (lockCenter) tmap.panTo(ll, { animate: true, duration: 0.6 });
+      var now = Date.now(); if (now - lastNear > 3000) { lastNear = now; renderNear(ll); }
+    }, function (e) {
+      stopFollow(); msg.hidden = false;
+      msg.textContent = e && e.code === 1 ? 'Location is blocked. Allow location for this site in your browser settings, then tap Follow me again.' : 'Could not get a location fix. Try again where you have a clearer view of the sky.';
+    }, { enableHighAccuracy: true, timeout: 20000, maximumAge: 5000 });
+  }
+  function nearMe() {
+    var msg = $('#map-msg');
+    if (!navigator.geolocation) { msg.hidden = false; msg.textContent = 'This device cannot share its location.'; return; }
+    msg.hidden = true;
+    navigator.geolocation.getCurrentPosition(function (p) {
+      var ll = [p.coords.latitude, p.coords.longitude];
+      showMe(ll, p.coords.accuracy); renderNear(ll);
+      var near = mapOffices().map(function (o) { return { o: o, d: tmap.distance(ll, [o.lat, o.lon]) }; }).sort(function (a, b) { return a.d - b.d; }).slice(0, 8);
+      var b = L.latLngBounds([ll].concat(near.map(function (n) { return [n.o.lat, n.o.lon]; })));
+      tmap.fitBounds(b.pad(0.15), { maxZoom: 15 });
+    }, function () { msg.hidden = false; msg.textContent = 'Location is blocked. Allow location for this site in your browser settings, then tap Near me again.'; }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 });
+  }
+
   /* header */
   function renderHeader() {
     var vs = $('#views'); vs.replaceChildren();
     var due = dueCount();
-    [['route', 'Route'], ['drive', 'Drive'], ['follow', 'Follow-ups'], ['log', 'Log']].forEach(function (p) {
+    [['route', 'Route'], ['map', 'Map'], ['drive', 'Drive'], ['follow', 'Follow-ups'], ['log', 'Log']].forEach(function (p) {
       vs.append(h('button', { type: 'button', 'aria-pressed': String(view === p[0]), onclick: function () { setView(p[0]); } },
         p[1], p[0] === 'follow' && due ? h('span', { class: 'badge', text: due }) : null));
     });
-    var ds = $('#days'); ds.hidden = view !== 'route'; ds.replaceChildren();
+    var ds = $('#days'); ds.hidden = view !== 'route' && view !== 'map'; ds.replaceChildren();
     DAYS.forEach(function (d) {
       var list = OFFICES.filter(function (o) { return d === 'All' || o.day === d; });
       var worked = list.filter(function (o) { return statusOf(o) !== 'To visit'; }).length;
@@ -524,6 +674,7 @@ h1 { font: 700 18px/1.2 var(--display); letter-spacing: 0.02em; color: var(--acc
   /* sidebar nav (desktop) */
   var ICONS = {
     route: 'M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15',
+    map: 'M12 21s-7-6.2-7-11.5A7 7 0 0112 2.5a7 7 0 017 7C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 100-5 2.5 2.5 0 000 5z',
     drive: 'M3 11l19-9-9 19-2-8-8-2z',
     follow: 'M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 003.4 0',
     log: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 3h6v4H9zM9 12h6M9 16h6'
@@ -536,14 +687,14 @@ h1 { font: 700 18px/1.2 var(--display); letter-spacing: 0.02em; color: var(--acc
   function renderSidebar() {
     var n = $('#sidenav'); if (!n) return; n.replaceChildren();
     var due = dueCount();
-    [['route', 'Route'], ['drive', 'Drive'], ['follow', 'Follow-ups'], ['log', 'Log']].forEach(function (p) {
+    [['route', 'Route'], ['map', 'Map'], ['drive', 'Drive'], ['follow', 'Follow-ups'], ['log', 'Log']].forEach(function (p) {
       n.append(h('button', { type: 'button', class: view === p[0] ? 'active' : '', 'aria-current': view === p[0] ? 'page' : null, onclick: function () { setView(p[0]); } },
         icon(ICONS[p[0]]), p[1], p[0] === 'follow' && due ? h('span', { class: 'badge', text: due }) : null));
     });
   }
   function setView(v) {
     view = v; lsSet('tv-view', v);
-    $('#v-route').hidden = v !== 'route'; $('#v-drive').hidden = v !== 'drive'; $('#v-follow').hidden = v !== 'follow'; $('#v-log').hidden = v !== 'log';
+    $('#v-route').hidden = v !== 'route'; $('#v-drive').hidden = v !== 'drive'; $('#v-follow').hidden = v !== 'follow'; $('#v-log').hidden = v !== 'log'; $('#v-map').hidden = v !== 'map';
     renderAll(); window.scrollTo(0, 0);
   }
   function dueCount() {
@@ -881,6 +1032,7 @@ h1 { font: 700 18px/1.2 var(--display); letter-spacing: 0.02em; color: var(--acc
     if (view === 'drive') renderDrive();
     if (view === 'follow') renderFollow();
     if (view === 'log') renderLog();
+    if (view === 'map') renderMap(); else if (typeof stopFollow === 'function') stopFollow();
     syncSheet();
   }
 
@@ -915,7 +1067,7 @@ h1 { font: 700 18px/1.2 var(--display); letter-spacing: 0.02em; color: var(--acc
   }
   async function boot() {
     $('#auth').hidden = true; $('#app').hidden = false;
-    $('#v-route').hidden = view !== 'route'; $('#v-drive').hidden = view !== 'drive'; $('#v-follow').hidden = view !== 'follow'; $('#v-log').hidden = view !== 'log';
+    $('#v-route').hidden = view !== 'route'; $('#v-drive').hidden = view !== 'drive'; $('#v-follow').hidden = view !== 'follow'; $('#v-log').hidden = view !== 'log'; $('#v-map').hidden = view !== 'map';
     try { await loadOffices(); } catch (e) {
       $('#list').replaceChildren(h('div', { class: 'empty', text: 'Could not load the office list: ' + (e.message || e) + '. Reload the page to try again.' })); return;
     }
