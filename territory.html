@@ -4,51 +4,47 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#0D1A20">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Territory">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#07070e">
 <link rel="icon" type="image/png" href="/cfs-badge-sm.png">
 <style>[hidden]{display:none!important}html{-webkit-text-size-adjust:100%}</style>
-<title>Territory Visits</title>
+<title>B's Territory Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap">
 <style>
 /* Layout: one narrow column built for a phone in the car. Sticky header (views + day tabs), zip-grouped office cards, bottom sheet for logging a visit. */
 :root {
-  --bg: #F1F4F5;
-  --surface: #FFFFFF;
-  --ink: #12232B;
-  --muted: #566B74;
-  --line: #D6E0E3;
-  --accent: #0B7A85;
-  --accent-ink: #FFFFFF;
-  --accent-soft: #DCF0F2;
-  --tier-a: #1B7F47;
-  --tier-a-soft: #DAF2E3;
-  --tier-b: #A8680F;
-  --tier-b-soft: #FAEBCB;
-  --tier-c: #566B74;
-  --tier-c-soft: #E4EAEC;
-  --warn: #B83C0A;
-  --warn-soft: #FCE4D6;
-  --danger: #B42318;
-  --display: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0D1A20; --surface: #15262E; --ink: #E5EEF1; --muted: #92A8B1; --line: #28424C;
-    --accent: #4CC3CE; --accent-ink: #06262B; --accent-soft: #123A40;
-    --tier-a: #5FD08A; --tier-a-soft: #163B27; --tier-b: #E9B251; --tier-b-soft: #3D2F12;
-    --tier-c: #92A8B1; --tier-c-soft: #22353D; --warn: #FF9D68; --warn-soft: #432610; --danger: #FF8A80;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0D1A20; --surface: #15262E; --ink: #E5EEF1; --muted: #92A8B1; --line: #28424C;
-  --accent: #4CC3CE; --accent-ink: #06262B; --accent-soft: #123A40;
-  --tier-a: #5FD08A; --tier-a-soft: #163B27; --tier-b: #E9B251; --tier-b-soft: #3D2F12;
-  --tier-c: #92A8B1; --tier-c-soft: #22353D; --warn: #FF9D68; --warn-soft: #432610; --danger: #FF8A80;
   color-scheme: dark;
+  --bg: #07070e;
+  --surface: #111120;
+  --card2: #0e0e1c;
+  --card3: #171728;
+  --ink: #dcdcf0;
+  --muted: #8c8cb6;
+  --dim: #6a6a94;
+  --line: rgba(255, 255, 255, 0.10);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --accent: #ff6200;
+  --accent2: #ff8438;
+  --accent-ink: #000000;
+  --accent-soft: rgba(255, 98, 0, 0.14);
+  --cyan: #00cfff;
+  --tier-a: #00ffaa;
+  --tier-a-soft: rgba(0, 255, 170, 0.12);
+  --tier-b: #ffc842;
+  --tier-b-soft: rgba(255, 200, 66, 0.13);
+  --tier-c: #8c8cb6;
+  --tier-c-soft: rgba(255, 255, 255, 0.07);
+  --warn: #ffc842;
+  --warn-soft: rgba(255, 200, 66, 0.14);
+  --danger: #ff6b86;
+  --display: 'Orbitron', 'Exo 2', system-ui, sans-serif;
+  --body: 'Exo 2', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 * { box-sizing: border-box; }
 body {
@@ -182,23 +178,153 @@ details p { margin: 6px 0 0; font-size: 13px; color: var(--muted); overflow-wrap
 .authcard input{min-height:44px;border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--bg);color:var(--ink)}
 .signout{background:none;border:0;color:var(--accent);text-decoration:underline;padding:0;margin-left:8px}
 .importcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;margin:16px 0;display:grid;gap:10px}
+
+/* ===== CFS Command Center look (matches Command Center + Local Lead Radar) ===== */
+html { -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--body); font-size: 15px; line-height: 1.5;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(900px 500px at 0% 0%, rgba(255, 98, 0, 0.07), transparent 60%),
+    radial-gradient(800px 500px at 100% 100%, rgba(0, 207, 255, 0.06), transparent 60%);
+  background-attachment: fixed;
+}
+::selection { background: var(--accent); color: #fff; }
+::placeholder { color: var(--dim); }
+input[type="checkbox"], input[type="radio"] { accent-color: var(--accent); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #26263e; border-radius: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+:focus-visible { outline: 2px solid var(--cyan); }
+
+.top { background: rgba(7, 7, 14, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+h1 { font: 700 18px/1.2 var(--display); letter-spacing: 0.02em; color: var(--accent); }
+.sub { color: var(--muted); }
+
+.views { background: var(--card2); border: 1px solid var(--line); gap: 4px; }
+.views button { font-family: var(--display); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.views button:hover { color: var(--ink); background: rgba(255, 255, 255, 0.05); }
+.views button[aria-pressed="true"] { background: var(--accent-soft); color: #fff; box-shadow: inset 0 -2px 0 var(--accent); }
+.badge { background: var(--accent); color: #000; font-weight: 700; }
+
+.day { background: var(--surface); border-color: var(--line-strong); color: var(--ink); }
+.day:hover { border-color: var(--accent); }
+.day[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #000; }
+.day[aria-pressed="true"] small { color: #000; opacity: .75; }
+
+.search, .field input, .field select, .field textarea { background: var(--card2); border-color: var(--line-strong); color: var(--ink); }
+.search:focus, .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+.chip { border-color: var(--line-strong); color: var(--muted); }
+.chip:hover { color: var(--ink); border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: #fff; }
+
+.zip { border-bottom-color: var(--line-strong); }
+.zip h3 { color: var(--cyan); letter-spacing: 0.14em; }
+.group-title { color: var(--cyan); letter-spacing: 0.14em; }
+.group-title.over { color: var(--warn); }
+.sec h4 { color: var(--cyan); letter-spacing: 0.14em; }
+
+.office, .row, .stop, .drive-sum, .importcard { background: var(--surface); border-color: var(--line); border-radius: 14px; }
+.office:hover, .row:hover { border-color: var(--accent); }
+.o-name { font-weight: 700; }
+.pill.prio { color: var(--accent2); }
+.tier { border-radius: 8px; font-family: var(--display); }
+.seg button { background: var(--card2); border-color: var(--line-strong); color: var(--ink); }
+.seg button[aria-pressed="true"].N { background: var(--accent-soft); color: #fff; border-color: var(--accent); }
+
+.btn { background: var(--card3); border-color: var(--line-strong); color: var(--ink); font-family: var(--display); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 700; }
+.btn.primary:hover { filter: brightness(1.1); }
+.btn.ghost { background: transparent; }
+.close { background: var(--card3); border-color: var(--line-strong); color: var(--ink); }
+.navs a { font-family: var(--display); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; color: #000; }
+.navs a.alt { background: var(--card3); color: var(--ink); border-color: var(--line-strong); }
+.go { font-family: var(--display); }
+.s-info a, summary { color: var(--accent2); }
+
+.backdrop { background: rgba(0, 0, 0, .65); }
+.sheet { background: var(--surface); border: 1px solid var(--line-strong); }
+.toast { background: var(--card3); color: var(--ink); border: 1px solid var(--line-strong); box-shadow: 0 18px 40px rgba(0, 0, 0, .5); }
+.note.warn, .warnline { color: var(--warn); }
+.empty, .loading, .progress, .note { color: var(--muted); }
+
+@media (max-width: 480px) { .views button { font-size: 9.5px; letter-spacing: 0; white-space: nowrap; } .badge { margin-left: 4px; min-width: 18px; padding: 0 5px; line-height: 18px; font-size: 11px; } }
+/* ---- login gate (same card as the Command Center "Access Gate") ---- */
+.auth { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; overflow: hidden; background: var(--bg); min-height: 0; }
+.auth::before { content: ''; position: absolute; top: -140px; right: -100px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(255, 98, 0, 0.16), transparent 70%); pointer-events: none; }
+.auth::after { content: ''; position: absolute; bottom: -160px; left: -120px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(0, 207, 255, 0.12), transparent 70%); pointer-events: none; }
+.authcard { position: relative; background: #111120; border: 1px solid var(--line-strong); border-radius: 14px; padding: 36px 28px 30px; max-width: 360px; width: 100%; text-align: center; display: block; }
+.authcard img { width: 56px; height: 56px; border-radius: 50%; margin-bottom: 16px; }
+.authcard .eyebrow { font-family: var(--display); font-size: 10.5px; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; font-weight: 700; }
+.authcard h1 { font: 700 19px/1.3 var(--display); color: var(--ink); margin: 0 0 10px; }
+.authcard p.lead { color: var(--muted); font-size: 12.5px; margin: 0 0 20px; line-height: 1.6; }
+.authcard input { display: block; width: 100%; min-height: 0; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 8px; padding: 12px 14px; color: var(--ink); font-size: 16px; font-family: var(--body); margin-bottom: 12px; }
+.authcard input:focus { outline: none; border-color: var(--accent); }
+.authcard button { width: 100%; background: var(--accent); color: #000; border: none; border-radius: 8px; padding: 12px; min-height: 0; font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: filter .15s; }
+.authcard button:hover { filter: brightness(1.1); }
+.authcard .autherr { color: #ff4466; font-size: 12px; margin: 12px 0 0; min-height: 0; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---- sidebar shell (desktop), same structure as Command Center / Lead Radar ---- */
+.cfs-sidebar { display: none; }
+.signrow { margin-top: 18px; }
+.signrow .signout { min-height: 44px; min-width: 88px; padding: 0 8px; font-size: 14px; font-weight: 600; }
+.signout { color: var(--accent2); }
+@media (min-width: 1024px) {
+  .cfs-sidebar { position: fixed; top: 0; bottom: 0; left: 0; width: 248px; z-index: 40; display: flex; flex-direction: column; padding: 18px 14px; background: #0d0d18; border-right: 1px solid var(--line); }
+  .cfs-brand { padding: 4px 8px 16px; margin-bottom: 10px; border-bottom: 1px solid var(--line); }
+  .cfs-brand img { width: 60px; height: 60px; border-radius: 999px; display: block; }
+  .cfs-brand .t1 { margin-top: 14px; font-family: var(--display); font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; font-weight: 700; }
+  .cfs-brand .t2 { font-family: var(--display); font-size: 16.5px; font-weight: 700; color: #fff; line-height: 1.2; }
+  .cfs-nav { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+  .cfs-nav button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px; border-radius: 10px; border: 0; background: transparent; color: var(--muted); font: 600 16px var(--body); text-align: left; }
+  .cfs-nav button:hover { background: rgba(255, 255, 255, 0.05); color: var(--ink); }
+  .cfs-nav button.active { background: rgba(255, 98, 0, 0.13); color: #fff; box-shadow: inset 3px 0 0 var(--accent); }
+  .cfs-nav svg { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .cfs-nav .badge { margin-left: auto; }
+  .cfs-foot { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; color: var(--dim); }
+  .cfs-foot .em { color: var(--muted); word-break: break-all; margin-bottom: 10px; }
+  .cfs-foot button { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid var(--line-strong); background: transparent; color: var(--ink); font-weight: 600; }
+  .cfs-foot button:hover { border-color: var(--accent); }
+  .wrap { max-width: none; margin: 0 0 0 232px; padding: 0 24px; }
+  .wrap > .top, .wrap > main { max-width: 980px; margin-left: auto; margin-right: auto; }
+  .views { display: none; }
+  .signrow { display: none; }
+  body { font-size: 16px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+  .row, .stop { margin-bottom: 8px; }
+}
 </style>
 </head>
 <body>
 <div id="auth" class="auth" hidden>
   <form id="authform" class="authcard" autocomplete="on">
-    <h1>Territory Visits</h1>
-    <p class="note">Private. Sign in to continue.</p>
-    <label>Email<input id="authemail" type="email" autocomplete="username" required></label>
-    <label>Password<input id="authpass" type="password" autocomplete="current-password" required></label>
-    <button class="btn primary" type="submit">Sign in</button>
-    <p class="note warn" id="autherr" role="alert"></p>
+    <img src="/cfs-logo-128.png" alt="CFS" width="56" height="56">
+    <div class="eyebrow">Private Access Gate</div>
+    <h1>Unlock Territory Tracker</h1>
+    <p class="lead">Sign in with your Territory login. Your session is remembered on this device until you sign out.</p>
+    <label class="vh" for="authemail">Email</label>
+    <input id="authemail" type="email" placeholder="Email" autocomplete="username" required>
+    <label class="vh" for="authpass">Password</label>
+    <input id="authpass" type="password" placeholder="Password" autocomplete="current-password" required>
+    <button type="submit">Unlock</button>
+    <p class="autherr" id="autherr" role="alert"></p>
   </form>
 </div>
 <div class="wrap" id="app" hidden>
+  <aside class="cfs-sidebar" id="sidebar">
+    <div class="cfs-brand">
+      <img src="/cfs-logo-128.png" alt="CFS" width="60" height="60">
+      <div class="t1">CFS &middot; Private</div>
+      <div class="t2">B's Territory Tracker</div>
+    </div>
+    <nav class="cfs-nav" id="sidenav" aria-label="Views"></nav>
+    <div class="cfs-foot"><div class="em" id="sideemail"></div><button type="button" id="sidesignout">Sign out</button></div>
+  </aside>
   <header class="top">
     <div class="titlebar">
-      <h1>Territory Visits</h1>
+      <h1>B's Territory Tracker</h1>
       <div class="sub" id="stats"></div>
     </div>
     <div class="views" id="views" role="group" aria-label="View"></div>
@@ -248,6 +374,7 @@ details p { margin: 6px 0 0; font-size: 13px; color: var(--muted); overflow-wrap
     }
     return e;
   }
+  function replaceKids(el) { el.replaceChildren.apply(el, [].slice.call(arguments, 1).filter(function (x) { return x != null && x !== false; })); }
   function lsGet(k, d) { try { var v = localStorage.getItem(k); return v == null ? d : v; } catch (e) { return d; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 
@@ -390,7 +517,29 @@ details p { margin: 6px 0 0; font-size: 13px; color: var(--muted); overflow-wrap
       ds.append(h('button', { type: 'button', class: 'day', 'aria-pressed': String(day === d), onclick: function () { day = d; lsSet('tv-day', d); renderAll(); window.scrollTo(0, 0); } },
         d, h('small', { text: worked + '/' + list.length })));
     });
+    renderSidebar();
     $('#stats').textContent = visits.length ? visits.length + (visits.length === 1 ? ' visit' : ' visits') + ' logged' : 'Zone 3 \u00b7 17 zips';
+  }
+
+  /* sidebar nav (desktop) */
+  var ICONS = {
+    route: 'M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15',
+    drive: 'M3 11l19-9-9 19-2-8-8-2z',
+    follow: 'M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 003.4 0',
+    log: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 3h6v4H9zM9 12h6M9 16h6'
+  };
+  function icon(d) {
+    var s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('aria-hidden', 'true');
+    var p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', d); s.appendChild(p); return s;
+  }
+  function renderSidebar() {
+    var n = $('#sidenav'); if (!n) return; n.replaceChildren();
+    var due = dueCount();
+    [['route', 'Route'], ['drive', 'Drive'], ['follow', 'Follow-ups'], ['log', 'Log']].forEach(function (p) {
+      n.append(h('button', { type: 'button', class: view === p[0] ? 'active' : '', 'aria-current': view === p[0] ? 'page' : null, onclick: function () { setView(p[0]); } },
+        icon(ICONS[p[0]]), p[1], p[0] === 'follow' && due ? h('span', { class: 'badge', text: due }) : null));
+    });
   }
   function setView(v) {
     view = v; lsSet('tv-view', v);
@@ -578,7 +727,7 @@ details p { margin: 6px 0 0; font-size: 13px; color: var(--muted); overflow-wrap
     var c = sheet._ctx, o = c.o, id = o.id;
     c.nameEl.textContent = nameOf(o);
     var map = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(o.address + ' ' + o.zip + ' CO');
-    c.infoEl.replaceChildren(
+    replaceKids(c.infoEl, 
       h('div', { class: 'addr', text: addrLine(o) + ', ' + o.zip }),
       o.outside ? h('div', { class: 'warnline', text: 'Zip ' + o.zip + ' is not on your assigned territory list.' }) : null,
       o.approx ? h('div', { class: 'warnline', text: 'Map position is approximate. Check the address.' }) : null,
@@ -773,7 +922,9 @@ details p { margin: 6px 0 0; font-size: 13px; color: var(--muted); overflow-wrap
     if (!OFFICES.length) { $('#list').replaceChildren(importCard()); return; }
     await initStore();
     var so = h('button', { type: 'button', class: 'signout', onclick: async function () { await sb.auth.signOut(); location.reload(); } }, 'Sign out');
-    $('#syncnote').after(h('p', { class: 'note' }, so));
+    $('#syncnote').after(h('p', { class: 'note signrow' }, so));
+    $('#sidesignout').addEventListener('click', async function () { await sb.auth.signOut(); location.reload(); });
+    try { var ss = await sb.auth.getSession(); $('#sideemail').textContent = (ss.data && ss.data.session && ss.data.session.user.email) || ''; } catch (e) {}
     loaded = true; renderAll();
   }
   function showLogin() { $('#app').hidden = true; $('#auth').hidden = false; }
