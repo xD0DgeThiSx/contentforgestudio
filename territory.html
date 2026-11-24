@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0D1A20">
+<link rel="icon" type="image/png" href="/cfs-badge-sm.png">
+<style>[hidden]{display:none!important}html{-webkit-text-size-adjust:100%}</style>
+<title>Territory Visits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: one narrow column built for a phone in the car. Sticky header (views + day tabs), zip-grouped office cards, bottom sheet for logging a visit. */
+:root {
+  --bg: #F1F4F5;
+  --surface: #FFFFFF;
+  --ink: #12232B;
+  --muted: #566B74;
+  --line: #D6E0E3;
+  --accent: #0B7A85;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #DCF0F2;
+  --tier-a: #1B7F47;
+  --tier-a-soft: #DAF2E3;
+  --tier-b: #A8680F;
+  --tier-b-soft: #FAEBCB;
+  --tier-c: #566B74;
+  --tier-c-soft: #E4EAEC;
+  --warn: #B83C0A;
+  --warn-soft: #FCE4D6;
+  --danger: #B42318;
+  --display: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1A20; --surface: #15262E; --ink: #E5EEF1; --muted: #92A8B1; --line: #28424C;
+    --accent: #4CC3CE; --accent-ink: #06262B; --accent-soft: #123A40;
+    --tier-a: #5FD08A; --tier-a-soft: #163B27; --tier-b: #E9B251; --tier-b-soft: #3D2F12;
+    --tier-c: #92A8B1; --tier-c-soft: #22353D; --warn: #FF9D68; --warn-soft: #432610; --danger: #FF8A80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1A20; --surface: #15262E; --ink: #E5EEF1; --muted: #92A8B1; --line: #28424C;
+  --accent: #4CC3CE; --accent-ink: #06262B; --accent-soft: #123A40;
+  --tier-a: #5FD08A; --tier-a-soft: #163B27; --tier-b: #E9B251; --tier-b-soft: #3D2F12;
+  --tier-c: #92A8B1; --tier-c-soft: #22353D; --warn: #FF9D68; --warn-soft: #432610; --danger: #FF8A80;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.45 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 56px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 30; }
+body.lock { overflow: hidden; }
+.wrap { max-width: 720px; margin: 0 auto; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); padding-top: 14px; }
+.titlebar { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+h1 { font: 700 22px/1.1 var(--display); letter-spacing: -0.01em; margin: 0; }
+.sub { color: var(--muted); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
+.views { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 12px; padding: 4px; background: var(--line); border-radius: 12px; }
+.views button { border: 0; background: transparent; border-radius: 9px; min-height: 40px; font-weight: 600; font-size: 13px; color: var(--muted); padding: 0 2px; }
+.views button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+.badge { display: inline-block; min-width: 20px; padding: 0 6px; margin-left: 6px; border-radius: 10px; background: var(--warn); color: #fff; font-size: 12px; line-height: 20px; font-variant-numeric: tabular-nums; }
+.days { display: flex; gap: 6px; overflow-x: auto; padding: 12px 0 12px; scrollbar-width: none; }
+.days::-webkit-scrollbar { display: none; }
+.day { flex: 0 0 auto; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 14px; min-height: 44px; font-weight: 600; font-size: 14px; display: flex; flex-direction: column; justify-content: center; align-items: center; line-height: 1.15; }
+.day small { font-weight: 500; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.day[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.day[aria-pressed="true"] small { color: var(--accent-ink); opacity: .85; }
+
+.filters { display: flex; flex-direction: column; gap: 10px; padding: 4px 0 6px; }
+.search { width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 11px 14px; font-size: 16px; min-height: 46px; }
+.chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: 0 0 auto; border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 6px 12px; min-height: 36px; font-size: 13px; font-weight: 500; color: var(--muted); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.progress { color: var(--muted); font-size: 13px; margin: 6px 0 2px; font-variant-numeric: tabular-nums; }
+
+.zip { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin: 20px 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+.zip h3 { margin: 0; font: 700 13px/1.2 var(--display); text-transform: uppercase; letter-spacing: .08em; }
+.zip span { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.cards { display: flex; flex-direction: column; gap: 8px; }
+.office { width: 100%; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; min-width: 0; }
+.office:hover { border-color: var(--accent); }
+.o-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.o-name { font-weight: 600; font-size: 15px; overflow-wrap: anywhere; min-width: 0; }
+.o-addr { color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.o-meta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; margin-top: 4px; font-size: 12px; color: var(--muted); }
+.pill { display: inline-block; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); font-size: 12px; font-weight: 500; color: var(--muted); }
+.pill.prio { background: var(--accent-soft); border-color: transparent; color: var(--accent); font-weight: 600; }
+.pill.follow { background: var(--warn-soft); border-color: transparent; color: var(--warn); font-weight: 600; }
+.pill.done { background: var(--tier-a-soft); border-color: transparent; color: var(--tier-a); font-weight: 600; }
+.pill.nofit { text-decoration: line-through; }
+.pill.verify { border-style: dashed; }
+.tier { flex: 0 0 auto; width: 28px; height: 28px; border-radius: 7px; display: grid; place-items: center; font: 700 14px var(--display); border: 1px dashed var(--line); color: var(--muted); }
+.tier.A { background: var(--tier-a-soft); color: var(--tier-a); border: 0; }
+.tier.B { background: var(--tier-b-soft); color: var(--tier-b); border: 0; }
+.tier.C { background: var(--tier-c-soft); color: var(--tier-c); border: 0; }
+.empty { color: var(--muted); padding: 28px 4px; text-align: center; }
+.note { color: var(--muted); font-size: 12px; margin-top: 28px; }
+.note.warn { color: var(--warn); }
+
+.group-title { margin: 22px 0 8px; font: 700 13px/1.2 var(--display); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.group-title.over { color: var(--warn); }
+.row { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; margin-bottom: 8px; min-width: 0; }
+.row .r-top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.row .r-name { font-weight: 600; overflow-wrap: anywhere; }
+.row .r-date { color: var(--muted); font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.row .r-body { font-size: 14px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.row .r-sub { color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 9px; padding: 8px 14px; min-height: 40px; font-weight: 600; font-size: 14px; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.danger { color: var(--danger); }
+.btn.ghost { background: transparent; }
+.tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+
+/* bottom sheet */
+.backdrop { position: fixed; inset: 0; background: rgba(5, 15, 20, .55); z-index: 40; }
+.sheet { position: fixed; z-index: 41; left: 0; right: 0; bottom: 0; max-height: 94%; overflow-y: auto; background: var(--bg); border-radius: 18px 18px 0 0; padding: 16px max(16px, env(safe-area-inset-left, 0px)) calc(28px + env(safe-area-inset-bottom, 0px)); overscroll-behavior: contain; animation: rise .18s ease-out; }
+@keyframes rise { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .sheet { animation: none; } }
+@media (min-width: 720px) {
+  .sheet { left: 50%; right: auto; bottom: auto; top: 4vh; width: 620px; max-height: 92vh; transform: translateX(-50%); border-radius: 18px; animation: none; padding-bottom: 28px; }
+}
+.s-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.s-head h2 { margin: 0; font: 700 20px/1.2 var(--display); overflow-wrap: anywhere; min-width: 0; }
+.close { flex: 0 0 auto; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; width: 44px; height: 44px; font-size: 20px; line-height: 1; }
+.s-info { margin-top: 10px; display: grid; gap: 4px; font-size: 14px; }
+.s-info a { color: var(--accent); font-weight: 600; }
+.s-info .muted { color: var(--muted); }
+.s-info .addr { overflow-wrap: anywhere; }
+details { margin-top: 8px; }
+summary { cursor: pointer; color: var(--accent); font-weight: 600; font-size: 14px; min-height: 32px; }
+details p { margin: 6px 0 0; font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+.sec { margin-top: 18px; }
+.sec h4 { margin: 0 0 8px; font: 700 12px/1.2 var(--display); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.seg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.seg button { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; min-height: 46px; font-weight: 700; font-family: var(--display); font-size: 16px; }
+.seg button[aria-pressed="true"].A { background: var(--tier-a-soft); color: var(--tier-a); border-color: var(--tier-a); }
+.seg button[aria-pressed="true"].B { background: var(--tier-b-soft); color: var(--tier-b); border-color: var(--tier-b); }
+.seg button[aria-pressed="true"].C { background: var(--tier-c-soft); color: var(--tier-c); border-color: var(--tier-c); }
+.seg button[aria-pressed="true"].N { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.field { display: grid; gap: 4px; margin-bottom: 10px; min-width: 0; }
+.field label { font-size: 12px; font-weight: 600; color: var(--muted); }
+.field input, .field select, .field textarea { width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 11px 12px; font-size: 16px; min-height: 46px; min-width: 0; }
+.field textarea { min-height: 96px; resize: vertical; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0 10px; }
+.hint { font-size: 12px; color: var(--muted); margin: -4px 0 10px; }
+.save { width: 100%; min-height: 50px; font-size: 16px; }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 60; max-width: min(92vw, 420px); background: var(--ink); color: var(--bg); padding: 11px 16px; border-radius: 10px; font-size: 14px; font-weight: 500; }
+.hist .row { background: var(--surface); }
+.drive-sum { margin-top: 6px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); display: grid; gap: 4px; }
+.drive-sum .ds-top { font: 700 17px/1.2 var(--display); }
+.drive-sum .ds-sub { color: var(--muted); font-size: 13px; }
+.navs { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+.navs a { text-decoration: none; display: inline-flex; align-items: center; color: var(--accent-ink); background: var(--accent); border-radius: 9px; padding: 0 14px; min-height: 44px; font-weight: 600; font-size: 14px; }
+.navs a.alt { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+.stop { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px 8px 8px 10px; margin-bottom: 8px; }
+.stop.worked { opacity: .55; }
+.seq { width: 30px; height: 30px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font: 700 13px var(--display); font-variant-numeric: tabular-nums; }
+.stop-main { border: 0; background: transparent; text-align: left; padding: 4px 0; display: grid; gap: 3px; min-width: 0; }
+.go { text-decoration: none; border: 1px solid var(--accent); color: var(--accent); border-radius: 9px; min-height: 44px; min-width: 52px; display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+.warnline { color: var(--warn); font-size: 13px; font-weight: 600; }
+.loading { color: var(--muted); padding: 30px 0; text-align: center; }
+.auth{min-height:100vh;display:grid;place-items:center;padding:24px 0}
+.authcard{width:100%;max-width:360px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:12px}
+.authcard h1{font:700 22px var(--display);margin:0}
+.authcard label{display:grid;gap:4px;font-weight:600;font-size:13px;color:var(--muted)}
+.authcard input{min-height:44px;border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--bg);color:var(--ink)}
+.signout{background:none;border:0;color:var(--accent);text-decoration:underline;padding:0;margin-left:8px}
+.importcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;margin:16px 0;display:grid;gap:10px}
+</style>
+</head>
+<body>
+<div id="auth" class="auth" hidden>
+  <form id="authform" class="authcard" autocomplete="on">
+    <h1>Territory Visits</h1>
+    <p class="note">Private. Sign in to continue.</p>
+    <label>Email<input id="authemail" type="email" autocomplete="username" required></label>
+    <label>Password<input id="authpass" type="password" autocomplete="current-password" required></label>
+    <button class="btn primary" type="submit">Sign in</button>
+    <p class="note warn" id="autherr" role="alert"></p>
+  </form>
+</div>
+<div class="wrap" id="app" hidden>
+  <header class="top">
+    <div class="titlebar">
+      <h1>Territory Visits</h1>
+      <div class="sub" id="stats"></div>
+    </div>
+    <div class="views" id="views" role="group" aria-label="View"></div>
+    <div class="days" id="days" role="group" aria-label="Route day"></div>
+  </header>
+  <main>
+    <section id="v-route">
+      <div class="filters">
+        <input class="search" id="search" type="search" placeholder="Search practice, address, phone or provider" autocomplete="off" aria-label="Search offices">
+        <div class="chips" id="chips" role="group" aria-label="Filter"></div>
+      </div>
+      <div class="progress" id="progress"></div>
+      <div id="list"><div class="loading">Loading offices...</div></div>
+    </section>
+    <section id="v-drive" hidden></section>
+    <section id="v-follow" hidden></section>
+    <section id="v-log" hidden></section>
+    <p class="note" id="syncnote"></p>
+  </main>
+</div>
+<div id="sheetroot"></div>
+<div id="toast" class="toast" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (s) { return document.querySelector(s); };
+  function h(tag, props) {
+    var e = document.createElement(tag);
+    props = props || {};
+    for (var k in props) {
+      var v = props[k];
+      if (v == null || v === false) continue;
+      if (k === 'class') e.className = v;
+      else if (k === 'text') e.textContent = v;
+      else if (k.slice(0, 2) === 'on') e.addEventListener(k.slice(2), v);
+      else e.setAttribute(k, v === true ? '' : v);
+    }
+    for (var i = 2; i < arguments.length; i++) {
+      var kids = [].concat(arguments[i]);
+      for (var j = 0; j < kids.length; j++) {
+        var c = kids[j];
+        if (c == null || c === false) continue;
+        e.append(c.nodeType ? c : document.createTextNode(String(c)));
+      }
+    }
+    return e;
+  }
+  function lsGet(k, d) { try { var v = localStorage.getItem(k); return v == null ? d : v; } catch (e) { return d; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+  var DAYS = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'All'];
+  var RUN = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'];
+  var FILTERS = [['all', 'All'], ['todo', 'To visit'], ['follow', 'Follow-up'], ['A', 'Tier A'], ['B', 'Tier B'], ['C', 'Tier C'], ['none', 'No tier']];
+  var STATUSES = ['To visit', 'Visited', 'Follow-up', 'Not a fit'];
+  var OUTCOMES = ['Met decision maker', 'Met staff, left info', 'Gatekeeper only', 'Not in / dropped off', 'Follow-up scheduled', 'Not interested'];
+  var ROLES = ['Physician', 'NP / PA', 'Office manager', 'Front desk', 'Nurse / MA', 'Referral coordinator', 'Other'];
+  var PRIO = { 'Pulmonology': 0, 'Sleep': 1, 'Primary Care': 2, 'Cardiology': 3, 'Neurology': 4 };
+
+  var OFFICES = [], BYID = {};
+  var officeState = {}, visits = [], vmap = {};
+  var view = lsGet('tv-view', 'route'), day = lsGet('tv-day', 'Day 1'), filter = lsGet('tv-filter', 'all'), q = '';
+  if (DAYS.indexOf(day) < 0) day = 'Day 1';
+  var HOME = null, DAYMETA = {}, driveDay = lsGet('tv-driveday', ''), onlyRem = lsGet('tv-onlyrem', '1') === '1';
+  var openId = null, editing = null, lastFocus = null, store = null, mode = 'local', dl = null, loaded = false;
+
+  /* dates */
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function ymd(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function today() { return ymd(new Date()); }
+  function parse(s) { var p = String(s).split('-').map(Number); return new Date(p[0], p[1] - 1, p[2]); }
+  function addDays(s, n) { var d = parse(s); d.setDate(d.getDate() + n); return ymd(d); }
+  function fmtLong(s) { return s ? parse(s).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }) : ''; }
+  function fmtShort(s) { return s ? parse(s).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : ''; }
+
+  /* derived data */
+  function st(id) { return officeState[id] || {}; }
+  function nameOf(o) { return st(o.id).name || o.name; }
+  function tierOf(o) { return st(o.id).tier || ''; }
+  function statusOf(o) { return st(o.id).status || 'To visit'; }
+  function unconfirmed(o) { return !st(o.id).name && /^(Verify|NPI - verify|Maps - verify)$/.test(o.src); }
+  function rebuildIndex() {
+    vmap = {};
+    visits.slice().sort(function (a, b) { return (b.date || '').localeCompare(a.date || '') || (b.createdAt || 0) - (a.createdAt || 0); })
+      .forEach(function (v) { (vmap[v.officeId] = vmap[v.officeId] || []).push(v); });
+  }
+  function lastVisit(id) { var l = vmap[id]; return l && l[0] ? l[0].date : ''; }
+  function suiteText(o) { return o.suite ? 'Ste ' + o.suite.replace(/^(ste|suite|sute|#|\.)\s*/i, '') : ''; }
+  function addrLine(o) { return [o.address, suiteText(o)].filter(Boolean).join(' \u00b7 '); }
+  function matches(o) {
+    var s = statusOf(o), t = tierOf(o);
+    if (filter === 'todo' && s !== 'To visit') return false;
+    if (filter === 'follow' && s !== 'Follow-up') return false;
+    if ((filter === 'A' || filter === 'B' || filter === 'C') && t !== filter) return false;
+    if (filter === 'none' && t) return false;
+    if (q) {
+      var hay = (nameOf(o) + ' ' + o.address + ' ' + o.phone + ' ' + o.zip + ' ' + o.names + ' ' + o.area + ' ' + o.lead).toLowerCase();
+      var parts = q.toLowerCase().split(/\s+/).filter(Boolean);
+      for (var i = 0; i < parts.length; i++) if (hay.indexOf(parts[i]) < 0) return false;
+    }
+    return true;
+  }
+
+  /* toast + sync note */
+  var toastTimer;
+  function toast(msg) {
+    var t = $('#toast'); t.textContent = msg; t.hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.hidden = true; }, 2600);
+  }
+  function setNote(msg, warn) { var n = $('#syncnote'); n.textContent = msg; n.className = 'note' + (warn ? ' warn' : ''); }
+
+  /* store: shared db when available, this device otherwise */
+  var queue = {};
+  function chain(key, fn) {
+    var p = (queue[key] || Promise.resolve()).then(fn).catch(function (e) {
+      console.error(e); toast('That change did not save. Check your connection and try again.');
+    });
+    queue[key] = p; return p;
+  }
+  function localLoad() {
+    try { var d = JSON.parse(lsGet('tv-local-v1', '{}')); officeState = d.offices || {}; visits = d.visits || []; } catch (e) { officeState = {}; visits = []; }
+    rebuildIndex();
+  }
+  function localSave() { lsSet('tv-local-v1', JSON.stringify({ offices: officeState, visits: visits })); }
+
+  var SB_URL = 'https://dwfctlijtpfsanihijic.supabase.co';
+  var SB_KEY = 'sb_publishable_EQ7nzMnUozn5AG7rExEW2w_j5HRlX0W';
+  var sb = window.supabase.createClient(SB_URL, SB_KEY);
+  var tdb = sb.schema('territory');
+
+  function saveFile(o) {
+    var blob = new Blob([o.data], { type: 'text/csv;charset=utf-8' });
+    var url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = url; a.download = o.filename; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    return Promise.resolve();
+  }
+  async function loadState() {
+    var r = await Promise.all([tdb.from('office_state').select('id,data').range(0, 999), tdb.from('visits').select('id,data').range(0, 4999)]);
+    if (r[0].error) throw r[0].error; if (r[1].error) throw r[1].error;
+    officeState = {}; r[0].data.forEach(function (x) { officeState[x.id] = x.data; });
+    visits = r[1].data.map(function (x) { var d = Object.assign({}, x.data); d.id = x.id; return d; });
+    rebuildIndex();
+  }
+  async function initStore() {
+    dl = { save: saveFile };
+    mode = 'db';
+    try { await loadState(); setNote('Saved to your private database. Syncs across your devices.'); }
+    catch (e) { console.error(e); setNote('Could not reach saved data: ' + (e.message || e) + '. Reload to try again.', true); }
+    store = {
+      setOffice: function (id, o) { return chain('o' + id, async function () { var r = await tdb.from('office_state').upsert({ id: id, data: o, updated_at: new Date().toISOString() }); if (r.error) throw r.error; }); },
+      setVisit: function (id, o) { return chain('v' + id, async function () { var r = await tdb.from('visits').upsert({ id: id, data: o, updated_at: new Date().toISOString() }); if (r.error) throw r.error; }); },
+      delVisit: function (id) { return chain('v' + id, async function () { var r = await tdb.from('visits').delete().eq('id', id); if (r.error) throw r.error; }); }
+    };
+    document.addEventListener('visibilitychange', async function () {
+      if (document.visibilityState !== 'visible' || openId || !loaded) return;
+      try { await loadState(); renderAll(); } catch (e) {}
+    });
+  }
+
+  /* mutations */
+  function patchOffice(id, patch) {
+    var next = Object.assign({}, st(id), patch);
+    Object.keys(next).forEach(function (k) { if (next[k] === undefined) delete next[k]; });
+    officeState[id] = next;
+    store.setOffice(id, next);
+    renderAll();
+  }
+  function newId() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+  function upsertVisit(id, obj) {
+    var rec = Object.assign({ id: id }, obj), i = visits.findIndex(function (v) { return v.id === id; });
+    if (i >= 0) visits[i] = rec; else visits.push(rec);
+    rebuildIndex();
+  }
+
+  /* header */
+  function renderHeader() {
+    var vs = $('#views'); vs.replaceChildren();
+    var due = dueCount();
+    [['route', 'Route'], ['drive', 'Drive'], ['follow', 'Follow-ups'], ['log', 'Log']].forEach(function (p) {
+      vs.append(h('button', { type: 'button', 'aria-pressed': String(view === p[0]), onclick: function () { setView(p[0]); } },
+        p[1], p[0] === 'follow' && due ? h('span', { class: 'badge', text: due }) : null));
+    });
+    var ds = $('#days'); ds.hidden = view !== 'route'; ds.replaceChildren();
+    DAYS.forEach(function (d) {
+      var list = OFFICES.filter(function (o) { return d === 'All' || o.day === d; });
+      var worked = list.filter(function (o) { return statusOf(o) !== 'To visit'; }).length;
+      ds.append(h('button', { type: 'button', class: 'day', 'aria-pressed': String(day === d), onclick: function () { day = d; lsSet('tv-day', d); renderAll(); window.scrollTo(0, 0); } },
+        d, h('small', { text: worked + '/' + list.length })));
+    });
+    $('#stats').textContent = visits.length ? visits.length + (visits.length === 1 ? ' visit' : ' visits') + ' logged' : 'Zone 3 \u00b7 17 zips';
+  }
+  function setView(v) {
+    view = v; lsSet('tv-view', v);
+    $('#v-route').hidden = v !== 'route'; $('#v-drive').hidden = v !== 'drive'; $('#v-follow').hidden = v !== 'follow'; $('#v-log').hidden = v !== 'log';
+    renderAll(); window.scrollTo(0, 0);
+  }
+  function dueCount() {
+    var t = today();
+    return visits.filter(function (v) { return v.followUp && !v.done && v.followUp <= t; }).length;
+  }
+
+  /* route view */
+  function renderFilters() {
+    var c = $('#chips'); c.replaceChildren();
+    FILTERS.forEach(function (f) {
+      c.append(h('button', { type: 'button', class: 'chip', 'aria-pressed': String(filter === f[0]), onclick: function () { filter = f[0]; lsSet('tv-filter', f[0]); renderAll(); } }, f[1]));
+    });
+  }
+  function officeCard(o) {
+    var t = tierOf(o), s = statusOf(o), lv = lastVisit(o.id);
+    var meta = h('div', { class: 'o-meta' },
+      h('span', { class: 'pill' + (PRIO[o.lead] <= 1 ? ' prio' : ''), text: o.lead }),
+      o.providers > 1 ? h('span', { text: o.providers + ' providers' }) : null,
+      s !== 'To visit' ? h('span', { class: 'pill ' + (s === 'Follow-up' ? 'follow' : s === 'Visited' ? 'done' : 'nofit'), text: s }) : null,
+      lv ? h('span', { text: 'Last visit ' + fmtShort(lv) }) : null,
+      unconfirmed(o) ? h('span', { class: 'pill verify', text: 'confirm name' }) : null,
+      o.outside ? h('span', { class: 'pill follow', text: 'not on assigned zips' }) : null);
+    return h('button', { type: 'button', class: 'office', onclick: function (ev) { openSheet(o.id, ev.currentTarget); } },
+      h('div', { class: 'o-top' }, h('span', { class: 'o-name', text: nameOf(o) }), h('span', { class: 'tier ' + t, text: t || '\u2013', 'aria-label': t ? 'Tier ' + t : 'No tier' })),
+      h('div', { class: 'o-addr', text: addrLine(o) }),
+      meta);
+  }
+  function renderList() {
+    if (!loaded) return;
+    var inDay = OFFICES.filter(function (o) { return day === 'All' || o.day === day; });
+    var items = inDay.filter(matches);
+    var worked = inDay.filter(function (o) { return statusOf(o) !== 'To visit'; }).length;
+    $('#progress').textContent = worked + ' of ' + inDay.length + ' worked' + (items.length !== inDay.length ? ' \u00b7 showing ' + items.length : '');
+    var list = $('#list'); list.replaceChildren();
+    if (!items.length) { list.append(h('div', { class: 'empty', text: q || filter !== 'all' ? 'No offices match this filter.' : 'No offices on this day.' })); return; }
+    var groups = [], idx = {};
+    items.forEach(function (o) {
+      var k = day === 'All' ? o.day + '|' + o.zip : String(o.zip);
+      if (!(k in idx)) { idx[k] = groups.length; groups.push({ zip: o.zip, area: o.area, day: o.day, items: [] }); }
+      groups[idx[k]].items.push(o);
+    });
+    groups.forEach(function (g) {
+      g.items.sort(function (a, b) { return (PRIO[a.lead] - PRIO[b.lead]) || nameOf(a).localeCompare(nameOf(b)); });
+      var w = g.items.filter(function (o) { return statusOf(o) !== 'To visit'; }).length;
+      list.append(h('div', { class: 'zip' },
+        h('h3', { text: g.zip + ' \u00b7 ' + g.area }),
+        h('span', { text: (day === 'All' ? g.day + ' \u00b7 ' : '') + w + '/' + g.items.length })));
+      list.append(h('div', { class: 'cards' }, g.items.map(officeCard)));
+    });
+  }
+
+  /* follow-ups view */
+  function visitRow(v, opts) {
+    var o = BYID[v.officeId]; if (!o) return null;
+    return h('div', { class: 'row' },
+      h('div', { class: 'r-top' }, h('span', { class: 'r-name', text: nameOf(o) }), h('span', { class: 'r-date', text: opts.date })),
+      v.spokeWith ? h('div', { class: 'r-sub', text: 'Spoke with ' + v.spokeWith + (v.role ? ' (' + v.role + ')' : '') }) : null,
+      opts.body ? h('div', { class: 'r-body', text: opts.body }) : null,
+      h('div', { class: 'actions' }, opts.actions || []));
+  }
+  function renderFollow() {
+    var s = $('#v-follow'); s.replaceChildren();
+    var t = today(), wk = addDays(t, 7);
+    var pend = visits.filter(function (v) { return v.followUp && !v.done; }).sort(function (a, b) { return a.followUp.localeCompare(b.followUp); });
+    if (!pend.length) { s.append(h('div', { class: 'empty', text: 'No follow-ups yet. When you log a visit with a follow-up date, it shows up here.' })); return; }
+    [['Overdue', function (v) { return v.followUp < t; }, 'over'], ['Today', function (v) { return v.followUp === t; }, ''],
+     ['Next 7 days', function (v) { return v.followUp > t && v.followUp <= wk; }, ''], ['Later', function (v) { return v.followUp > wk; }, '']].forEach(function (g) {
+      var list = pend.filter(g[1]); if (!list.length) return;
+      s.append(h('div', { class: 'group-title ' + g[2], text: g[0] + ' (' + list.length + ')' }));
+      list.forEach(function (v) {
+        var row = visitRow(v, {
+          date: fmtLong(v.followUp), body: v.nextStep || v.notes || '',
+          actions: [
+            h('button', { type: 'button', class: 'btn primary', onclick: function () { markDone(v.id); } }, 'Mark done'),
+            h('button', { type: 'button', class: 'btn', onclick: function (ev) { openSheet(v.officeId, ev.currentTarget); } }, 'Open office')]
+        });
+        if (row) s.append(row);
+      });
+    });
+  }
+  function markDone(id) {
+    var v = visits.find(function (x) { return x.id === id; }); if (!v) return;
+    var rec = Object.assign({}, v, { done: true }); delete rec.id;
+    upsertVisit(id, rec); store.setVisit(id, rec); renderAll(); toast('Follow-up marked done');
+  }
+
+  /* visit log view */
+  function csvCell(x) { x = x == null ? '' : String(x); return /[",\n\r]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x; }
+  function toCsv(rows) { return rows.map(function (r) { return r.map(csvCell).join(','); }).join('\r\n'); }
+  async function exportFile(name, rows) {
+    if (!dl) { toast('Saving files is not available in this view.'); return; }
+    try { await dl.save({ filename: name, data: toCsv(rows) }); } catch (e) { if (!e || e.code !== 'declined') toast('Could not save the file.'); }
+  }
+  function exportVisits() {
+    var rows = [['Date', 'Practice', 'Zip', 'Day', 'Spoke with', 'Role', 'Outcome', 'Notes', 'Next step', 'Follow-up date', 'Follow-up done']];
+    visits.slice().sort(function (a, b) { return a.date.localeCompare(b.date); }).forEach(function (v) {
+      var o = BYID[v.officeId] || {};
+      rows.push([v.date, o.id ? nameOf(o) : v.officeId, o.zip, o.day, v.spokeWith, v.role, v.outcome, v.notes, v.nextStep, v.followUp, v.done ? 'yes' : '']);
+    });
+    exportFile('visit-log-' + today() + '.csv', rows);
+  }
+  function exportAccounts() {
+    var rows = [['Zip', 'Practice', 'Address', 'Suite', 'Lead specialty', 'Phone', 'Day', 'Tier', 'Status', 'Last visit', 'Visits']];
+    OFFICES.forEach(function (o) { rows.push([o.zip, nameOf(o), o.address, o.suite, o.lead, o.phone, o.day, tierOf(o), statusOf(o), lastVisit(o.id), (vmap[o.id] || []).length]); });
+    exportFile('accounts-' + today() + '.csv', rows);
+  }
+  function renderLog() {
+    var s = $('#v-log'); s.replaceChildren();
+    if (dl) s.append(h('div', { class: 'tools' },
+      h('button', { type: 'button', class: 'btn', onclick: exportVisits }, 'Export visits (CSV)'),
+      h('button', { type: 'button', class: 'btn', onclick: exportAccounts }, 'Export accounts (CSV)')));
+    var all = visits.slice().sort(function (a, b) { return b.date.localeCompare(a.date) || (b.createdAt || 0) - (a.createdAt || 0); });
+    if (!all.length) { s.append(h('div', { class: 'empty', text: 'No visits logged yet. Open an office on the Route tab and tap Save visit.' })); return; }
+    var wrap = h('div', { style: 'margin-top:14px' });
+    all.forEach(function (v) {
+      var row = visitRow(v, {
+        date: fmtLong(v.date),
+        body: [v.outcome, v.notes, v.nextStep ? 'Next: ' + v.nextStep : ''].filter(Boolean).join('\n'),
+        actions: [h('button', { type: 'button', class: 'btn', onclick: function (ev) { openSheet(v.officeId, ev.currentTarget); } }, 'Open office')]
+      });
+      if (row) wrap.append(row);
+    });
+    s.append(wrap);
+  }
+
+  /* office sheet */
+  function closeSheet() {
+    $('#sheetroot').replaceChildren(); document.body.classList.remove('lock');
+    openId = null; editing = null;
+    if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
+  }
+  function field(id, label, control) { return h('div', { class: 'field' }, h('label', { for: id, text: label }), control); }
+  function openSheet(id, from) {
+    var o = BYID[id]; if (!o) return;
+    openId = id; editing = null; lastFocus = from || null;
+    var root = $('#sheetroot'); root.replaceChildren();
+    document.body.classList.add('lock');
+
+    var nameEl = h('h2', { id: 'sh-name' });
+    var infoEl = h('div', { class: 's-info' });
+    var tierEl = h('div', { class: 'seg', role: 'group', 'aria-label': 'Tier' });
+    var statusSel = h('select', { id: 'f-status' }, STATUSES.map(function (x) { return h('option', { value: x, text: x }); }));
+    statusSel.addEventListener('change', function () { patchOffice(id, { status: statusSel.value }); });
+    var histEl = h('div', { class: 'hist' });
+
+    var f = {
+      date: h('input', { id: 'f-date', type: 'date', value: today() }),
+      who: h('input', { id: 'f-who', type: 'text', autocomplete: 'off', placeholder: 'Name' }),
+      role: h('input', { id: 'f-role', type: 'text', autocomplete: 'off', list: 'roles', placeholder: 'Pick or type' }),
+      outcome: h('select', { id: 'f-outcome' }, [h('option', { value: '', text: 'Choose outcome' })].concat(OUTCOMES.map(function (x) { return h('option', { value: x, text: x }); }))),
+      notes: h('textarea', { id: 'f-notes', placeholder: 'What you learned, what they use, who refers to whom' }),
+      next: h('input', { id: 'f-next', type: 'text', autocomplete: 'off', placeholder: 'Bring lunch Thursday, drop off forms' }),
+      follow: h('input', { id: 'f-follow', type: 'date' })
+    };
+    var saveBtn = h('button', { type: 'button', class: 'btn primary save', onclick: function () { saveVisit(f, saveBtn, cancelBtn); } }, 'Save visit');
+    var cancelBtn = h('button', { type: 'button', class: 'btn ghost save', hidden: true, onclick: function () { clearForm(f, saveBtn, cancelBtn); } }, 'Cancel edit');
+
+    var sheet = h('div', { class: 'sheet', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'sh-name' },
+      h('div', { class: 's-head' }, nameEl, h('button', { type: 'button', class: 'close', 'aria-label': 'Close', onclick: closeSheet, text: '\u00d7' })),
+      infoEl,
+      h('div', { class: 'sec' }, h('h4', { text: 'Account tier' }), tierEl),
+      h('div', { class: 'sec' }, field('f-status', 'Status', statusSel)),
+      h('div', { class: 'sec' }, h('h4', { text: 'Log a visit' }),
+        h('div', { class: 'two' }, field('f-date', 'Date', f.date), field('f-follow', 'Follow-up date', f.follow)),
+        h('div', { class: 'two' }, field('f-who', 'Spoke with', f.who), field('f-role', 'Role', f.role)),
+        h('datalist', { id: 'roles' }, ROLES.map(function (r) { return h('option', { value: r }); })),
+        field('f-outcome', 'Outcome', f.outcome),
+        field('f-notes', 'Notes', f.notes),
+        h('div', { class: 'hint', text: 'No patient names or details.' }),
+        field('f-next', 'Next step', f.next),
+        saveBtn, cancelBtn),
+      h('div', { class: 'sec' }, h('h4', { text: 'Visit history' }), histEl));
+    root.append(h('div', { class: 'backdrop', onclick: closeSheet }), sheet);
+    sheet._ctx = { o: o, nameEl: nameEl, infoEl: infoEl, tierEl: tierEl, statusSel: statusSel, histEl: histEl, f: f, saveBtn: saveBtn, cancelBtn: cancelBtn };
+    syncSheet();
+    sheet.querySelector('.close').focus();
+  }
+  function syncSheet() {
+    var sheet = document.querySelector('.sheet'); if (!sheet || !sheet._ctx) return;
+    var c = sheet._ctx, o = c.o, id = o.id;
+    c.nameEl.textContent = nameOf(o);
+    var map = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(o.address + ' ' + o.zip + ' CO');
+    c.infoEl.replaceChildren(
+      h('div', { class: 'addr', text: addrLine(o) + ', ' + o.zip }),
+      o.outside ? h('div', { class: 'warnline', text: 'Zip ' + o.zip + ' is not on your assigned territory list.' }) : null,
+      o.approx ? h('div', { class: 'warnline', text: 'Map position is approximate. Check the address.' }) : null,
+      h('div', {}, h('a', { href: map, target: '_blank', rel: 'noopener' }, 'Open in Maps')),
+      o.phone ? h('div', {}, 'Phone ', h('a', { href: 'tel:' + o.phone.replace(/[^0-9+]/g, '') }, o.phone)) : null,
+      o.fax ? h('div', { class: 'muted', text: 'Fax ' + o.fax }) : null,
+      h('div', { class: 'muted', text: o.lead + ' \u00b7 ' + (o.providers || 1) + (o.providers === 1 ? ' provider' : ' providers') + ' \u00b7 ' + o.day + ' \u00b7 ' + o.area }),
+      h('div', { class: 'muted', text: 'Name source: ' + (st(id).name ? 'edited by you' : o.src) }),
+      o.names ? h('details', {}, h('summary', { text: 'Providers on file' }), h('p', { text: o.specs + '. ' + o.names })) : null,
+      h('details', {}, h('summary', { text: 'Fix practice name' }), nameEditor(o)));
+    c.tierEl.replaceChildren();
+    [['A', 'A'], ['B', 'B'], ['C', 'C'], ['', 'None']].forEach(function (p) {
+      var on = tierOf(o) === p[0];
+      c.tierEl.append(h('button', { type: 'button', class: p[0] || 'N', 'aria-pressed': String(on), onclick: function () { patchOffice(id, { tier: p[0] || undefined }); } }, p[1]));
+    });
+    if (c.statusSel.value !== statusOf(o)) c.statusSel.value = statusOf(o);
+    renderHistory(c);
+  }
+  function nameEditor(o) {
+    var inp = h('input', { id: 'f-name', type: 'text', autocomplete: 'off', value: nameOf(o) });
+    return h('div', { style: 'margin-top:8px' },
+      h('div', { class: 'field' }, h('label', { for: 'f-name', text: 'Practice name' }), inp),
+      h('div', { class: 'actions' },
+        h('button', { type: 'button', class: 'btn', onclick: function () {
+          var v = inp.value.trim(); if (!v) { toast('Enter a name first.'); return; }
+          patchOffice(o.id, { name: v }); toast('Name updated');
+        } }, 'Save name'),
+        st(o.id).name ? h('button', { type: 'button', class: 'btn ghost', onclick: function () { patchOffice(o.id, { name: undefined }); toast('Name reset'); } }, 'Reset') : null));
+  }
+  function renderHistory(c) {
+    var list = vmap[c.o.id] || [];
+    c.histEl.replaceChildren();
+    if (!list.length) { c.histEl.append(h('div', { class: 'empty', text: 'No visits yet.' })); return; }
+    list.forEach(function (v) {
+      var delBtn = h('button', { type: 'button', class: 'btn danger' }, 'Delete');
+      var armed = false, tm;
+      delBtn.addEventListener('click', function () {
+        if (!armed) { armed = true; delBtn.textContent = 'Tap again to delete'; tm = setTimeout(function () { armed = false; delBtn.textContent = 'Delete'; }, 3000); return; }
+        clearTimeout(tm);
+        visits = visits.filter(function (x) { return x.id !== v.id; }); rebuildIndex(); store.delVisit(v.id);
+        if (editing === v.id) clearForm(c.f, c.saveBtn, c.cancelBtn);
+        renderAll(); toast('Visit deleted');
+      });
+      c.histEl.append(h('div', { class: 'row' },
+        h('div', { class: 'r-top' }, h('span', { class: 'r-name', text: fmtLong(v.date) }), v.outcome ? h('span', { class: 'pill', text: v.outcome }) : null),
+        v.spokeWith ? h('div', { class: 'r-sub', text: 'Spoke with ' + v.spokeWith + (v.role ? ' (' + v.role + ')' : '') }) : null,
+        v.notes ? h('div', { class: 'r-body', text: v.notes }) : null,
+        v.nextStep ? h('div', { class: 'r-sub', text: 'Next: ' + v.nextStep }) : null,
+        v.followUp ? h('div', { class: 'r-sub', text: 'Follow-up ' + fmtLong(v.followUp) + (v.done ? ' (done)' : '') }) : null,
+        h('div', { class: 'actions' },
+          h('button', { type: 'button', class: 'btn', onclick: function () { loadEdit(c, v); } }, 'Edit'), delBtn)));
+    });
+  }
+  function loadEdit(c, v) {
+    var f = c.f; editing = v.id;
+    f.date.value = v.date || today(); f.who.value = v.spokeWith || ''; f.role.value = v.role || '';
+    f.outcome.value = v.outcome || ''; f.notes.value = v.notes || ''; f.next.value = v.nextStep || ''; f.follow.value = v.followUp || '';
+    c.saveBtn.textContent = 'Update visit'; c.cancelBtn.hidden = false;
+    f.who.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }
+  function clearForm(f, saveBtn, cancelBtn) {
+    editing = null; f.date.value = today(); f.who.value = ''; f.role.value = ''; f.outcome.value = '';
+    f.notes.value = ''; f.next.value = ''; f.follow.value = '';
+    saveBtn.textContent = 'Save visit'; cancelBtn.hidden = true;
+  }
+  function saveVisit(f, saveBtn, cancelBtn) {
+    var o = BYID[openId]; if (!o) return;
+    var rec = {
+      officeId: openId, date: f.date.value, spokeWith: f.who.value.trim(), role: f.role.value.trim(), outcome: f.outcome.value,
+      notes: f.notes.value.trim(), nextStep: f.next.value.trim(), followUp: f.follow.value || '', done: false, createdAt: Date.now()
+    };
+    if (!rec.date) { toast('Pick the visit date.'); return; }
+    if (!rec.spokeWith && !rec.outcome && !rec.notes) { toast('Add who you spoke with, an outcome or a note.'); return; }
+    var id = editing || newId();
+    if (editing) { var old = visits.find(function (x) { return x.id === editing; }); if (old) { rec.createdAt = old.createdAt || rec.createdAt; rec.done = !!old.done && rec.followUp === (old.followUp || ''); } }
+    upsertVisit(id, rec); store.setVisit(id, rec);
+    var cur = statusOf(o);
+    if (!editing && cur !== 'Not a fit') {
+      var ns = (rec.followUp || rec.outcome === 'Follow-up scheduled') ? 'Follow-up' : 'Visited';
+      if (ns !== cur) { var next = Object.assign({}, st(o.id), { status: ns }); officeState[o.id] = next; store.setOffice(o.id, next); }
+    }
+    clearForm(f, saveBtn, cancelBtn);
+    renderAll(); toast('Visit saved');
+  }
+
+  /* drive view */
+  function fmtDur(m) { if (!m) return ''; var hr = Math.floor(m / 60), mm = m % 60; return (hr ? hr + ' h ' : '') + mm + ' min'; }
+  function firstOpenDay() {
+    for (var i = 0; i < RUN.length; i++) if (OFFICES.some(function (o) { return o.day === RUN[i] && statusOf(o) === 'To visit'; })) return RUN[i];
+    return RUN[0];
+  }
+  function pt(o) { return o.approx ? encodeURIComponent(o.address + ' ' + o.zip + ' CO') : o.lat.toFixed(5) + ',' + o.lon.toFixed(5); }
+  function legUrl(chunk) {
+    var dest = pt(chunk[chunk.length - 1]), wp = chunk.slice(0, -1).map(pt).join('%7C');
+    return 'https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=' + dest + (wp ? '&waypoints=' + wp : '');
+  }
+  function renderDrive() {
+    var s = $('#v-drive'); s.replaceChildren();
+    if (RUN.indexOf(driveDay) < 0) driveDay = firstOpenDay();
+    var tabs = h('div', { class: 'days', role: 'group', 'aria-label': 'Drive day' });
+    RUN.forEach(function (d) {
+      var list = OFFICES.filter(function (o) { return o.day === d; });
+      var left = list.filter(function (o) { return statusOf(o) === 'To visit'; }).length;
+      tabs.append(h('button', { type: 'button', class: 'day', 'aria-pressed': String(driveDay === d), onclick: function () { driveDay = d; lsSet('tv-driveday', d); renderDrive(); } },
+        d, h('small', { text: left + ' left' })));
+    });
+    s.append(tabs);
+    var stops = OFFICES.filter(function (o) { return o.day === driveDay; }).sort(function (a, b) { return a.seq - b.seq; });
+    var rem = stops.filter(function (o) { return statusOf(o) === 'To visit'; });
+    var m = DAYMETA[driveDay] || {};
+    s.append(h('div', { class: 'drive-sum' },
+      h('div', { class: 'ds-top', text: driveDay + ' \u00b7 ' + stops.length + ' stops \u00b7 zips ' + (m.zips || []).join(', ') }),
+      h('div', { class: 'ds-sub', text: 'Loop from Golden and back: about ' + (m.miles || 0) + ' mi, ' + fmtDur(m.minutes) + ' of driving before visit time. Rough estimate.' }),
+      h('div', { class: 'ds-sub', text: rem.length + ' of ' + stops.length + ' still to visit' })));
+    var shown = onlyRem ? rem : stops;
+    s.append(h('div', { class: 'chips', style: 'margin-top:10px' },
+      h('button', { type: 'button', class: 'chip', 'aria-pressed': String(onlyRem), onclick: function () { onlyRem = !onlyRem; lsSet('tv-onlyrem', onlyRem ? '1' : '0'); renderDrive(); } }, 'Only stops left')));
+    if (!shown.length) { s.append(h('div', { class: 'empty', text: 'Every stop on this day is worked. Pick another day above.' })); return; }
+    var navs = h('div', { class: 'navs' });
+    for (var i = 0; i < shown.length; i += 9) {
+      var chunk = shown.slice(i, i + 9);
+      navs.append(h('a', { href: legUrl(chunk), target: '_blank', rel: 'noopener' }, 'Navigate stops ' + chunk[0].seq + '\u2013' + chunk[chunk.length - 1].seq));
+    }
+    navs.append(h('a', { class: 'alt', href: 'https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=Golden%2C%20CO', target: '_blank', rel: 'noopener' }, 'Head home'));
+    s.append(navs);
+    s.append(h('div', { class: 'hint', style: 'margin:6px 0 12px', text: 'Each button opens up to 9 stops in Google Maps from where you are. Stops are in driving order.' }));
+    var wrap = h('div', {});
+    shown.forEach(function (o) {
+      var sx = statusOf(o), lv = lastVisit(o.id);
+      wrap.append(h('div', { class: 'stop' + (sx !== 'To visit' ? ' worked' : '') },
+        h('span', { class: 'seq', text: o.seq }),
+        h('button', { type: 'button', class: 'stop-main', onclick: function (ev) { openSheet(o.id, ev.currentTarget); } },
+          h('span', { class: 'o-name', text: nameOf(o) }),
+          h('span', { class: 'o-addr', text: addrLine(o) }),
+          h('span', { class: 'o-meta' },
+            h('span', { class: 'pill' + (PRIO[o.lead] <= 1 ? ' prio' : ''), text: o.lead }),
+            tierOf(o) ? h('span', { class: 'pill', text: 'Tier ' + tierOf(o) }) : null,
+            sx !== 'To visit' ? h('span', { class: 'pill ' + (sx === 'Follow-up' ? 'follow' : sx === 'Visited' ? 'done' : 'nofit'), text: sx }) : null,
+            !onlyRem && o.leg ? h('span', { text: '+' + o.leg + ' mi' }) : null,
+            lv ? h('span', { text: 'Last ' + fmtShort(lv) }) : null,
+            o.approx ? h('span', { class: 'pill verify', text: 'approx. location' }) : null)),
+        h('a', { class: 'go', href: legUrl([o]), target: '_blank', rel: 'noopener', 'aria-label': 'Navigate to ' + nameOf(o) }, 'Go')));
+    });
+    s.append(wrap);
+  }
+
+  function renderAll() {
+    if (!loaded) return;
+    renderHeader(); renderFilters();
+    if (view === 'route') renderList();
+    if (view === 'drive') renderDrive();
+    if (view === 'follow') renderFollow();
+    if (view === 'log') renderLog();
+    syncSheet();
+  }
+
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && openId) closeSheet(); });
+  $('#search').addEventListener('input', function (e) { q = e.target.value.trim(); renderList(); });
+
+  async function loadOffices() {
+    var r = await Promise.all([tdb.from('offices').select('id,data').range(0, 999), tdb.from('meta').select('key,data')]);
+    if (r[0].error) throw r[0].error; if (r[1].error) throw r[1].error;
+    OFFICES = r[0].data.map(function (x) { return x.data; });
+    OFFICES.sort(function (a, b) { return (a.day || '').localeCompare(b.day || '') || (a.seq || 0) - (b.seq || 0); });
+    r[1].data.forEach(function (m) { if (m.key === 'home') HOME = m.data; if (m.key === 'days') DAYMETA = m.data; });
+    BYID = {}; OFFICES.forEach(function (o) { BYID[o.id] = o; });
+  }
+  function importCard() {
+    var file = h('input', { type: 'file', accept: 'application/json,.json', 'aria-label': 'Office list file' });
+    var msg = h('p', { class: 'note' });
+    file.addEventListener('change', async function () {
+      var f = file.files && file.files[0]; if (!f) return;
+      try {
+        msg.textContent = 'Loading...';
+        var data = JSON.parse(await f.text());
+        if (!data.offices || !data.offices.length) throw new Error('No offices in that file.');
+        var rows = data.offices.map(function (o) { return { id: o.id, data: o }; });
+        for (var i = 0; i < rows.length; i += 100) { var r = await tdb.from('offices').upsert(rows.slice(i, i + 100)); if (r.error) throw r.error; }
+        var m = await tdb.from('meta').upsert([{ key: 'home', data: data.home }, { key: 'days', data: data.days || {} }]); if (m.error) throw m.error;
+        location.reload();
+      } catch (e) { msg.textContent = 'Could not load the file: ' + (e.message || e); msg.className = 'note warn'; }
+    });
+    return h('div', { class: 'importcard' }, h('strong', { text: 'Load your office list' }),
+      h('p', { class: 'note', text: 'One time only: choose the offices.json file you were sent. It is saved to your private database, not to the website.' }), file, msg);
+  }
+  async function boot() {
+    $('#auth').hidden = true; $('#app').hidden = false;
+    $('#v-route').hidden = view !== 'route'; $('#v-drive').hidden = view !== 'drive'; $('#v-follow').hidden = view !== 'follow'; $('#v-log').hidden = view !== 'log';
+    try { await loadOffices(); } catch (e) {
+      $('#list').replaceChildren(h('div', { class: 'empty', text: 'Could not load the office list: ' + (e.message || e) + '. Reload the page to try again.' })); return;
+    }
+    if (!OFFICES.length) { $('#list').replaceChildren(importCard()); return; }
+    await initStore();
+    var so = h('button', { type: 'button', class: 'signout', onclick: async function () { await sb.auth.signOut(); location.reload(); } }, 'Sign out');
+    $('#syncnote').after(h('p', { class: 'note' }, so));
+    loaded = true; renderAll();
+  }
+  function showLogin() { $('#app').hidden = true; $('#auth').hidden = false; }
+  async function start() {
+    $('#authform').addEventListener('submit', async function (e) {
+      e.preventDefault(); $('#autherr').textContent = '';
+      var r = await sb.auth.signInWithPassword({ email: $('#authemail').value.trim(), password: $('#authpass').value });
+      if (r.error) { $('#autherr').textContent = 'Sign in failed. Check your email and password.'; return; }
+      boot();
+    });
+    var s = await sb.auth.getSession();
+    if (s.data && s.data.session) boot(); else showLogin();
+  }
+  start();
+})();
+</script>
+</body>
+</html>
